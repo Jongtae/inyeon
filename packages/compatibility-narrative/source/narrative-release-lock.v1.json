@@ -1,0 +1,6 @@
+{
+  "schemaVersion": 1,
+  "catalogVersion": "us-english-narrative-copy-v1",
+  "catalogSha256": "1b046262648f0ccd751c561bcc6a28ff8143a8f755ea7ab47e9b46544036998b",
+  "policy": "Changing reviewed copy requires a new catalog version and release lock."
+}

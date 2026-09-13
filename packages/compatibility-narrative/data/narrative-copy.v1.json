@@ -1,0 +1,244 @@
+{
+  "schemaVersion": 1,
+  "composerVersion": "deterministic-narrative-v1",
+  "catalogVersion": "us-english-narrative-copy-v1",
+  "compatibleRuleSetVersion": "korean-compatibility-rules-v1",
+  "status": "candidate",
+  "productionEligible": false,
+  "claimsEnabled": false,
+  "review": {
+    "internalProduct": "reviewed",
+    "internalSafety": "reviewed",
+    "culturalSajuExpert": "pending"
+  },
+  "publicPresentation": {
+    "audience": "US-first",
+    "language": "English-first",
+    "koreanIdentity": "Korean-rooted K-culture",
+    "koreanScriptOrder": ["Hangul", "Hanja"],
+    "hanjaUsage": "Secondary traditional detail only"
+  },
+  "statusMessages": {
+    "no-approved-evidence": {
+      "reflective": {
+        "standard": "No reviewed compatibility interpretation is available yet.",
+        "compact": "No reviewed interpretation is available yet.",
+        "share": "Compatibility interpretation is not available yet."
+      },
+      "plain": {
+        "standard": "INYEON is not generating a compatibility interpretation yet.",
+        "compact": "Compatibility interpretation is not available yet.",
+        "share": "Compatibility interpretation is not available yet."
+      }
+    },
+    "evidence-unavailable": {
+      "reflective": {
+        "standard": "The available details do not support a reviewed compatibility interpretation.",
+        "compact": "The available details do not support an interpretation.",
+        "share": "The available details do not support an interpretation."
+      },
+      "plain": {
+        "standard": "A reviewed compatibility interpretation cannot be generated from the available details.",
+        "compact": "The available details cannot support an interpretation.",
+        "share": "The available details cannot support an interpretation."
+      }
+    },
+    "evidence-pending": {
+      "reflective": {
+        "standard": "Reviewed relationship copy is not available for this evidence state.",
+        "compact": "Reviewed relationship copy is not available.",
+        "share": "Reviewed relationship copy is not available."
+      },
+      "plain": {
+        "standard": "INYEON is not generating a relationship claim from this evidence state.",
+        "compact": "No relationship claim is generated.",
+        "share": "No relationship claim is generated."
+      }
+    },
+    "evidence-available": {
+      "reflective": {
+        "standard": "Reviewed compatibility evidence is available for this reflection.",
+        "compact": "Reviewed compatibility evidence is available.",
+        "share": "Reviewed compatibility evidence is available."
+      },
+      "plain": {
+        "standard": "This comparison includes reviewed compatibility evidence.",
+        "compact": "Reviewed compatibility evidence is included.",
+        "share": "Reviewed compatibility evidence is included."
+      }
+    }
+  },
+  "limitations": {
+    "CANDIDATE_METHODOLOGY": {
+      "reflective": {
+        "standard": "This uses INYEON’s candidate Korean Saju (사주, Four Pillars; 四柱) calculation profile. It has not completed production methodology review.",
+        "compact": "The Korean Saju (사주, Four Pillars; 四柱) method is still under review.",
+        "share": "Korean Saju (사주, Four Pillars; 四柱) methodology review is still pending."
+      },
+      "plain": {
+        "standard": "INYEON’s Korean Saju (사주, Four Pillars; 四柱) calculation profile is a candidate and has not completed production methodology review.",
+        "compact": "The Korean Saju (사주, Four Pillars; 四柱) profile is not production validated.",
+        "share": "The Korean Saju (사주, Four Pillars; 四柱) profile is not production validated."
+      }
+    },
+    "NO_APPROVED_DIMENSION_MAPPINGS": {
+      "reflective": {
+        "standard": "No relationship interpretation has passed INYEON’s evidence and cultural review, so this comparison makes no compatibility claim.",
+        "compact": "No relationship interpretation has completed review.",
+        "share": "No relationship interpretation has completed review."
+      },
+      "plain": {
+        "standard": "There are no approved relationship mappings, so INYEON does not generate a compatibility claim.",
+        "compact": "There are no approved relationship mappings.",
+        "share": "There are no approved relationship mappings."
+      }
+    },
+    "TIME_APPROXIMATE": {
+      "reflective": {
+        "standard": "At least one birth time is approximate. A future relationship claim can appear only when it stays the same across every retained time possibility.",
+        "compact": "An approximate birth time keeps multiple possibilities in view.",
+        "share": "An approximate birth time keeps multiple possibilities in view."
+      },
+      "plain": {
+        "standard": "At least one birth time is approximate. INYEON retains every supported time possibility instead of selecting one.",
+        "compact": "All supported approximate-time possibilities are retained.",
+        "share": "All supported approximate-time possibilities are retained."
+      }
+    },
+    "TIME_DISPUTED": {
+      "reflective": {
+        "standard": "More than one birth-time range is plausible. INYEON does not choose or average between them.",
+        "compact": "Disputed birth-time ranges are not chosen or averaged.",
+        "share": "Disputed birth-time ranges are not chosen or averaged."
+      },
+      "plain": {
+        "standard": "At least one birth time is disputed. INYEON retains the supported alternatives without selecting or averaging them.",
+        "compact": "Supported disputed-time alternatives stay separate.",
+        "share": "Supported disputed-time alternatives stay separate."
+      }
+    },
+    "TIME_UNAVAILABLE": {
+      "reflective": {
+        "standard": "Birth time is not available for at least one record, so hour-dependent evidence is not used.",
+        "compact": "Missing birth time keeps hour-dependent evidence unavailable.",
+        "share": "Hour-dependent evidence is not used when birth time is unavailable."
+      },
+      "plain": {
+        "standard": "At least one birth time is unavailable. INYEON does not assume a time or use hour-dependent evidence.",
+        "compact": "No birth time is assumed for hour-dependent evidence.",
+        "share": "No birth time is assumed for hour-dependent evidence."
+      }
+    },
+    "EVIDENCE_VARIES": {
+      "reflective": {
+        "standard": "The reviewed evidence varies across retained time possibilities. INYEON does not select or average a result.",
+        "compact": "The evidence varies, so no single result is selected.",
+        "share": "The evidence varies, so no single result is selected."
+      },
+      "plain": {
+        "standard": "Retained time possibilities produce different evidence. No result is selected or averaged.",
+        "compact": "Different possibilities remain separate.",
+        "share": "Different possibilities remain separate."
+      }
+    },
+    "REQUIRED_INPUT_UNAVAILABLE": {
+      "reflective": {
+        "standard": "A reviewed rule needs information that is not available, so it does not produce a relationship claim.",
+        "compact": "Required information is unavailable for a reviewed rule.",
+        "share": "Required information is unavailable for a reviewed rule."
+      },
+      "plain": {
+        "standard": "Required evidence is unavailable. INYEON does not generate a claim from that rule.",
+        "compact": "Required evidence is unavailable.",
+        "share": "Required evidence is unavailable."
+      }
+    },
+    "RULE_NOT_AVAILABLE": {
+      "reflective": {
+        "standard": "Some relationship rules are still awaiting review and cannot produce public copy.",
+        "compact": "Some rules are still awaiting review.",
+        "share": "Some rules are still awaiting review."
+      },
+      "plain": {
+        "standard": "A rule is not approved for public interpretation, so it is suppressed.",
+        "compact": "An unapproved rule is suppressed.",
+        "share": "An unapproved rule is suppressed."
+      }
+    },
+    "RESOURCE_LIMIT": {
+      "reflective": {
+        "standard": "This evidence set exceeded the bounded evaluation limit, so INYEON does not produce a relationship claim.",
+        "compact": "The bounded evaluation limit was reached.",
+        "share": "The bounded evaluation limit was reached."
+      },
+      "plain": {
+        "standard": "The evaluation limit was reached. No relationship claim is generated.",
+        "compact": "The evaluation limit was reached.",
+        "share": "The evaluation limit was reached."
+      }
+    },
+    "SHARED_SUMMARY_OMITS_DETAILS": {
+      "reflective": {
+        "standard": "Some details are not included in this summary.",
+        "compact": "Some details are not included in this summary.",
+        "share": "Some details are not included in this shared summary."
+      },
+      "plain": {
+        "standard": "Some details are omitted from this summary.",
+        "compact": "Some details are omitted from this summary.",
+        "share": "Some details are omitted from this shared summary."
+      }
+    }
+  },
+  "disclosures": {
+    "private-comparison": {
+      "reflective": {
+        "standard": "Use this Korean-rooted reflection as context for a conversation, not a verdict about either person or the relationship.",
+        "compact": "A reflective lens, not a verdict about either person.",
+        "share": "A reflective lens, not a relationship verdict."
+      },
+      "plain": {
+        "standard": "This is a reflective reference, not a judgment or prediction about either person or the relationship.",
+        "compact": "This is a reference, not a relationship verdict.",
+        "share": "This is a reference, not a relationship verdict."
+      }
+    },
+    "public-figure-reference": {
+      "reflective": {
+        "standard": "Public reference—not a member or endorsement. This hypothetical comparison does not describe the person’s private life or romantic availability.",
+        "compact": "Public reference—not a member, endorsement, or private-life claim.",
+        "share": "Hypothetical public reference—not membership, endorsement, private-life knowledge, or romantic availability."
+      },
+      "plain": {
+        "standard": "This uses a public reference record. It does not imply membership, endorsement, romantic availability, or knowledge of private life.",
+        "compact": "Public reference only; no membership or endorsement is implied.",
+        "share": "Hypothetical public reference—not membership, endorsement, private-life knowledge, or romantic availability."
+      }
+    },
+    "synthetic-reference": {
+      "reflective": {
+        "standard": "Fictional character—not a real person or member. Decorative Inyeon Lab traits are generated independently of Saju and are not personality claims.",
+        "compact": "Fictional character—not a person, member, or personality claim.",
+        "share": "Fictional character—not a real person or member."
+      },
+      "plain": {
+        "standard": "This Inyeon Lab character is fictional, is not a member, and does not receive personality traits from Saju.",
+        "compact": "Fictional reference; not a member or Saju personality profile.",
+        "share": "Fictional reference—not a real person or member."
+      }
+    },
+    "someone-i-know": {
+      "reflective": {
+        "standard": "Only enter someone else’s birth information when you have an appropriate reason or permission to do so.",
+        "compact": "Use another person’s information only with an appropriate reason or permission.",
+        "share": "Use another person’s information only with appropriate permission."
+      },
+      "plain": {
+        "standard": "Use another person’s birth information only when you have an appropriate reason or permission.",
+        "compact": "Use another person’s information only with an appropriate reason or permission.",
+        "share": "Use another person’s information only with appropriate permission."
+      }
+    }
+  },
+  "claims": []
+}
