@@ -183,19 +183,21 @@ Required properties:
 
 Compatibility rules are code/data, not prompt prose.
 
-Each rule should be versioned and emit structured evidence such as:
+Each rule is versioned and uses only closed, typed feature selectors and predicates. The active product catalog is intentionally empty until qualified cultural/Saju review approves exact mappings:
 
 ```json
 {
-  "rule_id": "PAIR-DAY-BRANCH-CLASH-001",
-  "version": "1.0.0",
-  "requires": ["a.day_branch", "b.day_branch"],
-  "evidence": {"relationship": "clash"},
-  "dimensions": {"pace": -1, "novelty": 2, "stability": -1, "growth": 2},
-  "allowed_narratives": ["different decision rhythms", "productive tension"],
-  "prohibited_narratives": ["doomed marriage", "infidelity", "divorce prediction"]
+  "schemaVersion": 1,
+  "ruleSetVersion": "korean-compatibility-rules-v1",
+  "taxonomyVersion": "inclusive-compatibility-v1",
+  "derivedFeatureVersion": "korean-saju-derived-v1",
+  "status": "candidate",
+  "productionEligible": false,
+  "rules": []
 }
 ```
+
+Future rules must declare `ruleId`, semantic `ruleVersion`, exact feature requirements, a finite predicate, pair semantics, hour dependency, dimension IDs, categorical salience, reviewed narrative keys, prohibited-category IDs, attributable evidence references, and per-version review status. The evaluator does not calculate combinations, clashes, generating/controlling cycles, hidden stems, Ten Gods, or other traditional primitives. Those require an attributable, reviewed derived-feature revision before a rule may consume them. Numeric soulmate scoring and aggregate ranking weights are not part of the rule contract.
 
 The UI should present archetypes and balanced sections such as `What clicks`, `Potential friction`, and `Why this?`, not a universal compatibility percentage.
 

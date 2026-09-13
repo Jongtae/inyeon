@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "ruleSetVersion": "korean-compatibility-rules-v1",
+  "taxonomyVersion": "inclusive-compatibility-v1",
+  "derivedFeatureVersion": "korean-saju-derived-v1",
+  "status": "candidate",
+  "productionEligible": false,
+  "review": {
+    "internalProduct": "reviewed",
+    "internalSafety": "reviewed",
+    "culturalSajuExpert": "pending"
+  },
+  "rules": []
+}
