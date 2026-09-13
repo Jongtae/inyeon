@@ -4,29 +4,65 @@
 
 Saju calculation is deterministic software, not an LLM task.
 
-Same normalized input + same calculation profile version must produce the same normalized chart.
+Same normalized input + same calculation profile version + same pinned upstream/reference versions must produce the same normalized chart.
+
+The first release should **not** reimplement mature calendrical primitives without evidence that doing so is necessary.
+
+Preferred engineering strategy:
+
+`adopt → wrap → pin → differential-test → golden-test → patch only proven gaps`
+
+Primary candidate: `yhj1024/manseryeok` behind an INYEON-owned `InyeonSajuAdapter`.
+
+Independent references may include `6tail/lunar-javascript`, Korean lunar/KASI-aligned references, and expert-reviewed fixtures.
+
+No upstream library is treated as infallible. Differences must be classified and documented.
+
+## Adapter boundary
+
+All third-party calendar/Saju behavior must be hidden behind an INYEON-owned adapter interface.
+
+Suggested flow:
+
+`raw local birth input → INYEON normalization → InyeonSajuAdapter → normalized chart/uncertainty → derived features → compatibility engine`
+
+The product/domain layer must not depend directly on one upstream library API.
+
+Record with every chart or reproducible fixture where applicable:
+
+- INYEON calculation profile version;
+- INYEON adapter version;
+- upstream package/repository version or commit/tag;
+- timezone/reference-data version;
+- derived-feature version.
+
+Changing any behavior that can alter chart identity requires a profile/version review and full golden-corpus regression before production.
 
 ## Input model
 
-- local birth date
-- local birth time nullable
-- birth time precision: `exact | approximate | unknown`
-- birthplace resolver result
-- IANA timezone identifier
-- coordinates needed only for deterministic calendrical/timezone calculation
-- calculation profile version
-- timezone data version
+- local birth date;
+- local birth time nullable;
+- birth time precision: `exact | approximate | unknown` for user input;
+- public/reference data may additionally use `verified | well_sourced | disputed | date_only | unknown` source-confidence metadata;
+- birthplace resolver result when required;
+- IANA timezone identifier when known/required;
+- coordinates only when necessary for deterministic calendrical/timezone/true-solar-time policy;
+- calculation profile version;
+- timezone/reference data version.
+
+For the first zero-backend release, personal inputs are processed only in browser memory and are not persisted/transmitted by INYEON application code.
 
 ## Required v1 outputs
 
-- year/month/day/hour pillars when computable
-- heavenly stems / earthly branches
-- five-element derived features
-- day master
-- ten-god relationships where profile specifies them
-- branch/stem relationships used by compatibility rules
-- confidence/input-completeness metadata
-- all methodology versions needed for reproduction
+- year/month/day/hour pillars when computable;
+- heavenly stems / earthly branches;
+- five-element derived features;
+- day master;
+- ten-god relationships where the profile specifies them;
+- branch/stem relationships used by compatibility rules;
+- confidence/input-completeness metadata;
+- possible-alternative states when boundary uncertainty genuinely prevents a single chart result;
+- all methodology/upstream/reference versions needed for reproduction.
 
 ## Methodology governance
 
@@ -34,35 +70,89 @@ Different Four Pillars traditions make different choices around boundaries and d
 
 The profile must document at least:
 
-- solar-term boundary source and precision
-- historical timezone/DST handling
-- year boundary convention
-- month pillar solar-term convention
-- day boundary convention
-- hour branch convention
-- whether true solar time adjustments are used
-- hidden stems and weighting rules if used
-- Daewoon direction/start calculation if/when introduced
+- solar-term boundary source/precision;
+- historical timezone/DST handling;
+- year boundary convention;
+- month pillar solar-term convention;
+- day boundary convention;
+- hour branch convention;
+- whether true solar time adjustments are used;
+- hidden stems and weighting rules if used;
+- Daewoon direction/start calculation if/when introduced;
+- how an upstream library's defaults map to or differ from the chosen Korean profile.
 
-## Unknown birth time
+Do not silently blend Chinese BaZi defaults and Korean Saju conventions.
 
-Never fabricate an hour. When time is unknown:
+## Unknown / approximate birth time
 
-- compute only time-independent facts;
+Never fabricate an hour. Do not substitute noon or another default merely to obtain eight characters.
+
+When time is unknown:
+
+- compute only facts supported by the available input;
 - suppress hour-dependent compatibility rules;
 - propagate lower interpretation confidence;
-- clearly label limitations.
+- clearly label limitations;
+- if the unknown time could cross a selected day/month/year boundary, represent the legitimate alternatives rather than pretending certainty.
 
-## Test requirements
+Approximate/disputed time should be normalized to an explicit range/state and evaluated conservatively according to the calculation profile.
 
-Before launch, maintain an expert-reviewed golden corpus heavily sampling:
+## Differential validation
 
-- solar-term boundaries
-- day boundaries
-- leap years
-- historical DST transitions
-- multiple US time zones
-- Korea
-- exact / approximate / unknown birth time
+Before trusting the primary adapter:
 
-Property tests should verify determinism and invariants such as pair-order symmetry where the rule is logically symmetric.
+1. compare representative cases against at least one independent implementation/reference;
+2. oversample Ipchun/monthly solar-term boundaries, day rollover, DST gaps/folds, historical timezone changes, Korea, and multiple US time zones;
+3. classify every disagreement as one of:
+   - upstream implementation bug;
+   - deliberate methodology/tradition difference;
+   - timezone/input normalization issue;
+   - source/reference inconsistency;
+   - unresolved expert-review item;
+4. do not average/confabulate across disagreement;
+5. add resolved cases to the regression/golden corpus.
+
+## Golden corpus requirements
+
+Before public release, maintain at least **200** expert/reference-backed fixtures heavily sampling:
+
+- solar-term boundaries;
+- day boundaries;
+- leap years;
+- historical DST transitions;
+- multiple US time zones;
+- Korea;
+- exact / approximate / unknown birth time;
+- known public-figure/reference cases with reliable provenance where useful;
+- upstream/reference disagreement cases after resolution.
+
+Each fixture should preserve provenance and expected methodology/profile version.
+
+## Property / invariant tests
+
+Verify at minimum:
+
+- same normalized input + same versions → same output;
+- no fabricated hour appears from unknown-time input;
+- unsupported hour-dependent derived features are absent;
+- normalized stems/branches stay in their valid domains;
+- pair-order symmetry where a compatibility rule is logically symmetric;
+- upstream upgrade cannot change expected fixtures silently.
+
+## Upgrade policy
+
+Upstream dependency updates are not routine semver bumps.
+
+Before production upgrade:
+
+- review upstream release notes/diff;
+- run the full golden corpus;
+- run differential boundary tests;
+- inspect all changed outputs;
+- classify intentional vs unexpected changes;
+- bump INYEON methodology/adapter version when behavior changes materially;
+- document the decision in an ADR/release note.
+
+## Non-goal
+
+INYEON's distinctive value is not owning basic sexagenary-calendar math. The durable project value belongs in uncertainty modelling, compatibility feature representation, versioned relationship rules, explainability, public/synthetic exploration, and later optional real-world outcome learning.
