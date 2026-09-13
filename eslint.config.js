@@ -5,7 +5,7 @@ import reactRefresh from 'eslint-plugin-react-refresh';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
-const typescriptFiles = ['apps/web/**/*.{ts,tsx}'];
+const typescriptFiles = ['apps/web/**/*.{ts,tsx}', 'packages/**/*.{ts,tsx}'];
 
 export default defineConfig([
   {

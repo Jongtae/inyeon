@@ -1,0 +1,5119 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-13",
+  "profileVersion": "korean-saju-v1",
+  "profileStatus": "candidate",
+  "productionEligible": false,
+  "limitations": [
+    "No KASI provenance is asserted.",
+    "No Korean-methodology expert review is asserted.",
+    "lunar-javascript chart comparison may share calendrical lineage and is not independent evidence.",
+    "Astronomy Engine is independent only for apparent-Sun longitude boundary location.",
+    "Historical/future Asia/Seoul and America/* timezone/DST validation are deferred to Issue #9.",
+    "Day/hour convention differences are preserved for Issue #12; this corpus does not select a correct Korean methodology."
+  ],
+  "recordCount": 78,
+  "records": [
+    {
+      "id": "term-2024-00-before",
+      "input": {
+        "localDate": "2024-01-06",
+        "localTime": "05:48",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "계묘",
+          "month": "갑자",
+          "day": "기사",
+          "hour": "정묘"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "계묘",
+          "month": "을축",
+          "day": "기사",
+          "hour": "정묘"
+        }
+      },
+      "independentReference": {
+        "engine": "astronomy-engine",
+        "version": "2.1.19",
+        "assertedProperty": "apparent-sun-longitude boundary location",
+        "independentForAssertedProperty": true,
+        "longitudeDegrees": 285,
+        "primaryBoundaryUtc": "2024-01-05T20:49:00.000Z",
+        "comparisonBoundaryUtc": "2024-01-05T20:49:19.758Z",
+        "absoluteDifferenceSeconds": 20
+      },
+      "classification": "source_reference_inconsistency",
+      "differingPillars": [
+        "month"
+      ],
+      "findings": [
+        {
+          "pillar": "month",
+          "category": "source_reference_inconsistency",
+          "primaryOutput": "갑자",
+          "comparisonOutput": "을축",
+          "evidence": "The implementations place a solar-term boundary at different precision/instants; neither is treated as an oracle.",
+          "disposition": "deferred-to-issue-10"
+        }
+      ],
+      "evidenceSourceCategory": "independent_ephemeris_boundary_locator_and_shared_lineage_chart_comparison",
+      "notes": "Astronomy Engine independently locates the longitude crossing only. Lunar chart agreement is not independent methodology evidence."
+    },
+    {
+      "id": "term-2024-00-after",
+      "input": {
+        "localDate": "2024-01-06",
+        "localTime": "05:50",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "계묘",
+          "month": "을축",
+          "day": "기사",
+          "hour": "정묘"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "계묘",
+          "month": "을축",
+          "day": "기사",
+          "hour": "정묘"
+        }
+      },
+      "independentReference": {
+        "engine": "astronomy-engine",
+        "version": "2.1.19",
+        "assertedProperty": "apparent-sun-longitude boundary location",
+        "independentForAssertedProperty": true,
+        "longitudeDegrees": 285,
+        "primaryBoundaryUtc": "2024-01-05T20:49:00.000Z",
+        "comparisonBoundaryUtc": "2024-01-05T20:49:19.758Z",
+        "absoluteDifferenceSeconds": 20
+      },
+      "classification": "agreement",
+      "differingPillars": [],
+      "findings": [],
+      "evidenceSourceCategory": "independent_ephemeris_boundary_locator_and_shared_lineage_chart_comparison",
+      "notes": "Astronomy Engine independently locates the longitude crossing only. Lunar chart agreement is not independent methodology evidence."
+    },
+    {
+      "id": "term-2024-02-before",
+      "input": {
+        "localDate": "2024-02-04",
+        "localTime": "17:26",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "계묘",
+          "month": "을축",
+          "day": "무술",
+          "hour": "신유"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "병인",
+          "day": "무술",
+          "hour": "신유"
+        }
+      },
+      "independentReference": {
+        "engine": "astronomy-engine",
+        "version": "2.1.19",
+        "assertedProperty": "apparent-sun-longitude boundary location",
+        "independentForAssertedProperty": true,
+        "longitudeDegrees": 315,
+        "primaryBoundaryUtc": "2024-02-04T08:27:00.000Z",
+        "comparisonBoundaryUtc": "2024-02-04T08:26:49.630Z",
+        "absoluteDifferenceSeconds": 10
+      },
+      "classification": "source_reference_inconsistency",
+      "differingPillars": [
+        "year",
+        "month"
+      ],
+      "findings": [
+        {
+          "pillar": "year",
+          "category": "source_reference_inconsistency",
+          "primaryOutput": "계묘",
+          "comparisonOutput": "갑진",
+          "evidence": "The implementations place a solar-term boundary at different precision/instants; neither is treated as an oracle.",
+          "disposition": "deferred-to-issue-10"
+        },
+        {
+          "pillar": "month",
+          "category": "source_reference_inconsistency",
+          "primaryOutput": "을축",
+          "comparisonOutput": "병인",
+          "evidence": "The implementations place a solar-term boundary at different precision/instants; neither is treated as an oracle.",
+          "disposition": "deferred-to-issue-10"
+        }
+      ],
+      "evidenceSourceCategory": "independent_ephemeris_boundary_locator_and_shared_lineage_chart_comparison",
+      "notes": "Astronomy Engine independently locates the longitude crossing only. Lunar chart agreement is not independent methodology evidence."
+    },
+    {
+      "id": "term-2024-02-after",
+      "input": {
+        "localDate": "2024-02-04",
+        "localTime": "17:28",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "병인",
+          "day": "무술",
+          "hour": "신유"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "병인",
+          "day": "무술",
+          "hour": "신유"
+        }
+      },
+      "independentReference": {
+        "engine": "astronomy-engine",
+        "version": "2.1.19",
+        "assertedProperty": "apparent-sun-longitude boundary location",
+        "independentForAssertedProperty": true,
+        "longitudeDegrees": 315,
+        "primaryBoundaryUtc": "2024-02-04T08:27:00.000Z",
+        "comparisonBoundaryUtc": "2024-02-04T08:26:49.630Z",
+        "absoluteDifferenceSeconds": 10
+      },
+      "classification": "agreement",
+      "differingPillars": [],
+      "findings": [],
+      "evidenceSourceCategory": "independent_ephemeris_boundary_locator_and_shared_lineage_chart_comparison",
+      "notes": "Astronomy Engine independently locates the longitude crossing only. Lunar chart agreement is not independent methodology evidence."
+    },
+    {
+      "id": "term-2024-04-before",
+      "input": {
+        "localDate": "2024-03-05",
+        "localTime": "11:22",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "병인",
+          "day": "무진",
+          "hour": "무오"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "정묘",
+          "day": "무진",
+          "hour": "무오"
+        }
+      },
+      "independentReference": {
+        "engine": "astronomy-engine",
+        "version": "2.1.19",
+        "assertedProperty": "apparent-sun-longitude boundary location",
+        "independentForAssertedProperty": true,
+        "longitudeDegrees": 345,
+        "primaryBoundaryUtc": "2024-03-05T02:23:00.000Z",
+        "comparisonBoundaryUtc": "2024-03-05T02:22:28.877Z",
+        "absoluteDifferenceSeconds": 31
+      },
+      "classification": "source_reference_inconsistency",
+      "differingPillars": [
+        "month"
+      ],
+      "findings": [
+        {
+          "pillar": "month",
+          "category": "source_reference_inconsistency",
+          "primaryOutput": "병인",
+          "comparisonOutput": "정묘",
+          "evidence": "The implementations place a solar-term boundary at different precision/instants; neither is treated as an oracle.",
+          "disposition": "deferred-to-issue-10"
+        }
+      ],
+      "evidenceSourceCategory": "independent_ephemeris_boundary_locator_and_shared_lineage_chart_comparison",
+      "notes": "Astronomy Engine independently locates the longitude crossing only. Lunar chart agreement is not independent methodology evidence."
+    },
+    {
+      "id": "term-2024-04-after",
+      "input": {
+        "localDate": "2024-03-05",
+        "localTime": "11:24",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "정묘",
+          "day": "무진",
+          "hour": "무오"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "정묘",
+          "day": "무진",
+          "hour": "무오"
+        }
+      },
+      "independentReference": {
+        "engine": "astronomy-engine",
+        "version": "2.1.19",
+        "assertedProperty": "apparent-sun-longitude boundary location",
+        "independentForAssertedProperty": true,
+        "longitudeDegrees": 345,
+        "primaryBoundaryUtc": "2024-03-05T02:23:00.000Z",
+        "comparisonBoundaryUtc": "2024-03-05T02:22:28.877Z",
+        "absoluteDifferenceSeconds": 31
+      },
+      "classification": "agreement",
+      "differingPillars": [],
+      "findings": [],
+      "evidenceSourceCategory": "independent_ephemeris_boundary_locator_and_shared_lineage_chart_comparison",
+      "notes": "Astronomy Engine independently locates the longitude crossing only. Lunar chart agreement is not independent methodology evidence."
+    },
+    {
+      "id": "term-2024-06-before",
+      "input": {
+        "localDate": "2024-04-04",
+        "localTime": "16:01",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "정묘",
+          "day": "무술",
+          "hour": "경신"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "무진",
+          "day": "무술",
+          "hour": "경신"
+        }
+      },
+      "independentReference": {
+        "engine": "astronomy-engine",
+        "version": "2.1.19",
+        "assertedProperty": "apparent-sun-longitude boundary location",
+        "independentForAssertedProperty": true,
+        "longitudeDegrees": 15,
+        "primaryBoundaryUtc": "2024-04-04T07:02:00.000Z",
+        "comparisonBoundaryUtc": "2024-04-04T07:02:14.725Z",
+        "absoluteDifferenceSeconds": 15
+      },
+      "classification": "source_reference_inconsistency",
+      "differingPillars": [
+        "month"
+      ],
+      "findings": [
+        {
+          "pillar": "month",
+          "category": "source_reference_inconsistency",
+          "primaryOutput": "정묘",
+          "comparisonOutput": "무진",
+          "evidence": "The implementations place a solar-term boundary at different precision/instants; neither is treated as an oracle.",
+          "disposition": "deferred-to-issue-10"
+        }
+      ],
+      "evidenceSourceCategory": "independent_ephemeris_boundary_locator_and_shared_lineage_chart_comparison",
+      "notes": "Astronomy Engine independently locates the longitude crossing only. Lunar chart agreement is not independent methodology evidence."
+    },
+    {
+      "id": "term-2024-06-after",
+      "input": {
+        "localDate": "2024-04-04",
+        "localTime": "16:03",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "무진",
+          "day": "무술",
+          "hour": "경신"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "무진",
+          "day": "무술",
+          "hour": "경신"
+        }
+      },
+      "independentReference": {
+        "engine": "astronomy-engine",
+        "version": "2.1.19",
+        "assertedProperty": "apparent-sun-longitude boundary location",
+        "independentForAssertedProperty": true,
+        "longitudeDegrees": 15,
+        "primaryBoundaryUtc": "2024-04-04T07:02:00.000Z",
+        "comparisonBoundaryUtc": "2024-04-04T07:02:14.725Z",
+        "absoluteDifferenceSeconds": 15
+      },
+      "classification": "agreement",
+      "differingPillars": [],
+      "findings": [],
+      "evidenceSourceCategory": "independent_ephemeris_boundary_locator_and_shared_lineage_chart_comparison",
+      "notes": "Astronomy Engine independently locates the longitude crossing only. Lunar chart agreement is not independent methodology evidence."
+    },
+    {
+      "id": "term-2024-08-before",
+      "input": {
+        "localDate": "2024-05-05",
+        "localTime": "09:09",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "무진",
+          "day": "기사",
+          "hour": "기사"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "기사",
+          "day": "기사",
+          "hour": "기사"
+        }
+      },
+      "independentReference": {
+        "engine": "astronomy-engine",
+        "version": "2.1.19",
+        "assertedProperty": "apparent-sun-longitude boundary location",
+        "independentForAssertedProperty": true,
+        "longitudeDegrees": 45,
+        "primaryBoundaryUtc": "2024-05-05T00:10:00.000Z",
+        "comparisonBoundaryUtc": "2024-05-05T00:10:08.464Z",
+        "absoluteDifferenceSeconds": 8
+      },
+      "classification": "source_reference_inconsistency",
+      "differingPillars": [
+        "month"
+      ],
+      "findings": [
+        {
+          "pillar": "month",
+          "category": "source_reference_inconsistency",
+          "primaryOutput": "무진",
+          "comparisonOutput": "기사",
+          "evidence": "The implementations place a solar-term boundary at different precision/instants; neither is treated as an oracle.",
+          "disposition": "deferred-to-issue-10"
+        }
+      ],
+      "evidenceSourceCategory": "independent_ephemeris_boundary_locator_and_shared_lineage_chart_comparison",
+      "notes": "Astronomy Engine independently locates the longitude crossing only. Lunar chart agreement is not independent methodology evidence."
+    },
+    {
+      "id": "term-2024-08-after",
+      "input": {
+        "localDate": "2024-05-05",
+        "localTime": "09:11",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "기사",
+          "day": "기사",
+          "hour": "기사"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "기사",
+          "day": "기사",
+          "hour": "기사"
+        }
+      },
+      "independentReference": {
+        "engine": "astronomy-engine",
+        "version": "2.1.19",
+        "assertedProperty": "apparent-sun-longitude boundary location",
+        "independentForAssertedProperty": true,
+        "longitudeDegrees": 45,
+        "primaryBoundaryUtc": "2024-05-05T00:10:00.000Z",
+        "comparisonBoundaryUtc": "2024-05-05T00:10:08.464Z",
+        "absoluteDifferenceSeconds": 8
+      },
+      "classification": "agreement",
+      "differingPillars": [],
+      "findings": [],
+      "evidenceSourceCategory": "independent_ephemeris_boundary_locator_and_shared_lineage_chart_comparison",
+      "notes": "Astronomy Engine independently locates the longitude crossing only. Lunar chart agreement is not independent methodology evidence."
+    },
+    {
+      "id": "term-2024-10-before",
+      "input": {
+        "localDate": "2024-06-05",
+        "localTime": "13:09",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "기사",
+          "day": "경자",
+          "hour": "계미"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경자",
+          "hour": "계미"
+        }
+      },
+      "independentReference": {
+        "engine": "astronomy-engine",
+        "version": "2.1.19",
+        "assertedProperty": "apparent-sun-longitude boundary location",
+        "independentForAssertedProperty": true,
+        "longitudeDegrees": 75,
+        "primaryBoundaryUtc": "2024-06-05T04:10:00.000Z",
+        "comparisonBoundaryUtc": "2024-06-05T04:09:54.092Z",
+        "absoluteDifferenceSeconds": 6
+      },
+      "classification": "source_reference_inconsistency",
+      "differingPillars": [
+        "month"
+      ],
+      "findings": [
+        {
+          "pillar": "month",
+          "category": "source_reference_inconsistency",
+          "primaryOutput": "기사",
+          "comparisonOutput": "경오",
+          "evidence": "The implementations place a solar-term boundary at different precision/instants; neither is treated as an oracle.",
+          "disposition": "deferred-to-issue-10"
+        }
+      ],
+      "evidenceSourceCategory": "independent_ephemeris_boundary_locator_and_shared_lineage_chart_comparison",
+      "notes": "Astronomy Engine independently locates the longitude crossing only. Lunar chart agreement is not independent methodology evidence."
+    },
+    {
+      "id": "term-2024-10-after",
+      "input": {
+        "localDate": "2024-06-05",
+        "localTime": "13:11",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경자",
+          "hour": "계미"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경자",
+          "hour": "계미"
+        }
+      },
+      "independentReference": {
+        "engine": "astronomy-engine",
+        "version": "2.1.19",
+        "assertedProperty": "apparent-sun-longitude boundary location",
+        "independentForAssertedProperty": true,
+        "longitudeDegrees": 75,
+        "primaryBoundaryUtc": "2024-06-05T04:10:00.000Z",
+        "comparisonBoundaryUtc": "2024-06-05T04:09:54.092Z",
+        "absoluteDifferenceSeconds": 6
+      },
+      "classification": "agreement",
+      "differingPillars": [],
+      "findings": [],
+      "evidenceSourceCategory": "independent_ephemeris_boundary_locator_and_shared_lineage_chart_comparison",
+      "notes": "Astronomy Engine independently locates the longitude crossing only. Lunar chart agreement is not independent methodology evidence."
+    },
+    {
+      "id": "term-2024-12-before",
+      "input": {
+        "localDate": "2024-07-06",
+        "localTime": "23:19",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "신미",
+          "hour": "무자"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "신미",
+          "day": "임신",
+          "hour": "경자"
+        }
+      },
+      "independentReference": {
+        "engine": "astronomy-engine",
+        "version": "2.1.19",
+        "assertedProperty": "apparent-sun-longitude boundary location",
+        "independentForAssertedProperty": true,
+        "longitudeDegrees": 105,
+        "primaryBoundaryUtc": "2024-07-06T14:20:00.000Z",
+        "comparisonBoundaryUtc": "2024-07-06T14:20:07.101Z",
+        "absoluteDifferenceSeconds": 7
+      },
+      "classification": "multiple_classified_differences",
+      "differingPillars": [
+        "month",
+        "day",
+        "hour"
+      ],
+      "findings": [
+        {
+          "pillar": "month",
+          "category": "source_reference_inconsistency",
+          "primaryOutput": "경오",
+          "comparisonOutput": "신미",
+          "evidence": "The implementations place a solar-term boundary at different precision/instants; neither is treated as an oracle.",
+          "disposition": "deferred-to-issue-10"
+        },
+        {
+          "pillar": "day",
+          "category": "methodology_difference",
+          "primaryOutput": "신미",
+          "comparisonOutput": "임신",
+          "evidence": "The configured primary midnight rule and lunar-javascript default comparison mode exhibit different documented 23:xx day/hour behavior; this does not decide which convention is correct.",
+          "disposition": "deferred-to-issue-12"
+        },
+        {
+          "pillar": "hour",
+          "category": "methodology_difference",
+          "primaryOutput": "무자",
+          "comparisonOutput": "경자",
+          "evidence": "The configured primary midnight rule and lunar-javascript default comparison mode exhibit different documented 23:xx day/hour behavior; this does not decide which convention is correct.",
+          "disposition": "deferred-to-issue-12"
+        }
+      ],
+      "evidenceSourceCategory": "independent_ephemeris_boundary_locator_and_shared_lineage_chart_comparison",
+      "notes": "Astronomy Engine independently locates the longitude crossing only. Lunar chart agreement is not independent methodology evidence."
+    },
+    {
+      "id": "term-2024-12-after",
+      "input": {
+        "localDate": "2024-07-06",
+        "localTime": "23:21",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "신미",
+          "day": "신미",
+          "hour": "무자"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "신미",
+          "day": "임신",
+          "hour": "경자"
+        }
+      },
+      "independentReference": {
+        "engine": "astronomy-engine",
+        "version": "2.1.19",
+        "assertedProperty": "apparent-sun-longitude boundary location",
+        "independentForAssertedProperty": true,
+        "longitudeDegrees": 105,
+        "primaryBoundaryUtc": "2024-07-06T14:20:00.000Z",
+        "comparisonBoundaryUtc": "2024-07-06T14:20:07.101Z",
+        "absoluteDifferenceSeconds": 7
+      },
+      "classification": "methodology_difference",
+      "differingPillars": [
+        "day",
+        "hour"
+      ],
+      "findings": [
+        {
+          "pillar": "day",
+          "category": "methodology_difference",
+          "primaryOutput": "신미",
+          "comparisonOutput": "임신",
+          "evidence": "The configured primary midnight rule and lunar-javascript default comparison mode exhibit different documented 23:xx day/hour behavior; this does not decide which convention is correct.",
+          "disposition": "deferred-to-issue-12"
+        },
+        {
+          "pillar": "hour",
+          "category": "methodology_difference",
+          "primaryOutput": "무자",
+          "comparisonOutput": "경자",
+          "evidence": "The configured primary midnight rule and lunar-javascript default comparison mode exhibit different documented 23:xx day/hour behavior; this does not decide which convention is correct.",
+          "disposition": "deferred-to-issue-12"
+        }
+      ],
+      "evidenceSourceCategory": "independent_ephemeris_boundary_locator_and_shared_lineage_chart_comparison",
+      "notes": "Astronomy Engine independently locates the longitude crossing only. Lunar chart agreement is not independent methodology evidence."
+    },
+    {
+      "id": "term-2024-14-before",
+      "input": {
+        "localDate": "2024-08-07",
+        "localTime": "09:08",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "신미",
+          "day": "계묘",
+          "hour": "정사"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "임신",
+          "day": "계묘",
+          "hour": "정사"
+        }
+      },
+      "independentReference": {
+        "engine": "astronomy-engine",
+        "version": "2.1.19",
+        "assertedProperty": "apparent-sun-longitude boundary location",
+        "independentForAssertedProperty": true,
+        "longitudeDegrees": 135,
+        "primaryBoundaryUtc": "2024-08-07T00:09:00.000Z",
+        "comparisonBoundaryUtc": "2024-08-07T00:09:30.136Z",
+        "absoluteDifferenceSeconds": 30
+      },
+      "classification": "source_reference_inconsistency",
+      "differingPillars": [
+        "month"
+      ],
+      "findings": [
+        {
+          "pillar": "month",
+          "category": "source_reference_inconsistency",
+          "primaryOutput": "신미",
+          "comparisonOutput": "임신",
+          "evidence": "The implementations place a solar-term boundary at different precision/instants; neither is treated as an oracle.",
+          "disposition": "deferred-to-issue-10"
+        }
+      ],
+      "evidenceSourceCategory": "independent_ephemeris_boundary_locator_and_shared_lineage_chart_comparison",
+      "notes": "Astronomy Engine independently locates the longitude crossing only. Lunar chart agreement is not independent methodology evidence."
+    },
+    {
+      "id": "term-2024-14-after",
+      "input": {
+        "localDate": "2024-08-07",
+        "localTime": "09:10",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "임신",
+          "day": "계묘",
+          "hour": "정사"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "임신",
+          "day": "계묘",
+          "hour": "정사"
+        }
+      },
+      "independentReference": {
+        "engine": "astronomy-engine",
+        "version": "2.1.19",
+        "assertedProperty": "apparent-sun-longitude boundary location",
+        "independentForAssertedProperty": true,
+        "longitudeDegrees": 135,
+        "primaryBoundaryUtc": "2024-08-07T00:09:00.000Z",
+        "comparisonBoundaryUtc": "2024-08-07T00:09:30.136Z",
+        "absoluteDifferenceSeconds": 30
+      },
+      "classification": "agreement",
+      "differingPillars": [],
+      "findings": [],
+      "evidenceSourceCategory": "independent_ephemeris_boundary_locator_and_shared_lineage_chart_comparison",
+      "notes": "Astronomy Engine independently locates the longitude crossing only. Lunar chart agreement is not independent methodology evidence."
+    },
+    {
+      "id": "term-2024-16-before",
+      "input": {
+        "localDate": "2024-09-07",
+        "localTime": "12:10",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "임신",
+          "day": "갑술",
+          "hour": "경오"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "계유",
+          "day": "갑술",
+          "hour": "경오"
+        }
+      },
+      "independentReference": {
+        "engine": "astronomy-engine",
+        "version": "2.1.19",
+        "assertedProperty": "apparent-sun-longitude boundary location",
+        "independentForAssertedProperty": true,
+        "longitudeDegrees": 165,
+        "primaryBoundaryUtc": "2024-09-07T03:11:00.000Z",
+        "comparisonBoundaryUtc": "2024-09-07T03:11:41.910Z",
+        "absoluteDifferenceSeconds": 42
+      },
+      "classification": "source_reference_inconsistency",
+      "differingPillars": [
+        "month"
+      ],
+      "findings": [
+        {
+          "pillar": "month",
+          "category": "source_reference_inconsistency",
+          "primaryOutput": "임신",
+          "comparisonOutput": "계유",
+          "evidence": "The implementations place a solar-term boundary at different precision/instants; neither is treated as an oracle.",
+          "disposition": "deferred-to-issue-10"
+        }
+      ],
+      "evidenceSourceCategory": "independent_ephemeris_boundary_locator_and_shared_lineage_chart_comparison",
+      "notes": "Astronomy Engine independently locates the longitude crossing only. Lunar chart agreement is not independent methodology evidence."
+    },
+    {
+      "id": "term-2024-16-after",
+      "input": {
+        "localDate": "2024-09-07",
+        "localTime": "12:12",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "계유",
+          "day": "갑술",
+          "hour": "경오"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "계유",
+          "day": "갑술",
+          "hour": "경오"
+        }
+      },
+      "independentReference": {
+        "engine": "astronomy-engine",
+        "version": "2.1.19",
+        "assertedProperty": "apparent-sun-longitude boundary location",
+        "independentForAssertedProperty": true,
+        "longitudeDegrees": 165,
+        "primaryBoundaryUtc": "2024-09-07T03:11:00.000Z",
+        "comparisonBoundaryUtc": "2024-09-07T03:11:41.910Z",
+        "absoluteDifferenceSeconds": 42
+      },
+      "classification": "agreement",
+      "differingPillars": [],
+      "findings": [],
+      "evidenceSourceCategory": "independent_ephemeris_boundary_locator_and_shared_lineage_chart_comparison",
+      "notes": "Astronomy Engine independently locates the longitude crossing only. Lunar chart agreement is not independent methodology evidence."
+    },
+    {
+      "id": "term-2024-18-before",
+      "input": {
+        "localDate": "2024-10-08",
+        "localTime": "03:59",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "계유",
+          "day": "을사",
+          "hour": "무인"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "갑술",
+          "day": "을사",
+          "hour": "무인"
+        }
+      },
+      "independentReference": {
+        "engine": "astronomy-engine",
+        "version": "2.1.19",
+        "assertedProperty": "apparent-sun-longitude boundary location",
+        "independentForAssertedProperty": true,
+        "longitudeDegrees": 195,
+        "primaryBoundaryUtc": "2024-10-07T19:00:00.000Z",
+        "comparisonBoundaryUtc": "2024-10-07T19:00:06.976Z",
+        "absoluteDifferenceSeconds": 7
+      },
+      "classification": "source_reference_inconsistency",
+      "differingPillars": [
+        "month"
+      ],
+      "findings": [
+        {
+          "pillar": "month",
+          "category": "source_reference_inconsistency",
+          "primaryOutput": "계유",
+          "comparisonOutput": "갑술",
+          "evidence": "The implementations place a solar-term boundary at different precision/instants; neither is treated as an oracle.",
+          "disposition": "deferred-to-issue-10"
+        }
+      ],
+      "evidenceSourceCategory": "independent_ephemeris_boundary_locator_and_shared_lineage_chart_comparison",
+      "notes": "Astronomy Engine independently locates the longitude crossing only. Lunar chart agreement is not independent methodology evidence."
+    },
+    {
+      "id": "term-2024-18-after",
+      "input": {
+        "localDate": "2024-10-08",
+        "localTime": "04:01",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "갑술",
+          "day": "을사",
+          "hour": "무인"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "갑술",
+          "day": "을사",
+          "hour": "무인"
+        }
+      },
+      "independentReference": {
+        "engine": "astronomy-engine",
+        "version": "2.1.19",
+        "assertedProperty": "apparent-sun-longitude boundary location",
+        "independentForAssertedProperty": true,
+        "longitudeDegrees": 195,
+        "primaryBoundaryUtc": "2024-10-07T19:00:00.000Z",
+        "comparisonBoundaryUtc": "2024-10-07T19:00:06.976Z",
+        "absoluteDifferenceSeconds": 7
+      },
+      "classification": "agreement",
+      "differingPillars": [],
+      "findings": [],
+      "evidenceSourceCategory": "independent_ephemeris_boundary_locator_and_shared_lineage_chart_comparison",
+      "notes": "Astronomy Engine independently locates the longitude crossing only. Lunar chart agreement is not independent methodology evidence."
+    },
+    {
+      "id": "term-2024-20-before",
+      "input": {
+        "localDate": "2024-11-07",
+        "localTime": "07:19",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "갑술",
+          "day": "을해",
+          "hour": "경진"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "을해",
+          "day": "을해",
+          "hour": "경진"
+        }
+      },
+      "independentReference": {
+        "engine": "astronomy-engine",
+        "version": "2.1.19",
+        "assertedProperty": "apparent-sun-longitude boundary location",
+        "independentForAssertedProperty": true,
+        "longitudeDegrees": 225,
+        "primaryBoundaryUtc": "2024-11-06T22:20:00.000Z",
+        "comparisonBoundaryUtc": "2024-11-06T22:19:55.550Z",
+        "absoluteDifferenceSeconds": 4
+      },
+      "classification": "source_reference_inconsistency",
+      "differingPillars": [
+        "month"
+      ],
+      "findings": [
+        {
+          "pillar": "month",
+          "category": "source_reference_inconsistency",
+          "primaryOutput": "갑술",
+          "comparisonOutput": "을해",
+          "evidence": "The implementations place a solar-term boundary at different precision/instants; neither is treated as an oracle.",
+          "disposition": "deferred-to-issue-10"
+        }
+      ],
+      "evidenceSourceCategory": "independent_ephemeris_boundary_locator_and_shared_lineage_chart_comparison",
+      "notes": "Astronomy Engine independently locates the longitude crossing only. Lunar chart agreement is not independent methodology evidence."
+    },
+    {
+      "id": "term-2024-20-after",
+      "input": {
+        "localDate": "2024-11-07",
+        "localTime": "07:21",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "을해",
+          "day": "을해",
+          "hour": "경진"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "을해",
+          "day": "을해",
+          "hour": "경진"
+        }
+      },
+      "independentReference": {
+        "engine": "astronomy-engine",
+        "version": "2.1.19",
+        "assertedProperty": "apparent-sun-longitude boundary location",
+        "independentForAssertedProperty": true,
+        "longitudeDegrees": 225,
+        "primaryBoundaryUtc": "2024-11-06T22:20:00.000Z",
+        "comparisonBoundaryUtc": "2024-11-06T22:19:55.550Z",
+        "absoluteDifferenceSeconds": 4
+      },
+      "classification": "agreement",
+      "differingPillars": [],
+      "findings": [],
+      "evidenceSourceCategory": "independent_ephemeris_boundary_locator_and_shared_lineage_chart_comparison",
+      "notes": "Astronomy Engine independently locates the longitude crossing only. Lunar chart agreement is not independent methodology evidence."
+    },
+    {
+      "id": "term-2024-22-before",
+      "input": {
+        "localDate": "2024-12-07",
+        "localTime": "00:16",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "을해",
+          "day": "을사",
+          "hour": "병자"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "병자",
+          "day": "을사",
+          "hour": "병자"
+        }
+      },
+      "independentReference": {
+        "engine": "astronomy-engine",
+        "version": "2.1.19",
+        "assertedProperty": "apparent-sun-longitude boundary location",
+        "independentForAssertedProperty": true,
+        "longitudeDegrees": 255,
+        "primaryBoundaryUtc": "2024-12-06T15:17:00.000Z",
+        "comparisonBoundaryUtc": "2024-12-06T15:16:48.690Z",
+        "absoluteDifferenceSeconds": 11
+      },
+      "classification": "source_reference_inconsistency",
+      "differingPillars": [
+        "month"
+      ],
+      "findings": [
+        {
+          "pillar": "month",
+          "category": "source_reference_inconsistency",
+          "primaryOutput": "을해",
+          "comparisonOutput": "병자",
+          "evidence": "The implementations place a solar-term boundary at different precision/instants; neither is treated as an oracle.",
+          "disposition": "deferred-to-issue-10"
+        }
+      ],
+      "evidenceSourceCategory": "independent_ephemeris_boundary_locator_and_shared_lineage_chart_comparison",
+      "notes": "Astronomy Engine independently locates the longitude crossing only. Lunar chart agreement is not independent methodology evidence."
+    },
+    {
+      "id": "term-2024-22-after",
+      "input": {
+        "localDate": "2024-12-07",
+        "localTime": "00:18",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "병자",
+          "day": "을사",
+          "hour": "병자"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "병자",
+          "day": "을사",
+          "hour": "병자"
+        }
+      },
+      "independentReference": {
+        "engine": "astronomy-engine",
+        "version": "2.1.19",
+        "assertedProperty": "apparent-sun-longitude boundary location",
+        "independentForAssertedProperty": true,
+        "longitudeDegrees": 255,
+        "primaryBoundaryUtc": "2024-12-06T15:17:00.000Z",
+        "comparisonBoundaryUtc": "2024-12-06T15:16:48.690Z",
+        "absoluteDifferenceSeconds": 11
+      },
+      "classification": "agreement",
+      "differingPillars": [],
+      "findings": [],
+      "evidenceSourceCategory": "independent_ephemeris_boundary_locator_and_shared_lineage_chart_comparison",
+      "notes": "Astronomy Engine independently locates the longitude crossing only. Lunar chart agreement is not independent methodology evidence."
+    },
+    {
+      "id": "day-1996-02-28-2359",
+      "input": {
+        "localDate": "1996-02-28",
+        "localTime": "23:59",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "병자",
+          "month": "경인",
+          "day": "을미",
+          "hour": "병자"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "병자",
+          "month": "경인",
+          "day": "병신",
+          "hour": "무자"
+        }
+      },
+      "independentReference": {
+        "assertedProperty": "none",
+        "independentForAssertedProperty": false
+      },
+      "classification": "methodology_difference",
+      "differingPillars": [
+        "day",
+        "hour"
+      ],
+      "findings": [
+        {
+          "pillar": "day",
+          "category": "methodology_difference",
+          "primaryOutput": "을미",
+          "comparisonOutput": "병신",
+          "evidence": "The configured primary midnight rule and lunar-javascript default comparison mode exhibit different documented 23:xx day/hour behavior; this does not decide which convention is correct.",
+          "disposition": "deferred-to-issue-12"
+        },
+        {
+          "pillar": "hour",
+          "category": "methodology_difference",
+          "primaryOutput": "병자",
+          "comparisonOutput": "무자",
+          "evidence": "The configured primary midnight rule and lunar-javascript default comparison mode exhibit different documented 23:xx day/hour behavior; this does not decide which convention is correct.",
+          "disposition": "deferred-to-issue-12"
+        }
+      ],
+      "evidenceSourceCategory": "leap_and_civil_day_boundary_shared_lineage_comparison",
+      "notes": "The configured midnight and lunar default comparison modes are known to differ at 23:xx; the fixture preserves that difference for Issue #12 without choosing a correct convention."
+    },
+    {
+      "id": "day-1996-02-28-0000",
+      "input": {
+        "localDate": "1996-02-28",
+        "localTime": "00:00",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "병자",
+          "month": "경인",
+          "day": "을미",
+          "hour": "병자"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "병자",
+          "month": "경인",
+          "day": "을미",
+          "hour": "병자"
+        }
+      },
+      "independentReference": {
+        "assertedProperty": "none",
+        "independentForAssertedProperty": false
+      },
+      "classification": "agreement",
+      "differingPillars": [],
+      "findings": [],
+      "evidenceSourceCategory": "leap_and_civil_day_boundary_shared_lineage_comparison",
+      "notes": "Comparison implementation is not treated as an oracle."
+    },
+    {
+      "id": "day-1996-02-29-2359",
+      "input": {
+        "localDate": "1996-02-29",
+        "localTime": "23:59",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "병자",
+          "month": "경인",
+          "day": "병신",
+          "hour": "무자"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "병자",
+          "month": "경인",
+          "day": "정유",
+          "hour": "경자"
+        }
+      },
+      "independentReference": {
+        "assertedProperty": "none",
+        "independentForAssertedProperty": false
+      },
+      "classification": "methodology_difference",
+      "differingPillars": [
+        "day",
+        "hour"
+      ],
+      "findings": [
+        {
+          "pillar": "day",
+          "category": "methodology_difference",
+          "primaryOutput": "병신",
+          "comparisonOutput": "정유",
+          "evidence": "The configured primary midnight rule and lunar-javascript default comparison mode exhibit different documented 23:xx day/hour behavior; this does not decide which convention is correct.",
+          "disposition": "deferred-to-issue-12"
+        },
+        {
+          "pillar": "hour",
+          "category": "methodology_difference",
+          "primaryOutput": "무자",
+          "comparisonOutput": "경자",
+          "evidence": "The configured primary midnight rule and lunar-javascript default comparison mode exhibit different documented 23:xx day/hour behavior; this does not decide which convention is correct.",
+          "disposition": "deferred-to-issue-12"
+        }
+      ],
+      "evidenceSourceCategory": "leap_and_civil_day_boundary_shared_lineage_comparison",
+      "notes": "The configured midnight and lunar default comparison modes are known to differ at 23:xx; the fixture preserves that difference for Issue #12 without choosing a correct convention."
+    },
+    {
+      "id": "day-1996-02-29-0000",
+      "input": {
+        "localDate": "1996-02-29",
+        "localTime": "00:00",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "병자",
+          "month": "경인",
+          "day": "병신",
+          "hour": "무자"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "병자",
+          "month": "경인",
+          "day": "병신",
+          "hour": "무자"
+        }
+      },
+      "independentReference": {
+        "assertedProperty": "none",
+        "independentForAssertedProperty": false
+      },
+      "classification": "agreement",
+      "differingPillars": [],
+      "findings": [],
+      "evidenceSourceCategory": "leap_and_civil_day_boundary_shared_lineage_comparison",
+      "notes": "Comparison implementation is not treated as an oracle."
+    },
+    {
+      "id": "day-1999-12-31-2359",
+      "input": {
+        "localDate": "1999-12-31",
+        "localTime": "23:59",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "기묘",
+          "month": "병자",
+          "day": "정사",
+          "hour": "경자"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "기묘",
+          "month": "병자",
+          "day": "무오",
+          "hour": "임자"
+        }
+      },
+      "independentReference": {
+        "assertedProperty": "none",
+        "independentForAssertedProperty": false
+      },
+      "classification": "methodology_difference",
+      "differingPillars": [
+        "day",
+        "hour"
+      ],
+      "findings": [
+        {
+          "pillar": "day",
+          "category": "methodology_difference",
+          "primaryOutput": "정사",
+          "comparisonOutput": "무오",
+          "evidence": "The configured primary midnight rule and lunar-javascript default comparison mode exhibit different documented 23:xx day/hour behavior; this does not decide which convention is correct.",
+          "disposition": "deferred-to-issue-12"
+        },
+        {
+          "pillar": "hour",
+          "category": "methodology_difference",
+          "primaryOutput": "경자",
+          "comparisonOutput": "임자",
+          "evidence": "The configured primary midnight rule and lunar-javascript default comparison mode exhibit different documented 23:xx day/hour behavior; this does not decide which convention is correct.",
+          "disposition": "deferred-to-issue-12"
+        }
+      ],
+      "evidenceSourceCategory": "civil_day_boundary_shared_lineage_comparison",
+      "notes": "The configured midnight and lunar default comparison modes are known to differ at 23:xx; the fixture preserves that difference for Issue #12 without choosing a correct convention."
+    },
+    {
+      "id": "day-1999-12-31-0000",
+      "input": {
+        "localDate": "1999-12-31",
+        "localTime": "00:00",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "기묘",
+          "month": "병자",
+          "day": "정사",
+          "hour": "경자"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "기묘",
+          "month": "병자",
+          "day": "정사",
+          "hour": "경자"
+        }
+      },
+      "independentReference": {
+        "assertedProperty": "none",
+        "independentForAssertedProperty": false
+      },
+      "classification": "agreement",
+      "differingPillars": [],
+      "findings": [],
+      "evidenceSourceCategory": "civil_day_boundary_shared_lineage_comparison",
+      "notes": "Comparison implementation is not treated as an oracle."
+    },
+    {
+      "id": "day-2000-02-28-2359",
+      "input": {
+        "localDate": "2000-02-28",
+        "localTime": "23:59",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "경진",
+          "month": "무인",
+          "day": "병진",
+          "hour": "무자"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "경진",
+          "month": "무인",
+          "day": "정사",
+          "hour": "경자"
+        }
+      },
+      "independentReference": {
+        "assertedProperty": "none",
+        "independentForAssertedProperty": false
+      },
+      "classification": "methodology_difference",
+      "differingPillars": [
+        "day",
+        "hour"
+      ],
+      "findings": [
+        {
+          "pillar": "day",
+          "category": "methodology_difference",
+          "primaryOutput": "병진",
+          "comparisonOutput": "정사",
+          "evidence": "The configured primary midnight rule and lunar-javascript default comparison mode exhibit different documented 23:xx day/hour behavior; this does not decide which convention is correct.",
+          "disposition": "deferred-to-issue-12"
+        },
+        {
+          "pillar": "hour",
+          "category": "methodology_difference",
+          "primaryOutput": "무자",
+          "comparisonOutput": "경자",
+          "evidence": "The configured primary midnight rule and lunar-javascript default comparison mode exhibit different documented 23:xx day/hour behavior; this does not decide which convention is correct.",
+          "disposition": "deferred-to-issue-12"
+        }
+      ],
+      "evidenceSourceCategory": "leap_and_civil_day_boundary_shared_lineage_comparison",
+      "notes": "The configured midnight and lunar default comparison modes are known to differ at 23:xx; the fixture preserves that difference for Issue #12 without choosing a correct convention."
+    },
+    {
+      "id": "day-2000-02-28-0000",
+      "input": {
+        "localDate": "2000-02-28",
+        "localTime": "00:00",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "경진",
+          "month": "무인",
+          "day": "병진",
+          "hour": "무자"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "경진",
+          "month": "무인",
+          "day": "병진",
+          "hour": "무자"
+        }
+      },
+      "independentReference": {
+        "assertedProperty": "none",
+        "independentForAssertedProperty": false
+      },
+      "classification": "agreement",
+      "differingPillars": [],
+      "findings": [],
+      "evidenceSourceCategory": "leap_and_civil_day_boundary_shared_lineage_comparison",
+      "notes": "Comparison implementation is not treated as an oracle."
+    },
+    {
+      "id": "day-2000-02-29-2359",
+      "input": {
+        "localDate": "2000-02-29",
+        "localTime": "23:59",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "경진",
+          "month": "무인",
+          "day": "정사",
+          "hour": "경자"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "경진",
+          "month": "무인",
+          "day": "무오",
+          "hour": "임자"
+        }
+      },
+      "independentReference": {
+        "assertedProperty": "none",
+        "independentForAssertedProperty": false
+      },
+      "classification": "methodology_difference",
+      "differingPillars": [
+        "day",
+        "hour"
+      ],
+      "findings": [
+        {
+          "pillar": "day",
+          "category": "methodology_difference",
+          "primaryOutput": "정사",
+          "comparisonOutput": "무오",
+          "evidence": "The configured primary midnight rule and lunar-javascript default comparison mode exhibit different documented 23:xx day/hour behavior; this does not decide which convention is correct.",
+          "disposition": "deferred-to-issue-12"
+        },
+        {
+          "pillar": "hour",
+          "category": "methodology_difference",
+          "primaryOutput": "경자",
+          "comparisonOutput": "임자",
+          "evidence": "The configured primary midnight rule and lunar-javascript default comparison mode exhibit different documented 23:xx day/hour behavior; this does not decide which convention is correct.",
+          "disposition": "deferred-to-issue-12"
+        }
+      ],
+      "evidenceSourceCategory": "leap_and_civil_day_boundary_shared_lineage_comparison",
+      "notes": "The configured midnight and lunar default comparison modes are known to differ at 23:xx; the fixture preserves that difference for Issue #12 without choosing a correct convention."
+    },
+    {
+      "id": "day-2000-02-29-0000",
+      "input": {
+        "localDate": "2000-02-29",
+        "localTime": "00:00",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "경진",
+          "month": "무인",
+          "day": "정사",
+          "hour": "경자"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "경진",
+          "month": "무인",
+          "day": "정사",
+          "hour": "경자"
+        }
+      },
+      "independentReference": {
+        "assertedProperty": "none",
+        "independentForAssertedProperty": false
+      },
+      "classification": "agreement",
+      "differingPillars": [],
+      "findings": [],
+      "evidenceSourceCategory": "leap_and_civil_day_boundary_shared_lineage_comparison",
+      "notes": "Comparison implementation is not treated as an oracle."
+    },
+    {
+      "id": "day-2000-03-01-2359",
+      "input": {
+        "localDate": "2000-03-01",
+        "localTime": "23:59",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "경진",
+          "month": "무인",
+          "day": "무오",
+          "hour": "임자"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "경진",
+          "month": "무인",
+          "day": "기미",
+          "hour": "갑자"
+        }
+      },
+      "independentReference": {
+        "assertedProperty": "none",
+        "independentForAssertedProperty": false
+      },
+      "classification": "methodology_difference",
+      "differingPillars": [
+        "day",
+        "hour"
+      ],
+      "findings": [
+        {
+          "pillar": "day",
+          "category": "methodology_difference",
+          "primaryOutput": "무오",
+          "comparisonOutput": "기미",
+          "evidence": "The configured primary midnight rule and lunar-javascript default comparison mode exhibit different documented 23:xx day/hour behavior; this does not decide which convention is correct.",
+          "disposition": "deferred-to-issue-12"
+        },
+        {
+          "pillar": "hour",
+          "category": "methodology_difference",
+          "primaryOutput": "임자",
+          "comparisonOutput": "갑자",
+          "evidence": "The configured primary midnight rule and lunar-javascript default comparison mode exhibit different documented 23:xx day/hour behavior; this does not decide which convention is correct.",
+          "disposition": "deferred-to-issue-12"
+        }
+      ],
+      "evidenceSourceCategory": "civil_day_boundary_shared_lineage_comparison",
+      "notes": "The configured midnight and lunar default comparison modes are known to differ at 23:xx; the fixture preserves that difference for Issue #12 without choosing a correct convention."
+    },
+    {
+      "id": "day-2000-03-01-0000",
+      "input": {
+        "localDate": "2000-03-01",
+        "localTime": "00:00",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "경진",
+          "month": "무인",
+          "day": "무오",
+          "hour": "임자"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "경진",
+          "month": "무인",
+          "day": "무오",
+          "hour": "임자"
+        }
+      },
+      "independentReference": {
+        "assertedProperty": "none",
+        "independentForAssertedProperty": false
+      },
+      "classification": "agreement",
+      "differingPillars": [],
+      "findings": [],
+      "evidenceSourceCategory": "civil_day_boundary_shared_lineage_comparison",
+      "notes": "Comparison implementation is not treated as an oracle."
+    },
+    {
+      "id": "day-2023-12-31-2359",
+      "input": {
+        "localDate": "2023-12-31",
+        "localTime": "23:59",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "계묘",
+          "month": "갑자",
+          "day": "계해",
+          "hour": "임자"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "계묘",
+          "month": "갑자",
+          "day": "갑자",
+          "hour": "갑자"
+        }
+      },
+      "independentReference": {
+        "assertedProperty": "none",
+        "independentForAssertedProperty": false
+      },
+      "classification": "methodology_difference",
+      "differingPillars": [
+        "day",
+        "hour"
+      ],
+      "findings": [
+        {
+          "pillar": "day",
+          "category": "methodology_difference",
+          "primaryOutput": "계해",
+          "comparisonOutput": "갑자",
+          "evidence": "The configured primary midnight rule and lunar-javascript default comparison mode exhibit different documented 23:xx day/hour behavior; this does not decide which convention is correct.",
+          "disposition": "deferred-to-issue-12"
+        },
+        {
+          "pillar": "hour",
+          "category": "methodology_difference",
+          "primaryOutput": "임자",
+          "comparisonOutput": "갑자",
+          "evidence": "The configured primary midnight rule and lunar-javascript default comparison mode exhibit different documented 23:xx day/hour behavior; this does not decide which convention is correct.",
+          "disposition": "deferred-to-issue-12"
+        }
+      ],
+      "evidenceSourceCategory": "civil_day_boundary_shared_lineage_comparison",
+      "notes": "The configured midnight and lunar default comparison modes are known to differ at 23:xx; the fixture preserves that difference for Issue #12 without choosing a correct convention."
+    },
+    {
+      "id": "day-2023-12-31-0000",
+      "input": {
+        "localDate": "2023-12-31",
+        "localTime": "00:00",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "계묘",
+          "month": "갑자",
+          "day": "계해",
+          "hour": "임자"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "계묘",
+          "month": "갑자",
+          "day": "계해",
+          "hour": "임자"
+        }
+      },
+      "independentReference": {
+        "assertedProperty": "none",
+        "independentForAssertedProperty": false
+      },
+      "classification": "agreement",
+      "differingPillars": [],
+      "findings": [],
+      "evidenceSourceCategory": "civil_day_boundary_shared_lineage_comparison",
+      "notes": "Comparison implementation is not treated as an oracle."
+    },
+    {
+      "id": "day-2024-02-28-2359",
+      "input": {
+        "localDate": "2024-02-28",
+        "localTime": "23:59",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "병인",
+          "day": "임술",
+          "hour": "경자"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "병인",
+          "day": "계해",
+          "hour": "임자"
+        }
+      },
+      "independentReference": {
+        "assertedProperty": "none",
+        "independentForAssertedProperty": false
+      },
+      "classification": "methodology_difference",
+      "differingPillars": [
+        "day",
+        "hour"
+      ],
+      "findings": [
+        {
+          "pillar": "day",
+          "category": "methodology_difference",
+          "primaryOutput": "임술",
+          "comparisonOutput": "계해",
+          "evidence": "The configured primary midnight rule and lunar-javascript default comparison mode exhibit different documented 23:xx day/hour behavior; this does not decide which convention is correct.",
+          "disposition": "deferred-to-issue-12"
+        },
+        {
+          "pillar": "hour",
+          "category": "methodology_difference",
+          "primaryOutput": "경자",
+          "comparisonOutput": "임자",
+          "evidence": "The configured primary midnight rule and lunar-javascript default comparison mode exhibit different documented 23:xx day/hour behavior; this does not decide which convention is correct.",
+          "disposition": "deferred-to-issue-12"
+        }
+      ],
+      "evidenceSourceCategory": "leap_and_civil_day_boundary_shared_lineage_comparison",
+      "notes": "The configured midnight and lunar default comparison modes are known to differ at 23:xx; the fixture preserves that difference for Issue #12 without choosing a correct convention."
+    },
+    {
+      "id": "day-2024-02-28-0000",
+      "input": {
+        "localDate": "2024-02-28",
+        "localTime": "00:00",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "병인",
+          "day": "임술",
+          "hour": "경자"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "병인",
+          "day": "임술",
+          "hour": "경자"
+        }
+      },
+      "independentReference": {
+        "assertedProperty": "none",
+        "independentForAssertedProperty": false
+      },
+      "classification": "agreement",
+      "differingPillars": [],
+      "findings": [],
+      "evidenceSourceCategory": "leap_and_civil_day_boundary_shared_lineage_comparison",
+      "notes": "Comparison implementation is not treated as an oracle."
+    },
+    {
+      "id": "day-2024-02-29-2359",
+      "input": {
+        "localDate": "2024-02-29",
+        "localTime": "23:59",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "병인",
+          "day": "계해",
+          "hour": "임자"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "병인",
+          "day": "갑자",
+          "hour": "갑자"
+        }
+      },
+      "independentReference": {
+        "assertedProperty": "none",
+        "independentForAssertedProperty": false
+      },
+      "classification": "methodology_difference",
+      "differingPillars": [
+        "day",
+        "hour"
+      ],
+      "findings": [
+        {
+          "pillar": "day",
+          "category": "methodology_difference",
+          "primaryOutput": "계해",
+          "comparisonOutput": "갑자",
+          "evidence": "The configured primary midnight rule and lunar-javascript default comparison mode exhibit different documented 23:xx day/hour behavior; this does not decide which convention is correct.",
+          "disposition": "deferred-to-issue-12"
+        },
+        {
+          "pillar": "hour",
+          "category": "methodology_difference",
+          "primaryOutput": "임자",
+          "comparisonOutput": "갑자",
+          "evidence": "The configured primary midnight rule and lunar-javascript default comparison mode exhibit different documented 23:xx day/hour behavior; this does not decide which convention is correct.",
+          "disposition": "deferred-to-issue-12"
+        }
+      ],
+      "evidenceSourceCategory": "leap_and_civil_day_boundary_shared_lineage_comparison",
+      "notes": "The configured midnight and lunar default comparison modes are known to differ at 23:xx; the fixture preserves that difference for Issue #12 without choosing a correct convention."
+    },
+    {
+      "id": "day-2024-02-29-0000",
+      "input": {
+        "localDate": "2024-02-29",
+        "localTime": "00:00",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "병인",
+          "day": "계해",
+          "hour": "임자"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "병인",
+          "day": "계해",
+          "hour": "임자"
+        }
+      },
+      "independentReference": {
+        "assertedProperty": "none",
+        "independentForAssertedProperty": false
+      },
+      "classification": "agreement",
+      "differingPillars": [],
+      "findings": [],
+      "evidenceSourceCategory": "leap_and_civil_day_boundary_shared_lineage_comparison",
+      "notes": "Comparison implementation is not treated as an oracle."
+    },
+    {
+      "id": "day-2024-03-01-2359",
+      "input": {
+        "localDate": "2024-03-01",
+        "localTime": "23:59",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "병인",
+          "day": "갑자",
+          "hour": "갑자"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "병인",
+          "day": "을축",
+          "hour": "병자"
+        }
+      },
+      "independentReference": {
+        "assertedProperty": "none",
+        "independentForAssertedProperty": false
+      },
+      "classification": "methodology_difference",
+      "differingPillars": [
+        "day",
+        "hour"
+      ],
+      "findings": [
+        {
+          "pillar": "day",
+          "category": "methodology_difference",
+          "primaryOutput": "갑자",
+          "comparisonOutput": "을축",
+          "evidence": "The configured primary midnight rule and lunar-javascript default comparison mode exhibit different documented 23:xx day/hour behavior; this does not decide which convention is correct.",
+          "disposition": "deferred-to-issue-12"
+        },
+        {
+          "pillar": "hour",
+          "category": "methodology_difference",
+          "primaryOutput": "갑자",
+          "comparisonOutput": "병자",
+          "evidence": "The configured primary midnight rule and lunar-javascript default comparison mode exhibit different documented 23:xx day/hour behavior; this does not decide which convention is correct.",
+          "disposition": "deferred-to-issue-12"
+        }
+      ],
+      "evidenceSourceCategory": "civil_day_boundary_shared_lineage_comparison",
+      "notes": "The configured midnight and lunar default comparison modes are known to differ at 23:xx; the fixture preserves that difference for Issue #12 without choosing a correct convention."
+    },
+    {
+      "id": "day-2024-03-01-0000",
+      "input": {
+        "localDate": "2024-03-01",
+        "localTime": "00:00",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "병인",
+          "day": "갑자",
+          "hour": "갑자"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "병인",
+          "day": "갑자",
+          "hour": "갑자"
+        }
+      },
+      "independentReference": {
+        "assertedProperty": "none",
+        "independentForAssertedProperty": false
+      },
+      "classification": "agreement",
+      "differingPillars": [],
+      "findings": [],
+      "evidenceSourceCategory": "civil_day_boundary_shared_lineage_comparison",
+      "notes": "Comparison implementation is not treated as an oracle."
+    },
+    {
+      "id": "hour-2024-06-15-0100",
+      "input": {
+        "localDate": "2024-06-15",
+        "localTime": "01:00",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "정축"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "정축"
+        }
+      },
+      "independentReference": {
+        "assertedProperty": "none",
+        "independentForAssertedProperty": false
+      },
+      "classification": "agreement",
+      "differingPillars": [],
+      "findings": [],
+      "evidenceSourceCategory": "civil_hour_boundary_shared_lineage_comparison",
+      "notes": "Exercises the civil two-hour branch interval; comparison is not independent methodology evidence."
+    },
+    {
+      "id": "hour-2024-06-15-0059",
+      "input": {
+        "localDate": "2024-06-15",
+        "localTime": "00:59",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "병자"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "병자"
+        }
+      },
+      "independentReference": {
+        "assertedProperty": "none",
+        "independentForAssertedProperty": false
+      },
+      "classification": "agreement",
+      "differingPillars": [],
+      "findings": [],
+      "evidenceSourceCategory": "civil_hour_boundary_shared_lineage_comparison",
+      "notes": "Exercises the civil two-hour branch interval; comparison is not independent methodology evidence."
+    },
+    {
+      "id": "hour-2024-06-15-0300",
+      "input": {
+        "localDate": "2024-06-15",
+        "localTime": "03:00",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "무인"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "무인"
+        }
+      },
+      "independentReference": {
+        "assertedProperty": "none",
+        "independentForAssertedProperty": false
+      },
+      "classification": "agreement",
+      "differingPillars": [],
+      "findings": [],
+      "evidenceSourceCategory": "civil_hour_boundary_shared_lineage_comparison",
+      "notes": "Exercises the civil two-hour branch interval; comparison is not independent methodology evidence."
+    },
+    {
+      "id": "hour-2024-06-15-0259",
+      "input": {
+        "localDate": "2024-06-15",
+        "localTime": "02:59",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "정축"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "정축"
+        }
+      },
+      "independentReference": {
+        "assertedProperty": "none",
+        "independentForAssertedProperty": false
+      },
+      "classification": "agreement",
+      "differingPillars": [],
+      "findings": [],
+      "evidenceSourceCategory": "civil_hour_boundary_shared_lineage_comparison",
+      "notes": "Exercises the civil two-hour branch interval; comparison is not independent methodology evidence."
+    },
+    {
+      "id": "hour-2024-06-15-0500",
+      "input": {
+        "localDate": "2024-06-15",
+        "localTime": "05:00",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "기묘"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "기묘"
+        }
+      },
+      "independentReference": {
+        "assertedProperty": "none",
+        "independentForAssertedProperty": false
+      },
+      "classification": "agreement",
+      "differingPillars": [],
+      "findings": [],
+      "evidenceSourceCategory": "civil_hour_boundary_shared_lineage_comparison",
+      "notes": "Exercises the civil two-hour branch interval; comparison is not independent methodology evidence."
+    },
+    {
+      "id": "hour-2024-06-15-0459",
+      "input": {
+        "localDate": "2024-06-15",
+        "localTime": "04:59",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "무인"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "무인"
+        }
+      },
+      "independentReference": {
+        "assertedProperty": "none",
+        "independentForAssertedProperty": false
+      },
+      "classification": "agreement",
+      "differingPillars": [],
+      "findings": [],
+      "evidenceSourceCategory": "civil_hour_boundary_shared_lineage_comparison",
+      "notes": "Exercises the civil two-hour branch interval; comparison is not independent methodology evidence."
+    },
+    {
+      "id": "hour-2024-06-15-0700",
+      "input": {
+        "localDate": "2024-06-15",
+        "localTime": "07:00",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "경진"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "경진"
+        }
+      },
+      "independentReference": {
+        "assertedProperty": "none",
+        "independentForAssertedProperty": false
+      },
+      "classification": "agreement",
+      "differingPillars": [],
+      "findings": [],
+      "evidenceSourceCategory": "civil_hour_boundary_shared_lineage_comparison",
+      "notes": "Exercises the civil two-hour branch interval; comparison is not independent methodology evidence."
+    },
+    {
+      "id": "hour-2024-06-15-0659",
+      "input": {
+        "localDate": "2024-06-15",
+        "localTime": "06:59",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "기묘"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "기묘"
+        }
+      },
+      "independentReference": {
+        "assertedProperty": "none",
+        "independentForAssertedProperty": false
+      },
+      "classification": "agreement",
+      "differingPillars": [],
+      "findings": [],
+      "evidenceSourceCategory": "civil_hour_boundary_shared_lineage_comparison",
+      "notes": "Exercises the civil two-hour branch interval; comparison is not independent methodology evidence."
+    },
+    {
+      "id": "hour-2024-06-15-0900",
+      "input": {
+        "localDate": "2024-06-15",
+        "localTime": "09:00",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "신사"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "신사"
+        }
+      },
+      "independentReference": {
+        "assertedProperty": "none",
+        "independentForAssertedProperty": false
+      },
+      "classification": "agreement",
+      "differingPillars": [],
+      "findings": [],
+      "evidenceSourceCategory": "civil_hour_boundary_shared_lineage_comparison",
+      "notes": "Exercises the civil two-hour branch interval; comparison is not independent methodology evidence."
+    },
+    {
+      "id": "hour-2024-06-15-0859",
+      "input": {
+        "localDate": "2024-06-15",
+        "localTime": "08:59",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "경진"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "경진"
+        }
+      },
+      "independentReference": {
+        "assertedProperty": "none",
+        "independentForAssertedProperty": false
+      },
+      "classification": "agreement",
+      "differingPillars": [],
+      "findings": [],
+      "evidenceSourceCategory": "civil_hour_boundary_shared_lineage_comparison",
+      "notes": "Exercises the civil two-hour branch interval; comparison is not independent methodology evidence."
+    },
+    {
+      "id": "hour-2024-06-15-1100",
+      "input": {
+        "localDate": "2024-06-15",
+        "localTime": "11:00",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "임오"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "임오"
+        }
+      },
+      "independentReference": {
+        "assertedProperty": "none",
+        "independentForAssertedProperty": false
+      },
+      "classification": "agreement",
+      "differingPillars": [],
+      "findings": [],
+      "evidenceSourceCategory": "civil_hour_boundary_shared_lineage_comparison",
+      "notes": "Exercises the civil two-hour branch interval; comparison is not independent methodology evidence."
+    },
+    {
+      "id": "hour-2024-06-15-1059",
+      "input": {
+        "localDate": "2024-06-15",
+        "localTime": "10:59",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "신사"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "신사"
+        }
+      },
+      "independentReference": {
+        "assertedProperty": "none",
+        "independentForAssertedProperty": false
+      },
+      "classification": "agreement",
+      "differingPillars": [],
+      "findings": [],
+      "evidenceSourceCategory": "civil_hour_boundary_shared_lineage_comparison",
+      "notes": "Exercises the civil two-hour branch interval; comparison is not independent methodology evidence."
+    },
+    {
+      "id": "hour-2024-06-15-1300",
+      "input": {
+        "localDate": "2024-06-15",
+        "localTime": "13:00",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "계미"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "계미"
+        }
+      },
+      "independentReference": {
+        "assertedProperty": "none",
+        "independentForAssertedProperty": false
+      },
+      "classification": "agreement",
+      "differingPillars": [],
+      "findings": [],
+      "evidenceSourceCategory": "civil_hour_boundary_shared_lineage_comparison",
+      "notes": "Exercises the civil two-hour branch interval; comparison is not independent methodology evidence."
+    },
+    {
+      "id": "hour-2024-06-15-1259",
+      "input": {
+        "localDate": "2024-06-15",
+        "localTime": "12:59",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "임오"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "임오"
+        }
+      },
+      "independentReference": {
+        "assertedProperty": "none",
+        "independentForAssertedProperty": false
+      },
+      "classification": "agreement",
+      "differingPillars": [],
+      "findings": [],
+      "evidenceSourceCategory": "civil_hour_boundary_shared_lineage_comparison",
+      "notes": "Exercises the civil two-hour branch interval; comparison is not independent methodology evidence."
+    },
+    {
+      "id": "hour-2024-06-15-1500",
+      "input": {
+        "localDate": "2024-06-15",
+        "localTime": "15:00",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "갑신"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "갑신"
+        }
+      },
+      "independentReference": {
+        "assertedProperty": "none",
+        "independentForAssertedProperty": false
+      },
+      "classification": "agreement",
+      "differingPillars": [],
+      "findings": [],
+      "evidenceSourceCategory": "civil_hour_boundary_shared_lineage_comparison",
+      "notes": "Exercises the civil two-hour branch interval; comparison is not independent methodology evidence."
+    },
+    {
+      "id": "hour-2024-06-15-1459",
+      "input": {
+        "localDate": "2024-06-15",
+        "localTime": "14:59",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "계미"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "계미"
+        }
+      },
+      "independentReference": {
+        "assertedProperty": "none",
+        "independentForAssertedProperty": false
+      },
+      "classification": "agreement",
+      "differingPillars": [],
+      "findings": [],
+      "evidenceSourceCategory": "civil_hour_boundary_shared_lineage_comparison",
+      "notes": "Exercises the civil two-hour branch interval; comparison is not independent methodology evidence."
+    },
+    {
+      "id": "hour-2024-06-15-1700",
+      "input": {
+        "localDate": "2024-06-15",
+        "localTime": "17:00",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "을유"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "을유"
+        }
+      },
+      "independentReference": {
+        "assertedProperty": "none",
+        "independentForAssertedProperty": false
+      },
+      "classification": "agreement",
+      "differingPillars": [],
+      "findings": [],
+      "evidenceSourceCategory": "civil_hour_boundary_shared_lineage_comparison",
+      "notes": "Exercises the civil two-hour branch interval; comparison is not independent methodology evidence."
+    },
+    {
+      "id": "hour-2024-06-15-1659",
+      "input": {
+        "localDate": "2024-06-15",
+        "localTime": "16:59",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "갑신"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "갑신"
+        }
+      },
+      "independentReference": {
+        "assertedProperty": "none",
+        "independentForAssertedProperty": false
+      },
+      "classification": "agreement",
+      "differingPillars": [],
+      "findings": [],
+      "evidenceSourceCategory": "civil_hour_boundary_shared_lineage_comparison",
+      "notes": "Exercises the civil two-hour branch interval; comparison is not independent methodology evidence."
+    },
+    {
+      "id": "hour-2024-06-15-1900",
+      "input": {
+        "localDate": "2024-06-15",
+        "localTime": "19:00",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "병술"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "병술"
+        }
+      },
+      "independentReference": {
+        "assertedProperty": "none",
+        "independentForAssertedProperty": false
+      },
+      "classification": "agreement",
+      "differingPillars": [],
+      "findings": [],
+      "evidenceSourceCategory": "civil_hour_boundary_shared_lineage_comparison",
+      "notes": "Exercises the civil two-hour branch interval; comparison is not independent methodology evidence."
+    },
+    {
+      "id": "hour-2024-06-15-1859",
+      "input": {
+        "localDate": "2024-06-15",
+        "localTime": "18:59",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "을유"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "을유"
+        }
+      },
+      "independentReference": {
+        "assertedProperty": "none",
+        "independentForAssertedProperty": false
+      },
+      "classification": "agreement",
+      "differingPillars": [],
+      "findings": [],
+      "evidenceSourceCategory": "civil_hour_boundary_shared_lineage_comparison",
+      "notes": "Exercises the civil two-hour branch interval; comparison is not independent methodology evidence."
+    },
+    {
+      "id": "hour-2024-06-15-2100",
+      "input": {
+        "localDate": "2024-06-15",
+        "localTime": "21:00",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "정해"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "정해"
+        }
+      },
+      "independentReference": {
+        "assertedProperty": "none",
+        "independentForAssertedProperty": false
+      },
+      "classification": "agreement",
+      "differingPillars": [],
+      "findings": [],
+      "evidenceSourceCategory": "civil_hour_boundary_shared_lineage_comparison",
+      "notes": "Exercises the civil two-hour branch interval; comparison is not independent methodology evidence."
+    },
+    {
+      "id": "hour-2024-06-15-2059",
+      "input": {
+        "localDate": "2024-06-15",
+        "localTime": "20:59",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "병술"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "병술"
+        }
+      },
+      "independentReference": {
+        "assertedProperty": "none",
+        "independentForAssertedProperty": false
+      },
+      "classification": "agreement",
+      "differingPillars": [],
+      "findings": [],
+      "evidenceSourceCategory": "civil_hour_boundary_shared_lineage_comparison",
+      "notes": "Exercises the civil two-hour branch interval; comparison is not independent methodology evidence."
+    },
+    {
+      "id": "hour-2024-06-15-2300",
+      "input": {
+        "localDate": "2024-06-15",
+        "localTime": "23:00",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "병자"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "신해",
+          "hour": "무자"
+        }
+      },
+      "independentReference": {
+        "assertedProperty": "none",
+        "independentForAssertedProperty": false
+      },
+      "classification": "methodology_difference",
+      "differingPillars": [
+        "day",
+        "hour"
+      ],
+      "findings": [
+        {
+          "pillar": "day",
+          "category": "methodology_difference",
+          "primaryOutput": "경술",
+          "comparisonOutput": "신해",
+          "evidence": "The configured primary midnight rule and lunar-javascript default comparison mode exhibit different documented 23:xx day/hour behavior; this does not decide which convention is correct.",
+          "disposition": "deferred-to-issue-12"
+        },
+        {
+          "pillar": "hour",
+          "category": "methodology_difference",
+          "primaryOutput": "병자",
+          "comparisonOutput": "무자",
+          "evidence": "The configured primary midnight rule and lunar-javascript default comparison mode exhibit different documented 23:xx day/hour behavior; this does not decide which convention is correct.",
+          "disposition": "deferred-to-issue-12"
+        }
+      ],
+      "evidenceSourceCategory": "civil_hour_boundary_shared_lineage_comparison",
+      "notes": "Exercises the civil two-hour branch interval; comparison is not independent methodology evidence."
+    },
+    {
+      "id": "hour-2024-06-15-2259",
+      "input": {
+        "localDate": "2024-06-15",
+        "localTime": "22:59",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "manseryeok",
+        "version": "2.0.0",
+        "apiMode": {
+          "dayBoundary": "midnight"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "정해"
+        }
+      },
+      "comparison": {
+        "engine": "lunar-javascript",
+        "version": "1.7.7",
+        "apiMode": {
+          "year": "getYearInGanZhiExact",
+          "month": "getMonthInGanZhiExact",
+          "day": "getDayInGanZhiExact",
+          "hour": "getTimeInGanZhi",
+          "sect": "library-default"
+        },
+        "output": {
+          "year": "갑진",
+          "month": "경오",
+          "day": "경술",
+          "hour": "정해"
+        }
+      },
+      "independentReference": {
+        "assertedProperty": "none",
+        "independentForAssertedProperty": false
+      },
+      "classification": "agreement",
+      "differingPillars": [],
+      "findings": [],
+      "evidenceSourceCategory": "civil_hour_boundary_shared_lineage_comparison",
+      "notes": "Exercises the civil two-hour branch interval; comparison is not independent methodology evidence."
+    },
+    {
+      "id": "negative-timezone",
+      "input": {
+        "localDate": "2024-01-01",
+        "localTime": "12:00",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "America/New_York",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "inyeon-adapter-validation",
+        "version": "0.1.0",
+        "output": null
+      },
+      "comparison": {
+        "engine": "not-applicable",
+        "version": null,
+        "output": null
+      },
+      "independentReference": {
+        "assertedProperty": "adapter input contract",
+        "independentForAssertedProperty": false
+      },
+      "classification": "adapter_rejection_expected",
+      "expected": "TIMEZONE_UNSUPPORTED",
+      "findings": [],
+      "evidenceSourceCategory": "adapter_contract_negative_case",
+      "notes": "No calendrical provenance is claimed for contract validation."
+    },
+    {
+      "id": "negative-date-nonleap",
+      "input": {
+        "localDate": "2023-02-29",
+        "localTime": "12:00",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "inyeon-adapter-validation",
+        "version": "0.1.0",
+        "output": null
+      },
+      "comparison": {
+        "engine": "not-applicable",
+        "version": null,
+        "output": null
+      },
+      "independentReference": {
+        "assertedProperty": "adapter input contract",
+        "independentForAssertedProperty": false
+      },
+      "classification": "adapter_rejection_expected",
+      "expected": "DATE_INVALID",
+      "findings": [],
+      "evidenceSourceCategory": "adapter_contract_negative_case",
+      "notes": "No calendrical provenance is claimed for contract validation."
+    },
+    {
+      "id": "negative-date-format",
+      "input": {
+        "localDate": "2024-1-1",
+        "localTime": "12:00",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "inyeon-adapter-validation",
+        "version": "0.1.0",
+        "output": null
+      },
+      "comparison": {
+        "engine": "not-applicable",
+        "version": null,
+        "output": null
+      },
+      "independentReference": {
+        "assertedProperty": "adapter input contract",
+        "independentForAssertedProperty": false
+      },
+      "classification": "adapter_rejection_expected",
+      "expected": "DATE_INVALID",
+      "findings": [],
+      "evidenceSourceCategory": "adapter_contract_negative_case",
+      "notes": "No calendrical provenance is claimed for contract validation."
+    },
+    {
+      "id": "negative-time-2400",
+      "input": {
+        "localDate": "2024-01-01",
+        "localTime": "24:00",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "inyeon-adapter-validation",
+        "version": "0.1.0",
+        "output": null
+      },
+      "comparison": {
+        "engine": "not-applicable",
+        "version": null,
+        "output": null
+      },
+      "independentReference": {
+        "assertedProperty": "adapter input contract",
+        "independentForAssertedProperty": false
+      },
+      "classification": "adapter_rejection_expected",
+      "expected": "TIME_INVALID",
+      "findings": [],
+      "evidenceSourceCategory": "adapter_contract_negative_case",
+      "notes": "No calendrical provenance is claimed for contract validation."
+    },
+    {
+      "id": "negative-ambiguous",
+      "input": {
+        "localDate": "2024-01-01",
+        "localTime": "12:00",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "ambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "inyeon-adapter-validation",
+        "version": "0.1.0",
+        "output": null
+      },
+      "comparison": {
+        "engine": "not-applicable",
+        "version": null,
+        "output": null
+      },
+      "independentReference": {
+        "assertedProperty": "adapter input contract",
+        "independentForAssertedProperty": false
+      },
+      "classification": "adapter_rejection_expected",
+      "expected": "AMBIGUOUS_LOCAL_TIME",
+      "findings": [],
+      "evidenceSourceCategory": "adapter_contract_negative_case",
+      "notes": "No calendrical provenance is claimed for contract validation."
+    },
+    {
+      "id": "negative-approximate",
+      "input": {
+        "localDate": "2024-01-01",
+        "localTime": "12:00",
+        "timePrecision": "approximate",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "inyeon-adapter-validation",
+        "version": "0.1.0",
+        "output": null
+      },
+      "comparison": {
+        "engine": "not-applicable",
+        "version": null,
+        "output": null
+      },
+      "independentReference": {
+        "assertedProperty": "adapter input contract",
+        "independentForAssertedProperty": false
+      },
+      "classification": "adapter_rejection_expected",
+      "expected": "TIME_PRECISION_UNSUPPORTED",
+      "findings": [],
+      "evidenceSourceCategory": "adapter_contract_negative_case",
+      "notes": "No calendrical provenance is claimed for contract validation."
+    },
+    {
+      "id": "negative-unknown",
+      "input": {
+        "localDate": "2024-01-01",
+        "localTime": null,
+        "timePrecision": "unknown",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "inyeon-adapter-validation",
+        "version": "0.1.0",
+        "output": null
+      },
+      "comparison": {
+        "engine": "not-applicable",
+        "version": null,
+        "output": null
+      },
+      "independentReference": {
+        "assertedProperty": "adapter input contract",
+        "independentForAssertedProperty": false
+      },
+      "classification": "adapter_rejection_expected",
+      "expected": "BIRTH_TIME_UNKNOWN",
+      "findings": [],
+      "evidenceSourceCategory": "adapter_contract_negative_case",
+      "notes": "No calendrical provenance is claimed for contract validation."
+    },
+    {
+      "id": "negative-range",
+      "input": {
+        "localDate": "1799-12-31",
+        "localTime": "12:00",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "inyeon-adapter-validation",
+        "version": "0.1.0",
+        "output": null
+      },
+      "comparison": {
+        "engine": "not-applicable",
+        "version": null,
+        "output": null
+      },
+      "independentReference": {
+        "assertedProperty": "adapter input contract",
+        "independentForAssertedProperty": false
+      },
+      "classification": "adapter_rejection_expected",
+      "expected": "DATE_OUT_OF_RANGE",
+      "findings": [],
+      "evidenceSourceCategory": "adapter_contract_negative_case",
+      "notes": "No calendrical provenance is claimed for contract validation."
+    },
+    {
+      "id": "negative-historical-kst",
+      "input": {
+        "localDate": "1988-12-31",
+        "localTime": "23:59",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "inyeon-adapter-validation",
+        "version": "0.1.0",
+        "output": null
+      },
+      "comparison": {
+        "engine": "not-applicable",
+        "version": null,
+        "output": null
+      },
+      "independentReference": {
+        "assertedProperty": "adapter input contract",
+        "independentForAssertedProperty": false
+      },
+      "classification": "adapter_rejection_expected",
+      "expected": "DATE_OUT_OF_RANGE",
+      "findings": [],
+      "evidenceSourceCategory": "adapter_contract_negative_case",
+      "notes": "No calendrical provenance is claimed for contract validation."
+    },
+    {
+      "id": "negative-future-unvalidated",
+      "input": {
+        "localDate": "2025-01-01",
+        "localTime": "00:00",
+        "timePrecision": "exact",
+        "calendarKind": "solar",
+        "timeZone": "Asia/Seoul",
+        "ambiguity": "unambiguous",
+        "profileVersion": "korean-saju-v1",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1"
+      },
+      "provenance": {
+        "profileVersion": "korean-saju-v1",
+        "adapterVersion": "0.1.0",
+        "upstreamVersion": "2.0.0",
+        "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
+        "referenceDataVersion": "issue-8-differential-v1",
+        "derivedFeatureVersion": "not-applicable"
+      },
+      "primary": {
+        "engine": "inyeon-adapter-validation",
+        "version": "0.1.0",
+        "output": null
+      },
+      "comparison": {
+        "engine": "not-applicable",
+        "version": null,
+        "output": null
+      },
+      "independentReference": {
+        "assertedProperty": "adapter input contract",
+        "independentForAssertedProperty": false
+      },
+      "classification": "adapter_rejection_expected",
+      "expected": "DATE_OUT_OF_RANGE",
+      "findings": [],
+      "evidenceSourceCategory": "adapter_contract_negative_case",
+      "notes": "No calendrical provenance is claimed for contract validation."
+    }
+  ]
+}

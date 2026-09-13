@@ -1,0 +1,26 @@
+{
+  "profileVersion": "korean-saju-v1",
+  "status": "candidate",
+  "productionValidated": false,
+  "productionEligible": false,
+  "calendar": { "value": "solar-gregorian", "status": "bounded-candidate" },
+  "supportedCivilContext": { "timeZone": "Asia/Seoul", "minimumDate": "1989-01-01", "maximumDate": "2024-12-31", "timezoneStrategy": "fixed-utc-plus-09-civil-time", "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1", "historicalExpansion": "deferred-to-issue-9" },
+  "yearBoundary": { "value": "precise-ipchun-instant", "source": "manseryeok-embedded-table", "precision": "minute", "status": "pending-methodology-review" },
+  "monthBoundary": { "value": "twelve-jie-solar-term-instants", "source": "manseryeok-embedded-table", "precision": "minute", "status": "pending-methodology-review" },
+  "dayBoundary": { "value": "local-civil-midnight", "status": "pending-methodology-review" },
+  "hourBranch": { "value": "two-hour-civil-intervals-starting-with-jasi-at-23:00", "status": "pending-methodology-review" },
+  "trueSolarTime": { "enabled": false, "status": "pending-methodology-review" },
+  "unknownTime": { "fabricatedDefault": false, "result": "partial-with-no-pillars", "status": "bounded-candidate" },
+  "approximateTime": { "enabled": false, "status": "deferred-to-issue-12" },
+  "disputedTime": { "enabled": false, "status": "deferred-to-issue-12" },
+  "hiddenStemWeighting": { "enabled": false, "status": "out-of-scope" },
+  "daewoon": { "enabled": false, "status": "out-of-scope" },
+  "genderDirectedCalculations": { "enabled": false, "status": "out-of-scope" },
+  "derivedFeatures": { "enabled": false, "status": "owned-by-issue-13" },
+  "evidence": {
+    "differentialCorpus": "differential-corpus.v1.json",
+    "kasiProvenance": "not-asserted",
+    "expertReview": "pending",
+    "productionEligibility": "blocked"
+  }
+}
