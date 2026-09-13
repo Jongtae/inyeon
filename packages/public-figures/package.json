@@ -1,0 +1,35 @@
+{
+  "name": "@inyeon/public-figures",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Source-backed static public-figure reference data for INYEON",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "refresh:data": "node scripts/refresh-wikidata.mjs",
+    "promote:data": "node scripts/promote-wikidata.mjs",
+    "build:data": "node scripts/build-public-figures.mjs",
+    "verify:data": "node scripts/build-public-figures.mjs --check",
+    "prebuild": "npm run build --workspace @inyeon/compatibility-rules",
+    "build": "tsc -p tsconfig.build.json",
+    "pretypecheck": "npm run build --workspace @inyeon/compatibility-rules",
+    "typecheck": "tsc --noEmit --pretty false",
+    "pretest": "npm run build --workspace @inyeon/compatibility-rules",
+    "test": "npm run verify:data && vitest run"
+  },
+  "dependencies": {
+    "@inyeon/compatibility-rules": "0.1.0",
+    "@inyeon/saju-adapter": "0.4.0",
+    "@inyeon/saju-derived-features": "0.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "24.13.4",
+    "typescript": "6.0.3",
+    "vitest": "5.0.0"
+  }
+}
