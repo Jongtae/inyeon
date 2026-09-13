@@ -12,7 +12,7 @@ Users need readable `What clicks`, `Potential friction`, and `Why this?` explana
 ## Decision
 
 - Create a framework-independent TypeScript narrative package. Its only domain input is validated, versioned compatibility evidence plus confidence/availability metadata and public presentation context.
-- Keep three versioned layers distinct: compatibility rules emit facts/dimensions; the composer selects ordered message keys; a copy catalog maps keys to reviewed Korean/English text. Templates never calculate pillars or decide whether a rule matched.
+- Keep three versioned layers distinct: compatibility rules emit facts/dimensions; the composer selects ordered message keys; a copy catalog maps keys to reviewed US-English text. Korean/traditional terms may appear only with plain-English translation or progressive disclosure. Templates never calculate pillars or decide whether a rule matched.
 - Produce a typed view model with `whatClicks`, `potentialFriction`, `whyThis`, `limitations`, and optional conversation prompts. Each claim retains its source `ruleId`, rule version, evidence references, confidence, and copy key for explainability.
 - Filter claims whose declared requirements are unavailable. Unknown/approximate/disputed time adds explicit limitations and suppresses hour-dependent claims; copy may not imply the missing fact.
 - Resolve duplicates/conflicts with versioned priority and diversity rules, then stable-sort by section, priority, rule ID, and copy key. If variation is used, derive it from an explicit stable public-safe seed; never use runtime randomness. Same input and versions must produce byte-equivalent structured output.

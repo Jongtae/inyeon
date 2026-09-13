@@ -11,9 +11,9 @@ describe('INYEON application shell', () => {
   it('presents the product honestly without claiming a calculation is available', () => {
     render(<App />);
 
-    expect(screen.getByRole('heading', { name: /인연을 맞히는 대신/ })).toBeInTheDocument();
-    expect(screen.getByText(/계산 기능은 검증을 마친 뒤 공개됩니다/)).toBeInTheDocument();
-    expect(screen.queryByRole('button', { name: /계산|시작/ })).not.toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /Connection is not a verdict/ })).toBeInTheDocument();
+    expect(screen.getByText(/CALCULATIONS LAUNCH ONLY AFTER VALIDATION/)).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /calculate|start/i })).not.toBeInTheDocument();
   });
 
   it('navigates to fixed methodology and privacy routes using the URL hash', () => {
@@ -23,14 +23,14 @@ describe('INYEON application shell', () => {
     expect(methodologyLink).toHaveAttribute('href', '#/methodology');
     window.location.hash = '#/methodology';
     fireEvent(window, new HashChangeEvent('hashchange'));
-    expect(screen.getByRole('heading', { name: /해석보다 먼저/ })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /Evidence and limits/ })).toBeInTheDocument();
     expect(window.location.hash).toBe('#/methodology');
 
     const privacyLink = screen.getByRole('link', { name: 'Privacy' });
     expect(privacyLink).toHaveAttribute('href', '#/privacy');
     window.location.hash = '#/privacy';
     fireEvent(window, new HashChangeEvent('hashchange'));
-    expect(screen.getByRole('heading', { name: /정보가 머무르지 않도록/ })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /birth data does not linger/ })).toBeInTheDocument();
     expect(window.location.hash).toBe('#/privacy');
   });
 
@@ -38,11 +38,11 @@ describe('INYEON application shell', () => {
     window.location.hash = '#/privacy';
 
     const firstLoad = render(<App />);
-    expect(screen.getByRole('heading', { name: /정보가 머무르지 않도록/ })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /birth data does not linger/ })).toBeInTheDocument();
 
     firstLoad.unmount();
     render(<App />);
-    expect(screen.getByRole('heading', { name: /정보가 머무르지 않도록/ })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /birth data does not linger/ })).toBeInTheDocument();
     expect(window.location.hash).toBe('#/privacy');
   });
 });

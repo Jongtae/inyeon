@@ -48,6 +48,7 @@ Future real-user dating/matching remains an optional later mode.
 10. Synthetic characters are visibly fictional and never simulate real marketplace activity.
 11. Korean Saju/Gung-hap is described as Korean practice within the broader East Asian Four Pillars tradition.
 12. Real production deployment, CI, accessibility, privacy testing, and rollback are required for release.
+13. The first-release audience is US-first. Public UI, results, and relationship copy are English-first while the Korean-rooted K-culture identity remains explicit; Korean terms use plain-English translation or progressive disclosure. Hangul is the primary Korean script for brand and visual identity, while Hanja is secondary explanatory/traditional detail.
 
 ## 4. Core experience
 

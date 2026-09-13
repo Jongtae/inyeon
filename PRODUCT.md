@@ -65,8 +65,10 @@ The first release does not require account creation, marketplace density, or a d
 
 ## UX rules
 
+- The first-release audience is US-first; public UI, results, and relationship copy are English-first while the product remains visibly rooted in Korean Saju and K-culture.
+- Hangul leads Korean brand and visual expression; Hanja is reserved for secondary explanation or traditional detail.
 - Compatibility explanations are context, not authority.
-- Traditional terms use progressive disclosure and plain-English meaning.
+- Korean/traditional terms use progressive disclosure and plain-English meaning rather than unexplained primary copy.
 - Birth time may be exact, approximate, disputed, date-only, or unknown depending on subject type.
 - Unknown time must never be silently substituted.
 - No public numeric soulmate score.

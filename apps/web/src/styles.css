@@ -80,7 +80,8 @@ footer span:last-child { text-align: right; }
 
 @media (max-width: 760px) {
   .site-header { height: 5.5rem; }
-  nav { gap: .7rem; }
+  .brand small { display: none; }
+  nav { gap: .7rem; font-size: .62rem; }
   nav a:first-child { display: none; }
   .hero { min-height: auto; grid-template-columns: 1fr; gap: 1rem; padding: 4rem 0 2rem; }
   .hero-orbit { order: -1; width: min(75vw, 19rem); }
