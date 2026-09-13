@@ -23,6 +23,9 @@ const corpus = JSON.parse(readFileSync(corpusPath, 'utf8')) as {
       upstreamVersion: string;
       timezoneDataVersion: string;
       referenceDataVersion: string;
+      solarTermDataVersion: string;
+      solarTermReferenceVersion: string;
+      solarTermPrecision: string;
       derivedFeatureVersion: string;
     };
     differingPillars?: string[];
@@ -33,7 +36,7 @@ const corpus = JSON.parse(readFileSync(corpusPath, 'utf8')) as {
   }>;
 };
 
-describe('Issue #8 differential corpus', () => {
+describe('versioned differential corpus', () => {
   it('contains at least 50 supported positive Asia/Seoul cases, excluding adapter negatives', () => {
     const positives = corpus.records.filter((record) => !record.id.startsWith('negative-'));
     expect(positives.length).toBeGreaterThanOrEqual(50);
@@ -51,10 +54,13 @@ describe('Issue #8 differential corpus', () => {
       expect(record).toHaveProperty('classification');
       expect(record.provenance).toEqual({
         profileVersion: 'korean-saju-v1',
-        adapterVersion: '0.1.0',
+        adapterVersion: '0.2.0',
         upstreamVersion: '2.0.0',
         timezoneDataVersion: 'fixed-kst-utc-plus-09-1989-2024-v1',
-        referenceDataVersion: 'issue-8-differential-v1',
+        referenceDataVersion: 'issue-10-solar-term-boundaries-v1',
+        solarTermDataVersion: 'manseryeok-2.0.0-embedded-solar-terms-v1',
+        solarTermReferenceVersion: 'issue-10-astronomy-engine-2.1.19-v1',
+        solarTermPrecision: 'minute',
         derivedFeatureVersion: 'not-applicable',
       });
       expect(record.independentReference).toHaveProperty('independentForAssertedProperty');
@@ -73,7 +79,7 @@ describe('Issue #8 differential corpus', () => {
           expect(finding.primaryOutput).toBeTruthy();
           expect(finding.comparisonOutput).toBeTruthy();
           expect(finding.disposition).toBeTruthy();
-          expect(['deferred-to-issue-10', 'deferred-to-issue-12']).toContain(finding.disposition);
+          expect(['recorded-in-issue-10-boundary-corpus', 'deferred-to-issue-12']).toContain(finding.disposition);
         }
       }
     }
@@ -113,7 +119,7 @@ describe('Issue #8 differential corpus', () => {
 
   it('is reproducible from the checked-in generator', () => {
     const before = readFileSync(corpusPath, 'utf8');
-    execFileSync(process.execPath, [generatorPath], { cwd: packageRoot });
+    execFileSync(process.execPath, [generatorPath, '--check'], { cwd: packageRoot });
     expect(readFileSync(corpusPath, 'utf8')).toBe(before);
   });
 });

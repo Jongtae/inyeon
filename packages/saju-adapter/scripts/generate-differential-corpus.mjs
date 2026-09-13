@@ -1,4 +1,4 @@
-import { writeFile } from 'node:fs/promises';
+import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 
 import { SearchSunLongitude } from 'astronomy-engine';
@@ -10,10 +10,13 @@ const zhi = Object.fromEntries([...'子丑寅卯辰巳午未申酉戌亥'].map((
 const toHangul = (value) => `${gan[value[0]]}${zhi[value[1]]}`;
 const fixtureProvenance = {
   profileVersion: 'korean-saju-v1',
-  adapterVersion: '0.1.0',
+  adapterVersion: '0.2.0',
   upstreamVersion: '2.0.0',
   timezoneDataVersion: 'fixed-kst-utc-plus-09-1989-2024-v1',
-  referenceDataVersion: 'issue-8-differential-v1',
+  referenceDataVersion: 'issue-10-solar-term-boundaries-v1',
+  solarTermDataVersion: 'manseryeok-2.0.0-embedded-solar-terms-v1',
+  solarTermReferenceVersion: 'issue-10-astronomy-engine-2.1.19-v1',
+  solarTermPrecision: 'minute',
   derivedFeatureVersion: 'not-applicable',
 };
 const isoKst = (date) => {
@@ -31,7 +34,7 @@ function inputFromIsoKst(value) {
     ambiguity: 'unambiguous',
     profileVersion: 'korean-saju-v1',
     timezoneDataVersion: 'fixed-kst-utc-plus-09-1989-2024-v1',
-    referenceDataVersion: 'issue-8-differential-v1',
+    referenceDataVersion: 'issue-10-solar-term-boundaries-v1',
   };
 }
 
@@ -64,7 +67,7 @@ function classifyFindings(input, result) {
       evidence: category === 'methodology_difference'
         ? 'The configured primary midnight rule and lunar-javascript default comparison mode exhibit different documented 23:xx day/hour behavior; this does not decide which convention is correct.'
         : 'The implementations place a solar-term boundary at different precision/instants; neither is treated as an oracle.',
-      disposition: category === 'methodology_difference' ? 'deferred-to-issue-12' : 'deferred-to-issue-10',
+      disposition: category === 'methodology_difference' ? 'deferred-to-issue-12' : 'recorded-in-issue-10-boundary-corpus',
     };
   });
 }
@@ -167,7 +170,7 @@ const negativeCases = [
 for (const [id, input, expected] of negativeCases) records.push({
   id, input,
   provenance: fixtureProvenance,
-  primary: { engine: 'inyeon-adapter-validation', version: '0.1.0', output: null },
+  primary: { engine: 'inyeon-adapter-validation', version: '0.2.0', output: null },
   comparison: { engine: 'not-applicable', version: null, output: null },
   independentReference: { assertedProperty: 'adapter input contract', independentForAssertedProperty: false },
   classification: 'adapter_rejection_expected', expected,
@@ -180,6 +183,11 @@ const corpus = {
   schemaVersion: 1,
   generatedAt: '2026-09-13',
   profileVersion: 'korean-saju-v1',
+  adapterVersion: '0.2.0',
+  referenceDataVersion: 'issue-10-solar-term-boundaries-v1',
+  solarTermDataVersion: 'manseryeok-2.0.0-embedded-solar-terms-v1',
+  solarTermReferenceVersion: 'issue-10-astronomy-engine-2.1.19-v1',
+  solarTermPrecision: 'minute',
   profileStatus: 'candidate',
   productionEligible: false,
   limitations: [
@@ -187,11 +195,17 @@ const corpus = {
     'No Korean-methodology expert review is asserted.',
     'lunar-javascript chart comparison may share calendrical lineage and is not independent evidence.',
     'Astronomy Engine is independent only for apparent-Sun longitude boundary location.',
-    'Historical/future Asia/Seoul and America/* timezone/DST validation are deferred to Issue #9.',
+    'Issue #9 validates separate timezone-normalization candidates, but that resolver is not integrated into Saju chart calculation.',
     'Day/hour convention differences are preserved for Issue #12; this corpus does not select a correct Korean methodology.',
   ],
   recordCount: records.length,
   records,
 };
 const target = fileURLToPath(new URL('../data/differential-corpus.v1.json', import.meta.url));
-await writeFile(target, `${JSON.stringify(corpus, null, 2)}\n`);
+const serialized = `${JSON.stringify(corpus, null, 2)}\n`;
+if (process.argv.includes('--check')) {
+  const committed = await readFile(target, 'utf8').catch(() => '');
+  if (committed !== serialized) throw new Error('differential-corpus.v1.json is stale; regenerate it without --check');
+} else {
+  await writeFile(target, serialized);
+}

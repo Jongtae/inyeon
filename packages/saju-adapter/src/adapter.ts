@@ -30,11 +30,14 @@ function provenance() {
   return {
     profileVersion: 'korean-saju-v1',
     profileStatus: 'candidate',
-    adapterVersion: '0.1.0',
+    adapterVersion: '0.2.0',
     upstreamName: 'manseryeok',
     upstreamVersion: '2.0.0',
     timezoneDataVersion: 'fixed-kst-utc-plus-09-1989-2024-v1',
-    referenceDataVersion: 'issue-8-differential-v1',
+    referenceDataVersion: 'issue-10-solar-term-boundaries-v1',
+    solarTermDataVersion: 'manseryeok-2.0.0-embedded-solar-terms-v1',
+    solarTermReferenceVersion: 'issue-10-astronomy-engine-2.1.19-v1',
+    solarTermPrecision: 'minute',
     derivedFeatureVersion: 'not-applicable',
   } as const;
 }
@@ -81,7 +84,7 @@ export function createInyeonSajuAdapter(engine: InyeonPrimaryEngine = defaultEng
     calculate(input) {
       if (input == null || typeof input !== 'object') return fail('INPUT_INVALID', 'A normalized birth context is required.');
       if (input.profileVersion !== 'korean-saju-v1') return fail('PROFILE_UNSUPPORTED', 'Only the korean-saju-v1 candidate profile is supported.');
-      if (input.timezoneDataVersion !== 'fixed-kst-utc-plus-09-1989-2024-v1' || input.referenceDataVersion !== 'issue-8-differential-v1') {
+      if (input.timezoneDataVersion !== 'fixed-kst-utc-plus-09-1989-2024-v1' || input.referenceDataVersion !== 'issue-10-solar-term-boundaries-v1') {
         return fail('VERSION_UNSUPPORTED', 'Input reference versions do not match this adapter build.');
       }
       if (input.calendarKind !== 'solar') return fail('CALENDAR_UNSUPPORTED', 'Only the solar Gregorian calendar is supported by this adapter version.');

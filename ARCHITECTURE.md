@@ -91,7 +91,7 @@ Preferred first-release stack:
 - **Hosting:** GitHub Pages.
 - **CI/CD:** GitHub Actions.
 - **Routing:** Pages-safe hash routing or a fully tested static fallback strategy.
-- **Saju/Manseryeok:** pinned `yhj1024/manseryeok` candidate behind `InyeonSajuAdapter`. Reference independence is property-specific: `6tail/lunar-javascript` is a shared-lineage secondary comparison for solar terms, independent astronomy may locate boundary instants, and Korean lunar/KASI-aligned or expert-reviewed fixtures remain required before production.
+- **Saju/Manseryeok:** pinned `yhj1024/manseryeok` candidate behind `InyeonSajuAdapter`. Its embedded minute-level solar-term boundaries are regression-checked across the full validated adapter range; `6tail/lunar-javascript` remains shared-lineage evidence, while Astronomy Engine independently locates apparent-Sun longitude crossings only. Korean lunar/KASI-aligned or expert-reviewed fixtures remain required before production.
 - **Local-time normalization:** dependency-free `@inyeon/timezone-resolver` runtime over a checked-in, exact-versioned IANA transition artifact. Generation-only Moment dependencies never enter the browser runtime. Resolver capability is separate from chart-calculation capability.
 - **State:** in-memory only for personal inputs/results.
 - **Public data:** versioned JSON/static assets generated during build/maintenance workflows.

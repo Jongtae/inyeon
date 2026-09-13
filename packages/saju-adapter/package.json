@@ -1,6 +1,6 @@
 {
   "name": "@inyeon/saju-adapter",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "description": "INYEON-owned deterministic Korean Saju adapter boundary",
@@ -20,7 +20,8 @@
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "typecheck": "tsc --noEmit --pretty false",
-    "test": "vitest run"
+    "verify:data": "node scripts/generate-differential-corpus.mjs --check && node scripts/generate-solar-term-boundaries.mjs --check",
+    "test": "npm run verify:data && vitest run"
   },
   "dependencies": {
     "manseryeok": "2.0.0"

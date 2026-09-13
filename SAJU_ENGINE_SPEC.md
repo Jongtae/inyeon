@@ -32,6 +32,14 @@ Resolver capability does not imply chart capability. The Saju adapter may consum
 
 The product/domain layer must not depend directly on one upstream library API.
 
+## Solar-term candidate evidence
+
+The candidate year/month contract uses the exact-pinned `manseryeok@2.0.0` embedded UTC-minute boundary. `before_primary_boundary`, `at_primary_boundary`, and `after_primary_boundary` mean exactly 60 seconds before, equality with, and 60 seconds after that primary boundary. Equality belongs to the new month and, at 입춘 (Ipchun), the new Saju year.
+
+The full adapter range is regression-checked at all twelve monthly `절` boundaries. Astronomy Engine independently locates the apparent-Sun longitude crossing but does not determine Korean Saju methodology. Raw timing differences remain visible; the 120-second differential guardrail is an investigation threshold, not an accuracy claim or permission to average/select competing times. No runtime astronomy fallback is used.
+
+This evidence validates deterministic implementation behavior only. Year/month methodology stays candidate and non-production until KASI-aligned or expert review and the release golden corpus satisfy the remaining gates. Day/hour behavior is excluded from the solar-term contract and remains owned by the uncertainty/day-boundary work.
+
 Record with every chart or reproducible fixture where applicable:
 
 - INYEON calculation profile version;
@@ -106,7 +114,7 @@ Approximate/disputed time should be normalized to an explicit range/state and ev
 Before trusting the primary adapter:
 
 1. compare representative cases against at least one independent implementation/reference;
-2. oversample Ipchun/monthly solar-term boundaries and day rollover inside the adapter's currently declared capability; separately test that unsupported timezone/history inputs fail closed;
+2. oversample 입춘 (Ipchun), monthly solar-term boundaries, and day rollover inside the adapter's currently declared capability; separately test that unsupported timezone/history inputs fail closed;
 3. classify every disagreement as one of:
    - upstream implementation bug;
    - deliberate methodology/tradition difference;
