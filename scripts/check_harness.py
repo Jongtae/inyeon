@@ -16,6 +16,13 @@ REQUIRED = [
     "SAFETY.md",
     "PRIVACY.md",
     "ROADMAP.md",
+    "TEAM_STATE.toml",
+    "docs/AUTONOMY_L4.md",
+    "docs/ROLE_AUTHORITY_MATRIX.md",
+    "docs/REDDIT_EXPERIMENT_GOVERNANCE.md",
+    "docs/HUMAN_GATES.md",
+    "evals/autonomy/cases.json",
+    "scripts/check_l4.py",
     ".codex/config.toml",
     ".github/PULL_REQUEST_TEMPLATE.md",
     "prompts/MASTER_PROMPT.md",
@@ -29,6 +36,9 @@ AGENTS = [
     "security-reviewer",
     "qa",
     "fast-worker",
+    "reddit-operator",
+    "feedback-analyst",
+    "product-judge",
 ]
 
 errors: list[str] = []
@@ -39,8 +49,12 @@ for rel in REQUIRED:
 
 config_path = ROOT / ".codex/config.toml"
 if config_path.exists():
-    with config_path.open("rb") as fh:
-        config = tomllib.load(fh)
+    try:
+        with config_path.open("rb") as fh:
+            config = tomllib.load(fh)
+    except Exception as exc:  # noqa: BLE001
+        errors.append(f"invalid .codex/config.toml: {exc}")
+        config = {}
 
     agents = config.get("agents", {})
     for name in AGENTS:
@@ -61,6 +75,16 @@ if config_path.exists():
                     tomllib.load(fh)
             except Exception as exc:  # noqa: BLE001
                 errors.append(f"invalid TOML {role_path.relative_to(ROOT)}: {exc}")
+
+state_path = ROOT / "TEAM_STATE.toml"
+if state_path.exists():
+    try:
+        with state_path.open("rb") as fh:
+            state = tomllib.load(fh)
+        if state.get("maturity") not in {"l4-candidate", "l4-verified"}:
+            errors.append("TEAM_STATE.toml has invalid maturity")
+    except Exception as exc:  # noqa: BLE001
+        errors.append(f"invalid TEAM_STATE.toml: {exc}")
 
 if errors:
     print("Harness check FAILED")
