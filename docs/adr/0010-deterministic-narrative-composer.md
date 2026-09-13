@@ -33,6 +33,10 @@ Users need readable `What clicks`, `Potential friction`, and `Why this?` explana
 
 Copy variety is intentionally bounded, and editorial updates require catalog/version review. In return, every statement is reproducible, testable, locally generated, and traceable to structured evidence.
 
+## Implemented boundary
+
+`@inyeon/compatibility-narrative` implements this decision with the release-locked `us-english-narrative-copy-v1` catalog. Because the product rule catalog has zero approved rules, the public claim registry is empty and the composer emits only an honest `no-approved-evidence` state, limitations, and fixed entity disclosures. Relationship sections remain empty until a later production-eligible snapshot and independently approved copy entry satisfy the default-deny claim gate. Public copy is natural US English; Korean script is Hangul-first with Hanja only as secondary traditional detail.
+
 ## Security / privacy / safety impact
 
 The composer performs no I/O. Structured text output and escaping reduce injection risk. Claim allow/prohibit tests and uncertainty filtering reduce harmful certainty, stereotyping, and reputational claims. Share mapping receives only the separate ADR 0007 allowlisted projection, not the full personal narrative/evidence object.

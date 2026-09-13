@@ -1,0 +1,32 @@
+{
+  "name": "@inyeon/compatibility-narrative",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Deterministic, default-deny compatibility narrative boundary for INYEON",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": ["dist", "data", "source", "README.md", "PROVENANCE.md"],
+  "scripts": {
+    "prebuild": "npm run build --workspace @inyeon/compatibility-rules && npm run build --workspace @inyeon/compatibility-taxonomy",
+    "build": "tsc -p tsconfig.build.json",
+    "pretypecheck": "npm run build --workspace @inyeon/compatibility-rules && npm run build --workspace @inyeon/compatibility-taxonomy",
+    "typecheck": "tsc --noEmit --pretty false",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@inyeon/compatibility-rules": "0.1.0",
+    "@inyeon/compatibility-taxonomy": "0.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "24.13.4",
+    "@inyeon/saju-adapter": "0.4.0",
+    "@inyeon/saju-derived-features": "0.1.0",
+    "typescript": "6.0.3",
+    "vitest": "5.0.0"
+  }
+}

@@ -56,7 +56,7 @@ inyeon/
 │   ├── saju-derived-features/       # deterministic visible-chart annotations
 │   ├── compatibility-taxonomy/      # inclusive dimensions + prohibited claims
 │   ├── compatibility-rules/         # deterministic/versioned rule engine
-│   ├── narrative/                   # deterministic explanation composer
+│   ├── compatibility-narrative/     # default-deny deterministic explanation composer
 │   ├── share/                       # local share card / share-safe payloads
 │   └── design-system/
 ├── data/
@@ -214,6 +214,8 @@ validated copy blocks
 ```
 
 LLMs may help author/refine templates during development, but generated copy is stored/versioned. Browser runtime must not call a secret-bearing LLM API.
+
+The implemented `@inyeon/compatibility-narrative` package accepts only `compatibility-snapshot-v2` plus closed context/format/tone enums. Its release-locked US-English catalog has zero product claim entries while the approved rule catalog is empty. The actual output therefore has a null relationship headline, empty `What clicks`, `Potential friction`, and `Why this?` sections, and no personalized question. It may show only categorical availability/methodology limitations and fixed public-reference, fictional-reference, or permission disclosures. Hanja is accepted only after the matching Hangul term. Share-length copy removes protected birth-time precision and evidence references; the final share allowlist remains #43-owned.
 
 ## 9. Public-figure data architecture
 

@@ -106,7 +106,7 @@ They must:
 
 Useful actions include:
 
-- `Why this works`;
+- `Why this?` only when reviewed relationship evidence is available;
 - `Potential friction`;
 - `Compare`;
 - `Save archetype` only if implemented locally without personal persistence;

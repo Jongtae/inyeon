@@ -62,6 +62,8 @@ PersonalBirthInput (memory)
 
 After required static assets are loaded, core personal calculations should succeed with network access disabled.
 
+The deterministic narrative composer receives only the minimized compatibility snapshot and closed presentation enums. It does not accept raw birth fields, chart symbols, names, biographies, or freeform text, and returns only frozen structured plain text. It performs no network, storage, logging, clock, random, or runtime-model operation.
+
 ## 5. Public-figure data
 
 Public figures are reference data, not private user accounts.
@@ -99,6 +101,8 @@ Default share card/link may include only allowlisted non-sensitive result data s
 - methodology/result version identifiers where useful.
 
 Default sharing must not include raw birth date/time/place or protected personal chart payloads.
+
+The narrative package's short `share` copy is not itself a share serializer. It removes participant birth-time precision codes and evidence references, replaces time-detail limitations with a generic omission notice, and leaves the final allowlisted projection to Issue #43.
 
 `Compare with me` is a distinct explicit mode. If it embeds any derived personal chart representation, the UI must explain exactly what will be shared and require a deliberate confirmation. It is never the default share action.
 
