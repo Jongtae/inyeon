@@ -120,6 +120,26 @@ Do not introduce an application backend, database, Cloud Run, Cloud SQL, Firebas
 
 Introduce GCP/backend infrastructure only when a concrete feature proves static architecture insufficient and the architecture/privacy change is explicitly reviewed under current Human Gates.
 
+### Framework adoption / APH separation
+
+INYEON is a real product first and an APH dogfood/reference implementation second.
+
+Use the rule:
+
+> **Observed pain before framework.**
+
+Do not introduce GitHub Spec Kit, Ruflo, AgentOS, another agent runtime, planner, orchestrator, or persistence layer merely to demonstrate APH extensibility or because the integration is technically interesting.
+
+The default active stack remains:
+
+`GitHub issues/docs → Codex native multi-agent → APH governance/state/evals → GitHub Actions → GitHub Pages`
+
+Optional frameworks may be evaluated only after recurring friction is recorded and the criteria in `docs/adr/0005-product-first-framework-adoption.md` are satisfied.
+
+APH may support more integrations than INYEON uses. INYEON must not become a showcase or museum of APH adapters.
+
+If an optional framework is introduced later, preserve one canonical product truth and explicit responsibility boundaries; do not create competing state or governance authorities.
+
 ### Manseryeok/Saju
 
 Do not greenfield mature calendrical primitives without evidence.
