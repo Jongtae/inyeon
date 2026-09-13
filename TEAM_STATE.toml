@@ -1,0 +1,59 @@
+schema_version = 1
+updated_at = "2026-09-13T19:13:00+09:00"
+maturity = "l4-candidate"
+operating_mode = "independent-release"
+current_phase = "build"
+active_release = "v0.1.0"
+current_goal = "Ship INYEON as a production-grade zero-backend Korean Compatibility Lab, then operate an evidence-governed autonomous product-learning loop."
+production_url = ""
+last_known_good_sha = ""
+next_action = "Reconcile and execute the highest-priority unblocked issue on the active critical path, while maintaining this state file at meaningful milestones."
+
+active_critical_path = [1, 8, 9, 10, 11, 12, 13, 14, 33, 34, 50, 49, 53, 43, 52, 47, 51]
+active_issues = [1, 8, 9, 10, 11, 12, 13, 14, 33, 34, 49, 50, 51, 52, 53, 43, 47]
+active_experiments = []
+human_gates = []
+current_risks = [
+  "Saju methodology still requires reference/golden validation.",
+  "Production implementation and GitHub Pages release are not yet complete.",
+  "L4 operational proof has not yet accumulated real autonomous closed loops."
+]
+
+[autonomy_proof]
+completed_closed_loops = 0
+required_closed_loops = 5
+successful_recovery_drills = 0
+required_recovery_drills = 1
+eval_pass_rate = 0.0
+required_eval_pass_rate = 0.95
+critical_eval_failures = 0
+max_critical_eval_failures = 0
+policy_conflicts = 0
+max_policy_conflicts = 0
+human_interventions_outside_declared_gates = 0
+max_human_interventions_outside_declared_gates = 0
+
+[team_metrics]
+autonomous_completion_rate = 0.0
+human_gate_rate = 0.0
+median_issue_to_release_hours = 0.0
+rework_rate = 0.0
+rollback_rate = 0.0
+escaped_defect_rate = 0.0
+decision_reversal_rate = 0.0
+agent_retry_count = 0
+model_cost_per_shipped_issue_usd = 0.0
+
+[release_state]
+status = "not-released"
+release_sha = ""
+rollback_sha = ""
+last_smoke_status = "not-run"
+last_privacy_status = "not-run"
+last_eval_status = "not-run"
+
+[feedback_state]
+reddit_account_status = "not-configured"
+reddit_integration_status = "not-configured"
+last_experiment_id = ""
+last_decision_id = ""
