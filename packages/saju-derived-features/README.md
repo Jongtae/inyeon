@@ -23,3 +23,5 @@ Hangul is primary where Korean script appears; Hanja is secondary detail. Stable
 It does **not** calculate balance, strength, dominance, seasonal weighting, hidden stems, Ten Gods, combinations, clashes, harm, punishment, break, relationship dimensions, or any feature conditioned on gender or sexuality. Those concepts must not be inferred from the occurrence counts.
 
 All outputs are deeply frozen. Invalid or version-incompatible sources return one generic bounded error that never reflects input values.
+
+The large Issue #14 regression artifact is kept out of this runtime package. The private `@inyeon/saju-golden-corpus` workspace owns its deterministic generator, records full candidate observations, and CI-checks drift without exporting or bundling the corpus for browsers.

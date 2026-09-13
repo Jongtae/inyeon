@@ -153,6 +153,10 @@ Before public release, maintain at least **200** expert/reference-backed fixture
 
 Each fixture should preserve provenance and expected methodology/profile version.
 
+The Issue #14 candidate corpus lives in the private development/CI-only `@inyeon/saju-golden-corpus` workspace rather than a browser/runtime package. It contains 240 unique positive normalized contexts plus separately counted negative capability cases. Primary categories are mutually exclusive; overlap tags and coverage counts make solar-term, rollover, late 자시 (Jasi, 子時), US DST, leap/range, zone, precision, decade, and sexagenary-domain coverage auditable.
+
+Generated full-chart and derived-feature values are named `candidateObserved` and are regression snapshots, not expert/reference truth. The generator never writes the physically separate `approvedExpected` artifact. Approval remains empty/pending until an independent or advisor anchor supports the exact property being approved. Property-level evidence grades and known disagreements must remain explicit; counting 240 candidate observations does not satisfy production methodology validation or remove the applicable Human Gate.
+
 ## Property / invariant tests
 
 Verify at minimum:

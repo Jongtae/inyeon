@@ -1,5 +1,5 @@
 schema_version = 1
-updated_at = "2026-09-14T02:25:53+09:00"
+updated_at = "2026-09-14T02:56:27+09:00"
 maturity = "l4-candidate"
 operating_mode = "independent-release"
 current_phase = "build"
@@ -7,14 +7,16 @@ active_release = "v0.1.0"
 current_goal = "Ship INYEON as a production-grade zero-backend Korean Compatibility Lab, then prove five autonomous closed loops and recovery/eval criteria required for verified L4."
 production_url = ""
 last_known_good_sha = ""
-next_action = "Execute #14: build and CI-wire at least 200 provenance-bearing golden/reference chart fixtures, keep disagreements explicit, and route only production methodology authority or paid advisor engagement to the declared Human Gate."
+next_action = "Execute #6: define the versioned inclusive compatibility taxonomy and machine-usable prohibited-claims matrix while Issue #14 waits only on independent/expert exact-property approval at its declared methodology Human Gate."
 
 active_critical_path = [14, 6, 33, 34, 50, 49, 35, 53, 43, 52, 47, 51]
 active_issues = [6, 14, 33, 34, 35, 43, 47, 49, 50, 51, 52, 53, 54]
 active_experiments = []
-human_gates = []
+human_gates = [
+  "Issue #14 production validation is blocked: generated candidateObserved snapshots cannot independently establish full-chart correctness or resolve midnight-versus-late-Jasi, true-solar-time, or 61–72-second solar-term disagreements. Completed: 240 synthetic positive contexts, 12 separate negative cases, provenance/evidence grades, dispute isolation, candidate drift CI, and a separate empty non-generated approvals artifact. Smallest human action: approve qualified Korean Saju methodology authority/advisor scope and any paid terms, then review exact-property anchors; no approval is needed for candidate corpus merge or unrelated work. Unblocked: #6 and the remaining product/static-release path. Continuation: add attributable approvedExpected anchors, adjudicate disputed properties, rerun independent QA/CI, and only then consider productionValidated or closing #14."
+]
 current_risks = [
-  "The #8 Manseryeok adapter, #9 local-time resolver, #10 full-range solar-term corpus, #11 three-zone year/month seam, #12 three-zone day/hour uncertainty contract, and #13 minimal Hangul-primary derived-feature layer are non-production candidates only: the midnight-versus-late-Jasi disagreement and true-solar-time choice remain unresolved production-methodology Human Gates, three measured solar-term differences of 61–72 seconds remain explicit methodology/reference uncertainty rather than an authority decision, and expert/KASI-aligned release validation remains required by #14.",
+  "The #8 Manseryeok adapter through #13 Hangul-primary derived-feature layer and #14's 240-context regression corpus remain non-production candidates. The corpus has 0 approved expectations: midnight-versus-late-Jasi, true-solar-time, and three measured 61–72-second solar-term disagreements remain explicit methodology/reference uncertainty pending independent/expert exact-property review.",
   "The GitHub repository is private, GitHub Pages is disabled, and no production deployment workflow or release exists yet.",
   "L4 structural governance exists, but behavioral eval execution, five closed loops, fresh-session continuity, and recovery proof are still unverified.",
   "Framework creep could turn INYEON into an APH showcase instead of a focused product; optional frameworks require observed pain before adoption."

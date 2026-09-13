@@ -19,3 +19,7 @@ Output provenance copies the relevant adapter, profile, Issue #10 solar-term, Is
 ## Privacy and reproducibility
 
 The source result contains no raw datetime, offset, instant, or place. This package accepts no separate personal context, emits no such field, performs no I/O, and returns generic non-reflective errors. Same validated source object and versions produce the same deeply frozen structured output.
+
+## Golden regression corpus
+
+Issue #14 validation is owned by the separate private `@inyeon/saju-golden-corpus` workspace so its multi-megabyte evidence artifact is not part of this package's published/runtime `files` allowlist. Its generator observes this package and the adapter together, while keeping generated `candidateObserved` values physically separate from the non-generator-managed approvals artifact. Those observations remain candidate regression evidence, not independent or expert truth.
