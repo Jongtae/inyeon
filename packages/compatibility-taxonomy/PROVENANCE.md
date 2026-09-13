@@ -25,7 +25,7 @@ These sources guide language safety; they do not validate the taxonomy dimension
 
 - Poles are neutral and unordered; a result cannot label either end as universally good or bad.
 - Pair claims are symmetric by default. Directional evidence must declare its direction and reversible swap behavior.
-- Unknown and date-only inputs suppress hour-dependent claims. Approximate and disputed inputs permit a definitive claim only when it is common across all retained variants.
+- Unknown and date-only inputs make hour-dependent compatibility evidence unavailable. Approximate and disputed inputs permit a definitive claim only when it is common across all retained variants. Candidate review state and resource limits are suppressed separately.
 - Public copy uses natural US English. Korean roots remain explicit; where Korean script appears, Hangul precedes Hanja.
 - Gender, gender identity, sexual orientation, and relationship structure are not taxonomy or rule inputs.
 

@@ -34,11 +34,11 @@ not_doing:
   - "Do not export test-only synthetic mappings or call them methodology evidence."
   - "Do not add a soulmate score, ranking weight, runtime LLM, raw birth input, or identity-based rule path."
 risk_class: high
-review_after: "Qualified rule-specific cultural/Saju review, #14 production chart approval, expert fixtures, Issue #34 confidence integration, and credible US-user comprehension evidence."
+review_after: "Qualified rule-specific cultural/Saju review, #14 production chart approval, expert fixtures, Issue #34 evidence-availability integration, and credible US-user comprehension evidence."
 verification: "Strict schema tests, missing/hour suppression, full pair-variant correlation, pair-order invariants, generic privacy errors, test-fixture isolation, independent QA/security review, and repository CI."
 result: "The candidate package, empty product catalog, deterministic evaluator, compressed variant correlation, pending-rule suppression, canonical input snapshots, bounded memory expansion, and privacy boundary passed 145 repository tests, full build/static checks, independent QA, and independent security review. No methodology or L4 claim is created."
 ---
 
 # Decision
 
-Act on infrastructure only. Keep the product rule catalog empty and `productionEligible: false`. Continue unblocked confidence and static-product work while exact traditional mappings remain at the recorded methodology Human Gate.
+Act on infrastructure only. Keep the product rule catalog empty and `productionEligible: false`. Continue unblocked evidence-availability and static-product work while exact traditional mappings remain at the recorded methodology Human Gate.

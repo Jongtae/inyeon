@@ -17,7 +17,7 @@ Version 1 defines eight neutral, unordered dimensions: conversation rhythm, deci
 
 Rules cannot accept sex, gender, gender identity, sexual orientation, or relationship structure as inputs. The same semantic model applies to LGBTQ+, transgender, nonbinary, and nontraditional pairs without downgraded paths or traditional spouse roles.
 
-Pair claims are symmetric by default. Directional claims require explicit directional evidence and reversible participant-swap semantics. Unknown/date-only time suppresses hour-dependent claims; approximate/disputed claims are definitive only when common across every retained variant, otherwise remaining correlated alternatives with an explicit limitation.
+Pair claims are symmetric by default. Directional claims require explicit directional evidence and reversible participant-swap semantics. As refined by ADR 0019, unknown/date-only time makes hour-dependent compatibility evidence unavailable; approximate/disputed claims are definitive only when common across every retained variant, otherwise remaining correlated alternatives with an explicit limitation. Candidate review state and resource limits remain suppressed states.
 
 The machine-readable prohibited matrix blocks deterministic/fatalistic/scientific claims, soulmate scores, gender roles, identity or protected-trait inference/ranking, morality/trust/safety/crime/violence, fidelity, fertility/reproduction, mental/medical diagnosis, sexual behavior, wealthworthiness, inevitable marriage/divorce, relationship prescriptions/control, certainty invented from incomplete inputs, and public-figure endorsement/availability. Lexical detectors are defense in depth: the narrative layer must fail closed to reviewed allowlisted copy.
 

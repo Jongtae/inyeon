@@ -86,16 +86,45 @@ describe('product rule catalog', () => {
     const first = evaluateCompatibilityPair(chart, chart);
     const second = evaluateCompatibilityPair(chart, chart);
     expect(first).toEqual(second);
+    expect(JSON.stringify(first)).toBe(JSON.stringify(second));
     expect(first).toMatchObject({
       status: 'ok', snapshot: {
         status: 'candidate', productionEligible: false, ruleEvaluations: [],
-        limitations: ['NO_APPROVED_DIMENSION_MAPPINGS'],
+        limitations: ['CANDIDATE_METHODOLOGY', 'NO_APPROVED_DIMENSION_MAPPINGS'],
+        evidenceSummary: {
+          modelVersion: 'evidence-availability-v1',
+          state: 'no-approved-evidence',
+          ruleCounts: { approved: 0, definitive: 0, alternatives: 0, unavailable: 0, suppressed: 0 },
+        },
       },
     });
     expect(JSON.stringify(first)).not.toContain(chart.variants[0]!.dayMaster.hangul);
     expect(JSON.stringify(first)).not.toContain(chart.variants[0]!.dayMaster.hanja);
     expect(Object.isFrozen(first)).toBe(true);
     if (first.status === 'ok') expect(Object.isFrozen(first.snapshot.sourceVersions['person-a'])).toBe(true);
+  });
+
+  it.each([
+    ['approximate', { ...common, temporalSupport: 'approximate' as const, window: {
+      startLocalDateTime: '2024-06-15T12:00', endLocalDateTime: '2024-06-15T12:00',
+    } }, 'PERSON_A_TIME_APPROXIMATE'],
+    ['disputed', { ...common, temporalSupport: 'disputed' as const, windows: [{
+      startLocalDateTime: '2024-06-15T12:00', endLocalDateTime: '2024-06-15T12:00',
+    }] }, 'PERSON_A_TIME_DISPUTED'],
+    ['date-only', { ...common, temporalSupport: 'date-only' as const, localDate: '2024-06-15' }, 'PERSON_A_DATE_ONLY'],
+    ['unknown', { ...common, temporalSupport: 'unknown' as const, localDate: '2024-06-15' }, 'PERSON_A_TIME_UNKNOWN'],
+  ] as const)('keeps %s as evidence availability metadata without a score', (_label, input, code) => {
+    const result = evaluateCompatibilityPair(derived(input), exact());
+    expect(result.status).toBe('ok');
+    if (result.status !== 'ok') return;
+    expect(result.snapshot.evidenceSummary).toMatchObject({
+      modelVersion: 'evidence-availability-v1',
+      meaning: 'Evidence availability under the selected candidate methodology; not scientific or predictive confidence.',
+      state: 'no-approved-evidence',
+      participants: { 'person-a': { temporalSupport: _label } },
+    });
+    expect(result.snapshot.limitations).toContain(code);
+    expect(JSON.stringify(result)).not.toMatch(/percentage|probability|score|high confidence/iu);
   });
 });
 
@@ -105,7 +134,15 @@ describe('closed test-only evaluator seam', () => {
     expect(validateCompatibilityRuleSet(set)).toBe(false);
     expect(evaluateRuleSet(set, exact(), exact())).toMatchObject({ status: 'error', error: { code: 'RULE_SET_INVALID' } });
     expect(evaluateRuleSet(set, exact(), exact(), { allowTestRules: true })).toMatchObject({
-      status: 'ok', snapshot: { ruleEvaluations: [{ resolution: { status: 'definitive', outcome: 'matched' } }] },
+      status: 'ok', snapshot: {
+        evidenceSummary: {
+          state: 'available', ruleCounts: { approved: 1, definitive: 1, alternatives: 0, unavailable: 0, suppressed: 0 },
+        },
+        ruleEvaluations: [{
+          resolution: { status: 'definitive', outcome: 'matched' },
+          evidenceAvailability: { state: 'available-from-details-provided' },
+        }],
+      },
     });
   });
 
@@ -123,10 +160,14 @@ describe('closed test-only evaluator seam', () => {
     expect(new Set(resolution.outcomes.map(({ outcome }) => outcome))).toEqual(new Set(['matched', 'not-matched']));
     expect(resolution.outcomes.flatMap(({ personAVariantIds }) => personAVariantIds)).toEqual(uncertain.variants.map(({ id }) => id));
     expect(resolution.limitation).toBe('RESULT_VARIES_ACROSS_PAIR_VARIANTS');
+    expect(result.snapshot.evidenceSummary).toMatchObject({
+      state: 'bounded', ruleCounts: { approved: 1, definitive: 0, alternatives: 1, unavailable: 0, suppressed: 0 },
+    });
+    expect(result.snapshot.limitations).toContain('EVIDENCE_VARIES_ACROSS_TIME_VARIANTS');
   });
 
-  it('suppresses hour-dependent rules when either chart has no birth hour', () => {
-    const unknown = derived({ ...common, temporalSupport: 'unknown', localDate: '2024-06-15' });
+  it.each(['unknown', 'date-only'] as const)('makes hour-dependent rules unavailable for %s input', (temporalSupport) => {
+    const unavailableInput = derived({ ...common, temporalSupport, localDate: '2024-06-15' });
     const hourRule = testRule({
       ruleId: 'test-only-hour-stem-equality', hourDependent: true,
       requirements: [
@@ -139,8 +180,59 @@ describe('closed test-only evaluator seam', () => {
         right: { kind: 'fact', reference: { participant: 'person-b', source: 'pillar', position: 'hour', property: 'stem-id' } },
       }] },
     });
-    expect(evaluateRuleSet(testRuleSet(hourRule), unknown, exact(), { allowTestRules: true })).toMatchObject({
-      status: 'ok', snapshot: { ruleEvaluations: [{ resolution: { status: 'suppressed', reason: 'HOUR_INPUT_UNAVAILABLE' } }] },
+    const result = evaluateRuleSet(testRuleSet(hourRule), unavailableInput, exact(), { allowTestRules: true });
+    expect(result).toMatchObject({
+      status: 'ok', snapshot: {
+        evidenceSummary: { state: 'unavailable', ruleCounts: { unavailable: 1, suppressed: 0 } },
+        ruleEvaluations: [{
+          resolution: { status: 'unavailable', reason: 'HOUR_INPUT_UNAVAILABLE' },
+          evidenceAvailability: { state: 'unavailable-hour-input' },
+        }],
+      },
+    });
+    if (result.status === 'ok') {
+      const unavailable = result.snapshot.ruleEvaluations[0]!;
+      expect(unavailable).toHaveProperty('requirements');
+      expect(unavailable).not.toHaveProperty('allowedNarrativeKeys');
+      expect(unavailable).not.toHaveProperty('dimensionIds');
+      expect(unavailable).not.toHaveProperty('sourceEvidenceRefs');
+    }
+  });
+
+  it('keeps a non-hour rule only when it is consistent across every retained time possibility', () => {
+    const unknown = derived({ ...common, temporalSupport: 'unknown', localDate: '2024-06-15' });
+    const result = evaluateRuleSet(testRuleSet(testRule()), unknown, exact(), { allowTestRules: true });
+    expect(result).toMatchObject({
+      status: 'ok', snapshot: {
+        evidenceSummary: { state: 'available', ruleCounts: { approved: 1, definitive: 1 } },
+        ruleEvaluations: [{
+          resolution: { status: 'definitive', outcome: 'matched' },
+          evidenceAvailability: { state: 'consistent-across-retained-variants' },
+        }],
+      },
+    });
+  });
+
+  it('reports mixed availability when supported and unavailable approved rules coexist', () => {
+    const unknown = derived({ ...common, temporalSupport: 'unknown', localDate: '2024-06-15' });
+    const hourRule = testRule({
+      ruleId: 'test-only-hour-stem-equality',
+      hourDependent: true,
+      requirements: [
+        { participant: 'person-a', source: 'pillar', position: 'hour' },
+        { participant: 'person-b', source: 'pillar', position: 'hour' },
+      ],
+      predicate: { operator: 'all', clauses: [{
+        operator: 'equals',
+        left: { kind: 'fact', reference: { participant: 'person-a', source: 'pillar', position: 'hour', property: 'stem-id' } },
+        right: { kind: 'fact', reference: { participant: 'person-b', source: 'pillar', position: 'hour', property: 'stem-id' } },
+      }] },
+    });
+    const set = { ...structuredClone(COMPATIBILITY_RULE_SET), ruleSetVersion: 'test-only-rules-v1', rules: [testRule(), hourRule] };
+    expect(evaluateRuleSet(set, unknown, exact(), { allowTestRules: true })).toMatchObject({
+      status: 'ok', snapshot: { evidenceSummary: {
+        state: 'mixed', ruleCounts: { approved: 2, definitive: 1, alternatives: 0, unavailable: 1, suppressed: 0 },
+      } },
     });
   });
 
@@ -155,6 +247,13 @@ describe('closed test-only evaluator seam', () => {
     });
     expect(JSON.stringify(result)).not.toContain('conversation-rhythm');
     expect(JSON.stringify(result)).not.toContain('TEST-ONLY synthetic');
+    if (result.status === 'ok') {
+      expect(result.snapshot.evidenceSummary.ruleCounts).toMatchObject({ approved: 0, unavailable: 0, suppressed: 1 });
+      expect(result.snapshot.ruleEvaluations[0]).not.toHaveProperty('requirements');
+      expect(result.snapshot.ruleEvaluations[0]).not.toHaveProperty('allowedNarrativeKeys');
+      expect(result.snapshot.ruleEvaluations[0]).not.toHaveProperty('dimensionIds');
+      expect(result.snapshot.ruleEvaluations[0]).not.toHaveProperty('sourceEvidenceRefs');
+    }
   });
 
   it('is pair-order symmetric for symmetric test plumbing', () => {
@@ -168,7 +267,43 @@ describe('closed test-only evaluator seam', () => {
     if (forward.status === 'ok' && reverse.status === 'ok') {
       expect(forward.snapshot.ruleEvaluations[0]!.resolution).toMatchObject({ status: 'definitive', outcome: 'not-matched' });
       expect(reverse.snapshot.ruleEvaluations[0]!.resolution).toMatchObject({ status: 'definitive', outcome: 'not-matched' });
+      expect(forward.snapshot.evidenceSummary).toEqual(reverse.snapshot.evidenceSummary);
     }
+  });
+
+  it('preserves symmetric uncertain evidence while swapping participant-specific context', () => {
+    const uncertain = derived({ ...common, temporalSupport: 'disputed', windows: [
+      { startLocalDateTime: '2024-06-15T12:00', endLocalDateTime: '2024-06-15T12:00' },
+      { startLocalDateTime: '2024-06-18T12:00', endLocalDateTime: '2024-06-18T12:00' },
+    ] });
+    const certain = exact();
+    const set = testRuleSet(testRule());
+    const forward = evaluateRuleSet(set, uncertain, certain, { allowTestRules: true });
+    const reverse = evaluateRuleSet(set, certain, uncertain, { allowTestRules: true });
+    expect(forward.status).toBe('ok');
+    expect(reverse.status).toBe('ok');
+    if (forward.status !== 'ok' || reverse.status !== 'ok') return;
+    expect(forward.snapshot.evidenceSummary.state).toBe(reverse.snapshot.evidenceSummary.state);
+    expect(forward.snapshot.evidenceSummary.ruleCounts).toEqual(reverse.snapshot.evidenceSummary.ruleCounts);
+    expect(forward.snapshot.evidenceSummary.participants['person-a']).toMatchObject({
+      temporalSupport: 'disputed', limitationCodes: ['PERSON_A_TIME_DISPUTED', 'HOUR_DEPENDENT_EVIDENCE_UNAVAILABLE'],
+    });
+    expect(reverse.snapshot.evidenceSummary.participants['person-b']).toMatchObject({
+      temporalSupport: 'disputed', limitationCodes: ['PERSON_B_TIME_DISPUTED', 'HOUR_DEPENDENT_EVIDENCE_UNAVAILABLE'],
+    });
+    expect(forward.snapshot.evidenceSummary.participants['person-b']).toMatchObject({
+      temporalSupport: 'exact', limitationCodes: [],
+    });
+    expect(reverse.snapshot.evidenceSummary.participants['person-a']).toMatchObject({
+      temporalSupport: 'exact', limitationCodes: [],
+    });
+    const forwardResolution = forward.snapshot.ruleEvaluations[0]!.resolution;
+    const reverseResolution = reverse.snapshot.ruleEvaluations[0]!.resolution;
+    expect(forwardResolution.status).toBe('alternatives');
+    expect(reverseResolution.status).toBe('alternatives');
+    if (forwardResolution.status !== 'alternatives' || reverseResolution.status !== 'alternatives') return;
+    expect(forwardResolution.outcomes.map(({ outcome }) => outcome).sort())
+      .toEqual(reverseResolution.outcomes.map(({ outcome }) => outcome).sort());
   });
 
   it('does not freeze or mutate caller-owned rule objects', () => {
@@ -189,6 +324,41 @@ describe('closed test-only evaluator seam', () => {
       }] },
     });
     expect(evaluateRuleSet(testRuleSet(directionalPredicate), exact(), exact(), { allowTestRules: true }))
+      .toMatchObject({ status: 'error', error: { code: 'RULE_SET_INVALID' } });
+  });
+
+  it('rejects rules that hide or invent hour dependency', () => {
+    const hourRequirement = {
+      participant: 'person-a' as const, source: 'pillar' as const, position: 'hour' as const,
+    };
+    const hidden = testRule({
+      hourDependent: false,
+      requirements: [hourRequirement, { ...hourRequirement, participant: 'person-b' }],
+      predicate: { operator: 'all', clauses: [{
+        operator: 'equals',
+        left: { kind: 'fact', reference: { ...hourRequirement, property: 'stem-id' } },
+        right: { kind: 'fact', reference: { ...hourRequirement, participant: 'person-b', property: 'stem-id' } },
+      }] },
+    });
+    const invented = testRule({ hourDependent: true });
+    const hiddenVisibleCounts = testRule({
+      ruleId: 'test-only-visible-count-equality',
+      hourDependent: false,
+      requirements: [
+        { participant: 'person-a', source: 'visible-element-occurrences' },
+        { participant: 'person-b', source: 'visible-element-occurrences' },
+      ],
+      predicate: { operator: 'all', clauses: [{
+        operator: 'equals',
+        left: { kind: 'fact', reference: { participant: 'person-a', source: 'visible-element-occurrences', property: 'wood' } },
+        right: { kind: 'fact', reference: { participant: 'person-b', source: 'visible-element-occurrences', property: 'wood' } },
+      }] },
+    });
+    expect(evaluateRuleSet(testRuleSet(hidden), exact(), exact(), { allowTestRules: true }))
+      .toMatchObject({ status: 'error', error: { code: 'RULE_SET_INVALID' } });
+    expect(evaluateRuleSet(testRuleSet(invented), exact(), exact(), { allowTestRules: true }))
+      .toMatchObject({ status: 'error', error: { code: 'RULE_SET_INVALID' } });
+    expect(evaluateRuleSet(testRuleSet(hiddenVisibleCounts), exact(), exact(), { allowTestRules: true }))
       .toMatchObject({ status: 'error', error: { code: 'RULE_SET_INVALID' } });
   });
 
