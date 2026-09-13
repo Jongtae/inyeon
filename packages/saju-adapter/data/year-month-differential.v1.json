@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "generatedAt": "2026-09-14",
-  "adapterVersion": "0.3.0",
+  "adapterVersion": "0.4.0",
   "profileVersion": "korean-saju-v1",
   "profileStatus": "candidate",
   "productionEligible": false,
@@ -31,7 +31,7 @@
     },
     "differentialCorpus": {
       "path": "differential-corpus.v1.json",
-      "sha256": "847ee3f3dc16279006210155ec2d6718a392b234b9ab97dd90e8bfeb680cdfdc",
+      "sha256": "7641874b52d6adcc21d3b7710124ffc15230de3baf3ed9e0453b72e71f306f79",
       "comparisonCount": 24
     },
     "timezoneTransitions": {

@@ -28,7 +28,11 @@ Suggested flow:
 
 `@inyeon/timezone-resolver` owns deterministic local-time normalization for its published canonical zones and range. It returns zero candidates for a DST gap, one for an unambiguous time, and two chronologically ordered candidates for a fold. It never moves a gap or chooses a fold candidate. Its browser runtime uses only its checked-in IANA transition artifact; generation-only timezone libraries, host `Intl`/Temporal data, network services, and geocoding are not calculation authorities.
 
-Resolver capability does not imply complete-chart capability. The adapter's year/month-only seam consumes every resolved candidate for Los Angeles, New York, and Seoul, projects the UTC instant into the public upstream API's documented KST civil representation, and discards day/hour output. A gap fails; a fold is never selected, and distinct year/month alternatives remain explicit. The projected KST date must be within `1989-01-01` through `2024-12-31`; the resolver independently enforces its broader source-civil range. Complete day/hour charts remain limited to the separately validated modern-Seoul subset until Issue #12 proves local-civil semantics.
+Resolver capability does not by itself imply chart capability. The adapter's year/month-only seam consumes every resolved candidate for Los Angeles, New York, and Seoul, projects the UTC instant into the public upstream API's documented KST civil representation, and discards day/hour output. Its Issue #12 full-chart seam combines those normalized year/month pillars with day/hour pillars calculated separately from the asserted source-local civil minute under the pinned local-civil-midnight candidate, discarding the wrong portion of each call. The projected KST date must be within `1989-01-01` through `2024-12-31`; the resolver independently enforces its broader source-civil range. Neither seam returns raw input, UTC instant, or offset.
+
+A gap is never shifted. An exact or all-gap assertion fails; gap minutes in a partially valid range are counted and excluded. Every fold candidate is evaluated and none is selected. Full-chart inputs use the versioned `birth-time-uncertainty-v1` algebra and support `exact | approximate | disputed | date-only | unknown`. Approximate input is one inclusive window; disputed input is a non-empty union of inclusive windows with no interpolation between them. The union is capped at 2,880 unique civil minutes.
+
+The Issue #12 chart contract is bounded to source-local dates and projected-KST dates from `1989-01-01` through `2024-12-31`, matching its checked day/hour and year/month evidence. A range crossing either edge fails closed rather than silently discarding part of the asserted uncertainty.
 
 The product/domain layer must not depend directly on one upstream library API.
 
@@ -101,13 +105,17 @@ Never fabricate an hour. Do not substitute noon or another default merely to obt
 
 When time is unknown:
 
-- compute only facts supported by the available input;
+- evaluate the known local date and compute only invariant or legitimate alternative year/month/day facts supported by it;
 - suppress hour-dependent compatibility rules;
 - propagate lower interpretation confidence;
 - clearly label limitations;
 - if the unknown time could cross a selected day/month/year boundary, represent the legitimate alternatives rather than pretending certainty.
 
 Approximate/disputed time should be normalized to an explicit range/state and evaluated conservatively according to the calculation profile.
+
+Date-only and unknown input evaluate all 1,440 local civil minutes of the known date, but hour is removed from every public variant and marked unavailable. No default time is inserted. Approximate and disputed states retain their input precision even if all evaluated minutes deduplicate to one chart. Stable pillar support is explicitly `invariant | alternative | unavailable`; deterministic downstream hour-dependent evidence is eligible only for exact, approximate, or disputed input when hour remains invariant across every retained variant.
+
+The candidate profile pins local-civil midnight and two-hour branches beginning with 자시 (Jasi, 子時) at 23:00, with true solar time disabled. The comparison implementation advances its day/hour-stem convention at 23:00. This is an unresolved methodology difference, not a demonstrated implementation defect. Candidate calculation and regression evidence may proceed, but production promotion of one convention is a material Saju methodology Human Gate. No correction, averaging, or runtime fallback is permitted without resolving that gate.
 
 ## Differential validation
 

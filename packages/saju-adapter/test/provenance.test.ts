@@ -37,10 +37,10 @@ describe('dependency and release provenance', () => {
     const profile = JSON.parse(read('../data/korean-saju-v1.profile.json')) as Record<string, unknown>;
     expect(capabilities).toMatchObject({ productionEligible: false, profile: { status: 'candidate' } });
     expect(capabilities).toMatchObject({
-      adapterVersion: '0.3.0',
+      adapterVersion: '0.4.0',
       referenceDataVersion: 'issue-10-solar-term-boundaries-v1',
       solarTermValidation: { recordCount: 432, candidateGuardrailMilliseconds: 120000, maximumAbsoluteDeltaMilliseconds: 71829 },
-      historicalTimeZonePolicy: { status: 'resolver-integrated-for-year-month-only' },
+      historicalTimeZonePolicy: { status: 'resolver-integrated-for-year-month-and-chart' },
     });
     expect(profile).toMatchObject({
       status: 'candidate',

@@ -245,7 +245,7 @@ if (referenceComparisons.length !== 24) throw new Error(`Expected 24 representat
 const artifact = {
   schemaVersion: 1,
   generatedAt: '2026-09-14',
-  adapterVersion: '0.3.0',
+  adapterVersion: '0.4.0',
   profileVersion: 'korean-saju-v1',
   profileStatus: 'candidate',
   productionEligible: false,

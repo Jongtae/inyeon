@@ -32,7 +32,7 @@ const corpus = JSON.parse(readFileSync(corpusPath, 'utf8')) as {
     findings: Array<{ pillar: string; category: string; primaryOutput: string; comparisonOutput: string; disposition: string }>;
     independentReference: { independentForAssertedProperty: boolean; assertedProperty: string; absoluteDifferenceSeconds?: number };
     primary: { engine: string; apiMode?: { dayBoundary: string }; output: Record<'year' | 'month' | 'day' | 'hour', string> | null };
-    comparison: { engine: string; apiMode?: { year: string; month: string; day: string; hour: string; sect: string } };
+    comparison: { engine: string; apiMode?: { year: string; month: string; day: string; hour: string; observedLateZiSemantics: string } };
   }>;
 };
 
@@ -54,7 +54,7 @@ describe('versioned differential corpus', () => {
       expect(record).toHaveProperty('classification');
       expect(record.provenance).toEqual({
         profileVersion: 'korean-saju-v1',
-        adapterVersion: '0.3.0',
+        adapterVersion: '0.4.0',
         upstreamVersion: '2.0.0',
         timezoneDataVersion: 'fixed-kst-utc-plus-09-1989-2024-v1',
         referenceDataVersion: 'issue-10-solar-term-boundaries-v1',
@@ -71,7 +71,7 @@ describe('versioned differential corpus', () => {
           month: 'getMonthInGanZhiExact',
           day: 'getDayInGanZhiExact',
           hour: 'getTimeInGanZhi',
-          sect: 'library-default',
+          observedLateZiSemantics: '23:00 begins its next-day day/hour-stem convention',
         });
         expect(record.findings.map((finding) => finding.pillar)).toEqual(record.differingPillars);
         for (const finding of record.findings) {
@@ -79,7 +79,7 @@ describe('versioned differential corpus', () => {
           expect(finding.primaryOutput).toBeTruthy();
           expect(finding.comparisonOutput).toBeTruthy();
           expect(finding.disposition).toBeTruthy();
-          expect(['recorded-in-issue-10-boundary-corpus', 'deferred-to-issue-12']).toContain(finding.disposition);
+          expect(['recorded-in-issue-10-boundary-corpus', 'recorded-in-issue-12-day-hour-corpus']).toContain(finding.disposition);
         }
       }
     }
@@ -113,7 +113,7 @@ describe('versioned differential corpus', () => {
       expect(record.independentReference.assertedProperty).toBe('apparent-sun-longitude boundary location');
       expect(record.independentReference.absoluteDifferenceSeconds).toBeLessThanOrEqual(300);
     }
-    expect(corpus.limitations.join(' ')).toContain('not independent evidence');
+    expect(corpus.limitations.join(' ')).toContain('not an independent Korean-methodology authority');
     expect(corpus.productionEligible).toBe(false);
   });
 

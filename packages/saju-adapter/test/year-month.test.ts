@@ -80,10 +80,10 @@ function hangulOutput(result: InyeonYearMonthResult): unknown {
 describe('timezone-normalized year/month calculation', () => {
   it('publishes exact candidate provenance without widening complete-chart capability', () => {
     expect(SAJU_ADAPTER_CAPABILITIES).toMatchObject({
-      adapterVersion: '0.3.0',
+      adapterVersion: '0.4.0',
       supportedTimeZones: ['Asia/Seoul'],
       supportedCivilDateRange: { minimum: '1989-01-01', maximum: '2024-12-31' },
-      historicalTimeZonePolicy: { status: 'resolver-integrated-for-year-month-only' },
+      historicalTimeZonePolicy: { status: 'resolver-integrated-for-year-month-and-chart' },
       yearMonthCalculation: {
         supportedTimeZones: ['America/Los_Angeles', 'America/New_York', 'Asia/Seoul'],
         resolverSupportedSourceCivilDateRange: { minimum: '1908-04-01', maximum: '2026-12-31' },
@@ -99,7 +99,7 @@ describe('timezone-normalized year/month calculation', () => {
     expect(result.status).toBe('complete');
     if (result.status !== 'complete') return;
     expect(result.provenance).toEqual({
-      profileVersion: 'korean-saju-v1', profileStatus: 'candidate', adapterVersion: '0.3.0',
+      profileVersion: 'korean-saju-v1', profileStatus: 'candidate', adapterVersion: '0.4.0',
       upstreamName: 'manseryeok', upstreamVersion: '2.0.0', timezoneResolverVersion: '0.1.0',
       timezoneDataVersion: 'iana-2026c-inyeon-filter-v1', referenceDataVersion: 'issue-11-year-month-differential-v1',
       solarTermDataVersion: 'manseryeok-2.0.0-embedded-solar-terms-v1',
@@ -111,9 +111,9 @@ describe('timezone-normalized year/month calculation', () => {
   });
 
   it('pins the complete 3,888-state artifact and candidate evidence boundary', () => {
-    expect(createHash('sha256').update(artifactText).digest('hex')).toBe('54ca0e765e65db1f3c917b06251a1eb31f8f837ab3b92b267096f50b5fc3b3b7');
+    expect(createHash('sha256').update(artifactText).digest('hex')).toBe('82462131e10664439d8c1ff29fa41523551ccab44fee42b2268cdc3cb1a909c7');
     expect(artifact).toMatchObject({
-      adapterVersion: '0.3.0',
+      adapterVersion: '0.4.0',
       profileStatus: 'candidate',
       productionEligible: false,
       referenceDataVersion: 'issue-11-year-month-differential-v1',
