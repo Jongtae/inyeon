@@ -227,15 +227,9 @@ Reddit is the preferred initial promotion/feedback channel.
 
 Target operating loop:
 
-`owner-approved post → comments/reactions → compliant ingestion → dedupe/classify → GitHub issues → Codex bounded fix → CI/preview → production → changelog`
+`transparent, rule-compliant post → comments/reactions → compliant ingestion → dedupe/classify → GitHub issues → Codex bounded fix → CI/preview → production → changelog`
 
-Human approval is required before:
-
-- creating the Reddit account;
-- accepting Reddit developer terms/app access;
-- entering credentials;
-- publishing posts/replies;
-- any behavior that may conflict with subreddit rules.
+Codex may create/configure an account and publish posts or replies when technically available, legally permitted, and subreddit rules clearly allow the activity. Stop only for CAPTCHA, email/phone/identity verification, MFA, owner-only terms acceptance or credential recovery, ambiguous community rules, or material legal/reputational risk.
 
 Feedback can automatically create/implement only bounded, reversible, well-evidenced issues such as reproducible bugs, copy/layout defects, accessibility problems, or verifiable public-figure data corrections.
 
@@ -284,7 +278,7 @@ The release is successful when:
 - direct links/routes work reliably on GitHub Pages;
 - responsive/accessibility/error/empty/loading states are polished;
 - production deploy and rollback are reproducible;
-- Reddit feedback can be converted into traceable product work after required Human Gates.
+- Reddit feedback can be converted into traceable product work under the current Reddit autonomy policy and Human Gates.
 
 Business metrics such as revenue, CAC, or venture-scale growth are not first-release success criteria.
 

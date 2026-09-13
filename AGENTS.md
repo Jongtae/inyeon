@@ -58,7 +58,7 @@ Never fabricate progress or autonomy metrics.
 
 Prefer roughly:
 
-`#1 → #8 → #9-14 → #33-34 → #50/#49 → #53/static web UI + explanation → #43 → #52 → #47 → #51`
+`#1 → #8 → #9-14 → #6 → #33-34 → #50/#49 → #35 deterministic explanation + #53 static web UI → #43 → #52 → #47 → #51`
 
 Historical marketplace P0 labels do not outrank this active path.
 

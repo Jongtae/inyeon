@@ -36,15 +36,17 @@ Business success is optional. Release quality is not.
        ↓
 #14 golden/reference corpus
        ↓
+#6 inclusive compatibility taxonomy / prohibited claims
+       ↓
 #33 compatibility-rule DSL/evidence
        ↓
 #34 confidence/uncertainty model
        ↓
 #50 public-figure dataset      #49 synthetic-character lab
           ↘                    ↙
-        static web comparison UI
-                 ↓
-        deterministic narrative composer
+ #35 deterministic narrative   #53 static web comparison UI
+          ↘                    ↙
+              integrated UX
                  ↓
 #43 privacy-safe share/card/link system
                  ↓
@@ -55,7 +57,7 @@ Business success is optional. Release quality is not.
 #51 Reddit governed feedback loop
 ```
 
-The exact issue numbers for the web shell/narrative implementation may be refined or added by Codex if no current issue cleanly owns that work; do not duplicate an existing issue unnecessarily.
+Issue #35 owns deterministic narrative composition and #53 owns the integrated static web shell; refine these in place rather than creating duplicate work.
 
 ## Active P0/P1 issue families
 
@@ -151,15 +153,9 @@ Raw birth date/time/place never belongs in URLs, share cards, analytics, or remo
 
 Reddit is the preferred early public-feedback channel, but automation is governed.
 
-Human Gate before:
+Codex may create/configure the Reddit account and publish posts or replies when technically available, legally permitted, and community rules are clear. Stop only for CAPTCHA, email/phone/identity verification, MFA, owner-only developer/API terms acceptance or credential recovery, ambiguous community rules, or material legal/reputational risk.
 
-- Reddit account creation;
-- developer/API terms/access;
-- credential entry;
-- public posts/replies;
-- ambiguous subreddit-rule decisions.
-
-After approved access, feedback may be ingested, clustered, and converted into GitHub issues. Only bounded/reversible/evidence-backed fixes may auto-enter the implementation pipeline. Methodology, privacy/security, public claims, and major product direction remain human-reviewed.
+Feedback may be ingested, clustered, and converted into GitHub issues. Only bounded/reversible/evidence-backed fixes may auto-enter the implementation pipeline. Methodology, privacy/security, public claims, and major product direction remain human-reviewed.
 
 ## First-release blockers
 
@@ -184,8 +180,8 @@ Codex should stop for:
 
 - paid/contracted Saju advisor engagement if required;
 - custom-domain purchase/DNS credentials if owner action is required;
-- Reddit account creation and platform/developer terms;
-- Reddit credentials and public posting/replying;
+- Reddit CAPTCHA, email/phone/identity verification, MFA, owner-only platform/developer terms acceptance, or credential recovery;
+- ambiguous subreddit/community-rule compliance or material legal/reputational risk;
 - new paid vendor/material spend;
 - introducing GCP/backend persistence that changes the zero-retention architecture;
 - material Saju methodology changes;

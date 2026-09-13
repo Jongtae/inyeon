@@ -14,7 +14,7 @@ The primary evidence sources are:
 
 1. deterministic test/quality signals;
 2. GitHub build/deploy/issue history;
-3. explicit qualitative Reddit feedback after required Human Gates;
+3. explicit qualitative Reddit feedback gathered under the current Reddit autonomy policy;
 4. manually observed product behavior during release testing.
 
 Business KPIs such as revenue, CAC, subscription conversion, marketplace liquidity, or dating outcomes are not first-release success criteria.
@@ -128,7 +128,7 @@ Test/measure:
 
 ## 8. Reddit feedback taxonomy
 
-After owner-approved launch/access, classify feedback into:
+After transparent, rule-compliant launch/access, classify feedback into:
 
 ```text
 bug

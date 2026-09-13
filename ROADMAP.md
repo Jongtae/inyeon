@@ -68,7 +68,7 @@ Exit:
 
 ## M2 — Reference data and usable web product
 
-Primary work: #49, #50, active web UI work, methodology/privacy pages.
+Primary work: #35, #49, #50, #53, methodology/privacy pages.
 
 Exit:
 
@@ -125,11 +125,11 @@ Optional Human Gate:
 
 Primary work: #51.
 
-Before this milestone, stop and ask the owner to create/approve the Reddit account and any required official developer access/terms.
+Codex may create/configure the Reddit account and operate it when technically available, legally permitted, and community rules are clear. Stop only for CAPTCHA, email/phone/identity verification, MFA, owner-only terms acceptance or credential recovery, ambiguous community rules, or material legal/reputational risk.
 
 Exit:
 
-- owner-approved launch/update post is published in communities whose rules permit it;
+- transparent launch/update post is published in communities whose rules permit it;
 - feedback can be ingested through an approved API path or manual/semi-automatic import;
 - Reddit content is treated as untrusted data;
 - comments are redacted, classified, deduplicated, and clustered;
@@ -139,7 +139,7 @@ Exit:
 - source cluster → issue → PR → release traceability exists;
 - weekly synthesis can report what users liked, misunderstood, requested, and what shipped.
 
-**Gate:** no autonomous spam, account creation, posting, replying, vote manipulation, or bypass of Reddit access controls/community rules.
+**Gate:** no spam, deceptive identities, vote manipulation, ban/rate-limit evasion, or bypass of Reddit access controls/community rules.
 
 ## M6 — Iterate on real use
 
@@ -195,8 +195,8 @@ Activating any of these as a real product direction should trigger a new archite
 
 Codex should stop for:
 
-- creating the Reddit account or accepting Reddit developer/platform terms;
-- public Reddit posts/replies where owner approval is required;
+- CAPTCHA, email/phone/identity verification, MFA, owner-only Reddit developer/platform terms acceptance, or credential recovery;
+- ambiguous subreddit/community-rule compliance;
 - purchasing/configuring a custom domain if credentials/paid commitment are needed;
 - introducing a paid external vendor or material spend;
 - introducing backend/cloud state that changes privacy architecture;

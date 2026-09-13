@@ -1,0 +1,31 @@
+{
+  "name": "inyeon",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "INYEON Korean Compatibility Lab",
+  "engines": {
+    "node": "24.x"
+  },
+  "packageManager": "npm@11.11.1",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace @inyeon/web",
+    "lint": "eslint . --max-warnings 0",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "build": "npm run build --workspaces --if-present && npm run verify:dist",
+    "verify:dist": "node scripts/verify-static-build.mjs"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "eslint": "10.10.0",
+    "eslint-plugin-react-hooks": "7.1.1",
+    "eslint-plugin-react-refresh": "0.5.6",
+    "globals": "17.12.0",
+    "typescript-eslint": "8.70.0"
+  }
+}
