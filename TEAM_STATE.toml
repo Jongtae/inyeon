@@ -4,19 +4,19 @@ maturity = "l4-candidate"
 operating_mode = "independent-release"
 current_phase = "build"
 active_release = "v0.1.0"
-current_goal = "Ship INYEON as a production-grade zero-backend Korean Compatibility Lab, then operate an evidence-governed autonomous product-learning loop."
+current_goal = "Ship INYEON as a production-grade zero-backend Korean Compatibility Lab, then prove five autonomous closed loops and recovery/eval criteria required for verified L4."
 production_url = ""
 last_known_good_sha = ""
-next_action = "Reconcile and execute the highest-priority unblocked issue on the active critical path, while maintaining this state file at meaningful milestones."
+next_action = "Execute the highest-priority unblocked product issue on the active critical path while #54 continuously accumulates truthful L4 proof; update this state at meaningful milestones."
 
 active_critical_path = [1, 8, 9, 10, 11, 12, 13, 14, 33, 34, 50, 49, 53, 43, 52, 47, 51]
-active_issues = [1, 8, 9, 10, 11, 12, 13, 14, 33, 34, 49, 50, 51, 52, 53, 43, 47]
+active_issues = [1, 8, 9, 10, 11, 12, 13, 14, 33, 34, 43, 47, 49, 50, 51, 52, 53, 54]
 active_experiments = []
 human_gates = []
 current_risks = [
   "Saju methodology still requires reference/golden validation.",
   "Production implementation and GitHub Pages release are not yet complete.",
-  "L4 operational proof has not yet accumulated real autonomous closed loops."
+  "L4 structural governance exists, but behavioral eval execution, five closed loops, fresh-session continuity, and recovery proof are still unverified."
 ]
 
 [autonomy_proof]
