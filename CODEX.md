@@ -24,6 +24,8 @@ At meaningful milestones update `TEAM_STATE.toml` with real evidence only.
 
 The first public product should let a user:
 
+All public UI, result copy, and relationship language is English-first for the US-first audience while preserving an explicit Korean-rooted K-culture identity. Korean Saju terms may appear with plain-English translation or progressive disclosure, not as unexplained primary copy.
+
 1. enter birth data and get a deterministic, versioned Saju/Four Pillars result;
 2. compare with sourced public figures;
 3. explore clearly fictional synthetic characters;

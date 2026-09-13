@@ -101,6 +101,7 @@ Graduation to `l4-verified` is governed only by `docs/AUTONOMY_L4.md` and must b
 ## Product invariants
 
 - Compatibility is context, not destiny.
+- The first-release audience is US-first; public UI, result copy, and relationship language are English-first while the Korean-rooted K-culture identity remains explicit. Korean terms are translated or progressively disclosed where useful. When Korean script appears in brand or visual identity, prioritize Hangul; use Hanja only as secondary explanatory/traditional detail.
 - No public numeric soulmate score or star rating.
 - Never claim Saju/Gung-hap is scientifically predictive.
 - Do not encode traditional husband/wife stereotypes as modern product logic.

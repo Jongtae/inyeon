@@ -1,5 +1,5 @@
 schema_version = 1
-updated_at = "2026-09-13T23:00:07+09:00"
+updated_at = "2026-09-13T23:22:38+09:00"
 maturity = "l4-candidate"
 operating_mode = "independent-release"
 current_phase = "build"
@@ -7,14 +7,13 @@ active_release = "v0.1.0"
 current_goal = "Ship INYEON as a production-grade zero-backend Korean Compatibility Lab, then prove five autonomous closed loops and recovery/eval criteria required for verified L4."
 production_url = ""
 last_known_good_sha = ""
-next_action = "Complete #1 by shipping the static npm/React/TypeScript/Vite workspace, CI, Pages-safe routing baseline, and accepted ADRs; independently verify and merge it, then begin #8. Keep #54 evidence truthful and the active stack minimal under ADR 0005."
+next_action = "Merge the owner-directed US-first English copy correction while preserving INYEON's Korean-rooted K-culture identity, then resume #8 on codex/issue-8-manseryeok-adapter with exact pins, adapter boundary, and honest differential validation."
 
-active_critical_path = [1, 8, 9, 10, 11, 12, 13, 14, 6, 33, 34, 50, 49, 35, 53, 43, 52, 47, 51]
-active_issues = [1, 6, 8, 9, 10, 11, 12, 13, 14, 33, 34, 35, 43, 47, 49, 50, 51, 52, 53, 54]
+active_critical_path = [8, 9, 10, 11, 12, 13, 14, 6, 33, 34, 50, 49, 35, 53, 43, 52, 47, 51]
+active_issues = [6, 8, 9, 10, 11, 12, 13, 14, 33, 34, 35, 43, 47, 49, 50, 51, 52, 53, 54]
 active_experiments = []
 human_gates = []
 current_risks = [
-  "The repository has no merged product toolchain or web implementation yet; #1 is in progress on codex/issue-1-bootstrap.",
   "Saju methodology still requires reference/golden validation.",
   "The GitHub repository is private, GitHub Pages is disabled, and no production deployment workflow or release exists yet.",
   "L4 structural governance exists, but behavioral eval execution, five closed loops, fresh-session continuity, and recovery proof are still unverified.",

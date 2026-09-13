@@ -84,15 +84,16 @@ The production build is written to `apps/web/dist`. Issue #47 owns enabling and 
 
 The first release prioritizes:
 
-1. deterministic Four Pillars / Manseryeok calculation;
-2. a validated open-source adapter rather than greenfield calendar math;
-3. sourced public-figure birth data for recognizable comparisons;
-4. transparent synthetic characters for broad compatibility exploration;
-5. explainable `What clicks / Potential friction / Why this?` relationship output;
-6. privacy-safe client-side sharing;
-7. a polished responsive web UI;
-8. GitHub Pages production deployment, CI, rollback, privacy testing, and release hardening;
-9. an autonomous but evidence-governed Reddit launch/feedback loop after release.
+1. an English-first public experience for a US-first audience that keeps its Korean-rooted K-culture identity, with Korean terms translated or progressively disclosed;
+2. deterministic Four Pillars / Manseryeok calculation;
+3. a validated open-source adapter rather than greenfield calendar math;
+4. sourced public-figure birth data for recognizable comparisons;
+5. transparent synthetic characters for broad compatibility exploration;
+6. explainable `What clicks / Potential friction / Why this?` relationship output;
+7. privacy-safe client-side sharing;
+8. a polished responsive web UI;
+9. GitHub Pages production deployment, CI, rollback, privacy testing, and release hardening;
+10. an autonomous but evidence-governed Reddit launch/feedback loop after release.
 
 Real-user dating discovery, likes, matches, chat, payments, city seeding, and dating-marketplace operations are later product layers. They are deferred because they are outside the **first product scope**, not because release quality is optional.
 
