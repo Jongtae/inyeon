@@ -1,195 +1,207 @@
-# Roadmap and Milestone Gates
+# INYEON Roadmap and Release Gates
 
-GitHub Issues are the execution source of truth. `BACKLOG.md` groups the current 48-issue backlog by epic and critical path; this file defines milestone outcomes and gates rather than duplicating every task.
+GitHub Issues are the executable source of truth. This roadmap defines milestone outcomes for the active **Independent Release Mode**.
+
+The first public release is a production-grade static web product, not a two-sided dating marketplace.
 
 ## Execution principle
 
-Work in dependency order, not issue-number order.
+Build the smallest real product that can be publicly released, then improve it from observed use and Reddit feedback.
 
-Prefer parallel work only when agents will not edit the same shared schemas/modules. Safety/privacy/architecture review should happen before a risky boundary becomes expensive to change.
-
-Primary critical-path shape:
+Primary critical path:
 
 ```text
-M0 governance + architecture
+M0 architecture + methodology
   ↓
-domain contracts / privacy boundaries / Saju methodology
+validated open-source Manseryeok adapter
   ↓
-deterministic Saju engine + baseline dating core
+normalized chart + uncertainty model
   ↓
-compatibility rule engine + local mobile vertical slice
+derived compatibility features + rule engine
   ↓
-staging + messaging + moderation + analytics + deletion
+public figures + synthetic references
   ↓
-private alpha / Inyeon Match / controlled experiments
+polished static web UX + sharing
   ↓
-verification + full Gung-hap + legal/security + production readiness
+privacy/release hardening
   ↓
-one-city launch
+GitHub Pages production release
   ↓
-operate, measure, expand only when gates pass
+Reddit feedback loop + iterative improvement
 ```
 
-## M0 — Governance and proof of architecture
+The historical dating-marketplace roadmap is deferred until the owner explicitly activates Marketplace Mode.
 
-Primary issues: #1–#8, #16, plus architecture/privacy preparation.
+## M0 — Reconcile architecture and methodology
 
-Exit:
-
-- durable product/business/architecture/operations/analytics specs;
-- validated Codex harness and subagent routing;
-- repo/toolchain/CI skeleton;
-- ADRs for runtime, persistence, auth, Saju methodology, messaging, analytics/privacy, LLM boundary, and environments;
-- canonical product principles/non-goals;
-- Saju advisory process and `korean-saju-v1` profile;
-- inclusive compatibility taxonomy + prohibited-claims matrix;
-- domain model/API contracts with privacy/retention/authorization classes;
-- launch-market scorecard and concept-research plan;
-- dependency-aware GitHub backlog with no circular critical-path dependency.
-
-**Gate:** do not let application implementation silently decide disputed Saju conventions, privacy boundaries, or compatibility semantics.
-
-## M1 — Local vertical slice
-
-Primary issues: #9–#14, #17–#22, #26–#27, #31, #33.
+Primary work: #1, #2, #3, #6, #8 and active architecture/privacy ADRs.
 
 Exit:
 
-- account/auth/18+ lifecycle;
-- dating profile + mutual preferences;
-- sensitive BirthInput vault;
-- historical timezone/birth-location normalization;
-- solar-term calculation;
-- deterministic year/month/day/hour pillars with exact/approximate/unknown birth-time behavior;
-- derived features required by compatibility v1;
-- golden chart regression corpus underway and CI-connected;
-- immutable chart snapshot API;
-- baseline eligibility/candidate retrieval/ranking with Saju weight = 0;
-- Like/Pass/mutual Match state machine;
-- deterministic compatibility-rule DSL/evidence generator;
-- mobile onboarding → discovery → Like/Match vertical slice;
-- report/block/unmatch available in the local slice;
-- critical local E2E green.
+- Codex harness works in the actual execution environment;
+- static web / GitHub Pages architecture is chosen and documented;
+- `korean-saju-v1` methodology boundaries are explicit;
+- pinned open-source Manseryeok candidate is wrapped behind `InyeonSajuAdapter`;
+- upstream license/version/upgrade policy is documented;
+- independent reference strategy is defined;
+- prohibited compatibility claims and inclusive language rules are explicit;
+- zero-retention privacy boundary is an architectural invariant.
 
-**Gate:** no Saju ranking experiment until the non-Saju baseline, rule provenance, unknown-time model, and safety exclusions are testable independently.
+**Gate:** do not let implementation silently invent calendrical conventions or personal-data persistence.
 
-## M2 — Staging and operational core
+## M1 — Deterministic compatibility core
 
-Primary issues: #23–#24, #30, #32, #34, #37–#38, #41, #47.
+Primary work: #8–#14, #33, #34, #52.
 
 Exit:
 
-- reproducible staging via infrastructure-as-code;
-- managed DB/storage/auth and secure secret strategy;
-- realtime chat + mobile match inbox/chat;
-- moderation case pipeline and admin console;
-- compatibility confidence/uncertainty model;
-- localization/content-key framework;
-- privacy data map and Privacy Center foundation;
-- account export/deletion cascade;
-- privacy-safe analytics event pipeline + data-quality checks;
-- logs/metrics/traces/error tracking and alert baseline;
-- CI/CD, migration workflow, staging smoke tests;
-- backup strategy and non-production restore drill.
+- normalized Four Pillars output is deterministic and versioned;
+- timezone/solar-term/year-month/day-hour boundary behavior is validated around upstream behavior instead of unnecessarily reimplemented;
+- unknown/approximate/disputed time is represented explicitly;
+- derived chart features exist for compatibility v1;
+- versioned compatibility-rule DSL/evidence generator works;
+- deterministic explanation inputs are stable;
+- at least 200 golden/reference fixtures are CI-connected before public release;
+- browser-only privacy tests prove personal inputs do not leave memory.
 
-**Gate:** no invite-only alpha with unstaffed moderation, unreliable block/report, untested deletion, or raw sensitive fields leaking into logs/analytics.
+**Gate:** no public release with unresolved chart correctness around known boundaries or accidental personal-data egress.
 
-## M3 — Private alpha
+## M2 — Reference data and usable web product
 
-Primary issues: #28, #36, #38, #41, #43–#44.
+Primary work: #49, #50, active web UI work, methodology/privacy pages.
 
 Exit:
 
-- verified invited users in one selected metro/cohort;
-- staffed safety operations coverage;
-- limited Inyeon Match;
-- privacy-safe referral/invite attribution;
-- event taxonomy and KPI dashboards operating on real alpha traffic;
-- A/B/C experiment infrastructure capable of preserving a true non-Saju baseline;
-- controlled user feedback/research loop;
-- cohort-level marketplace liquidity dashboard;
-- staged invite waves with hold/rollback criteria.
+- 500+ sourced public-figure records with provenance/confidence;
+- unknown/disputed public-figure birth times suppress unsupported claims;
+- synthetic-character library/generator covers compatibility space reproducibly;
+- public figures and synthetic characters are technically distinct from real users;
+- user can complete `My Saju → Public Figure → Synthetic Character → Someone I Know` flows;
+- `What clicks / Potential friction / Why this?` output is clear and balanced;
+- loading/error/empty states, responsive design, and accessibility are release quality.
 
-**Gate:** do not scale acquisition if reciprocal-conversation quality, retention, safety, or cohort liquidity is weak even when signups/Like rates look strong.
+**Gate:** public figures must not be presented as members/endorsers, and synthetic characters must never simulate real dating supply.
 
-## M4 — Production-ready city beta
+## M3 — Sharing and distribution readiness
 
-Primary issues: #15, #25, #29, #35–#40, #42, #46–#48.
+Primary work: #43 plus public-figure static entry pages.
 
 Exit:
 
-- production infrastructure + tested backup/restore;
-- photo/liveness verification approach approved and integrated or explicitly deferred by launch decision;
-- full Gung-hap deep dive with methodology/limitations page;
-- structured LLM narrative service with PII stripping, rule validation, prohibited-claims filtering, and fallback;
-- post-date feedback and opt-in Couple Mode;
-- subscription/entitlement infrastructure if monetization is enabled;
-- full privacy/threat-model review;
-- external penetration-test package and critical finding closure;
-- US legal/app-store/UGC/subscription readiness package;
-- qualified human legal/policy/vendor approvals recorded as Human Gates;
-- production smoke/rollback/incident runbooks ready.
+- client-generated share card works on supported browsers;
+- native Web Share is used when available with graceful fallback;
+- default share payload contains no protected birth inputs;
+- share-safe links use an allowlist and never encode raw birth date/time/place;
+- optional `Compare with me` flow has explicit disclosure before sharing any derived personal representation;
+- public-figure pages have stable shareable URLs and prebuilt metadata/OG assets where practical;
+- sharing tests cover privacy, direct-link behavior, and image generation.
 
-**Gate:** city beta is No-Go with open critical security/privacy/safety/legal blockers or unresolved Saju calculation correctness.
+**Gate:** no share path may turn the zero-retention privacy design into accidental public disclosure.
 
-## M5 — Production city launch
+## M4 — Production hardening and GitHub Pages release
 
-Primary issue: #44 plus production portions of #46–#47 and launch checklists.
+Primary work: #47, #52 and release hardening.
 
 Exit:
 
-- one pilot metro selected through scorecard;
-- approximately 2,000 genuinely eligible, balanced, verified seed profiles or a data-backed revised liquidity threshold;
-- DNS/TLS/production runtime healthy;
-- production migrations complete;
-- signup → chart → discovery → match → chat → report/block → export/delete smoke-tested;
-- alerts/error tracking/SLO ownership live;
-- support/moderation staffing and severity SLAs active;
-- App Store/Play release requirements completed by authorized humans;
-- release and rollback recorded;
-- launch waves governed by safety/liquidity/retention thresholds.
+- production artifact is reproducible through GitHub Actions;
+- GitHub Pages serves the real public product over HTTPS;
+- direct refresh/deep links work with the chosen static-routing strategy;
+- no client-side secret/API key exists;
+- privacy tests intercept network/storage/cache/console paths;
+- dependency/secret/security scans pass;
+- production error/loading behavior is polished;
+- rollback/redeploy from a known-good commit is rehearsed;
+- public methodology, data-source uncertainty, and privacy disclosures are live;
+- production smoke tests pass.
 
-**Gate:** one healthy marketplace before a second thin city. Press, virality, or raw MAU is not sufficient evidence to expand.
+Optional Human Gate:
 
-## M6 — Operate, learn, and expand conditionally
+- custom domain purchase/DNS configuration, if desired.
 
-Primary issue: #45 plus issues created from observed incidents/experiments.
+**Gate:** local success is not release success. Production URL, repeatable deploy, privacy invariants, and rollback must work.
+
+## M5 — Reddit launch and governed feedback loop
+
+Primary work: #51.
+
+Before this milestone, stop and ask the owner to create/approve the Reddit account and any required official developer access/terms.
+
+Exit:
+
+- owner-approved launch/update post is published in communities whose rules permit it;
+- feedback can be ingested through an approved API path or manual/semi-automatic import;
+- Reddit content is treated as untrusted data;
+- comments are redacted, classified, deduplicated, and clustered;
+- repeated/evidenced feedback can create/update GitHub issues;
+- safe reversible changes can enter the normal Codex PR/test/release loop;
+- methodology/privacy/security/major-product-direction changes remain Human Gates;
+- source cluster → issue → PR → release traceability exists;
+- weekly synthesis can report what users liked, misunderstood, requested, and what shipped.
+
+**Gate:** no autonomous spam, account creation, posting, replying, vote manipulation, or bypass of Reddit access controls/community rules.
+
+## M6 — Iterate on real use
 
 Operating loop:
 
-`OBSERVE → TRIAGE → ACT → VERIFY → LEARN`
+```text
+OBSERVE
+  ↓
+REDUCE TO EVIDENCE
+  ↓
+ISSUE / EXPERIMENT
+  ↓
+IMPLEMENT
+  ↓
+TEST
+  ↓
+RELEASE
+  ↓
+VERIFY
+```
 
 Priority order:
 
-1. safety;
-2. reliability;
-3. successful reciprocal conversations;
-4. retention;
-5. conversion/revenue;
-6. cost efficiency.
+1. correctness;
+2. privacy/security;
+3. broken UX/reliability;
+4. clarity/trust;
+5. accessibility/performance;
+6. useful new features;
+7. growth experiments.
 
-Second-city expansion requires first-city evidence on:
+Business success is optional; release quality and learning are not.
 
-- cohort liquidity / eligible candidates per active user;
-- Meaningful Connections / 100 verified WAU;
-- D30 and 8-week retention;
-- report/block/scam rates and moderation capacity;
-- CAC per verified active user and per meaningful connection;
-- repeatable creator/community acquisition;
-- compatibility experiment evidence showing durable value beyond novelty;
-- Couple Mode or premium monetization behaving without safety/privacy regression.
+## Deferred Marketplace Mode
+
+The following historical work remains available but is not on the active first-release critical path:
+
+- accounts/auth;
+- profile/preferences;
+- real-user discovery/ranking;
+- likes/matches/chat;
+- moderation at dating-marketplace scale;
+- identity/liveness verification;
+- payments/subscriptions;
+- city liquidity/seeding;
+- app-store/native mobile release;
+- server-side LLM runtime;
+- durable personal-data storage.
+
+Activating any of these as a real product direction should trigger a new architecture/privacy review rather than silently expanding the static release.
 
 ## Cross-milestone Human Gates
 
-Codex should continue autonomously until work requires one of the documented Human Gates, including:
+Codex should stop for:
 
-- external contracts/vendor commitments;
-- qualified legal approval;
-- material spend outside configured budget;
-- App Store/Play contractual acceptance/submission authority;
-- irreversible production data destruction;
-- serious Trust & Safety judgment requiring an accountable human;
-- public incident communications;
-- unresolved material privacy/safety risk.
+- creating the Reddit account or accepting Reddit developer/platform terms;
+- public Reddit posts/replies where owner approval is required;
+- purchasing/configuring a custom domain if credentials/paid commitment are needed;
+- introducing a paid external vendor or material spend;
+- introducing backend/cloud state that changes privacy architecture;
+- changing Saju methodology from evidence/feedback without explicit review;
+- material privacy/security changes;
+- public claims with meaningful legal/reputational risk.
 
-A blocker in one workstream must not freeze unrelated unblocked work.
+A Human Gate in one workstream should not freeze unrelated unblocked work.
