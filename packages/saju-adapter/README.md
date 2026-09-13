@@ -14,6 +14,8 @@ Framework-independent, browser-safe boundary around INYEON's pinned Four Pillars
 
 See `data/capabilities.v1.json`, `data/korean-saju-v1.profile.json`, and `PROVENANCE.md` for machine-readable scope and evidence limits.
 
+Issue #9's separate `@inyeon/timezone-resolver` now provides validated timezone-normalization candidates, but it is intentionally not wired into this adapter yet. This adapter continues to reject historical Seoul and US-zone inputs until a later methodology-aware contract revision consumes resolved instants and passes the required chart validation; timezone evidence alone does not expand Saju calculation capability.
+
 ## Validation corpus
 
 `data/differential-corpus.v1.json` contains 68 supported positive boundary-heavy comparisons plus explicit adapter-negative cases. It records both engines' outputs, comparison API mode, independence for the asserted property, evidence category, and per-pillar disagreement findings.

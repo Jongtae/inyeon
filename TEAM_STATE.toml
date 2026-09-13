@@ -1,5 +1,5 @@
 schema_version = 1
-updated_at = "2026-09-13T23:53:22+09:00"
+updated_at = "2026-09-14T00:21:30+09:00"
 maturity = "l4-candidate"
 operating_mode = "independent-release"
 current_phase = "build"
@@ -7,14 +7,14 @@ active_release = "v0.1.0"
 current_goal = "Ship INYEON as a production-grade zero-backend Korean Compatibility Lab, then prove five autonomous closed loops and recovery/eval criteria required for verified L4."
 production_url = ""
 last_known_good_sha = ""
-next_action = "Execute #9: add an INYEON-owned browser-side local-time resolver with exact-pinned, filtered IANA 2026c data for America/New_York, America/Los_Angeles, and Asia/Seoul; return zero/one/two candidate instants for gaps/normal times/folds, preserve unknown time, and validate historical transitions without network or persistence."
+next_action = "Execute #10: validate Ipchun and monthly solar-term boundary behavior before/at/after each transition against independent astronomy/reference evidence, classify the known upstream precision differences, and add only the smallest proven adapter/reference gap without widening production capability."
 
-active_critical_path = [9, 10, 11, 12, 13, 14, 6, 33, 34, 50, 49, 35, 53, 43, 52, 47, 51]
-active_issues = [6, 9, 10, 11, 12, 13, 14, 33, 34, 35, 43, 47, 49, 50, 51, 52, 53, 54]
+active_critical_path = [10, 11, 12, 13, 14, 6, 33, 34, 50, 49, 35, 53, 43, 52, 47, 51]
+active_issues = [6, 10, 11, 12, 13, 14, 33, 34, 35, 43, 47, 49, 50, 51, 52, 53, 54]
 active_experiments = []
 human_gates = []
 current_risks = [
-  "The #8 Manseryeok adapter is a non-production candidate only: solar-term precision and day/hour methodology differences remain deferred to #10/#12, historical/IANA timezone expansion to #9, and expert/reference golden validation to #14.",
+  "The #8 Manseryeok adapter and #9 local-time resolver are non-production candidates only: timezone normalization is validated but not wired to expand chart capability; solar-term precision and day/hour methodology differences remain deferred to #10/#12, and expert/reference golden validation to #14.",
   "The GitHub repository is private, GitHub Pages is disabled, and no production deployment workflow or release exists yet.",
   "L4 structural governance exists, but behavioral eval execution, five closed loops, fresh-session continuity, and recovery proof are still unverified.",
   "Framework creep could turn INYEON into an APH showcase instead of a focused product; optional frameworks require observed pain before adoption."

@@ -24,7 +24,11 @@ All third-party calendar/Saju behavior must be hidden behind an INYEON-owned ada
 
 Suggested flow:
 
-`raw local birth input → INYEON normalization → InyeonSajuAdapter → normalized chart/uncertainty → derived features → compatibility engine`
+`raw local birth input → strict INYEON normalization → unknown-time branch or LocalTimeResolver → validated resolver/calculation capability intersection → InyeonSajuAdapter → normalized chart/uncertainty → derived features → compatibility engine`
+
+`@inyeon/timezone-resolver` owns deterministic local-time normalization for its published canonical zones and range. It returns zero candidates for a DST gap, one for an unambiguous time, and two chronologically ordered candidates for a fold. It never moves a gap or chooses a fold candidate. Its browser runtime uses only its checked-in IANA transition artifact; generation-only timezone libraries, host `Intl`/Temporal data, network services, and geocoding are not calculation authorities.
+
+Resolver capability does not imply chart capability. The Saju adapter may consume a resolved context only within the independently validated intersection published by its own capability manifest. The current adapter therefore remains limited to its modern-Seoul candidate subset until a separate engine seam proves correct local-civil and UTC-instant semantics for other zones/history.
 
 The product/domain layer must not depend directly on one upstream library API.
 
