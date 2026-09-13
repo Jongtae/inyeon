@@ -40,6 +40,18 @@ config_file = "agents/qa.toml"
 description = "Low-cost leaf worker for mechanical changes, fixtures, docs, repetitive migrations, and isolated cleanup."
 config_file = "agents/fast-worker.toml"
 
+[agents.reddit-operator]
+description = "Community operator for transparent Reddit experiments, posting, replies, monitoring, and raw-evidence handoff."
+config_file = "agents/reddit-operator.toml"
+
+[agents.feedback-analyst]
+description = "Independent product-research analyst that clusters raw Reddit evidence, identifies root causes/bias, and preserves contradictory evidence."
+config_file = "agents/feedback-analyst.toml"
+
+[agents.product-judge]
+description = "Skeptical high-reasoning product judge for preregistered hypotheses, evidence review, risk-based decisions, and Decision Ledger entries."
+config_file = "agents/product-judge.toml"
+
 [features.multi_agent_v2]
 enabled = true
 tool_namespace = "agents"
