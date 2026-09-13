@@ -248,6 +248,14 @@ Public copy is US English first and identifies the entity as a public reference,
 
 Generate from versioned seeds/distributions, cover the compatibility space intentionally, and keep synthetic analytics/results separate from any later real-user outcomes.
 
+The implemented private workspace is `@inyeon/synthetic-characters`. It exposes a default-off virtual catalog of exactly 10,000 random-access records generated from a pinned unsigned-32-bit algorithm, master seed, immutable generator version, field-specific streams, and ordinal. Full records and chart snapshots are not shipped as a static inventory; offline build verification materializes all records, validates the candidate adapter/derived/evaluator seam, and emits a compact profile, coverage report, and SHA-256 manifest.
+
+A frozen `SyntheticReferenceSubject` projection retains the entity discriminator, immutable ID, fictional disclosure, chart context, and actual pinned pipeline versions together. The lower chart/compatibility layers need only computation inputs, but UI/share callers must keep this projection beside their result rather than trying to infer entity identity from participant slots.
+
+V1 display identifiers are non-personal `Inyeon Lab Character 00001` labels. Avatars are abstract local tokens, and finite scene prompts are explicitly independent of chart features and population truth. All birth fixtures are generator-defined adult-range values from 1989–2004. The three time zones are calculation strata, not claimed residences or national identities.
+
+Because the approved product rule catalog is empty, synthetic coverage is limited to measured chart/input structure. No harmony/tension archetype, relationship meaning, ranking, `Why this works`, or compatibility-pattern count exists. Public UI remains US English first with Hangul before secondary Hanja.
+
 No Like/Match/Message, online status, distance, fake inbound activity, or other deceptive dating affordance is allowed.
 
 ## 11. Sharing architecture

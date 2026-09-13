@@ -84,6 +84,8 @@ Synthetic characters are fictional reference fixtures and can be shipped as stat
 
 They must be visibly synthetic and technically unable to enter real-user Like/Match/Message state machines.
 
+The v1 virtual catalog accepts only a bounded public ordinal and does not read personal input, public-figure data, storage, network state, or runtime randomness. It uses non-personal labels, local abstract avatar tokens, and no biography, photo, protected demographic trait, location claim, or dating state. Generated birth details are fictional calculation fixtures, never facts about a person. Scene prompts are independent decorative inputs and must not be described as Saju-derived personality.
+
 ## 7. Sharing privacy
 
 Sharing is opt-in and generated locally.
