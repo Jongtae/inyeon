@@ -53,6 +53,8 @@ inyeon/
 ├── packages/
 │   ├── saju-adapter/                # INYEON-owned wrapper around pinned upstream
 │   ├── chart-domain/                # normalized chart + uncertainty model
+│   ├── saju-derived-features/       # deterministic visible-chart annotations
+│   ├── compatibility-taxonomy/      # inclusive dimensions + prohibited claims
 │   ├── compatibility-rules/         # deterministic/versioned rule engine
 │   ├── narrative/                   # deterministic explanation composer
 │   ├── share/                       # local share card / share-safe payloads

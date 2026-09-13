@@ -1,0 +1,195 @@
+{
+  "schemaVersion": 1,
+  "taxonomyVersion": "inclusive-compatibility-v1",
+  "status": "candidate",
+  "productionEligible": false,
+  "review": {
+    "internalProduct": "reviewed",
+    "internalSafety": "reviewed",
+    "culturalSajuExpert": "pending"
+  },
+  "publicPresentation": {
+    "audience": "US-first",
+    "publicLanguage": "English-first",
+    "identity": "Explicitly Korean-rooted K-culture",
+    "koreanScriptOrder": ["Hangul", "Hanja"],
+    "hanjaUsage": "Secondary traditional detail behind progressive disclosure",
+    "koreanConcepts": [
+      {"id": "inyeon", "publicEnglishLabel": "Inyeon", "hangul": "인연", "hanja": "因緣", "scriptPriority": ["hangul", "hanja"]},
+      {"id": "saju", "publicEnglishLabel": "Korean Saju", "hangul": "사주", "hanja": "四柱", "scriptPriority": ["hangul", "hanja"]},
+      {"id": "gung-hap", "publicEnglishLabel": "Korean compatibility tradition", "hangul": "궁합", "hanja": "宮合", "scriptPriority": ["hangul", "hanja"]}
+    ]
+  },
+  "pairSemantics": {
+    "default": "symmetric",
+    "directionalRequirement": "A directional claim must cite directional evidence and declare reverse-participants swap semantics.",
+    "identityInputsForbidden": ["sex", "gender", "genderIdentity", "sexualOrientation", "relationshipStructure", "maritalStatus", "pronouns", "sexAssignedAtBirth"]
+  },
+  "entityContextPolicy": {
+    "publicFigure": {
+      "role": "reference-record-only",
+      "allowedFraming": "A hypothetical pair reading for the user's reflection, based on a sourced public birth record.",
+      "forbiddenClaims": ["endorsement", "membership", "romantic availability", "private life", "identity", "personality", "behavior", "preferences", "relationship history"]
+    },
+    "syntheticCharacter": {
+      "role": "visibly-fictional-reference-only",
+      "forbiddenClaims": ["real person", "member", "prospect", "online activity", "romantic availability"]
+    }
+  },
+  "temporalPolicy": {
+    "dateOnly": "Suppress every hour-dependent claim.",
+    "unknown": "Suppress every hour-dependent claim.",
+    "approximate": "A claim is definitive only when it is common across every retained chart variant; otherwise show correlated alternatives and a limitation.",
+    "disputed": "A claim is definitive only when it is common across every retained chart variant; otherwise show correlated alternatives and a limitation.",
+    "noAveraging": true
+  },
+  "allowedEvidenceClasses": [
+    {
+      "id": "reviewed-versioned-rule-output",
+      "purpose": "A deterministic compatibility result from a versioned rule accepted under Issue #33 review.",
+      "requirements": ["ruleId", "ruleVersion", "taxonomyVersion", "sourceEvidenceRefs", "reviewStatus"]
+    },
+    {
+      "id": "temporal-support-metadata",
+      "purpose": "Availability and limitation handling only; it cannot create a compatibility claim.",
+      "requirements": ["temporalSupport", "hourDependent", "variantIds"]
+    },
+    {
+      "id": "common-across-variants",
+      "purpose": "Marks a reviewed rule output as invariant across every retained approximate or disputed variant.",
+      "requirements": ["ruleId", "ruleVersion", "completeVariantCoverage"]
+    },
+    {
+      "id": "correlated-rule-alternatives",
+      "purpose": "Carries non-definitive reviewed rule alternatives without averaging or selecting one chart.",
+      "requirements": ["ruleId", "ruleVersion", "variantIds", "limitationKey"]
+    }
+  ],
+  "candidateTraditionalSignalFamilies": [
+    {
+      "id": "visible-chart-annotations",
+      "includes": ["day-master", "visible-stem-branch-five-element", "visible-stem-branch-yin-yang"],
+      "status": "candidate-input-only",
+      "dimensionMappings": [],
+      "mappingOwner": "Issue #33",
+      "requirement": "No dimension claim is allowed until a versioned deterministic Issue #33 rule maps the evidence and passes review."
+    },
+    {
+      "id": "traditional-relations-or-weighting",
+      "includes": ["combinations", "clashes", "hidden-stems", "ten-gods", "seasonal-weighting", "strength"],
+      "status": "not-available",
+      "dimensionMappings": [],
+      "mappingOwner": "Issue #33",
+      "requirement": "Not emitted by the current derived-feature package and never implicitly required by this taxonomy. Any future adoption needs explicit methodology review."
+    }
+  ],
+  "dimensions": [
+    {
+      "id": "conversation-rhythm",
+      "publicLabel": "Conversation rhythm",
+      "description": "How a pair may naturally pace back-and-forth conversation.",
+      "poles": [
+        {"id": "reflective", "label": "Reflective", "description": "More space to think before responding."},
+        {"id": "rapid", "label": "Rapid", "description": "More energy from quick exchanges."}
+      ],
+      "allowedExample": "You may enjoy quick exchanges, while leaving a little thinking room can help both of you feel heard.",
+      "allowedEvidenceClasses": ["reviewed-versioned-rule-output", "common-across-variants", "correlated-rule-alternatives"],
+      "limits": ["Does not measure intelligence, honesty, interest, or communication skill.", "Neither pace is universally better."],
+      "ordered": false
+    },
+    {
+      "id": "decision-pace",
+      "publicLabel": "Decision pace",
+      "description": "How quickly a pair may prefer to move from options to a choice.",
+      "poles": [
+        {"id": "deliberate", "label": "Deliberate", "description": "More time to compare options."},
+        {"id": "spontaneous", "label": "Spontaneous", "description": "More comfort choosing in the moment."}
+      ],
+      "allowedExample": "One useful check-in is whether this choice needs more time or feels ready now.",
+      "allowedEvidenceClasses": ["reviewed-versioned-rule-output", "common-across-variants", "correlated-rule-alternatives"],
+      "limits": ["Does not measure competence, maturity, or responsibility.", "Context can change anyone's pace."],
+      "ordered": false
+    },
+    {
+      "id": "structure-adaptation",
+      "publicLabel": "Structure and adaptation",
+      "description": "How a pair may balance plans with room to adjust.",
+      "poles": [
+        {"id": "structured", "label": "Structured", "description": "More ease with plans and clear expectations."},
+        {"id": "adaptive", "label": "Adaptive", "description": "More ease changing course as things unfold."}
+      ],
+      "allowedExample": "A light plan with an agreed place to improvise may suit both rhythms.",
+      "allowedEvidenceClasses": ["reviewed-versioned-rule-output", "common-across-variants", "correlated-rule-alternatives"],
+      "limits": ["Does not predict reliability or chaos.", "Both structure and adaptation can be caring responses."],
+      "ordered": false
+    },
+    {
+      "id": "autonomy-togetherness",
+      "publicLabel": "Autonomy and togetherness",
+      "description": "How a pair may balance individual space with shared time.",
+      "poles": [
+        {"id": "independent-space", "label": "Independent space", "description": "More energy from protected individual time."},
+        {"id": "shared-time", "label": "Shared time", "description": "More energy from doing things together."}
+      ],
+      "allowedExample": "Naming what counts as quality time—and what counts as restorative solo time—may reduce guesswork.",
+      "allowedEvidenceClasses": ["reviewed-versioned-rule-output", "common-across-variants", "correlated-rule-alternatives"],
+      "limits": ["Does not diagnose attachment style or commitment.", "Does not assume monogamy, cohabitation, or any relationship structure."],
+      "ordered": false
+    },
+    {
+      "id": "friction-repair-rhythm",
+      "publicLabel": "Friction and repair rhythm",
+      "description": "How a pair may prefer to pause, revisit, or reconnect after tension.",
+      "poles": [
+        {"id": "pause-first", "label": "Pause first", "description": "More room to settle before revisiting tension."},
+        {"id": "reconnect-soon", "label": "Reconnect soon", "description": "More comfort checking in sooner."}
+      ],
+      "allowedExample": "Agreeing on when to revisit a tense moment can make different repair rhythms easier to navigate.",
+      "allowedEvidenceClasses": ["reviewed-versioned-rule-output", "common-across-variants", "correlated-rule-alternatives"],
+      "limits": ["Does not predict abuse, violence, safety, blame, or moral character.", "A compatibility result never replaces a real safety assessment."],
+      "ordered": false
+    },
+    {
+      "id": "collaboration-rhythm",
+      "publicLabel": "Shared-goal rhythm",
+      "description": "How a pair may approach coordinating a shared goal.",
+      "poles": [
+        {"id": "divide-and-own", "label": "Divide and own", "description": "More ease taking separate ownership of parts."},
+        {"id": "build-together", "label": "Build together", "description": "More ease working side by side."}
+      ],
+      "allowedExample": "You might clarify which parts feel better owned separately and which feel better built together.",
+      "allowedEvidenceClasses": ["reviewed-versioned-rule-output", "common-across-variants", "correlated-rule-alternatives"],
+      "limits": ["Does not measure ambition, leadership, or worth.", "It makes no claim about money or financial habits."],
+      "ordered": false
+    },
+    {
+      "id": "novelty-exploration",
+      "publicLabel": "Novelty and exploration",
+      "description": "How a pair may balance familiar experiences with trying something new.",
+      "poles": [
+        {"id": "familiar", "label": "Familiar", "description": "More comfort deepening known routines and places."},
+        {"id": "exploratory", "label": "Exploratory", "description": "More energy from new settings and experiences."}
+      ],
+      "allowedExample": "Alternating a favorite ritual with a new plan can give both preferences room.",
+      "allowedEvidenceClasses": ["reviewed-versioned-rule-output", "common-across-variants", "correlated-rule-alternatives"],
+      "limits": ["Does not measure courage, sophistication, or growth potential.", "Familiarity and novelty are both context-dependent."],
+      "ordered": false
+    },
+    {
+      "id": "emotional-expression-rhythm",
+      "publicLabel": "Emotional-expression rhythm",
+      "description": "How a pair may differ in when and how readily feelings are put into words.",
+      "poles": [
+        {"id": "private-processing", "label": "Private processing", "description": "More time to understand a feeling before sharing it."},
+        {"id": "outward-expression", "label": "Outward expression", "description": "More ease naming a feeling as it happens."}
+      ],
+      "allowedExample": "A gentle check-in can leave room for both immediate expression and later reflection.",
+      "allowedEvidenceClasses": ["reviewed-versioned-rule-output", "common-across-variants", "correlated-rule-alternatives"],
+      "limits": ["Does not diagnose mental health, empathy, emotional availability, or love.", "Expression style is not emotional depth."],
+      "ordered": false
+    }
+  ],
+  "excludedV1Dimensions": [
+    {"id": "resource-finance", "reason": "Insufficient reviewed support; wealthworthiness and financial predictions are prohibited."}
+  ]
+}
