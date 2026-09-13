@@ -27,6 +27,19 @@ REQUIRED = [
     ".github/PULL_REQUEST_TEMPLATE.md",
     "prompts/MASTER_PROMPT.md",
     "prompts/CONTINUE.md",
+    "package.json",
+    "package-lock.json",
+    "eslint.config.js",
+    "apps/web/package.json",
+    "apps/web/vite.config.ts",
+    "apps/web/src/App.tsx",
+    ".github/workflows/ci.yml",
+    "scripts/verify-static-build.mjs",
+    "docs/adr/0006-static-workspace-and-github-pages-release.md",
+    "docs/adr/0007-zero-retention-and-share-boundary.md",
+    "docs/adr/0008-manseryeok-adapter-and-korean-saju-profile.md",
+    "docs/adr/0009-reference-entity-data-separation.md",
+    "docs/adr/0010-deterministic-narrative-composer.md",
 ]
 
 AGENTS = [

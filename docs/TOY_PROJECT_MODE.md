@@ -138,18 +138,11 @@ Reddit is the preferred initial promotion/feedback channel.
 
 Desired loop:
 
-`owner-approved post → feedback → compliant ingestion → redaction/classification/dedup → GitHub issue → Codex fix → CI/preview → production release`
+`transparent, rule-compliant post → feedback → compliant ingestion → redaction/classification/dedup → GitHub issue → Codex fix → CI/preview → production release`
 
-Human Gate before:
+Codex may create/configure an account and publish posts or replies when technically available, legally permitted, and community rules are clear. Stop only for CAPTCHA, email/phone/identity verification, MFA, owner-only terms acceptance or credential recovery, ambiguous community rules, or material legal/reputational risk.
 
-- Reddit account creation;
-- accepting Reddit developer/platform terms;
-- applying for developer/API access;
-- entering credentials;
-- publishing posts/replies;
-- ambiguous community-rule decisions.
-
-After approval, bounded feedback triage can be automated. Only safe, reversible, well-evidenced changes should be auto-implemented.
+Bounded feedback triage can be automated. Only safe, reversible, well-evidenced changes should be auto-implemented.
 
 Methodology, privacy/security, major product direction, public claims, vendor spend, and weak/contradictory feedback remain human-reviewed.
 

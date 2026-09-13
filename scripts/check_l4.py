@@ -50,6 +50,41 @@ STALE_POLICY_PHRASES = {
     "README.md": [
         "Human Gate before:\n\n- creating the Reddit account",
     ],
+    "docs/TOY_PROJECT_MODE.md": [
+        "owner-approved post → feedback",
+        "Human Gate before:\n\n- Reddit account creation",
+    ],
+    "PRD.md": [
+        "owner-approved post → comments/reactions",
+        "Human approval is required before:\n\n- creating the Reddit account",
+    ],
+    "ARCHITECTURE.md": [
+        "Human Gates are mandatory for creating the Reddit account",
+        "Owner-approved Reddit post",
+    ],
+    "ROADMAP.md": [
+        "stop and ask the owner to create/approve the Reddit account",
+        "owner-approved launch/update post",
+        "no autonomous spam, account creation, posting, replying",
+    ],
+    "BACKLOG.md": [
+        "Human Gate before:\n\n- Reddit account creation",
+        "Reddit credentials and public posting/replying",
+    ],
+    "PRIVACY.md": [
+        "Reddit account creation, developer terms/API access, credentials, and public posting/replying are Human Gates",
+    ],
+    "OPERATIONS.md": [
+        "owner creates/approves Reddit account",
+        "approve public posts/replies",
+        "Never automate spam, unsolicited mass replies, vote manipulation, astroturfing, account creation",
+    ],
+    "PRODUCT.md": [
+        "Account creation, developer/platform terms, credentials, and public posting/replying are Human Gates",
+    ],
+    "ANALYTICS.md": [
+        "After owner-approved launch/access",
+    ],
 }
 
 errors: list[str] = []

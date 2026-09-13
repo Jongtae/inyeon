@@ -55,6 +55,31 @@ Google Cloud remains a future escape hatch for features that truly require serve
 
 Tracked in #47 and #52.
 
+## Local development
+
+The bootstrap uses one private npm workspace with a React, TypeScript, and Vite app in `apps/web`. Use Node 24 as pinned by `.nvmrc` and install exactly from the committed lockfile.
+
+```bash
+node --version # must report v24.x; .nvmrc is provided for version managers
+npm ci
+npm run dev
+```
+
+The development server exposes the app at `/inyeon/`. Client navigation uses the fixed hash routes `#/`, `#/methodology`, and `#/privacy`, which remain refresh-safe on a GitHub Pages project site.
+
+Run the complete local verification set before opening a pull request:
+
+```bash
+python3 scripts/check_harness.py
+python3 scripts/check_l4.py
+npm run lint
+npm run typecheck
+npm test
+npm run build
+```
+
+The production build is written to `apps/web/dist`. Issue #47 owns enabling and deploying GitHub Pages; this bootstrap does not claim a production release.
+
 ## Current product direction
 
 The first release prioritizes:
@@ -225,11 +250,13 @@ At minimum it should have:
  ↓
 #9–#14 validation + derived features + golden corpus
  ↓
+#6 inclusive compatibility taxonomy + prohibited claims
+ ↓
 #33–#34 compatibility evidence + uncertainty
  ↓
 #50 public figures + #49 synthetic lab
  ↓
-#53 static comparison UI + deterministic explanation
+#35 deterministic explanation + #53 static comparison UI
  ↓
 #43 sharing
  ↓

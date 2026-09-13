@@ -107,9 +107,9 @@ A local demo is not Done. The release must pass golden/regression/privacy/E2E/ac
 
 Reddit is the preferred initial public feedback channel after the production candidate exists.
 
-Account creation, developer/platform terms, credentials, and public posting/replying are Human Gates.
+Codex may create/configure a Reddit account and publish posts or replies when technically available, legally permitted, and community rules are clear. Stop only for CAPTCHA, email/phone/identity verification, MFA, owner-only terms acceptance or credential recovery, ambiguous community rules, or material legal/reputational risk.
 
-After approval, feedback may be clustered into GitHub issues. Only bounded, reversible, well-evidenced fixes may auto-enter implementation; methodology/privacy/security/major product direction remain human-reviewed.
+Feedback may be clustered into GitHub issues. Only bounded, reversible, well-evidenced fixes may auto-enter implementation; methodology/privacy/security/major product direction remain human-reviewed.
 
 ## First-release success
 
