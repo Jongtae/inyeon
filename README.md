@@ -2,9 +2,13 @@
 
 **INYEON — Explore connection through Korean Saju and Gung-hap.**
 
-INYEON is currently a **personal toy / research project**. The near-term goal is not startup success or a fully operated dating marketplace. The goal is to build a fun, rigorous compatibility lab around Korean Saju (사주), Gung-hap (궁합), and Inyeon (인연), while preserving the option to evolve into a real dating product later.
+INYEON is an **independent personal project intended for a real public release**.
 
-> **Toy Mode first. Marketplace Mode later, only by explicit decision.**
+The project is not being optimized for near-term startup success, fundraising, or venture-scale growth. That does **not** mean prototype quality. The goal is to ship a polished, production-capable service that real users can use reliably.
+
+> **Independent project, release-grade quality.**
+>
+> Business success is optional. Correctness, privacy, reliability, usability, and actual deployment are not.
 
 The first useful product should work even with one user:
 
@@ -12,18 +16,19 @@ The first useful product should work even with one user:
 
 ## Current product direction
 
-Toy Mode prioritizes:
+The first release prioritizes:
 
 1. deterministic Four Pillars / Manseryeok calculation;
 2. a validated open-source adapter rather than greenfield calendar math;
 3. sourced public-figure birth data for recognizable comparisons;
 4. transparent synthetic characters for broad compatibility exploration;
 5. explainable `What clicks / Potential friction / Why this?` relationship output;
-6. a simple polished UI before marketplace infrastructure.
+6. a polished end-to-end UI;
+7. production deployment, privacy, observability, error handling, and release hardening.
 
-Real-user dating discovery, likes, matches, chat, payments, city seeding, app-store launch, large-scale moderation, and production operations are documented future options but are **not the default execution target** while Toy Mode is active.
+Real-user dating discovery, likes, matches, chat, payments, city seeding, and dating-marketplace operations are later product layers. They are deferred because they are outside the **first product scope**, not because release quality is optional.
 
-See `docs/TOY_PROJECT_MODE.md`.
+See `docs/TOY_PROJECT_MODE.md` for the active Independent Release Mode definition.
 
 ## Core comparison modes
 
@@ -62,7 +67,7 @@ Preferred direction:
 
 `Birth input → INYEON normalization → InyeonSajuAdapter → normalized Four Pillars → INYEON derived features → compatibility rules → explanation`
 
-Issue #8 now evaluates/adopts a pinned open-source Manseryeok implementation behind an INYEON-owned adapter and validates it against independent references and golden fixtures.
+Issue #8 evaluates/adopts a pinned open-source Manseryeok implementation behind an INYEON-owned adapter and validates it against independent references and golden fixtures.
 
 INYEON-specific value should live above the commodity calculation layer:
 
@@ -72,12 +77,33 @@ INYEON-specific value should live above the commodity calculation layer:
 - public/synthetic comparison experiences;
 - later, if desired, real dating ranking/outcome learning.
 
+## Release bar
+
+The first public release is not complete when the feature merely works locally.
+
+At minimum it should have:
+
+- reproducible builds and deploys;
+- CI for core logic and release artifacts;
+- a staging path and a real production environment;
+- deterministic/versioned chart results;
+- golden/regression tests around calendrical boundaries;
+- production error tracking and basic observability;
+- privacy-safe handling of birth inputs;
+- secrets management;
+- responsive/mobile usability and accessibility appropriate to the chosen client;
+- graceful loading/error/empty states;
+- rollback/redeploy capability;
+- backup/restore validation for stateful production data;
+- public-figure source/confidence disclosure;
+- clear separation of public figures, synthetic characters, and real users.
+
 ## Start here for Codex
 
 1. Read `AGENTS.md`, `CODEX.md`, and `docs/TOY_PROJECT_MODE.md`.
 2. Read `SAJU_ENGINE_SPEC.md`, `MATCHING_SPEC.md`, `PRD.md`, and `ARCHITECTURE.md` as reference documents.
 3. Validate `.codex/config.toml` and run `scripts/check_harness.py`.
-4. In Toy Mode, prioritize the execution path defined in `CODEX.md` rather than blindly following historical P0 marketplace priorities.
+4. Prioritize the active first-release path rather than blindly following historical marketplace P0 priorities.
 
 Recommended Codex instruction:
 
@@ -85,30 +111,31 @@ Recommended Codex instruction:
 Read AGENTS.md, CODEX.md, docs/TOY_PROJECT_MODE.md, SAJU_ENGINE_SPEC.md,
 PRD.md and ARCHITECTURE.md.
 
-Operate in Toy Mode.
-Do not optimize for startup launch or marketplace completeness.
+Operate in Independent Release Mode.
+This is not a revenue-first startup project, but it IS intended for a real public release.
+Do not lower the engineering, privacy, reliability, UX, or deployment bar because it is a personal project.
+
 Prioritize the validated Manseryeok adapter, derived compatibility features,
 golden fixtures, public-figure dataset (#50), synthetic compatibility lab (#49),
-and a minimal polished comparison UI.
+a polished comparison UI, and the production hardening required to release it.
 
-Use existing issues and refine them when evidence changes.
 Do not rebuild calendrical primitives that a validated open-source dependency already provides.
-Continue implementation until a real Human Gate is reached.
+Continue implementation through staging and production release until a real Human Gate is reached.
 ```
 
 ## Durable source-of-truth documents
 
 | Document | Purpose |
 |---|---|
-| `docs/TOY_PROJECT_MODE.md` | current project mode and execution priorities |
-| `CODEX.md` | autonomous execution contract for the active mode |
+| `docs/TOY_PROJECT_MODE.md` | active Independent Release Mode and scope/quality distinction |
+| `CODEX.md` | autonomous execution and release contract |
 | `PRD.md` | broad product possibilities and historical marketplace design |
 | `ARCHITECTURE.md` | system/data boundaries and target technical design |
 | `SAJU_ENGINE_SPEC.md` | deterministic Four Pillars/Saju methodology requirements |
 | `MATCHING_SPEC.md` | compatibility and optional future dating constraints |
-| `BACKLOG.md` | historical issue map; issue priority is subordinate to active Toy Mode |
+| `BACKLOG.md` | historical issue map; active release scope determines execution order |
 | `BUSINESS.md` | optional future business/startup reference, not a current success requirement |
-| `SAFETY.md`, `PRIVACY.md` | safety/privacy constraints to retain where applicable |
+| `SAFETY.md`, `PRIVACY.md` | safety/privacy constraints retained where applicable |
 
 ## Product invariants
 
@@ -126,4 +153,4 @@ Continue implementation until a real Human Gate is reached.
 
 The repository still contains a detailed US-first dating-marketplace blueprint: real-user eligibility, safety, matching, chat, city liquidity, analytics, payments, legal/app-store readiness, and production operations.
 
-Those remain useful if the toy project becomes compelling enough to pursue further. They are intentionally deferred rather than deleted.
+Those remain available if the project later expands. They are deferred from the **first product scope**, not removed from the long-term architecture.
