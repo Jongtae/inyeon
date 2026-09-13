@@ -18,6 +18,8 @@ Public figures are reference records—not members, prospects, participants, or 
 
 The source is CC0-licensed structured data, not an accuracy oracle. See `PROVENANCE.md`, ADR 0009, and ADR 0020.
 
+The normal package entry exposes types, disclosure copy, and search logic without pulling the catalog into the initial browser bundle. The `@inyeon/public-figures/catalog` subpath is loaded only on the public-reference route and exposes a recursively frozen browse index plus exact-ID record lookup. UI code does not import package-internal JSON paths or perform runtime source requests.
+
 ## Commands
 
 ```sh

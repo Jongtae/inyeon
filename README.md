@@ -12,7 +12,7 @@ The project is not being optimized for near-term startup success, fundraising, o
 
 The first useful product should work even with one user:
 
-`Me → my Saju → compare with public figures → explore synthetic characters → understand relationship dynamics → share`
+`Me → my Saju → compare with public figures → explore synthetic characters → understand reviewed context when available → share`
 
 ## Autonomous team status
 
@@ -65,7 +65,7 @@ npm ci
 npm run dev
 ```
 
-The development server exposes the app at `/inyeon/`. Client navigation uses the fixed hash routes `#/`, `#/methodology`, and `#/privacy`, which remain refresh-safe on a GitHub Pages project site.
+The development server exposes the app at `/inyeon/`. Client navigation uses fixed hash routes for the Lab, My Saju, public figures, Fictional Lab, Someone I Know, methodology, and privacy. The routes contain no personal values and remain refresh-safe on a GitHub Pages project site.
 
 Run the complete local verification set before opening a pull request:
 
@@ -76,6 +76,8 @@ npm run lint
 npm run typecheck
 npm test
 npm run build
+npx playwright install chromium # first local browser-test run only
+npm run test:e2e --workspace @inyeon/web
 ```
 
 The production build is written to `apps/web/dist`. Issue #47 owns enabling and deploying GitHub Pages; this bootstrap does not claim a production release.
@@ -89,7 +91,7 @@ The first release prioritizes:
 3. a validated open-source adapter rather than greenfield calendar math;
 4. sourced public-figure birth data for recognizable comparisons;
 5. transparent synthetic characters for broad compatibility exploration;
-6. explainable `What clicks / Potential friction / Why this?` relationship output;
+6. an explicit no-approved-evidence state now, and explainable `What clicks / Potential friction / Why this?` output only after reviewed relationship mappings exist;
 7. privacy-safe client-side sharing;
 8. a polished responsive web UI;
 9. GitHub Pages production deployment, CI, rollback, privacy testing, and release hardening;
@@ -237,7 +239,7 @@ At minimum it should have:
 - responsive/mobile usability and accessibility;
 - graceful loading/error/empty states;
 - rollback/redeploy capability;
-- public-figure source/confidence disclosure;
+- public-figure provenance and categorical birth-data/source-status disclosure;
 - clear separation of public figures, synthetic characters, and real users;
 - production smoke checks;
 - `scripts/check_harness.py` and `scripts/check_l4.py` green.

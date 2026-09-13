@@ -119,7 +119,7 @@ validated calculation-capability intersection
       ↓
 InyeonSajuAdapter
       ↓
-normalized chart + confidence/uncertainty
+normalized chart + categorical availability/uncertainty
       ↓
 render
 ```
@@ -131,7 +131,7 @@ Refresh/tab close clears the state. A dedicated Clear action should also reset i
 ```text
 personal chart in memory
       +
-static PublicFigure record + provenance/confidence
+static PublicFigure record + provenance/birth-data status
       ↓
 compatibility engine
       ↓
@@ -169,7 +169,7 @@ The adapter must pin and record:
 - INYEON calculation profile version;
 - timezone/reference-data version where relevant;
 - methodology choices that differ across traditions;
-- confidence when birth time or boundary conditions are uncertain.
+- categorical source/time status when birth time or boundary conditions are uncertain.
 
 Required properties:
 
@@ -199,7 +199,7 @@ Each rule is versioned and uses only closed, typed feature selectors and predica
 
 Future rules must declare `ruleId`, semantic `ruleVersion`, exact feature requirements, a finite predicate, pair semantics, hour dependency, dimension IDs, categorical salience, reviewed narrative keys, prohibited-category IDs, attributable evidence references, and per-version review status. The evaluator does not calculate combinations, clashes, generating/controlling cycles, hidden stems, Ten Gods, or other traditional primitives. Those require an attributable, reviewed derived-feature revision before a rule may consume them. Numeric soulmate scoring and aggregate ranking weights are not part of the rule contract.
 
-The UI should present archetypes and balanced sections such as `What clicks`, `Potential friction`, and `Why this?`, not a universal compatibility percentage.
+After exact mappings and copy pass their review gates, the UI may present archetypes and balanced sections such as `What clicks`, `Potential friction`, and `Why this?`, never a universal compatibility percentage. While the approved catalog is empty, those sections do not render at all.
 
 ## 8. Explanation architecture
 
@@ -217,6 +217,10 @@ LLMs may help author/refine templates during development, but generated copy is 
 
 The implemented `@inyeon/compatibility-narrative` package accepts only `compatibility-snapshot-v2` plus closed context/format/tone enums. Its release-locked US-English catalog has zero product claim entries while the approved rule catalog is empty. The actual output therefore has a null relationship headline, empty `What clicks`, `Potential friction`, and `Why this?` sections, and no personalized question. It may show only categorical availability/methodology limitations and fixed public-reference, fictional-reference, or permission disclosures. Hanja is accepted only after the matching Hangul term. Share-length copy removes protected birth-time precision and evidence references; the final share allowlist remains #43-owned.
 
+The Issue #53 web integration uses fixed hash routes under the repository base path and keeps personal state only in the root React session. `My Saju`, public-reference, fictional-reference, and `Someone I Know` flows all call the same adapter → derived features → evaluator → narrative path. The checked-in 582-record public catalog is loaded as a separate static route chunk and exposed through an immutable browse index plus exact-ID accessor; search, filtering, progressive browse, source detail, and unsupported reasons do not require runtime network data. The fictional Lab remains behind an explicit per-tab preview action. Refresh or `Clear personal data` removes the private session, and no relationship section is mounted while the approved rule/copy catalogs remain empty.
+
+CI builds the static artifact, serves that production output locally, and runs Chromium Playwright regressions against the `/inyeon/` base path. The suite covers all four flows and Clear behavior, categorical time states, direct hash-route refresh, keyboard skip/focus behavior, 320/375/768/1280 layouts, reduced motion, automated WCAG A/AA checks, offline calculation after static assets load, and browser privacy canaries. Issue #52 still owns the wider adversarial/deployed privacy release matrix; Issue #47 owns the production Pages smoke and rollback proof.
+
 ## 9. Public-figure data architecture
 
 `PublicFigure` is separate from personal/synthetic entities.
@@ -232,7 +236,7 @@ Store at minimum:
 - birth time only when reliable;
 - value-level provenance;
 - source URLs / retrieval dates;
-- confidence such as `verified | well_sourced | disputed | date_only | unknown`;
+- categorical birth-time/source status such as `verified | well_sourced | disputed | date_only | unknown`;
 - data version;
 - optional appropriately licensed image metadata.
 
@@ -357,7 +361,7 @@ A feature working locally is not Done. Release gates live in `CODEX.md` and `ROA
 2. GitHub Pages routing/base-path strategy;
 3. open-source Manseryeok dependency + adapter/version policy;
 4. `korean-saju-v1` methodology boundaries;
-5. public-figure provenance/confidence schema;
+5. public-figure provenance and birth-data/source-status schema;
 6. synthetic generator/version policy;
 7. client-only zero-retention privacy boundary;
 8. deterministic narrative composer;

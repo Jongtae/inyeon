@@ -9,6 +9,8 @@ build/
 coverage/
 *.tsbuildinfo
 .playwright-cli/
+playwright-report/
+test-results/
 *.log
 *.pem
 *.key

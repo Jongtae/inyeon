@@ -72,13 +72,15 @@ Primary work: #35, #49, #50, #53, methodology/privacy pages.
 
 Exit:
 
-- 500+ sourced public-figure records with provenance/confidence;
+- 500+ sourced public-figure records with provenance and categorical birth-data/source status;
 - unknown/disputed public-figure birth times suppress unsupported claims;
 - synthetic-character library/generator covers compatibility space reproducibly;
 - public figures and synthetic characters are technically distinct from real users;
 - user can complete `My Saju → Public Figure → Synthetic Character → Someone I Know` flows;
-- `What clicks / Potential friction / Why this?` output is clear and balanced;
+- when reviewed relationship rules exist, `What clicks / Potential friction / Why this?` output is clear and balanced; while the approved catalog is empty, these sections are absent and the no-approved-evidence state is explicit;
 - loading/error/empty states, responsive design, and accessibility are release quality.
+
+Issue #53 implements this bounded candidate UI and its CI Chromium regression layer. M2 relationship meaning remains gated by #14/#33; sharing, broader privacy verification, and production release remain M3/M4 work rather than evidence that the product is already public.
 
 **Gate:** public figures must not be presented as members/endorsers, and synthetic characters must never simulate real dating supply.
 

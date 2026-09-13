@@ -8,7 +8,11 @@ import { describe, expect, it } from 'vitest';
 import { evaluateCompatibilityPair } from '@inyeon/compatibility-rules';
 import { inyeonSajuAdapter } from '@inyeon/saju-adapter';
 import { deriveChartFeatures } from '@inyeon/saju-derived-features';
-import { PUBLIC_FIGURE_DISCLOSURE, searchPublicFigures } from '../src/index.js';
+import {
+  PUBLIC_FIGURE_DISCLOSURE,
+  searchPublicFigures,
+} from '../src/index.js';
+import { PUBLIC_FIGURE_SEARCH_INDEX, getPublicFigure } from '../src/catalog.js';
 import type { PublicFigureRecord, PublicFigureSearchEntry } from '../src/types.js';
 import { createRefreshReview } from '../scripts/refresh-review.mjs';
 import { assertPublicReferenceBoundary } from '../scripts/source-boundary.mjs';
@@ -126,6 +130,17 @@ describe('source-backed public-figure corpus', () => {
     expect(searchPublicFigures(index.entries, { query: '<script>' })).toEqual([]);
     expect(searchPublicFigures(index.entries, { query: `V\u200f` })).toEqual([]);
     expect(searchPublicFigures(index.entries, { query: 'x'.repeat(161) })).toEqual([]);
+  });
+
+  it('exposes only the validated browse index and exact-ID record lookup to the web product', () => {
+    expect(PUBLIC_FIGURE_SEARCH_INDEX).toHaveLength(data.records.length);
+    expect(Object.isFrozen(PUBLIC_FIGURE_SEARCH_INDEX)).toBe(true);
+    expect(Object.isFrozen(PUBLIC_FIGURE_SEARCH_INDEX[0])).toBe(true);
+    const record = getPublicFigure(data.records[0]!.id);
+    expect(record).toEqual(data.records[0]);
+    expect(Object.isFrozen(record)).toBe(true);
+    expect(Object.isFrozen(record?.birth)).toBe(true);
+    expect(getPublicFigure('public:wd-q999999999' as PublicFigureRecord['id'])).toBeNull();
   });
 
   it('uses the pinned chart, derived-feature, and compatibility pipeline only for supported records', () => {

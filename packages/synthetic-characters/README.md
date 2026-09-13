@@ -15,9 +15,9 @@ Every record is `kind: "synthetic"`, uses the immutable `synthetic:synthetic-cha
 - no real names, biographies, personal inputs, external sources, network calls, images, protected demographic fields, or marketplace state;
 - no harmony/tension archetypes, rankings, scores, relationship claims, or approved evidence—the current product rule catalog contains zero approved rules;
 - no population-representativeness, product-utility, production-readiness, methodology, or L4 claim;
-- release feature default is off until #53/#35/#43 integrate and verify the user-facing experience.
+- the #53 candidate UI keeps the feature behind an explicit per-tab preview action; production default remains off while #43/#52/#47 sharing, privacy, and release gates are pending.
 
-Korean-rooted visual vocabulary is decorative and explicitly not a Five Element or personality mapping. Public copy remains natural US English with Hangul before secondary Hanja, for example `Inyeon Lab (인연 실험실)` and `Korean Saju (사주, Four Pillars; 四柱)`.
+Korean-rooted visual vocabulary is decorative and explicitly not a Five Element or personality mapping. Public copy remains natural US English with Hangul before secondary Hanja, for example `Inyeon Lab (인연 실험실)` and `Korean Saju (사주; Four Pillars; 四柱)`.
 
 ## Commands
 

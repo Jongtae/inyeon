@@ -57,7 +57,7 @@ Future real-user dating/matching remains an optional later mode.
 Input:
 
 - birth date;
-- birth time: exact / approximate / unknown;
+- birth time: exact / approximate / disputed / unknown;
 - birthplace only as needed for deterministic normalization.
 
 The browser computes the chart locally through `InyeonSajuAdapter`.
@@ -65,7 +65,7 @@ The browser computes the chart locally through `InyeonSajuAdapter`.
 Output includes:
 
 - Four Pillars / Eight Characters when supported by the available precision;
-- confidence/uncertainty disclosure;
+- categorical time/evidence-availability disclosure;
 - key derived features used by compatibility;
 - methodology/version disclosure.
 
@@ -78,17 +78,19 @@ Users browse/search globally recognizable actors, musicians, athletes, creators,
 Each record must preserve:
 
 - source provenance;
-- birth-data confidence;
+- birth-data and source status;
 - unknown/disputed time state;
 - licensed/non-infringing image metadata if an image is shown.
 
-Comparison output:
+After reviewed relationship mappings exist, comparison output may include:
 
 - relationship archetype/headline;
 - **What clicks**;
 - **Potential friction**;
 - **Why this?** traditional evidence;
-- uncertainty/limitations.
+- categorical availability/limitations.
+
+While the approved product catalog is empty, these relationship sections are absent. The comparison output contains only the explicit no-approved-evidence state, applicable limitations, and entity disclosure.
 
 No implication of endorsement, participation, romantic availability, or claims about the public figure's private relationships.
 
@@ -107,7 +109,7 @@ They must:
 Useful actions include:
 
 - `Why this?` only when reviewed relationship evidence is available;
-- `Potential friction`;
+- `Potential friction` only when reviewed relationship evidence is available;
 - `Compare`;
 - `Save archetype` only if implemented locally without personal persistence;
 - `Show another like this`.
@@ -162,6 +164,10 @@ Home
 ```
 
 A user should reach a meaningful comparison quickly without creating an account.
+
+The integrated candidate UI implements these as fixed GitHub-Pages-safe hash routes. Public copy is natural US English, while Korean identity is explicit and Hangul-primary: for example, `Saju (사주; 四柱)`, `Gung-hap (궁합; 宮合)`, and `Inyeon (인연; 因緣)`. Hanja is optional secondary context, never the standalone product identity.
+
+Until approved relationship rules and reviewed copy exist, a completed comparison is meaningful as an honest evidence-limit state: it shows the charts, applicable categorical limitations, and entity disclosure, but no relationship headline, score, `What clicks`, `Potential friction`, `Why this?`, or personalized prompt.
 
 ## 8. Sharing
 

@@ -40,11 +40,11 @@ Business success is optional. Release quality is not.
        ↓
 #33 compatibility-rule DSL/evidence
        ↓
-#34 confidence/uncertainty model
+#34 evidence-availability/uncertainty model
        ↓
 #50 public-figure dataset      #49 synthetic-character lab
           ↘                    ↙
- #35 deterministic narrative   #53 static web comparison UI
+#35 deterministic narrative   #53 integrated static web comparison UI
           ↘                    ↙
               integrated UX
                  ↓
@@ -76,7 +76,7 @@ Issue #35 owns deterministic narrative composition and #53 owns the integrated s
 
 - #6 — inclusive compatibility taxonomy / prohibited claims — **P0**
 - #33 — versioned compatibility-rule DSL / pair evidence — **P0**
-- #34 — confidence / unknown-time evidence model — **P0**
+- #34 — categorical evidence availability / unknown-time model — **P0**
 - historical #35 LLM narrative service is **not** the default first-release runtime; prefer deterministic client-side narrative composition unless an issue is explicitly rewritten.
 
 ### Public/synthetic reference product
@@ -128,7 +128,7 @@ The INYEON-owned value lives above that layer:
 
 Public figures are reference records, not fake members.
 
-Every production record should preserve source/provenance and confidence. Unknown/disputed birth time must never be silently defaulted. Image use must be license-aware.
+Every production record should preserve source provenance plus categorical birth-data/source status. Unknown/disputed birth time must never be silently defaulted. Image use must be license-aware.
 
 Initial target: 500–2,000 useful, diverse, recognizable records before scaling further.
 
@@ -166,7 +166,7 @@ A feature-complete build is still **No-Go** if:
 - unknown birth time is fabricated;
 - personal birth/comparison values leave browser memory;
 - protected values enter storage, URLs, logs, analytics, or third-party requests;
-- public-figure provenance/confidence is missing;
+- public-figure provenance or birth-data/source status is missing;
 - synthetic figures can be mistaken for real members;
 - sharing leaks protected inputs;
 - browser runtime contains secrets;
