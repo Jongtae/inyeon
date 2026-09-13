@@ -11,10 +11,10 @@ Users need readable `What clicks`, `Potential friction`, and `Why this?` explana
 
 ## Decision
 
-- Create a framework-independent TypeScript narrative package. Its only domain input is validated, versioned compatibility evidence plus confidence/availability metadata and public presentation context.
+- Create a framework-independent TypeScript narrative package. Its only domain input is validated, versioned compatibility evidence plus the categorical availability metadata defined by ADR 0019 and public presentation context.
 - Keep three versioned layers distinct: compatibility rules emit facts/dimensions; the composer selects ordered message keys; a copy catalog maps keys to reviewed US-English text. Korean/traditional terms may appear only with plain-English translation or progressive disclosure. Templates never calculate pillars or decide whether a rule matched.
-- Produce a typed view model with `whatClicks`, `potentialFriction`, `whyThis`, `limitations`, and optional conversation prompts. Each claim retains its source `ruleId`, rule version, evidence references, confidence, and copy key for explainability.
-- Filter claims whose declared requirements are unavailable. Unknown/approximate/disputed time adds explicit limitations and suppresses hour-dependent claims; copy may not imply the missing fact.
+- Produce a typed view model with `whatClicks`, `potentialFriction`, `whyThis`, `limitations`, and optional conversation prompts. Each claim retains its source `ruleId`, rule version, evidence references, categorical evidence-availability state, and copy key for explainability. This state is not scientific or predictive confidence.
+- Filter claims whose declared requirements are unavailable. Unknown/date-only time makes hour-dependent evidence unavailable; approximate/disputed time adds explicit limitations and permits a definitive claim only when all retained variants agree. Candidate-review and resource-limit suppression remains distinct. Copy may not imply a missing fact.
 - Resolve duplicates/conflicts with versioned priority and diversity rules, then stable-sort by section, priority, rule ID, and copy key. If variation is used, derive it from an explicit stable public-safe seed; never use runtime randomness. Same input and versions must produce byte-equivalent structured output.
 - Render templates as text/structured tokens, not raw HTML. Escape user-controlled and imported labels at the UI boundary.
 - Enforce a prohibited-claims lexicon/review rule covering destiny, scientific prediction, soulmate probability, gender-role stereotypes, and unsupported claims about violence, morality, fidelity, fertility, mental health, sexuality, or inevitable marriage/divorce.

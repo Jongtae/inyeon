@@ -8,6 +8,8 @@ import type {
   CompatibilityRuleSet,
   CompatibilitySnapshot,
   CorrelatedRuleOutcome,
+  EvidenceAvailabilityState,
+  EvidenceLimitationCode,
   FactReference,
   RuleOperand,
   RuleParticipant,
@@ -356,6 +358,10 @@ function parseRule(value: unknown, allowTestRules: boolean): CompatibilityRule |
       .map((key) => key.replace(/^person-b\|/u, '')));
     if (aRequirements.size !== bRequirements.size || [...aRequirements].some((key) => !bRequirements.has(key))) return null;
   }
+  const requiresHour = (parsedRequirements as CompatibilityRule['requirements']).some((requirement) =>
+    requirement.source === 'visible-element-occurrences'
+    || (requirement.source === 'pillar' && requirement.position === 'hour'));
+  if (rule.hourDependent !== requiresHour) return null;
   const dimensions = array(rule.dimensionIds);
   const allowedKeys = array(rule.allowedNarrativeKeys);
   const blockedIds = array(rule.blockedNarrativeCategoryIds);
@@ -475,14 +481,39 @@ function evaluateClause(clause: AtomicPredicate, a: VariantGroup, b: VariantGrou
   return clause.operator === 'equals' ? left === right : left !== right;
 }
 
+function evidenceAvailability(state: EvidenceAvailabilityState, limitationCodes: readonly EvidenceLimitationCode[]) {
+  return { modelVersion: 'evidence-availability-v1' as const, state, limitationCodes: [...limitationCodes] };
+}
+
+function cloneRequirements(rule: CompatibilityRule) {
+  return rule.requirements.map((requirement) => requirement.source === 'pillar'
+    ? { participant: requirement.participant, source: 'pillar' as const, position: requirement.position }
+    : { participant: requirement.participant, source: requirement.source });
+}
+
+function nonEvidenceEvaluation(
+  rule: CompatibilityRule,
+  reviewStatus: CompatibilityRule['review']['status'],
+  resolution: Extract<CompatibilitySnapshot['ruleEvaluations'][number]['resolution'], { status: 'suppressed' | 'unavailable' }>,
+  state: EvidenceAvailabilityState,
+  codes: readonly EvidenceLimitationCode[],
+) {
+  const base = {
+    ruleId: rule.ruleId,
+    ruleVersion: rule.ruleVersion,
+    reviewStatus,
+    resolution,
+    evidenceAvailability: evidenceAvailability(state, codes),
+  };
+  return reviewStatus === 'approved' ? { ...base, reviewStatus, requirements: cloneRequirements(rule) } : base;
+}
+
 function evaluateRule(rule: CompatibilityRule, a: ValidatedChart, b: ValidatedChart) {
   if (rule.review.status !== 'approved') {
-    return {
-      ruleId: rule.ruleId,
-      ruleVersion: rule.ruleVersion,
-      reviewStatus: 'candidate' as const,
-      resolution: { status: 'suppressed', reason: 'RULE_REVIEW_PENDING' } as const,
-    };
+    return nonEvidenceEvaluation(
+      rule, 'candidate', { status: 'suppressed', reason: 'RULE_REVIEW_PENDING' },
+      'suppressed-review-pending', ['RULE_NOT_YET_AVAILABLE'],
+    );
   }
   const pairSemantics: PairSemantics = rule.pairSemantics.kind === 'symmetric'
     ? { kind: 'symmetric' }
@@ -493,9 +524,10 @@ function evaluateRule(rule: CompatibilityRule, a: ValidatedChart, b: ValidatedCh
         evidenceDirection: rule.pairSemantics.evidenceDirection,
         swapSemantics: 'reverse-participants',
       };
-  const base = {
+  const evidenceBase = {
     ruleId: rule.ruleId,
     ruleVersion: rule.ruleVersion,
+    requirements: cloneRequirements(rule),
     dimensionIds: [...rule.dimensionIds],
     strength: rule.strength,
     pairSemantics,
@@ -507,7 +539,10 @@ function evaluateRule(rule: CompatibilityRule, a: ValidatedChart, b: ValidatedCh
   if (rule.hourDependent && (!a.hourEligible || !b.hourEligible
     || a.temporalSupport === 'date-only' || a.temporalSupport === 'unknown'
     || b.temporalSupport === 'date-only' || b.temporalSupport === 'unknown')) {
-    return { ...base, resolution: { status: 'suppressed', reason: 'HOUR_INPUT_UNAVAILABLE' } as const };
+    return nonEvidenceEvaluation(
+      rule, 'approved', { status: 'unavailable', reason: 'HOUR_INPUT_UNAVAILABLE' },
+      'unavailable-hour-input', ['HOUR_DEPENDENT_EVIDENCE_UNAVAILABLE'],
+    );
   }
   const aGroups = groupVariants(a, collectReferences(rule, 'person-a'));
   const bGroups = groupVariants(b, collectReferences(rule, 'person-b'));
@@ -515,23 +550,45 @@ function evaluateRule(rule: CompatibilityRule, a: ValidatedChart, b: ValidatedCh
   const groupPairs = aGroups.length * bGroups.length;
   const correlatedIdSlots = bGroups.length * a.variants.length + aGroups.length * b.variants.length;
   if (groupPairs > MAX_VARIANT_GROUP_PAIRS || correlatedIdSlots > MAX_CORRELATED_ID_SLOTS) {
-    return { ...base, resolution: { status: 'suppressed', reason: 'VARIANT_MATRIX_LIMIT' } as const };
+    return nonEvidenceEvaluation(
+      rule, 'approved', { status: 'suppressed', reason: 'VARIANT_MATRIX_LIMIT' },
+      'suppressed-resource-limit', ['EVALUATION_RESOURCE_LIMIT'],
+    );
   }
   const outcomes: CorrelatedRuleOutcome[] = [];
   for (const left of aGroups) {
     for (const right of bGroups) {
       const clauses = rule.predicate.clauses.map((clause) => evaluateClause(clause, left, right));
-      const outcome = clauses.some((value) => value === null)
-        ? 'required-input-unavailable' as const
-        : clauses.every(Boolean) ? 'matched' as const : 'not-matched' as const;
+      if (clauses.some((value) => value === null)) {
+        return nonEvidenceEvaluation(
+          rule, 'approved', { status: 'unavailable', reason: 'REQUIRED_FEATURE_UNAVAILABLE' },
+          'unavailable-required-input', ['REQUIRED_INPUT_UNAVAILABLE'],
+        );
+      }
+      const outcome = clauses.every(Boolean) ? 'matched' as const : 'not-matched' as const;
       outcomes.push({ personAVariantIds: [...left.ids], personBVariantIds: [...right.ids], outcome });
     }
   }
   const values = new Set(outcomes.map(({ outcome }) => outcome));
-  const resolution = values.size === 1
-    ? { status: 'definitive' as const, outcome: outcomes[0]!.outcome, coverage: outcomes }
-    : { status: 'alternatives' as const, outcomes, limitation: 'RESULT_VARIES_ACROSS_PAIR_VARIANTS' as const };
-  return { ...base, resolution };
+  if (values.size === 1) {
+    const direct = a.temporalSupport === 'exact' && b.temporalSupport === 'exact'
+      && a.variants.length === 1 && b.variants.length === 1;
+    return {
+      ...evidenceBase,
+      resolution: { status: 'definitive' as const, outcome: outcomes[0]!.outcome, coverage: outcomes },
+      evidenceAvailability: evidenceAvailability(
+        direct ? 'available-from-details-provided' : 'consistent-across-retained-variants',
+        [],
+      ),
+    };
+  }
+  return {
+    ...evidenceBase,
+    resolution: { status: 'alternatives' as const, outcomes, limitation: 'RESULT_VARIES_ACROSS_PAIR_VARIANTS' as const },
+    evidenceAvailability: evidenceAvailability(
+      'varies-across-retained-variants', ['EVIDENCE_VARIES_ACROSS_TIME_VARIANTS'],
+    ),
+  };
 }
 
 export function validateCompatibilityRuleSet(value: unknown): value is CompatibilityRuleSet {
@@ -540,6 +597,63 @@ export function validateCompatibilityRuleSet(value: unknown): value is Compatibi
   } catch {
     return false;
   }
+}
+
+function participantEvidenceContext(chart: ValidatedChart, participant: RuleParticipant) {
+  const role = participant === 'person-a' ? 'PERSON_A' : 'PERSON_B';
+  const temporalCode: EvidenceLimitationCode | null = chart.temporalSupport === 'approximate'
+    ? `${role}_TIME_APPROXIMATE` as EvidenceLimitationCode
+    : chart.temporalSupport === 'disputed'
+      ? `${role}_TIME_DISPUTED` as EvidenceLimitationCode
+      : chart.temporalSupport === 'date-only'
+        ? `${role}_DATE_ONLY` as EvidenceLimitationCode
+        : chart.temporalSupport === 'unknown'
+          ? `${role}_TIME_UNKNOWN` as EvidenceLimitationCode
+          : null;
+  const limitationCodes: EvidenceLimitationCode[] = temporalCode ? [temporalCode] : [];
+  if (!chart.hourEligible) limitationCodes.push('HOUR_DEPENDENT_EVIDENCE_UNAVAILABLE');
+  return {
+    temporalSupport: chart.temporalSupport,
+    hourEvidence: chart.hourEligible ? 'available' as const : 'unavailable' as const,
+    limitationCodes,
+  };
+}
+
+function buildEvidenceSummary(
+  evaluations: CompatibilitySnapshot['ruleEvaluations'],
+  personA: ValidatedChart,
+  personB: ValidatedChart,
+) {
+  const approved = evaluations.filter(({ reviewStatus }) => reviewStatus === 'approved');
+  const definitive = approved.filter(({ resolution }) => resolution.status === 'definitive').length;
+  const alternatives = approved.filter(({ resolution }) => resolution.status === 'alternatives').length;
+  const unavailable = approved.filter(({ resolution }) => resolution.status === 'unavailable').length;
+  const suppressed = evaluations.filter(({ resolution }) => resolution.status === 'suppressed').length;
+  const state = approved.length === 0
+    ? 'no-approved-evidence' as const
+    : definitive === approved.length && suppressed === 0
+      ? 'available' as const
+      : alternatives === approved.length && suppressed === 0
+        ? 'bounded' as const
+        : unavailable === approved.length && suppressed === 0
+          ? 'unavailable' as const
+          : 'mixed' as const;
+  const participants = {
+    'person-a': participantEvidenceContext(personA, 'person-a'),
+    'person-b': participantEvidenceContext(personB, 'person-b'),
+  };
+  const limitationCodes: EvidenceLimitationCode[] = ['CANDIDATE_METHODOLOGY'];
+  if (approved.length === 0) limitationCodes.push('NO_APPROVED_DIMENSION_MAPPINGS');
+  limitationCodes.push(...participants['person-a'].limitationCodes, ...participants['person-b'].limitationCodes);
+  for (const evaluation of evaluations) limitationCodes.push(...evaluation.evidenceAvailability.limitationCodes);
+  return {
+    modelVersion: 'evidence-availability-v1' as const,
+    meaning: 'Evidence availability under the selected candidate methodology; not scientific or predictive confidence.' as const,
+    state,
+    ruleCounts: { approved: approved.length, definitive, alternatives, unavailable, suppressed },
+    participants,
+    limitationCodes: [...new Set(limitationCodes)],
+  };
 }
 
 /** Internal seam used by package tests; it is not exported from the package entry point. */
@@ -563,9 +677,12 @@ export function evaluateRuleSet(
       })
       .map((rule) => evaluateRule(rule, personA, personB));
     if (evaluations.some((value) => value === null)) return INPUT_ERROR;
+    const ruleEvaluations = evaluations as CompatibilitySnapshot['ruleEvaluations'];
+    const evidenceSummary = buildEvidenceSummary(ruleEvaluations, personA, personB);
     const snapshot: CompatibilitySnapshot = {
-      schemaVersion: 1,
-      snapshotVersion: 'compatibility-snapshot-v1',
+      schemaVersion: 2,
+      snapshotVersion: 'compatibility-snapshot-v2',
+      evidenceModelVersion: 'evidence-availability-v1',
       ruleSetVersion: ruleSet.ruleSetVersion,
       taxonomyVersion: ruleSet.taxonomyVersion,
       derivedFeatureVersion: ruleSet.derivedFeatureVersion,
@@ -576,8 +693,9 @@ export function evaluateRuleSet(
         'person-a': { profileVersion: personA.profileVersion, adapterVersion: personA.adapterVersion, derivedFeatureVersion: 'korean-saju-derived-v1' },
         'person-b': { profileVersion: personB.profileVersion, adapterVersion: personB.adapterVersion, derivedFeatureVersion: 'korean-saju-derived-v1' },
       },
-      ruleEvaluations: evaluations as CompatibilitySnapshot['ruleEvaluations'],
-      limitations: ruleSet.rules.some((rule) => rule.review.status === 'approved') ? [] : ['NO_APPROVED_DIMENSION_MAPPINGS'],
+      ruleEvaluations,
+      evidenceSummary,
+      limitations: evidenceSummary.limitationCodes,
     };
     return deepFreeze({ status: 'ok' as const, snapshot }) as CompatibilityEvaluationResult;
   } catch {
