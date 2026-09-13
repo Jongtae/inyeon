@@ -50,6 +50,15 @@ describe('INYEON Compatibility Lab', () => {
     expect(screen.getByRole('heading', { name: /Connection isn’t a verdict/ })).toBeInTheDocument();
   });
 
+  it('states the application-level zero-retention promise without denying platform logs', () => {
+    render(<App />);
+    navigate('#/privacy');
+    expect(screen.getByText(/processed in active browser memory/u)).toBeInTheDocument();
+    expect(screen.getByText(/does not put those details in browser storage, URLs, analytics, or app requests/u)).toBeInTheDocument();
+    expect(screen.getByText(/GitHub and internet infrastructure may keep separate access and security logs/u)).toBeInTheDocument();
+    expect(screen.getByText(/personal birth details are not part of INYEON’s request URLs/u)).toBeInTheDocument();
+  });
+
   it('skips to main content without changing the hash route', () => {
     render(<App />);
     navigate('#/public-figures');

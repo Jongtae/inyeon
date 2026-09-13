@@ -66,6 +66,8 @@ Exit:
 
 **Gate:** no public release with unresolved chart correctness around known boundaries or accidental personal-data egress.
 
+#52 now implements and independently verifies the local `inyeon-zero-retention-v1` boundary, including mutation-level browser interception, two-person live refresh/tab-close lifecycle checks, and offline personal/public/fictional comparison. Real-origin privacy smoke remains part of #47 and is not inferred from local CI.
+
 ## M2 — Reference data and usable web product
 
 Primary work: #35, #49, #50, #53, methodology/privacy pages.
@@ -104,7 +106,7 @@ Exit:
 
 ## M4 — Production hardening and GitHub Pages release
 
-Primary work: #47, #52 and release hardening.
+Primary work: #47 release hardening, consuming #52's completed local privacy boundary.
 
 Exit:
 

@@ -53,7 +53,7 @@ User personal birth/comparison inputs stay in browser memory only. INYEON applic
 
 Google Cloud remains a future escape hatch for features that truly require server-side state, protected APIs/secrets, realtime communication, authenticated accounts, or durable user data. It is not on the first-release critical path.
 
-Tracked in #47 and #52.
+The local application boundary is implemented by #52. #47 owns production deployment and real-origin verification.
 
 ## Local development
 
@@ -162,7 +162,7 @@ Preferred first-release share surfaces:
 
 Default share cards/links must not expose protected personal values. Until reviewed relationship mappings exist, they also contain no archetype, score, or relationship claim.
 
-Implemented by #43 with independent QA/security approval. #52 still owns the broader zero-retention release matrix, and #47 owns production-origin and deployed smoke evidence.
+Implemented by #43 with independent QA/security approval. #52 verifies the broader local zero-retention matrix, and #47 owns production-origin and deployed smoke evidence.
 
 ## Privacy model
 
@@ -174,7 +174,7 @@ Protected values must not enter localStorage, sessionStorage, IndexedDB, cookies
 
 GitHub Pages may retain platform-level access/security logs such as visitor IPs; public privacy copy must distinguish that from INYEON application-level zero retention.
 
-Tracked in #52 and `PRIVACY.md`.
+Implemented as the local `inyeon-zero-retention-v1` boundary in #52 and documented in `PRIVACY.md`. #47 still owns deployed privacy smoke on the eventual production Pages origin.
 
 ## Reddit release and product-learning loop
 

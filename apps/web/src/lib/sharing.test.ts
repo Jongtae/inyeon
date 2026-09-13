@@ -1,5 +1,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
+import { evaluateCompatibilityPair } from '@inyeon/compatibility-rules';
 
+import { calculateProfile, compareProfiles } from './product';
 import {
   copyShareUrl,
   createShareCardViewModel,
@@ -86,6 +88,45 @@ describe('share-safe payloads', () => {
       const candidate = { ...createSharePayload('lab-invite'), [key]: value };
       expect(parseSharePayload(candidate)).toBeNull();
       expect(() => serializeSharePayload(candidate as ReturnType<typeof createSharePayload>)).toThrow(TypeError);
+    }
+  });
+
+  it('rejects actual chart, derived-feature, pair-evidence, and narrative objects at every payload mapper', () => {
+    const context = (localDate: string, localTime: string) => ({
+      calendarKind: 'solar' as const,
+      timeZone: 'Asia/Seoul' as const,
+      profileVersion: 'korean-saju-v1' as const,
+      timezoneDataVersion: 'iana-2026c-inyeon-filter-v1' as const,
+      referenceDataVersion: 'issue-12-day-hour-uncertainty-v1' as const,
+      temporalSupport: 'exact' as const,
+      localDate,
+      localTime,
+    });
+    const first = calculateProfile(context('1994-07-19', '03:17'));
+    const second = calculateProfile(context('1992-11-27', '04:23'));
+    expect(first.status).toBe('ok');
+    expect(second.status).toBe('ok');
+    if (first.status !== 'ok' || second.status !== 'ok') throw new Error('Expected valid private profiles.');
+    const evidence = evaluateCompatibilityPair(first.profile.derived, second.profile.derived);
+    const comparison = compareProfiles(first.profile, second.profile, 'someone-i-know');
+    expect(evidence.status).toBe('ok');
+    expect(comparison.status).toBe('ok');
+    if (evidence.status !== 'ok' || comparison.status !== 'ok') throw new Error('Expected valid private comparison.');
+
+    const protectedObjects = {
+      chart: first.profile.chart,
+      features: first.profile.derived,
+      evidence: evidence.snapshot,
+      narrative: comparison.narrative,
+    };
+    for (const [key, value] of Object.entries(protectedObjects)) {
+      const candidate = { ...createSharePayload('compare-invite'), [key]: value };
+      const forged = candidate as ReturnType<typeof createSharePayload>;
+      expect(parseSharePayload(candidate)).toBeNull();
+      expect(() => serializeSharePayload(forged)).toThrow(TypeError);
+      expect(() => shareHash(forged)).toThrow(TypeError);
+      expect(() => shareUrl(forged, 'https://example.test/inyeon/')).toThrow(TypeError);
+      expect(() => createShareCardViewModel(forged)).toThrow(TypeError);
     }
   });
 });
