@@ -1,0 +1,22 @@
+{
+  "name": "@inyeon/saju-golden-corpus",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Private development and CI corpus for candidate Saju chart regression evidence",
+  "scripts": {
+    "preverify:data": "npm run build --workspace @inyeon/saju-adapter && npm run build --workspace @inyeon/saju-derived-features",
+    "verify:data": "node scripts/generate-golden-chart-corpus.mjs --check",
+    "typecheck": "tsc --noEmit --pretty false",
+    "test": "npm run verify:data && vitest run"
+  },
+  "dependencies": {
+    "@inyeon/saju-adapter": "0.4.0",
+    "@inyeon/saju-derived-features": "0.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "24.13.4",
+    "typescript": "6.0.3",
+    "vitest": "5.0.0"
+  }
+}

@@ -24,4 +24,8 @@ export const SAJU_DERIVED_FEATURE_CAPABILITIES = deepFreeze({
   fullChartObservedSymbolCount: 8,
   hourSuppressedObservedSymbolCount: 6,
   io: { network: false, storage: false, logging: false },
+  validationCorpus: {
+    workspace: '@inyeon/saju-golden-corpus', corpusVersion: 'golden-chart-corpus-v1',
+    positiveFixtureCount: 240, runtimeBundled: false, productionValidated: false,
+  },
 } as const);

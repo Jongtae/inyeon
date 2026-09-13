@@ -1,0 +1,7 @@
+# Golden-corpus provenance
+
+The corpus reuses exact SHA-256 pins and record IDs from the Issue #9 official-IANA resolver evidence, Issue #10 solar-term boundary evidence, Issue #11 year/month differential corpus, and Issue #12 day/hour uncertainty evidence. Each fixture states the narrow property each source can support. No source is promoted into authority for a different property.
+
+Evidence grades are `E0` unsupported, `E1` one implementation observation, `E2` separate implementation comparison, `E3` an independent or official-source-derived bounded-property reference without an exact fixture match, `E4` official/expert authority attached to the exact bounded property and fixture, and `D` known unresolved disagreement. Official IANA evidence is `E4` only when an exact reference-fixture ID is attached; other resolver-derived contexts remain `E3`. Astronomy Engine is at most `E3` for an apparent-Sun longitude crossing. Full chart and derived outputs remain `E1`; late 자시 (Jasi, 子時) and the three 61–72 second solar-reference differences are explicitly `D` where applicable.
+
+All fixture contexts are synthetic/reference test cases. No production-user or public-figure personal record is included. `candidateObserved` values are deterministic regression snapshots. The separate approvals file is not generator-managed and remains empty pending exact-property independent/expert review. Both artifacts remain `productionValidated: false` and `productionEligible: false`.

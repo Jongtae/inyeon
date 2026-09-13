@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "approvalVersion": "golden-chart-approvals-v1",
+  "profileVersion": "korean-saju-v1",
+  "productionValidated": false,
+  "productionEligible": false,
+  "generatorManaged": false,
+  "status": "pending-independent-or-expert-property-anchors",
+  "approvedExpected": []
+}
