@@ -86,7 +86,7 @@ Issue #35 owns deterministic narrative composition and #53 owns the integrated s
 
 ### Privacy/platform/distribution
 
-- #52 — client-only zero-retention personal-data boundary — **P0**
+- #52 — client-only zero-retention personal-data boundary — **implemented and independently approved for the local candidate; deployed evidence remains #47-owned**
 - #47 — release-grade GitHub Pages + GitHub Actions production path — **P0**
 - #43 — client-side claim-free cards / share-safe links / compare-with-me invitation — **implemented for the candidate release; deployed evidence remains #47-owned**
 - #51 — Reddit release-feedback loop with governed auto-improvement — **P0 after production candidate exists**

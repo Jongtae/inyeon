@@ -12,6 +12,18 @@ This is an application-level promise. GitHub Pages or other internet infrastruct
 
 ## 2. Protected personal data
 
+The source-level contract is versioned as `inyeon-zero-retention-v1` in `apps/web/src/lib/privacy-contract.ts`. Its protected classes are:
+
+- `birth-date`;
+- `birth-time-and-precision`;
+- `birthplace-and-coordinates`;
+- `time-zone-when-linked-to-a-person`;
+- `normalized-personal-chart-and-four-pillars`;
+- `derived-personal-chart-features`;
+- `private-pair-compatibility-evidence`;
+- `private-compatibility-narrative`;
+- `user-entered-someone-i-know-data`.
+
 Treat the following as protected:
 
 - birth date;
@@ -48,18 +60,31 @@ It must not be written to:
 
 Refresh/tab close should naturally discard personal state. Provide an explicit `Clear` action as well.
 
-The Issue #53 web shell implements one in-memory personal session shared across its fixed hash routes. Refresh and `Clear personal data` remove both the personal chart and any dependent public, fictional, or second-person comparison result. Public-reference data is a lazy-loaded checked-in static asset; personal values are never used to form its request URL. CI browser verification covers route-only URLs/history, empty local/session storage, cookies, IndexedDB, Cache API, and service-worker registrations, no calculation-time requests or WebSockets, clean console/page-error output, direct refresh, and offline calculation after required static assets load. The broader adversarial browser matrix and deployed privacy gate remain Issue #52.
+The Issue #53 web shell implements one in-memory personal session shared across its fixed hash routes. Refresh and `Clear personal data` remove both the personal chart and any dependent public, fictional, or second-person comparison result. Public-reference data is a lazy-loaded checked-in static asset; personal values are never used to form its request URL.
+
+Issue #52's CI browser matrix instruments storage mutations, IndexedDB, Cache API, cookies, fetch, XHR, beacons, WebSockets, service-worker registration, history mutation, console output, page errors, request URLs/bodies/headers, clipboard, Web Share arguments, and local PNG bytes. It covers two distinct private inputs through comparison, invitation export, Clear, refresh, and a replacement tab in the same browser context. Public and fictional comparisons also run offline after their checked-in static assets load. The deployed privacy smoke remains #47-owned because a production Pages origin does not yet exist.
 
 ## 4. Client-side computation
 
-Personal flows must work locally:
+Personal flows must work locally. Protected values have no edge into sharing or persistence:
 
 ```text
 PersonalBirthInput (memory)
    → InyeonSajuAdapter
    → Chart (memory)
    → CompatibilityEvidence (memory)
-   → UI/share artifact generated locally
+   → deterministic narrative (memory)
+   → React UI
+
+Clear / refresh / tab close
+   → the in-memory graph becomes unreachable
+
+Fixed share kind + validated public/fictional ID
+   → strict SharePayload
+   → fixed ShareCardViewModel
+   → local PNG / Web Share / safe link
+
+There is intentionally no arrow from the personal graph to SharePayload.
 ```
 
 After required static assets are loaded, core personal calculations should succeed with network access disabled.
@@ -143,6 +168,8 @@ CI should fail if protected canary values appear in:
 - analytics/telemetry payloads.
 
 Use Playwright/browser instrumentation for these checks.
+
+The source-level contract test also scans every non-test TypeScript/TSX runtime file and rejects direct, qualified, computed, constructed, or aliased access to the forbidden persistence, egress, logging, service-worker, cookie, and history capabilities. Browser E2E remains the behavioral proof; the static guard prevents an obvious forbidden capability from entering the runtime unnoticed.
 
 ## 11. Security implications of zero backend
 
