@@ -1,0 +1,13 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+node_modules/
+.expo/
+dist/
+build/
+coverage/
+*.log
+*.pem
+*.key
+secrets/

@@ -1,0 +1,49 @@
+# Project-oriented Codex configuration for INYEON.
+# Merge with user/workspace policy as needed.
+
+model = "gpt-5.6-sol"
+model_reasoning_effort = "high"
+model_reasoning_summary = "auto"
+model_verbosity = "medium"
+
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+approvals_reviewer = "auto_review"
+
+[agents]
+enabled = true
+max_concurrent_threads_per_session = 5
+default_subagent_model = "gpt-5.6-terra"
+default_subagent_reasoning_effort = "medium"
+
+[agents.architect]
+description = "Principal architect for cross-system design, ADRs, core data models, and critical technical decisions."
+config_file = "agents/architect.toml"
+
+[agents.worker]
+description = "Primary implementation agent for product features, services, and difficult debugging."
+config_file = "agents/worker.toml"
+
+[agents.explorer]
+description = "Read-heavy explorer for repository structure, APIs, libraries, dependencies, and evidence gathering."
+config_file = "agents/explorer.toml"
+
+[agents.security-reviewer]
+description = "Hostile read-only reviewer for security, privacy, dating safety, abuse, and release risk."
+config_file = "agents/security-reviewer.toml"
+
+[agents.qa]
+description = "QA and regression specialist for edge cases, failure isolation, test design, and release verification."
+config_file = "agents/qa.toml"
+
+[agents.fast-worker]
+description = "Low-cost leaf worker for mechanical changes, fixtures, docs, repetitive migrations, and isolated cleanup."
+config_file = "agents/fast-worker.toml"
+
+[features.multi_agent_v2]
+enabled = true
+tool_namespace = "agents"
+expose_spawn_agent_model_overrides = true
+hide_spawn_agent_metadata = false
+max_concurrent_threads_per_session = 5
+wait_agent_enabled = true
