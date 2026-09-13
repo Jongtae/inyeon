@@ -1,408 +1,226 @@
-# INYEON Analytics & Experimentation
+# INYEON Measurement & Feedback
 
-Status: measurement source of truth for alpha and city beta.
+Status: active measurement baseline for the Independent Release / Compatibility Lab.
 
 ## 1. Measurement philosophy
 
-The product should optimize for successful human connections, not swipe volume or time spent.
+The first release is intentionally privacy-first and zero-backend. Product measurement must not undermine that architecture.
 
-North-star:
+Default stance:
 
-> **Meaningful Connections per 100 Verified Weekly Active Users**
+> **No third-party browser analytics is required for the first public release.**
 
-Initial operational definition:
+The primary evidence sources are:
 
-`mutual match + both users message + conversation reaches >= 6 reciprocal messages`
+1. deterministic test/quality signals;
+2. GitHub build/deploy/issue history;
+3. explicit qualitative Reddit feedback after required Human Gates;
+4. manually observed product behavior during release testing.
 
-Later quality definition:
+Business KPIs such as revenue, CAC, subscription conversion, marketplace liquidity, or dating outcomes are not first-release success criteria.
 
-`reported date + optional desire-to-see-again`
+## 2. First-release success questions
 
-Compatibility analytics must distinguish **presentation effect** from **matching effect**.
+1. Can a stranger complete `My Saju → comparison → explanation → share` without assistance?
+2. Are Saju results deterministic and stable across releases?
+3. Do unknown/approximate/disputed birth-time cases degrade transparently?
+4. Do users understand `What clicks / Potential friction / Why this?` without interpreting it as scientific certainty?
+5. Are public-figure sources/confidence understandable and trustworthy?
+6. Do synthetic characters feel clearly fictional while still useful for exploration?
+7. Can users share results without exposing birth date/time/place?
+8. Does protected personal data stay entirely inside browser memory?
+9. Which flows/copy/results confuse or delight Reddit users?
+10. Can feedback be converted into traceable product improvements without letting noisy public comments drive unsafe changes?
 
-## 2. Core questions
+## 3. Release-quality measurements
 
-1. Does Gung-hap context improve reciprocal conversations?
-2. Does bounded Saju ranking improve downstream outcomes beyond explanation-only?
-3. Does K-culture positioning attract users who retain and date, or only curiosity clicks?
-4. Does birth-time uncertainty materially affect onboarding or trust?
-5. Does Inyeon Match scarcity improve attention without reducing marketplace breadth?
-6. Does Couple Mode create a durable post-match lifecycle?
-7. Are exposure, match, reply, safety, or subscription outcomes materially worse for supported identity cohorts?
-8. Can one metro maintain sufficient liquidity before expansion?
+### Correctness
 
-## 3. KPI tree
+- golden/reference fixture pass rate;
+- differential disagreements by category;
+- calendrical boundary regression failures;
+- compatibility rule test pass rate;
+- unknown-time suppression regression failures;
+- public-figure data validation conflicts.
 
-### Marketplace
+### Privacy / security
 
-- verified WAU / MAU by metro, orientation, intent, age cohort;
-- eligible candidates per active user;
-- candidate concentration / repeated exposure;
-- supply-demand imbalance by cohort;
-- median time to first viable recommendation.
+- protected-canary network leaks: must be 0;
+- protected-canary storage/cache leaks: must be 0;
+- protected-canary URL/log/console leaks: must be 0;
+- client secret detections: must be 0;
+- dependency/security findings by severity;
+- share payload privacy failures: must be 0.
 
-### Activation
+### Reliability / delivery
 
-- account started → account created;
-- age gate passed;
-- profile started → profile completed;
-- birth step started → chart created;
-- first discovery impression;
-- first Like;
-- first match;
-- time to first meaningful connection.
+- CI pass/fail history;
+- GitHub Pages deploy success;
+- production smoke pass rate;
+- direct-route/refresh test status;
+- rollback/redeploy drill status;
+- JavaScript/runtime defects reported from real users when available.
 
-### Compatibility
+### UX / accessibility
 
-- compatibility card view rate;
-- “Why this?” open rate;
-- traditional logic open rate;
-- Gung-hap full-report completion;
-- conversation-prompt copy/use rate;
-- resonance/feedback signal where explicitly collected.
+- critical flow E2E pass rate;
+- accessibility audit issues by severity;
+- supported browser/device regression reports;
+- loading/error/empty-state defects;
+- share flow/browser compatibility issues.
 
-### Inyeon Match
+## 4. Privacy-safe runtime telemetry policy
 
-- impression → open;
-- open → Like;
-- Like → mutual match;
-- match → reciprocal chat;
-- conversation depth;
-- report/block/unmatch guardrails.
+Do not collect first-release personal behavior analytics merely because a tool makes it easy.
 
-### Conversation / dates
+Protected data never belongs in analytics/telemetry:
 
-- match → first message;
-- first message → reply;
-- reciprocal chat;
-- six-message conversation;
-- reported date;
-- second-date intent;
-- ghosting proxy;
-- unmatch before first response.
+- birth date/time/place;
+- coordinates;
+- personal Four Pillars or derived chart vector;
+- private pair compatibility evidence;
+- information entered about `Someone I Know`;
+- share payloads containing derived personal data.
 
-### Retention
+If browser telemetry is introduced later, it requires an explicit privacy review and an allowlisted schema. Prefer coarse operational events that do not identify or fingerprint the user.
 
-- D1 / D7 / D30;
-- 8-week retention;
-- retained verified WAU;
-- successful-match churn versus Couple Mode conversion.
+Do not introduce persistent pseudonymous IDs/cookies solely for analytics in the zero-retention release.
 
-### Revenue
+## 5. Public-figure data quality
 
-- paywall view → purchase;
-- free → paid;
-- trial → paid if trials are used;
-- MRR / ARR;
-- ARPPU;
-- monthly subscription churn;
-- annual renewal;
-- entitlement restore/cancel/refund rates;
-- Couple Pass conversion.
+Maintain release-data reports such as:
 
-### Safety
+- total records;
+- records with multiple sources;
+- date-only records;
+- known/verified/well-sourced/disputed/unknown time distribution;
+- unresolved source conflicts;
+- missing/invalid image-license metadata;
+- records changed in latest refresh;
+- chart-calculation failures/out-of-range cases.
 
-- reports per 1k conversations;
-- blocks per 1k conversations;
-- scam/fraud prevalence;
-- impersonation/catfish reports;
-- underage flags;
-- moderation queue aging;
-- SLA by severity;
-- verification completion and failure reasons;
-- safety incident rate by acquisition channel/event.
+Dataset quality is more important than maximizing record count.
 
-### Fairness
+## 6. Synthetic-character quality
 
-At minimum evaluate exposure, match, reply, moderation, verification, and monetization outcomes across supported identity cohorts when legally and ethically appropriate.
+Track in CI/build reports:
 
-Do not infer sensitive identities from Saju.
+- total deterministic characters generated;
+- generator/seed version;
+- coverage across key Day Masters/branches/relationship evidence classes;
+- extreme distribution skews;
+- duplicate-rate checks;
+- ability to regenerate byte-for-byte or semantically equivalent dataset from versioned inputs.
 
-## 4. Event taxonomy
+Synthetic interaction data must never later be treated as real relationship outcome data.
 
-Never include raw DOB, birth time, exact coordinates, private message text, government IDs, verification images, or secret compatibility rule inputs that could re-identify a user.
+## 7. Sharing quality
 
-Approved starting event names:
+Test/measure:
+
+- share image generation success across supported browsers;
+- Web Share feature detection/fallback;
+- share-safe payload schema validation;
+- direct open/reconstruction success for share-safe links;
+- protected-field absence from URL/card/metadata;
+- `Compare with me` disclosure/confirmation state;
+- public-figure OG/social metadata validation.
+
+## 8. Reddit feedback taxonomy
+
+After owner-approved launch/access, classify feedback into:
 
 ```text
-account_started
-account_created
-age_gate_passed
-
-profile_started
-profile_completed
-photo_added
-
-verification_started
-verification_completed
-
-birth_step_viewed
-birth_date_entered
-birth_time_precision_set
-birth_place_resolved
-chart_created
-chart_methodology_opened
-
-discovery_impression
-profile_opened
-compatibility_card_viewed
-compatibility_why_opened
-traditional_logic_opened
-
-like_sent
-pass_sent
-match_created
-
-inyeon_impression
-inyeon_opened
-inyeon_like_sent
-inyeon_skipped
-
-gunghap_summary_viewed
-gunghap_full_viewed
-gunghap_prompt_copied
-
-message_thread_opened
-first_message_sent
-first_reply_received
-conversation_6way_reached
-
-we_met_prompted
-we_met_yes
-second_date_interest_yes
-
-couple_invite_sent
-couple_invite_accepted
-couple_mode_opened
-couple_checkin_completed
-couple_mode_revoked
-
-report_started
-report_submitted
-user_blocked
-user_unmatched
-
-paywall_viewed
-subscription_started
-subscription_renewed
-subscription_cancelled
-
-share_card_created
-invite_sent
-invite_signup_completed
-
-privacy_center_opened
-data_export_requested
-account_delete_requested
-account_deleted
+bug
+browser_device_issue
+accessibility
+privacy_concern
+saju_correctness
+methodology_dispute
+public_figure_data_correction
+copy_confusion
+ux_confusion
+feature_request
+share_problem
+performance
+praise
+outlier_or_low_evidence
 ```
 
-## 5. Event property governance
+Each feedback cluster should record:
 
-Every event property must be classified before use.
+- compact paraphrased summary;
+- source link(s);
+- number of independent supporting comments/users where reasonably inferable;
+- reproducibility/evidence level;
+- risk class;
+- suggested issue or existing linked issue;
+- whether auto-implementation is eligible.
 
-Allowed examples:
+Minimize usernames/identifiers and do not unnecessarily copy entire comments into the repo.
 
-- pseudonymous user ID;
-- metro bucket;
-- age band, not DOB;
-- relationship-intent enum;
-- birth-time precision enum `exact|approximate|unknown`;
-- chart methodology version;
-- compatibility rule-set version;
-- experiment ID/variant;
-- app version;
-- device/platform class;
-- non-sensitive acquisition channel;
-- verification status enum.
+## 9. Auto-improvement eligibility
 
-Restricted or prohibited in general analytics:
+### May auto-enter normal implementation when evidence is strong and the change is bounded/reversible
 
-- exact DOB/time;
-- exact birthplace;
-- exact GPS;
-- orientation unless explicitly approved for a fairness/product purpose and access-restricted;
-- message text;
-- photo/image contents;
-- report free text;
-- raw verification vendor payloads;
-- LLM prompt payloads containing personal data.
+- reproducible browser/rendering bug;
+- broken route/link/share flow;
+- clear copy typo or localized confusion with a narrow fix;
+- accessibility defect;
+- performance regression;
+- deterministic test failure;
+- public-figure correction backed by trustworthy source evidence and no material dispute.
 
-## 6. Experiment contract
+### Must remain human-reviewed
 
-Every experiment must declare:
+- Saju methodology or rule-weight change;
+- changing what is considered a good/bad relationship dynamic;
+- privacy/security architecture;
+- any new data collection/analytics;
+- introducing a backend/GCP service;
+- public/celebrity claims with reputational risk;
+- major product positioning/scope;
+- legal/platform-policy questions;
+- material vendor spend;
+- weak, contradictory, or brigaded feedback.
 
-```yaml
-hypothesis:
-primary_metric:
-secondary_metrics:
-safety_guardrails:
-fairness_guardrails:
-minimum_sample:
-maximum_duration:
-stopping_rule:
-owner:
-assignment_unit:
-exposure_event:
-analysis_plan:
-```
+## 10. Evidence threshold
 
-Requirements:
+Do not implement a product change merely because one highly upvoted comment exists.
 
-- randomize at the user level for matching/product experiments unless another unit is justified;
-- persist assignment long enough to observe downstream conversations;
-- monitor sample-ratio mismatch;
-- inspect cohort imbalance;
-- predeclare safety/fairness stop conditions;
-- do not ship a result solely because Likes increased.
+Prefer this order:
 
-## 7. Critical three-arm experiment
+1. reproducible defect with objective evidence;
+2. repeated independent reports;
+3. clear usability misunderstanding reproduced in product testing;
+4. isolated preference request;
+5. speculative opinion.
 
-Primary hypothesis:
+Upvotes can be a signal but are not a product requirement by themselves.
 
-> Gung-hap produces better downstream dating outcomes than a normal marketplace baseline.
+## 11. Feedback-to-release traceability
 
-Arms:
+Desired chain:
 
-- **A — baseline ranking, no compatibility explanation**;
-- **B — baseline ranking + compatibility explanation**;
-- **C — baseline ranking + bounded Saju ranking feature + explanation**.
+`Reddit source cluster → GitHub issue → PR/commit → tests → release SHA → optional changelog/update`
 
-Primary funnel:
+Every automatically created issue should cite source links and summarize evidence without importing unnecessary personal information.
 
-`mutual match → reciprocal conversation → 6-message conversation → reported date → want-to-see-again`
+## 12. Optional future privacy-safe aggregate analytics
 
-Interpretation:
+If qualitative feedback proves insufficient, consider a deliberately minimal opt-in or aggregate measurement design later.
 
-- B > A but C ~= B: strong **presentation/context effect**, weak evidence that Saju ranking adds value.
-- C > B on downstream outcomes with guardrails stable: evidence that bounded compatibility features improve product outcomes in this marketplace.
-- Likes increase but downstream conversation/date quality does not: treat as novelty effect, not matching success.
+Possible non-sensitive coarse events could include:
 
-This experiment must never be described as proving metaphysical causation.
+- anonymous page view counted by hosting/privacy-preserving aggregate tooling;
+- feature availability/browser-class diagnostics;
+- share-button invocation count without result payload;
+- public-figure page popularity without personal chart input.
 
-## 8. High-value product experiments
+This is not approved by default. Any telemetry changes require explicit privacy review and must preserve the zero-retention promise for personal birth/comparison data.
 
-| Experiment | Primary metric | Guardrail |
-|---|---|---|
-| Compatibility card vs none | reciprocal conversation | report/block rate |
-| “Inyeon” vs plain “Korean compatibility” | qualified activation | comprehension/trust |
-| Daily vs 3/week Inyeon | Inyeon→conversation | D7 retention |
-| Explanation before vs after full profile/photo review | conversation quality | Like rate / complaints |
-| Balanced “clicks + watch for” vs positive-only | report completion/trust | match conversion |
-| Date question vs none | first reply / depth | unmatch |
-| Birth-time reassurance variants | chart completion | bad/misreported input |
-| Gung-hap ranking weight 0/low/medium | meaningful connections | fairness/exposure |
-| Full report at match vs after 5 messages | conversation depth | report use |
-| Couple invite day 14/30/60 | Couple activation | unmatch/uninstall |
-| Share card vs none | referral K-factor | privacy complaints |
+## 13. Future Marketplace Mode
 
-Do not A/B test deceptive certainty such as “soulmate” claims.
+The former marketplace north-star and A/B/C dating-outcome experiment remain historical/future reference only.
 
-## 9. Dashboard set
-
-### Executive / weekly
-
-- Meaningful Connections / 100 verified WAU;
-- verified WAU by metro;
-- eligible pool health;
-- D7/D30 retention;
-- report/block/scam rates;
-- paid conversion/churn;
-- experiment health;
-- top fairness exceptions.
-
-### Marketplace operations
-
-- supply and demand by cohort;
-- exposure concentration;
-- recommendation exhaustion;
-- time to match/conversation;
-- verification coverage.
-
-### Trust & Safety
-
-- incoming cases by severity/category;
-- backlog age;
-- SLA breach rate;
-- repeat offenders;
-- scam cluster indicators;
-- appeal/escalation outcomes.
-
-### Product funnel
-
-- onboarding step conversion;
-- discovery/open/Like/match;
-- chat depth;
-- Inyeon funnel;
-- full-report usage;
-- Couple funnel.
-
-### Revenue
-
-- paywall funnel;
-- MRR/ARR;
-- ARPPU;
-- renewal/churn;
-- refunds;
-- plan mix.
-
-## 10. Attribution / acquisition
-
-Track:
-
-- creator/campaign ID;
-- community/event ID;
-- paid channel/campaign;
-- referral invite source;
-- organic/brand/direct.
-
-Never include private profile content in marketing attribution systems.
-
-For each channel compare:
-
-- verified activation;
-- D7/D30 retention;
-- meaningful-connection rate;
-- report/block rate;
-- paid conversion;
-- CAC to verified active user, not just signup CAC.
-
-## 11. Data quality
-
-Required checks:
-
-- event schema validation;
-- duplicate-event detection;
-- idempotent server events for match/subscription/delete flows;
-- client/server reconciliation for critical funnel events;
-- sample-ratio mismatch alerts;
-- null/unknown semantics documented;
-- analytics versioning tied to app/API release where material.
-
-## 12. Privacy-safe architecture
-
-Recommended pipeline:
-
-`product services → event schema validator → PII scrubber → event collector → warehouse → restricted BI`
-
-Separate:
-
-- operational DB;
-- sensitive birth vault;
-- moderation evidence;
-- analytics warehouse.
-
-Use least privilege. Analysts should not need raw private messages or birth inputs.
-
-## 13. Decision rules
-
-Do not scale acquisition because top-of-funnel metrics look good if:
-
-- eligible candidate density is weak;
-- reciprocal conversation is flat/down;
-- report/block/scam rates worsen;
-- key cohorts get materially worse exposure;
-- moderation backlog exceeds SLA;
-- retention is novelty-driven and collapses after week 1.
-
-Second-city expansion requires local liquidity, safety, and retention evidence—not just MAU growth.
+If real-user dating is later activated, design a new analytics architecture appropriate to that mode rather than quietly reusing first-release zero-retention assumptions.
