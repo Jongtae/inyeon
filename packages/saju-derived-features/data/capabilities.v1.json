@@ -1,0 +1,15 @@
+{
+  "manifestVersion": 1,
+  "packageVersion": "0.1.0",
+  "schemaVersion": 1,
+  "derivedFeatureVersion": "korean-saju-derived-v1",
+  "canonicalTableVersion": "visible-stem-branch-elements-v1",
+  "weightingVersion": "unit-visible-symbol-v1",
+  "status": "candidate",
+  "productionValidated": false,
+  "acceptedInput": "successful @inyeon/saju-adapter 0.4.0 calculateChart result",
+  "variantPolicy": "preserve opaque IDs, source order, and correlated whole-state alternatives",
+  "hourSuppressionPolicy": "six visible symbols; hour unavailable; no hour-dependent feature",
+  "io": { "network": false, "storage": false, "logging": false },
+  "runtimeDependencies": ["@inyeon/saju-adapter types only"]
+}

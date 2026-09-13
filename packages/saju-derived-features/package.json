@@ -1,0 +1,30 @@
+{
+  "name": "@inyeon/saju-derived-features",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "INYEON-owned deterministic visible-chart feature derivation",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": ["dist", "README.md", "PROVENANCE.md", "data"],
+  "scripts": {
+    "prebuild": "npm run build --workspace @inyeon/saju-adapter",
+    "build": "tsc -p tsconfig.build.json",
+    "pretypecheck": "npm run build --workspace @inyeon/saju-adapter",
+    "typecheck": "tsc --noEmit --pretty false",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@inyeon/saju-adapter": "0.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "24.13.4",
+    "lunar-javascript": "1.7.7",
+    "typescript": "6.0.3",
+    "vitest": "5.0.0"
+  }
+}
