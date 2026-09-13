@@ -14,6 +14,30 @@ The first useful product should work even with one user:
 
 `Me → my Saju → compare with public figures → explore synthetic characters → understand relationship dynamics → share`
 
+## Autonomous team status
+
+INYEON is building toward a **verified L4 autonomous product team**. The repository currently identifies itself as `l4-candidate`; it must not claim `l4-verified` until the operational graduation criteria in `docs/AUTONOMY_L4.md` are backed by durable evidence.
+
+L4 here means the team can repeatedly execute:
+
+`goal/state → work selection → implementation → independent review → CI → release → observe → analyze → judge → state/decision update → next work`
+
+and can recover from production failure through:
+
+`detect → contain → rollback/recover → root cause → regression protection → redeploy → verify`.
+
+Key autonomy assets:
+
+- `TEAM_STATE.toml` — machine-readable working state and autonomy proof counters;
+- `docs/AUTONOMY_L4.md` — maturity contract and L4 graduation criteria;
+- `docs/ROLE_AUTHORITY_MATRIX.md` — role authority and separation of duties;
+- `evals/autonomy/cases.json` — behavioral governance fixtures;
+- `scripts/check_l4.py` — structural/policy consistency guard;
+- `docs/decisions/` — durable product decision ledger;
+- specialist Codex roles for architecture, implementation, QA/security, Reddit operation, feedback analysis, and independent product judgment.
+
+L4 graduation requires, among other things, five consecutive closed autonomous loops, at least one exercised recovery path, >=95% behavioral-eval pass rate with zero critical failures, zero active policy conflicts, no routine owner interventions outside declared Human Gates, and a real production/rollback path.
+
 ## Active first-release architecture
 
 The first public release is intentionally zero-backend:
@@ -143,7 +167,7 @@ Product Judge preregistration
  → Decision Ledger
  → GitHub Issue
  → Codex Worker
- → QA/review
+ → QA/security review
  → GitHub Pages release
  → observation / next experiment
 ```
@@ -189,7 +213,8 @@ At minimum it should have:
 - rollback/redeploy capability;
 - public-figure source/confidence disclosure;
 - clear separation of public figures, synthetic characters, and real users;
-- production smoke checks.
+- production smoke checks;
+- `scripts/check_harness.py` and `scripts/check_l4.py` green.
 
 ## Active execution path
 
@@ -204,7 +229,7 @@ At minimum it should have:
  ↓
 #50 public figures + #49 synthetic lab
  ↓
-static comparison UI + deterministic explanation
+#53 static comparison UI + deterministic explanation
  ↓
 #43 sharing
  ↓
@@ -219,34 +244,23 @@ Historical marketplace P0 labels do not outrank this active first-release path.
 
 ## Start here for Codex
 
-1. Read `AGENTS.md`, `CODEX.md`, and `docs/TOY_PROJECT_MODE.md`.
-2. Read `PRD.md`, `ARCHITECTURE.md`, `ROADMAP.md`, `BACKLOG.md`, `PRIVACY.md`, and `SAJU_ENGINE_SPEC.md`.
-3. Read `docs/adr/0002-reddit-autonomy.md`, `docs/adr/0003-reddit-evidence-governance.md`, and `docs/REDDIT_EXPERIMENT_GOVERNANCE.md` before operating Reddit.
-4. Validate `.codex/config.toml` and run `scripts/check_harness.py`.
-5. Operate in Independent Release Mode and follow the active static-release critical path.
+1. Read `TEAM_STATE.toml`, `AGENTS.md`, `CODEX.md`, `docs/AUTONOMY_L4.md`, and `docs/ROLE_AUTHORITY_MATRIX.md`.
+2. Read `docs/TOY_PROJECT_MODE.md`, `PRD.md`, `ARCHITECTURE.md`, `ROADMAP.md`, `BACKLOG.md`, `PRIVACY.md`, and `SAJU_ENGINE_SPEC.md`.
+3. Read `docs/HUMAN_GATES.md`, `docs/REDDIT_EXPERIMENT_GOVERNANCE.md`, relevant ADRs, decisions, and current issue context.
+4. Reconcile `TEAM_STATE.toml` with actual repository/issues/release state.
+5. Validate `.codex/config.toml` and run `scripts/check_harness.py` plus `scripts/check_l4.py`.
+6. Operate in Independent Release Mode and follow the active static-release critical path.
+7. Update `TEAM_STATE.toml` at meaningful milestones with evidence, not estimates.
 
 Recommended Codex instruction:
 
 ```text
-Read AGENTS.md, CODEX.md, docs/TOY_PROJECT_MODE.md, PRD.md,
-ARCHITECTURE.md, ROADMAP.md, BACKLOG.md, PRIVACY.md and SAJU_ENGINE_SPEC.md.
-
-Operate in Independent Release Mode.
-This is an independent personal project, but it IS intended for a real public release.
-Do not lower the engineering, privacy, reliability, UX, accessibility, or deployment bar.
-
-Use a zero-backend first-release architecture: GitHub Actions + GitHub Pages,
-with personal birth/comparison inputs processed only in browser memory.
-
-Prioritize #8 → #9-14 → #33-34 → #50/#49 → polished static UI →
-#43 sharing → #52 privacy verification → #47 production release → #51 Reddit product-learning loop.
-
-For Reddit, use the registered reddit-operator, feedback-analyst, and product-judge roles.
-Keep Operator != Analyst != Judge. Preregister material experiments, pass raw evidence rather than campaign-owner conclusions, use risk-based automation, record material decisions, and never change Saju methodology directly from Reddit opinion.
-
-Do not rebuild mature calendrical primitives that a validated open-source dependency provides.
-Do not introduce GCP/backend persistence unless a concrete requirement proves static architecture insufficient and the architecture/privacy change is explicitly reviewed.
-Continue through production release until a real Human Gate is reached.
+Read TEAM_STATE.toml and the root/autonomy governance docs first.
+Reconcile state with the repo/issues/releases, repair stale policy/state, and continue the highest-value unblocked work.
+Operate in Independent Release Mode with production-grade quality and zero-backend privacy boundaries.
+Preserve Operator → Analyst → Judge → Worker → QA/Security separation for material product learning.
+Run harness/L4 checks, update TEAM_STATE at meaningful milestones, and do not claim l4-verified until the AUTONOMY_L4 graduation evidence is complete.
+Continue through production release, observation, product decision, implementation, verification, and the next autonomous cycle unless a real Human Gate is reached.
 ```
 
 ## Product invariants
