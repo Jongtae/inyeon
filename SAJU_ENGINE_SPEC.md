@@ -36,6 +36,8 @@ The Issue #12 chart contract is bounded to source-local dates and projected-KST 
 
 The product/domain layer must not depend directly on one upstream library API.
 
+`@inyeon/saju-derived-features` is the separate deterministic consumer of successful `calculateChart` results. Version `korean-saju-derived-v1` accepts no raw birth context or adapter error and has no runtime calendrical import. It preserves temporal support, opaque variant IDs/order, whole-state correlation, and hour-dependent evidence. Invalid or version-incompatible source objects fail with one bounded non-reflective error.
+
 ## Solar-term candidate evidence
 
 The candidate year/month contract uses the exact-pinned `manseryeok@2.0.0` embedded UTC-minute boundary. `before_primary_boundary`, `at_primary_boundary`, and `after_primary_boundary` mean exactly 60 seconds before, equality with, and 60 seconds after that primary boundary. Equality belongs to the new month and, at 입춘 (Ipchun), the new Saju year.
@@ -72,10 +74,9 @@ For the first zero-backend release, personal inputs are processed only in browse
 
 - year/month/day/hour pillars when computable;
 - heavenly stems / earthly branches;
-- five-element derived features;
-- day master;
-- ten-god relationships where the profile specifies them;
-- branch/stem relationships used by compatibility rules;
+- visible-stem/branch five-element and yin/yang annotations;
+- day master as the visible day-pillar stem;
+- equal unit-count visible-element occurrences with six/eight-symbol completeness metadata;
 - confidence/input-completeness metadata;
 - possible-alternative states when boundary uncertainty genuinely prevents a single chart result;
 - all methodology/upstream/reference versions needed for reproduction.
@@ -83,6 +84,8 @@ For the first zero-backend release, personal inputs are processed only in browse
 ## Methodology governance
 
 Different Four Pillars traditions make different choices around boundaries and derived interpretations. Every such choice must be explicit in a versioned `korean-saju-v1` calculation profile.
+
+The initial derived layer is deliberately narrower than the historical candidate list. It does not infer balance, strength, dominance, seasonal weighting, hidden stems, Ten Gods, combinations, clashes, harm, punishment, break, or relationship dimensions. It accepts no gender or sexuality input. Reconsider those features only after #6 defines the inclusive taxonomy, #33 identifies primitives required by approved deterministic rules, and #14 provides release-corpus evidence. Visible occurrence counts are never a strength/balance score and alternatives are never averaged.
 
 The profile must document at least:
 

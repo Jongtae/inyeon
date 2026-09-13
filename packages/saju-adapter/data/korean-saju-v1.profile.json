@@ -21,7 +21,7 @@
   "hiddenStemWeighting": { "enabled": false, "status": "out-of-scope" },
   "daewoon": { "enabled": false, "status": "out-of-scope" },
   "genderDirectedCalculations": { "enabled": false, "status": "out-of-scope" },
-  "derivedFeatures": { "enabled": false, "status": "owned-by-issue-13" },
+  "derivedFeatures": { "enabled": true, "status": "separate-candidate-package", "package": "@inyeon/saju-derived-features", "packageVersion": "0.1.0", "derivedFeatureVersion": "korean-saju-derived-v1", "productionValidated": false },
   "evidence": {
     "differentialCorpus": "differential-corpus.v1.json",
     "solarTermBoundaryCorpus": "solar-term-boundaries.v1.json",

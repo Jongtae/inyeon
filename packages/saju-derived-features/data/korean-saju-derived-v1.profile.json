@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "derivedFeatureVersion": "korean-saju-derived-v1",
+  "canonicalTableVersion": "visible-stem-branch-elements-v1",
+  "weightingVersion": "unit-visible-symbol-v1",
+  "status": "candidate",
+  "productionValidated": false,
+  "source": {
+    "package": "@inyeon/saju-adapter",
+    "adapterVersion": "0.4.0",
+    "profileVersion": "korean-saju-v1",
+    "referenceDataVersion": "issue-12-day-hour-uncertainty-v1"
+  },
+  "dayMaster": "visible-day-heavenly-stem",
+  "visibleElementOccurrences": {
+    "unitWeightPerVisibleStemOrBranch": 1,
+    "fullObservedSymbolCount": 8,
+    "hourSuppressedObservedSymbolCount": 6,
+    "averagingAcrossVariants": false
+  },
+  "comparisonReference": {
+    "name": "lunar-javascript",
+    "version": "1.7.7",
+    "scope": "checked conventional stem/branch element and polarity tables only",
+    "methodologyAuthority": false
+  },
+  "excluded": [
+    "balance", "strength", "dominance", "seasonal-weighting", "hidden-stems", "ten-gods",
+    "combinations", "clashes", "harm", "punishment", "break", "relationship-dimensions",
+    "gender", "sexuality"
+  ]
+}

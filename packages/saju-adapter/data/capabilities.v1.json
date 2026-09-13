@@ -36,7 +36,7 @@
   "unknownTime": { "fabricatedDefault": false, "result": "bounded-year-month-day-with-hour-suppressed" },
   "approximateTime": { "status": "bounded-candidate", "owner": "Issue #12" },
   "disputedTime": { "status": "bounded-candidate", "owner": "Issue #12" },
-  "derivedFeatures": { "status": "not-applicable", "owner": "Issue #13" },
+  "derivedFeatures": { "status": "separate-candidate-package", "package": "@inyeon/saju-derived-features", "packageVersion": "0.1.0", "derivedFeatureVersion": "korean-saju-derived-v1", "productionValidated": false, "owner": "Issue #13" },
   "historicalTimeZonePolicy": { "status": "resolver-integrated-for-year-month-and-chart", "owner": "Issues #11 and #12" },
   "yearMonthCalculation": {
     "status": "resolver-integrated-candidate",

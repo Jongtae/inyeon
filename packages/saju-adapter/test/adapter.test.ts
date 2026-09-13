@@ -142,7 +142,10 @@ describe('InyeonSajuAdapter', () => {
       supportedTimeZones: ['Asia/Seoul'],
       supportedCivilDateRange: { minimum: '1989-01-01', maximum: '2024-12-31' },
       productionEligible: false,
-      derivedFeatures: { status: 'not-applicable' },
+      derivedFeatures: {
+        status: 'separate-candidate-package', package: '@inyeon/saju-derived-features',
+        packageVersion: '0.1.0', derivedFeatureVersion: 'korean-saju-derived-v1', productionValidated: false,
+      },
       historicalTimeZonePolicy: { status: 'resolver-integrated-for-year-month-and-chart' },
     });
     expect(Object.isFrozen(SAJU_ADAPTER_CAPABILITIES)).toBe(true);
