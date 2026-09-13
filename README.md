@@ -43,7 +43,7 @@ The first release prioritizes:
 6. privacy-safe client-side sharing;
 7. a polished responsive web UI;
 8. GitHub Pages production deployment, CI, rollback, privacy testing, and release hardening;
-9. a governed Reddit feedback loop after release.
+9. an autonomous but evidence-governed Reddit launch/feedback loop after release.
 
 Real-user dating discovery, likes, matches, chat, payments, city seeding, and dating-marketplace operations are later product layers. They are deferred because they are outside the **first product scope**, not because release quality is optional.
 
@@ -124,25 +124,52 @@ GitHub Pages may retain platform-level access/security logs such as visitor IPs;
 
 Tracked in #52 and `PRIVACY.md`.
 
-## Reddit release and feedback loop
+## Reddit release and product-learning loop
 
-Reddit is the preferred initial promotion/feedback channel.
+Reddit is the preferred initial promotion/feedback channel. The owner has granted standing authorization for **maximum practical Reddit autonomy** where tools and community/platform rules allow it.
+
+Operating autonomy and product judgment are intentionally separated:
+
+`Reddit Operator != Feedback Analyst != Product Judge`
 
 Target loop:
 
-`owner-approved Reddit post → feedback → compliant ingestion → classify/deduplicate → GitHub issue → Codex bounded fix → CI/preview → GitHub Pages release`
+```text
+Product Judge preregistration
+ → Reddit Operator post/replies
+ → RAW EVIDENCE
+ → Feedback Analyst
+ → Product Judge: IGNORE / OBSERVE / EXPERIMENT / ACT
+ → Decision Ledger
+ → GitHub Issue
+ → Codex Worker
+ → QA/review
+ → GitHub Pages release
+ → observation / next experiment
+```
 
-Human Gate before:
+Rules:
 
-- creating the Reddit account;
-- accepting Reddit developer/platform terms or requesting API access;
-- entering credentials;
-- publishing posts/replies;
-- ambiguous subreddit-rule decisions.
+- the Reddit Operator does not grade its own campaign;
+- Reddit is directional, self-selected evidence, not a representative market poll;
+- upvotes/sentiment alone do not determine product changes;
+- user-requested solutions are separated from observed underlying problems;
+- acquisition truth is not automatically product truth;
+- low-risk reversible fixes can move automatically through normal CI/QA/release gates when evidence is strong;
+- high-risk changes involving Saju methodology, privacy/security, personal-data collection, architecture, or major product positioning remain strongly governed;
+- Saju methodology disputes can trigger investigation but not direct rule changes;
+- material decisions are recorded in `docs/decisions/`;
+- noncritical feedback normally observes a 24–72h evidence/cooldown window before batched changes.
 
-After approval, feedback triage can be automated, but only safe, reversible, evidence-backed changes may auto-enter the implementation loop. Saju methodology, privacy/security, major product direction, public claims, and material spend remain human-reviewed.
+Human intervention is requested only for genuine owner-only barriers such as CAPTCHA, verification/MFA/identity steps, owner-only platform terms, ambiguous subreddit rules, account recovery/security challenges, or material legal/reputational risk. Routine posting/replies do not require per-post owner approval once an authorized account/integration is available.
 
-Tracked in #51.
+See:
+
+- `docs/adr/0002-reddit-autonomy.md`
+- `docs/adr/0003-reddit-evidence-governance.md`
+- `docs/REDDIT_EXPERIMENT_GOVERNANCE.md`
+- `docs/decisions/README.md`
+- #51
 
 ## Release bar
 
@@ -185,7 +212,7 @@ static comparison UI + deterministic explanation
  ↓
 #47 GitHub Pages production release
  ↓
-#51 Reddit feedback loop
+#51 autonomous Reddit operation + evidence-governed product learning
 ```
 
 Historical marketplace P0 labels do not outrank this active first-release path.
@@ -194,8 +221,9 @@ Historical marketplace P0 labels do not outrank this active first-release path.
 
 1. Read `AGENTS.md`, `CODEX.md`, and `docs/TOY_PROJECT_MODE.md`.
 2. Read `PRD.md`, `ARCHITECTURE.md`, `ROADMAP.md`, `BACKLOG.md`, `PRIVACY.md`, and `SAJU_ENGINE_SPEC.md`.
-3. Validate `.codex/config.toml` and run `scripts/check_harness.py`.
-4. Operate in Independent Release Mode and follow the active static-release critical path.
+3. Read `docs/adr/0002-reddit-autonomy.md`, `docs/adr/0003-reddit-evidence-governance.md`, and `docs/REDDIT_EXPERIMENT_GOVERNANCE.md` before operating Reddit.
+4. Validate `.codex/config.toml` and run `scripts/check_harness.py`.
+5. Operate in Independent Release Mode and follow the active static-release critical path.
 
 Recommended Codex instruction:
 
@@ -211,7 +239,10 @@ Use a zero-backend first-release architecture: GitHub Actions + GitHub Pages,
 with personal birth/comparison inputs processed only in browser memory.
 
 Prioritize #8 → #9-14 → #33-34 → #50/#49 → polished static UI →
-#43 sharing → #52 privacy verification → #47 production release → #51 Reddit feedback.
+#43 sharing → #52 privacy verification → #47 production release → #51 Reddit product-learning loop.
+
+For Reddit, use the registered reddit-operator, feedback-analyst, and product-judge roles.
+Keep Operator != Analyst != Judge. Preregister material experiments, pass raw evidence rather than campaign-owner conclusions, use risk-based automation, record material decisions, and never change Saju methodology directly from Reddit opinion.
 
 Do not rebuild mature calendrical primitives that a validated open-source dependency provides.
 Do not introduce GCP/backend persistence unless a concrete requirement proves static architecture insufficient and the architecture/privacy change is explicitly reviewed.
