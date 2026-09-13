@@ -4,9 +4,12 @@
   "productionValidated": false,
   "productionEligible": false,
   "calendar": { "value": "solar-gregorian", "status": "bounded-candidate" },
-  "supportedCivilContext": { "timeZone": "Asia/Seoul", "minimumDate": "1989-01-01", "maximumDate": "2024-12-31", "timezoneStrategy": "fixed-utc-plus-09-civil-time", "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1", "historicalExpansion": "deferred-to-issue-9" },
-  "yearBoundary": { "value": "precise-ipchun-instant", "source": "manseryeok-embedded-table", "precision": "minute", "status": "pending-methodology-review" },
-  "monthBoundary": { "value": "twelve-jie-solar-term-instants", "source": "manseryeok-embedded-table", "precision": "minute", "status": "pending-methodology-review" },
+  "supportedCivilContext": { "timeZone": "Asia/Seoul", "minimumDate": "1989-01-01", "maximumDate": "2024-12-31", "timezoneStrategy": "fixed-utc-plus-09-civil-time", "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1", "timezoneResolver": "validated-not-integrated" },
+  "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+  "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+  "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+  "yearBoundary": { "value": "ipchun-embedded-utc-minute", "source": "manseryeok-embedded-table", "precision": "minute", "status": "candidate-pending-expert-review" },
+  "monthBoundary": { "value": "twelve-jie-embedded-utc-minute-boundaries", "source": "manseryeok-embedded-table", "precision": "minute", "status": "candidate-pending-expert-review" },
   "dayBoundary": { "value": "local-civil-midnight", "status": "pending-methodology-review" },
   "hourBranch": { "value": "two-hour-civil-intervals-starting-with-jasi-at-23:00", "status": "pending-methodology-review" },
   "trueSolarTime": { "enabled": false, "status": "pending-methodology-review" },
@@ -19,6 +22,7 @@
   "derivedFeatures": { "enabled": false, "status": "owned-by-issue-13" },
   "evidence": {
     "differentialCorpus": "differential-corpus.v1.json",
+    "solarTermBoundaryCorpus": "solar-term-boundaries.v1.json",
     "kasiProvenance": "not-asserted",
     "expertReview": "pending",
     "productionEligibility": "blocked"

@@ -17,7 +17,7 @@ export interface NormalizedBirthContext {
   readonly ambiguity: LocalTimeAmbiguity;
   readonly profileVersion: 'korean-saju-v1';
   readonly timezoneDataVersion: 'fixed-kst-utc-plus-09-1989-2024-v1';
-  readonly referenceDataVersion: 'issue-8-differential-v1';
+  readonly referenceDataVersion: 'issue-10-solar-term-boundaries-v1';
 }
 
 export type HeavenlyStemHangul = '갑' | '을' | '병' | '정' | '무' | '기' | '경' | '신' | '임' | '계';
@@ -34,11 +34,14 @@ export interface NormalizedPillar {
 export interface CalculationProvenance {
   readonly profileVersion: 'korean-saju-v1';
   readonly profileStatus: 'candidate';
-  readonly adapterVersion: '0.1.0';
+  readonly adapterVersion: '0.2.0';
   readonly upstreamName: 'manseryeok';
   readonly upstreamVersion: '2.0.0';
-  readonly timezoneDataVersion: string;
-  readonly referenceDataVersion: string;
+  readonly timezoneDataVersion: 'fixed-kst-utc-plus-09-1989-2024-v1';
+  readonly referenceDataVersion: 'issue-10-solar-term-boundaries-v1';
+  readonly solarTermDataVersion: 'manseryeok-2.0.0-embedded-solar-terms-v1';
+  readonly solarTermReferenceVersion: 'issue-10-astronomy-engine-2.1.19-v1';
+  readonly solarTermPrecision: 'minute';
   readonly derivedFeatureVersion: 'not-applicable';
 }
 

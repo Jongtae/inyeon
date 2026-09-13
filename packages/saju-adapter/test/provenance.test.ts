@@ -3,6 +3,8 @@ import { fileURLToPath } from 'node:url';
 
 import { describe, expect, it } from 'vitest';
 
+import { SAJU_ADAPTER_CAPABILITIES } from '../src/index.js';
+
 const read = (relative: string) => readFileSync(fileURLToPath(new URL(relative, import.meta.url)), 'utf8');
 
 describe('dependency and release provenance', () => {
@@ -34,6 +36,18 @@ describe('dependency and release provenance', () => {
     const capabilities = JSON.parse(read('../data/capabilities.v1.json')) as Record<string, unknown>;
     const profile = JSON.parse(read('../data/korean-saju-v1.profile.json')) as Record<string, unknown>;
     expect(capabilities).toMatchObject({ productionEligible: false, profile: { status: 'candidate' } });
-    expect(profile).toMatchObject({ status: 'candidate', productionValidated: false, evidence: { expertReview: 'pending', productionEligibility: 'blocked' } });
+    expect(capabilities).toMatchObject({
+      adapterVersion: '0.2.0',
+      referenceDataVersion: 'issue-10-solar-term-boundaries-v1',
+      solarTermValidation: { recordCount: 432, candidateGuardrailMilliseconds: 120000, maximumAbsoluteDeltaMilliseconds: 71829 },
+      historicalTimeZonePolicy: { status: 'resolver-validated-not-integrated' },
+    });
+    expect(profile).toMatchObject({
+      status: 'candidate',
+      productionValidated: false,
+      referenceDataVersion: 'issue-10-solar-term-boundaries-v1',
+      evidence: { expertReview: 'pending', productionEligibility: 'blocked', solarTermBoundaryCorpus: 'solar-term-boundaries.v1.json' },
+    });
+    expect(capabilities).toEqual(SAJU_ADAPTER_CAPABILITIES);
   });
 });

@@ -2,6 +2,11 @@
   "schemaVersion": 1,
   "generatedAt": "2026-09-13",
   "profileVersion": "korean-saju-v1",
+  "adapterVersion": "0.2.0",
+  "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+  "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+  "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+  "solarTermPrecision": "minute",
   "profileStatus": "candidate",
   "productionEligible": false,
   "limitations": [
@@ -9,7 +14,7 @@
     "No Korean-methodology expert review is asserted.",
     "lunar-javascript chart comparison may share calendrical lineage and is not independent evidence.",
     "Astronomy Engine is independent only for apparent-Sun longitude boundary location.",
-    "Historical/future Asia/Seoul and America/* timezone/DST validation are deferred to Issue #9.",
+    "Issue #9 validates separate timezone-normalization candidates, but that resolver is not integrated into Saju chart calculation.",
     "Day/hour convention differences are preserved for Issue #12; this corpus does not select a correct Korean methodology."
   ],
   "recordCount": 78,
@@ -25,14 +30,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -86,7 +94,7 @@
           "primaryOutput": "갑자",
           "comparisonOutput": "을축",
           "evidence": "The implementations place a solar-term boundary at different precision/instants; neither is treated as an oracle.",
-          "disposition": "deferred-to-issue-10"
+          "disposition": "recorded-in-issue-10-boundary-corpus"
         }
       ],
       "evidenceSourceCategory": "independent_ephemeris_boundary_locator_and_shared_lineage_chart_comparison",
@@ -103,14 +111,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -170,14 +181,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -232,7 +246,7 @@
           "primaryOutput": "계묘",
           "comparisonOutput": "갑진",
           "evidence": "The implementations place a solar-term boundary at different precision/instants; neither is treated as an oracle.",
-          "disposition": "deferred-to-issue-10"
+          "disposition": "recorded-in-issue-10-boundary-corpus"
         },
         {
           "pillar": "month",
@@ -240,7 +254,7 @@
           "primaryOutput": "을축",
           "comparisonOutput": "병인",
           "evidence": "The implementations place a solar-term boundary at different precision/instants; neither is treated as an oracle.",
-          "disposition": "deferred-to-issue-10"
+          "disposition": "recorded-in-issue-10-boundary-corpus"
         }
       ],
       "evidenceSourceCategory": "independent_ephemeris_boundary_locator_and_shared_lineage_chart_comparison",
@@ -257,14 +271,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -324,14 +341,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -385,7 +405,7 @@
           "primaryOutput": "병인",
           "comparisonOutput": "정묘",
           "evidence": "The implementations place a solar-term boundary at different precision/instants; neither is treated as an oracle.",
-          "disposition": "deferred-to-issue-10"
+          "disposition": "recorded-in-issue-10-boundary-corpus"
         }
       ],
       "evidenceSourceCategory": "independent_ephemeris_boundary_locator_and_shared_lineage_chart_comparison",
@@ -402,14 +422,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -469,14 +492,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -530,7 +556,7 @@
           "primaryOutput": "정묘",
           "comparisonOutput": "무진",
           "evidence": "The implementations place a solar-term boundary at different precision/instants; neither is treated as an oracle.",
-          "disposition": "deferred-to-issue-10"
+          "disposition": "recorded-in-issue-10-boundary-corpus"
         }
       ],
       "evidenceSourceCategory": "independent_ephemeris_boundary_locator_and_shared_lineage_chart_comparison",
@@ -547,14 +573,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -614,14 +643,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -675,7 +707,7 @@
           "primaryOutput": "무진",
           "comparisonOutput": "기사",
           "evidence": "The implementations place a solar-term boundary at different precision/instants; neither is treated as an oracle.",
-          "disposition": "deferred-to-issue-10"
+          "disposition": "recorded-in-issue-10-boundary-corpus"
         }
       ],
       "evidenceSourceCategory": "independent_ephemeris_boundary_locator_and_shared_lineage_chart_comparison",
@@ -692,14 +724,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -759,14 +794,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -820,7 +858,7 @@
           "primaryOutput": "기사",
           "comparisonOutput": "경오",
           "evidence": "The implementations place a solar-term boundary at different precision/instants; neither is treated as an oracle.",
-          "disposition": "deferred-to-issue-10"
+          "disposition": "recorded-in-issue-10-boundary-corpus"
         }
       ],
       "evidenceSourceCategory": "independent_ephemeris_boundary_locator_and_shared_lineage_chart_comparison",
@@ -837,14 +875,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -904,14 +945,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -967,7 +1011,7 @@
           "primaryOutput": "경오",
           "comparisonOutput": "신미",
           "evidence": "The implementations place a solar-term boundary at different precision/instants; neither is treated as an oracle.",
-          "disposition": "deferred-to-issue-10"
+          "disposition": "recorded-in-issue-10-boundary-corpus"
         },
         {
           "pillar": "day",
@@ -1000,14 +1044,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -1087,14 +1134,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -1148,7 +1198,7 @@
           "primaryOutput": "신미",
           "comparisonOutput": "임신",
           "evidence": "The implementations place a solar-term boundary at different precision/instants; neither is treated as an oracle.",
-          "disposition": "deferred-to-issue-10"
+          "disposition": "recorded-in-issue-10-boundary-corpus"
         }
       ],
       "evidenceSourceCategory": "independent_ephemeris_boundary_locator_and_shared_lineage_chart_comparison",
@@ -1165,14 +1215,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -1232,14 +1285,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -1293,7 +1349,7 @@
           "primaryOutput": "임신",
           "comparisonOutput": "계유",
           "evidence": "The implementations place a solar-term boundary at different precision/instants; neither is treated as an oracle.",
-          "disposition": "deferred-to-issue-10"
+          "disposition": "recorded-in-issue-10-boundary-corpus"
         }
       ],
       "evidenceSourceCategory": "independent_ephemeris_boundary_locator_and_shared_lineage_chart_comparison",
@@ -1310,14 +1366,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -1377,14 +1436,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -1438,7 +1500,7 @@
           "primaryOutput": "계유",
           "comparisonOutput": "갑술",
           "evidence": "The implementations place a solar-term boundary at different precision/instants; neither is treated as an oracle.",
-          "disposition": "deferred-to-issue-10"
+          "disposition": "recorded-in-issue-10-boundary-corpus"
         }
       ],
       "evidenceSourceCategory": "independent_ephemeris_boundary_locator_and_shared_lineage_chart_comparison",
@@ -1455,14 +1517,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -1522,14 +1587,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -1583,7 +1651,7 @@
           "primaryOutput": "갑술",
           "comparisonOutput": "을해",
           "evidence": "The implementations place a solar-term boundary at different precision/instants; neither is treated as an oracle.",
-          "disposition": "deferred-to-issue-10"
+          "disposition": "recorded-in-issue-10-boundary-corpus"
         }
       ],
       "evidenceSourceCategory": "independent_ephemeris_boundary_locator_and_shared_lineage_chart_comparison",
@@ -1600,14 +1668,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -1667,14 +1738,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -1728,7 +1802,7 @@
           "primaryOutput": "을해",
           "comparisonOutput": "병자",
           "evidence": "The implementations place a solar-term boundary at different precision/instants; neither is treated as an oracle.",
-          "disposition": "deferred-to-issue-10"
+          "disposition": "recorded-in-issue-10-boundary-corpus"
         }
       ],
       "evidenceSourceCategory": "independent_ephemeris_boundary_locator_and_shared_lineage_chart_comparison",
@@ -1745,14 +1819,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -1812,14 +1889,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -1893,14 +1973,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -1954,14 +2037,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -2035,14 +2121,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -2096,14 +2185,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -2177,14 +2269,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -2238,14 +2333,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -2319,14 +2417,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -2380,14 +2481,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -2461,14 +2565,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -2522,14 +2629,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -2603,14 +2713,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -2664,14 +2777,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -2745,14 +2861,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -2806,14 +2925,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -2887,14 +3009,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -2948,14 +3073,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -3029,14 +3157,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -3090,14 +3221,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -3171,14 +3305,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -3232,14 +3369,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -3293,14 +3433,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -3354,14 +3497,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -3415,14 +3561,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -3476,14 +3625,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -3537,14 +3689,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -3598,14 +3753,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -3659,14 +3817,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -3720,14 +3881,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -3781,14 +3945,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -3842,14 +4009,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -3903,14 +4073,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -3964,14 +4137,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -4025,14 +4201,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -4086,14 +4265,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -4147,14 +4329,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -4208,14 +4393,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -4269,14 +4457,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -4330,14 +4521,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -4391,14 +4585,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -4452,14 +4649,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -4513,14 +4713,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -4574,14 +4777,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -4655,14 +4861,17 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
@@ -4716,19 +4925,22 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
         "engine": "inyeon-adapter-validation",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "output": null
       },
       "comparison": {
@@ -4757,19 +4969,22 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
         "engine": "inyeon-adapter-validation",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "output": null
       },
       "comparison": {
@@ -4798,19 +5013,22 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
         "engine": "inyeon-adapter-validation",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "output": null
       },
       "comparison": {
@@ -4839,19 +5057,22 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
         "engine": "inyeon-adapter-validation",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "output": null
       },
       "comparison": {
@@ -4880,19 +5101,22 @@
         "ambiguity": "ambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
         "engine": "inyeon-adapter-validation",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "output": null
       },
       "comparison": {
@@ -4921,19 +5145,22 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
         "engine": "inyeon-adapter-validation",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "output": null
       },
       "comparison": {
@@ -4962,19 +5189,22 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
         "engine": "inyeon-adapter-validation",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "output": null
       },
       "comparison": {
@@ -5003,19 +5233,22 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
         "engine": "inyeon-adapter-validation",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "output": null
       },
       "comparison": {
@@ -5044,19 +5277,22 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
         "engine": "inyeon-adapter-validation",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "output": null
       },
       "comparison": {
@@ -5085,19 +5321,22 @@
         "ambiguity": "unambiguous",
         "profileVersion": "korean-saju-v1",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1"
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1"
       },
       "provenance": {
         "profileVersion": "korean-saju-v1",
-        "adapterVersion": "0.1.0",
+        "adapterVersion": "0.2.0",
         "upstreamVersion": "2.0.0",
         "timezoneDataVersion": "fixed-kst-utc-plus-09-1989-2024-v1",
-        "referenceDataVersion": "issue-8-differential-v1",
+        "referenceDataVersion": "issue-10-solar-term-boundaries-v1",
+        "solarTermDataVersion": "manseryeok-2.0.0-embedded-solar-terms-v1",
+        "solarTermReferenceVersion": "issue-10-astronomy-engine-2.1.19-v1",
+        "solarTermPrecision": "minute",
         "derivedFeatureVersion": "not-applicable"
       },
       "primary": {
         "engine": "inyeon-adapter-validation",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "output": null
       },
       "comparison": {

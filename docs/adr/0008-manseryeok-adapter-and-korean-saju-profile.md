@@ -25,8 +25,8 @@ As inspected on 2026-09-13, `yhj1024/manseryeok` is MIT-licensed TypeScript, pub
 
 `korean-saju-v1` is a separately versioned, machine-readable profile. This ADR accepts the profile boundary and validation process, not the calendrical methodology itself. The following values are an explicit **candidate baseline** for Issue #8's differential/reference validation:
 
-- year pillar changes at the precise Ipchun instant;
-- month pillars change at the twelve monthly solar-term (`절`) boundaries;
+- year pillar changes at the pinned embedded UTC minute representing 입춘 (Ipchun); authority inside sub-minute reference-disagreement intervals remains pending;
+- month pillars change at the pinned embedded UTC minutes representing the twelve monthly solar-term (`절`) boundaries;
 - day rollover uses local civil midnight (`midnight` upstream mode);
 - hour branches use two-hour civil-time intervals beginning with `자시` at 23:00;
 - true-solar-time/longitude/equation-of-time adjustment is off;
@@ -46,8 +46,8 @@ Every reproducible result/fixture records at least `profileVersion`, `adapterVer
 Follow `adopt → wrap → pin → differential-test → golden-test → patch only proven gaps`.
 
 - Before the candidate profile or adapter output is eligible for production, complete Issue #8's cross-comparison of at least 50 boundary-heavy cases; before public release, pass the Issue #14 corpus of at least 200 provenance-bearing cases.
-- Issue #8's positive corpus oversamples Ipchun/monthly terms and local midnight/hour boundaries within the explicitly supported modern Seoul interval. US zones, DST gaps/folds, and historical offset changes remain separate negative capability tests and do not count toward Issue #8's 50 supported reference cases.
-- Issue #9 owns positive cross-validation of Korea/US historical timezone normalization, DST gaps/folds, and expanded capability. Issue #14 owns the release corpus across exact/approximate/unknown time and all production-enabled ranges.
+- Issue #8's positive corpus oversamples 입춘 (Ipchun), monthly terms, and local midnight/hour boundaries within the explicitly supported modern Seoul interval. US zones, DST gaps/folds, and historical offset changes remain separate negative capability tests and do not count toward Issue #8's 50 supported reference cases.
+- Issue #9 owns positive cross-validation of Korea/US historical timezone normalization and DST gaps/folds without implicitly expanding chart capability. Issue #10 owns full-range solar-term implementation evidence and explicit precision/reference discrepancy classification without promoting the candidate methodology. Issue #14 owns the release corpus across exact/approximate/unknown time and all production-enabled ranges.
 - Classify every disagreement as upstream defect, deliberate methodology difference, input/timezone normalization defect, source inconsistency, or unresolved expert-review item. Never average reference outputs.
 - Any correction belongs behind the adapter, cites a failing fixture, and remains removable. No patch is added merely because another implementation differs.
 - An upstream, timezone-data, reference-data, adapter, or profile change that can alter identity requires full differential/golden regression and inspection of every changed fixture. Material unresolved methodology disagreement is a Human Gate, and affected conventions/results cannot ship while it remains unresolved.
@@ -73,4 +73,4 @@ Rollback restores the prior lockfile, adapter/profile versions, and known-good f
 
 ## Evidence to revisit
 
-The initial upstream architecture and exact pin are accepted subject to Issue #8's license/build/API spike. The candidate methodology remains non-production until the 50-case differential/reference corpus supports it. Lunar-javascript comparison cannot independently validate solar-term boundaries because of shared data lineage; independent astronomy data may locate boundary-heavy test instants but is not itself a Four Pillars oracle. Any failed comparison must be resolved and recorded; unresolved reference/tradition disagreement routes to the methodology Human Gate and blocks the affected output from production. Historical/IANA timezone support, true solar time, lunar-input scope, expanded years, hidden-stem weighting, and Daewoon each require evidence and an explicit profile revision rather than a silent default change.
+The initial upstream architecture and exact pin are accepted after Issue #8's license/build/API spike. Issue #10 records the embedded minute-boundary behavior across the adapter's full range and its measured differences from independent apparent-Sun longitude crossings; it does not validate a Korean tradition or select authority inside a disagreement interval. Lunar-javascript comparison cannot independently validate solar-term boundaries because of shared data lineage, and independent astronomy is not itself a Four Pillars oracle. Any failed comparison must be resolved and recorded; unresolved reference/tradition disagreement routes to the methodology Human Gate and blocks the affected output from production. Historical chart integration, true solar time, lunar-input scope, expanded years, hidden-stem weighting, and Daewoon each require evidence and an explicit profile revision rather than a silent default change.

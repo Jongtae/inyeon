@@ -17,7 +17,7 @@ const exactInput: NormalizedBirthContext = {
   ambiguity: 'unambiguous',
   profileVersion: 'korean-saju-v1',
   timezoneDataVersion: 'fixed-kst-utc-plus-09-1989-2024-v1',
-  referenceDataVersion: 'issue-8-differential-v1',
+  referenceDataVersion: 'issue-10-solar-term-boundaries-v1',
 };
 
 describe('InyeonSajuAdapter', () => {
@@ -49,11 +49,14 @@ describe('InyeonSajuAdapter', () => {
     expect(first.provenance).toEqual({
       profileVersion: 'korean-saju-v1',
       profileStatus: 'candidate',
-      adapterVersion: '0.1.0',
+      adapterVersion: '0.2.0',
       upstreamName: 'manseryeok',
       upstreamVersion: '2.0.0',
       timezoneDataVersion: 'fixed-kst-utc-plus-09-1989-2024-v1',
-      referenceDataVersion: 'issue-8-differential-v1',
+      referenceDataVersion: 'issue-10-solar-term-boundaries-v1',
+      solarTermDataVersion: 'manseryeok-2.0.0-embedded-solar-terms-v1',
+      solarTermReferenceVersion: 'issue-10-astronomy-engine-2.1.19-v1',
+      solarTermPrecision: 'minute',
       derivedFeatureVersion: 'not-applicable',
     });
 
@@ -140,7 +143,10 @@ describe('InyeonSajuAdapter', () => {
       supportedCivilDateRange: { minimum: '1989-01-01', maximum: '2024-12-31' },
       productionEligible: false,
       derivedFeatures: { status: 'not-applicable' },
-      historicalTimeZonePolicy: { status: 'unsupported' },
+      historicalTimeZonePolicy: { status: 'resolver-validated-not-integrated' },
     });
+    expect(Object.isFrozen(SAJU_ADAPTER_CAPABILITIES)).toBe(true);
+    expect(Object.isFrozen(SAJU_ADAPTER_CAPABILITIES.pendingEvidence)).toBe(true);
+    expect(Object.isFrozen(SAJU_ADAPTER_CAPABILITIES.solarTermValidation)).toBe(true);
   });
 });
