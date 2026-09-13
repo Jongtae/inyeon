@@ -1,5 +1,5 @@
 schema_version = 1
-updated_at = "2026-09-14T04:19:07+09:00"
+updated_at = "2026-09-14T05:08:00+09:00"
 maturity = "l4-candidate"
 operating_mode = "independent-release"
 current_phase = "build"
@@ -7,20 +7,21 @@ active_release = "v0.1.0"
 current_goal = "Ship INYEON as a production-grade zero-backend Korean Compatibility Lab, then prove five autonomous closed loops and recovery/eval criteria required for verified L4."
 production_url = ""
 last_known_good_sha = ""
-next_action = "Execute #50: build the separate, source-backed PublicFigure static domain and validation/import seam without treating reference records as members, prospects, or endorsers."
+next_action = "Execute #49: build a deterministic, visibly fictional synthetic-character corpus and generation seam for the Inyeon Lab without simulating member supply or activity."
 
-active_critical_path = [14, 33, 50, 49, 35, 53, 43, 52, 47, 51]
-active_issues = [14, 33, 35, 43, 47, 49, 50, 51, 52, 53, 54]
+active_critical_path = [14, 33, 49, 35, 53, 43, 52, 47, 51]
+active_issues = [14, 33, 35, 43, 47, 49, 51, 52, 53, 54]
 active_experiments = []
 human_gates = [
   "Issue #14 production validation is blocked: generated candidateObserved snapshots cannot independently establish full-chart correctness or resolve midnight-versus-late-Jasi, true-solar-time, or 61–72-second solar-term disagreements. Completed: 240 synthetic positive contexts, 12 separate negative cases, provenance/evidence grades, dispute isolation, candidate drift CI, and a separate empty non-generated approvals artifact. Smallest human action: approve qualified Korean Saju methodology authority/advisor scope and any paid terms, then review exact-property anchors; no approval is needed for candidate corpus merge or unrelated work. Unblocked: #33 and the remaining product/static-release path. Continuation: add attributable approvedExpected anchors, adjudicate disputed properties, rerun independent QA/CI, and only then consider productionValidated or closing #14.",
-  "Production approval of any traditional signal-to-modern-relationship-dimension mapping is blocked pending exact versioned #33 rules and qualified cultural/Saju methodology review. Completed: #6 candidate inclusive semantic contract, #33's closed candidate DSL/evaluator with an intentionally empty product catalog, and #34's categorical evidence-availability model; approved production rules, mappings, and expert fixtures are each 0. Smallest human action: when attributable candidate mappings are ready, approve qualified expert review scope and any paid terms; no approval is needed for the remaining static-product path. Unblocked: #50 public-figure data infrastructure and the remaining static-product path. Continuation: review exact mapping evidence property by property, add only approved derived primitives, and keep productionEligible false until all gates pass."
+  "Production approval of any traditional signal-to-modern-relationship-dimension mapping is blocked pending exact versioned #33 rules and qualified cultural/Saju methodology review. Completed: #6 candidate inclusive semantic contract, #33's closed candidate DSL/evaluator with an intentionally empty product catalog, and #34's categorical evidence-availability model; approved production rules, mappings, and expert fixtures are each 0. Smallest human action: when attributable candidate mappings are ready, approve qualified expert review scope and any paid terms; no approval is needed for the remaining static-product path. Unblocked: #49 synthetic data, #35 deterministic explanation composition, #53 static UI, and the remaining static-product path. Continuation: review exact mapping evidence property by property, add only approved derived primitives, and keep productionEligible false until all gates pass."
 ]
 current_risks = [
   "The #8 Manseryeok adapter through #13 Hangul-primary derived-feature layer and #14's 240-context regression corpus remain non-production candidates. The corpus has 0 approved expectations: midnight-versus-late-Jasi, true-solar-time, and three measured 61–72-second solar-term disagreements remain explicit methodology/reference uncertainty pending independent/expert exact-property review.",
   "The #6 inclusive-compatibility-v1 contract is an internally reviewed candidate with cultural/Saju expert review pending and productionEligible false. It contains no approved traditional signal-to-dimension mappings; actual US-user comprehension and utility remain unmeasured.",
   "The #33 compatibility-rule infrastructure is candidate-only: the product catalog has 0 approved rules, 0 approved signal-to-dimension mappings, and 0 expert fixtures. Combinations, clashes, Five Element cycles, and other traditional relation primitives remain unavailable pending attributable evidence and qualified review.",
   "The #34 evidence-availability-v1 model passed synthetic exact/approximate/disputed/date-only/unknown coverage plus independent QA/security review, but no approved product rule exists to validate real-result usefulness and US-English limitation comprehension remains unmeasured.",
+  "The #50 Wikidata public-reference baseline has 600 pinned source records, 582 published date-only/image-free records, 18 quarantined records, and 13 records eligible for the current chart capability. It is a single structured-source corpus with known English-language/internet-notability bias; representativeness, US recognizability, user utility, and UI comprehension are unverified, productionEligible remains false, and #53/#35 own the unreleased UI/disclosure work.",
   "The GitHub repository is private, GitHub Pages is disabled, and no production deployment workflow or release exists yet.",
   "L4 structural governance exists, but behavioral eval execution, five closed loops, fresh-session continuity, and recovery proof are still unverified.",
   "Framework creep could turn INYEON into an APH showcase instead of a focused product; optional frameworks require observed pain before adoption."
@@ -63,4 +64,4 @@ last_eval_status = "not-run"
 reddit_account_status = "not-configured"
 reddit_integration_status = "not-configured"
 last_experiment_id = ""
-last_decision_id = "D-0004"
+last_decision_id = "D-0005"

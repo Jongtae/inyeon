@@ -74,6 +74,8 @@ Production records should preserve:
 - nullable birth time;
 - image-license metadata if images are used.
 
+The v1 public-reference baseline is date-only and image-free. It uses a checked-in Wikidata source snapshot in the build pipeline, never a runtime browser lookup. Records outside the pinned adapter's exact date/place capability remain searchable but cannot be compared; the product does not invent a birth time or substitute a default time zone.
+
 Do not infer or publish private/sensitive facts about public figures. Do not imply endorsement, participation, or romantic availability.
 
 ## 6. Synthetic characters

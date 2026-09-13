@@ -219,6 +219,8 @@ LLMs may help author/refine templates during development, but generated copy is 
 
 `PublicFigure` is separate from personal/synthetic entities.
 
+The implemented private workspace is `@inyeon/public-figures`. Its only networked operation is an explicit Wikidata refresh with a fixed retrieval date. Normal CI consumes a checked-in QID/entity-revision snapshot and deterministically emits normalized static records, a compact search index, a quality/conflict review, and a SHA-256 manifest. Public IDs use the source-stable `public:wd-q…` namespace rather than a mutable name slug.
+
 Store at minimum:
 
 - canonical name / aliases;
@@ -233,6 +235,12 @@ Store at minimum:
 - optional appropriately licensed image metadata.
 
 Never scrape arbitrary celebrity photos into the product. Never imply endorsement or romantic availability.
+
+The v1 baseline contains 582 published, date-only, image-free records from 600 fixed source records; 18 conflicts or incomplete records are quarantined. Sitelinks and English Wikipedia presence are transparent selection heuristics, not proof of US recognizability or global representation.
+
+Canonical browse eligibility is separate from chart-comparison eligibility. The pinned adapter currently supports only 1989–2024 and three IANA zones. A record receives comparison context only when its exact sourced birthplace maps to New York City, Los Angeles, or Seoul and its date is in range. Other records stay searchable but fail closed. No country default, nearest-city zone, UTC, KST, or noon is substituted. V1 has 13 such comparison-eligible references, all of which enter the same adapter, derived-feature, and compatibility-rule pipeline as other modes with the hour suppressed.
+
+Public copy is US English first and identifies the entity as a public reference, not a member or endorsement. Korean cultural detail uses Hangul before Hanja, for example `Saju (사주, Four Pillars; 四柱)`.
 
 ## 10. Synthetic-character architecture
 

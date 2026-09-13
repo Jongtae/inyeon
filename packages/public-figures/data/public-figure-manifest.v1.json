@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "manifestVersion": "public-figure-manifest-v1",
+  "dataVersion": "public-figures-v1",
+  "productionEligible": false,
+  "recordCount": 582,
+  "comparisonEligibleCount": 13,
+  "files": {
+    "source": {
+      "path": "../source/wikidata-public-figures.v1.json",
+      "sha256": "07919eae5e6fa4b4bf32e0ef13b59e874a5ee7aca8c8fddf101d1c77af2066d5"
+    },
+    "records": {
+      "path": "public-figures.v1.json",
+      "sha256": "56ae548a796ded88b75d18f579405c3a9dec4d7be3761bbb09a032bf7878567f"
+    },
+    "index": {
+      "path": "public-figure-index.v1.json",
+      "sha256": "251fcbe5f6fec85a339daef957fd3538b50e501e36c92df3e50d04195c178ef9"
+    },
+    "quality": {
+      "path": "public-figure-quality.v1.json",
+      "sha256": "4c3f854ae381f6eaa34eea753530db76adfad26c80e3965ed91a7cc7c931eddf"
+    }
+  }
+}
