@@ -1,0 +1,34 @@
+{
+  "name": "@inyeon/synthetic-characters",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Deterministic fictional reference characters for the INYEON Lab",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "prebuild:data": "npm run build",
+    "build:data": "node scripts/build-synthetic-characters.mjs",
+    "verify:data": "node scripts/build-synthetic-characters.mjs --check",
+    "prebuild": "npm run build --workspace @inyeon/compatibility-rules",
+    "build": "tsc -p tsconfig.build.json",
+    "pretypecheck": "npm run build --workspace @inyeon/compatibility-rules",
+    "typecheck": "tsc --noEmit --pretty false",
+    "pretest": "npm run build",
+    "test": "npm run verify:data && vitest run"
+  },
+  "dependencies": {
+    "@inyeon/compatibility-rules": "0.1.0",
+    "@inyeon/saju-adapter": "0.4.0",
+    "@inyeon/saju-derived-features": "0.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "24.13.4",
+    "typescript": "6.0.3",
+    "vitest": "5.0.0"
+  }
+}

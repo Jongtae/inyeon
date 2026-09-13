@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "dataVersion": "synthetic-characters-v1",
+  "generatorVersion": "synthetic-character-generator-v1",
+  "algorithm": "inyeon-index-mix32-v1",
+  "masterSeed": 1229871429,
+  "recordCount": 10000,
+  "generationMode": "deterministic-on-demand",
+  "releaseFeatureDefaultEnabled": false,
+  "temporalAllocation": {
+    "exact": 8000,
+    "approximate": 500,
+    "disputed": 500,
+    "date-only": 500,
+    "unknown": 500
+  },
+  "supportedTimeZones": [
+    "America/Los_Angeles",
+    "America/New_York",
+    "Asia/Seoul"
+  ],
+  "birthFixtureDateRange": {
+    "start": "1989-01-01",
+    "endInclusive": "2004-12-31",
+    "adultReferenceDate": "2026-09-14",
+    "minimumAgeYears": 18
+  },
+  "fictionalPromptDistributionVersion": "independent-fictional-prompts-v1",
+  "abstractAvatarVersion": "korean-rooted-abstract-avatar-v1",
+  "pipelineVersions": {
+    "profileVersion": "korean-saju-v1",
+    "adapterVersion": "0.4.0",
+    "derivedFeatureVersion": "korean-saju-derived-v1",
+    "compatibilitySnapshotVersion": "compatibility-snapshot-v2",
+    "evidenceAvailabilityVersion": "evidence-availability-v1",
+    "ruleSetVersion": "korean-compatibility-rules-v1",
+    "taxonomyVersion": "inclusive-compatibility-v1"
+  },
+  "populationRepresentativenessClaim": false,
+  "traitsDerivedFromSaju": false,
+  "productionEligible": false
+}

@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "lockVersion": "synthetic-release-lock-v1",
+  "dataVersion": "synthetic-characters-v1",
+  "generatorVersion": "synthetic-character-generator-v1",
+  "algorithm": "inyeon-index-mix32-v1",
+  "profileSha256": "b7398035eef1472d6dfd99d147e5a23698e15a6a32aa8597580de148988c4dfc",
+  "inventorySha256": "94e2f551cb185416025fd558076a808479aae681289e29740c5d25a0ea05d7bb",
+  "changePolicy": "A content or profile hash change requires a new generator/data version and synthetic ID namespace; do not update this lock in place."
+}

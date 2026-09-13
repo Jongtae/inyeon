@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "manifestVersion": "synthetic-character-manifest-v1",
+  "dataVersion": "synthetic-characters-v1",
+  "generatorVersion": "synthetic-character-generator-v1",
+  "algorithm": "inyeon-index-mix32-v1",
+  "pipelineVersions": {
+    "profileVersion": "korean-saju-v1",
+    "adapterVersion": "0.4.0",
+    "derivedFeatureVersion": "korean-saju-derived-v1",
+    "compatibilitySnapshotVersion": "compatibility-snapshot-v2",
+    "evidenceAvailabilityVersion": "evidence-availability-v1",
+    "ruleSetVersion": "korean-compatibility-rules-v1",
+    "taxonomyVersion": "inclusive-compatibility-v1"
+  },
+  "recordCount": 10000,
+  "generationMode": "deterministic-on-demand",
+  "inventorySha256": "94e2f551cb185416025fd558076a808479aae681289e29740c5d25a0ea05d7bb",
+  "releaseLockVersion": "synthetic-release-lock-v1",
+  "releaseLockSha256": "8cc1f2bdf9d1aa3a27cf40ea22939f102d4da00dd81895d40687961540c7e963",
+  "files": {
+    "profile": {
+      "path": "synthetic-generator-profile.v1.json",
+      "sha256": "b7398035eef1472d6dfd99d147e5a23698e15a6a32aa8597580de148988c4dfc"
+    },
+    "coverage": {
+      "path": "synthetic-coverage.v1.json",
+      "sha256": "033e3c36ac3959d646a02d717ad5b039b3c73d33e9cd388b20c27aaaf715907c"
+    }
+  },
+  "productionEligible": false
+}
