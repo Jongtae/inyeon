@@ -12,7 +12,24 @@ The project is not being optimized for near-term startup success, fundraising, o
 
 The first useful product should work even with one user:
 
-`Me → my Saju → compare with public figures → explore synthetic characters → understand relationship dynamics`
+`Me → my Saju → compare with public figures → explore synthetic characters → understand relationship dynamics → share`
+
+## Active first-release architecture
+
+The first public release is intentionally zero-backend:
+
+```text
+GitHub repository
+   → GitHub Actions
+   → GitHub Pages
+   → browser-only Saju / compatibility calculation
+```
+
+User personal birth/comparison inputs stay in browser memory only. INYEON application code does not persist or transmit them.
+
+Google Cloud remains a future escape hatch for features that truly require server-side state, protected APIs/secrets, realtime communication, authenticated accounts, or durable user data. It is not on the first-release critical path.
+
+Tracked in #47 and #52.
 
 ## Current product direction
 
@@ -23,8 +40,10 @@ The first release prioritizes:
 3. sourced public-figure birth data for recognizable comparisons;
 4. transparent synthetic characters for broad compatibility exploration;
 5. explainable `What clicks / Potential friction / Why this?` relationship output;
-6. a polished end-to-end UI;
-7. production deployment, privacy, observability, error handling, and release hardening.
+6. privacy-safe client-side sharing;
+7. a polished responsive web UI;
+8. GitHub Pages production deployment, CI, rollback, privacy testing, and release hardening;
+9. a governed Reddit feedback loop after release.
 
 Real-user dating discovery, likes, matches, chat, payments, city seeding, and dating-marketplace operations are later product layers. They are deferred because they are outside the **first product scope**, not because release quality is optional.
 
@@ -45,19 +64,19 @@ Rules:
 - no endorsement or romantic-availability implication;
 - only appropriately licensed imagery may be used.
 
-Tracked in Issue #50.
+Tracked in #50.
 
 ### Me × Synthetic Character
 
 Explore thousands of clearly fictional characters generated from reproducible seeds and the same compatibility engine used everywhere else.
 
-Synthetic characters are always labeled, cannot Like/Match/Message, and never count as marketplace supply or dating outcomes.
+Synthetic characters are always labelled, cannot Like/Match/Message, and never count as marketplace supply or dating outcomes.
 
-Tracked in Issue #49.
+Tracked in #49.
 
 ### Me × Someone I Know
 
-Optionally compare with a person whose birth information the user enters. Keep the same uncertainty and privacy rules as every other personal-data flow.
+Optionally compare with a person whose birth information the user enters. Keep the same uncertainty and zero-retention privacy rules as every other personal-data flow.
 
 ## Saju engine strategy
 
@@ -67,15 +86,63 @@ Preferred direction:
 
 `Birth input → INYEON normalization → InyeonSajuAdapter → normalized Four Pillars → INYEON derived features → compatibility rules → explanation`
 
-Issue #8 evaluates/adopts a pinned open-source Manseryeok implementation behind an INYEON-owned adapter and validates it against independent references and golden fixtures.
+#8 adopts/evaluates a pinned open-source Manseryeok implementation behind an INYEON-owned adapter and validates it against independent references and golden fixtures.
 
 INYEON-specific value should live above the commodity calculation layer:
 
-- normalized chart features;
+- normalized chart/uncertainty representation;
 - compatibility-rule representation;
 - explainability;
 - public/synthetic comparison experiences;
+- sharing;
 - later, if desired, real dating ranking/outcome learning.
+
+## Sharing strategy
+
+Sharing is first-class and must preserve the zero-retention design.
+
+Preferred first-release share surfaces:
+
+1. **Share result card** — generate PNG/WebP in the browser and invoke native Web Share when available.
+2. **Share-safe result link** — encode only allowlisted non-sensitive result data; raw birth date/time/place never belongs in the URL.
+3. **Compare with me** — separate explicit opt-in flow; if derived personal chart data is embedded, explain exactly what is shared before generation.
+4. **Public-figure pages** — stable shareable pages with prebuilt social/OG metadata where practical.
+
+Default share cards/links must not expose protected personal birth inputs.
+
+Tracked in #43.
+
+## Privacy model
+
+First-release public promise:
+
+> **Your personal birth and compatibility inputs are processed in your browser. INYEON application code does not collect, transmit, or store them.**
+
+Protected values must not enter localStorage, sessionStorage, IndexedDB, cookies, service-worker caches, URLs, analytics, logs, error payloads, or third-party network calls.
+
+GitHub Pages may retain platform-level access/security logs such as visitor IPs; public privacy copy must distinguish that from INYEON application-level zero retention.
+
+Tracked in #52 and `PRIVACY.md`.
+
+## Reddit release and feedback loop
+
+Reddit is the preferred initial promotion/feedback channel.
+
+Target loop:
+
+`owner-approved Reddit post → feedback → compliant ingestion → classify/deduplicate → GitHub issue → Codex bounded fix → CI/preview → GitHub Pages release`
+
+Human Gate before:
+
+- creating the Reddit account;
+- accepting Reddit developer/platform terms or requesting API access;
+- entering credentials;
+- publishing posts/replies;
+- ambiguous subreddit-rule decisions.
+
+After approval, feedback triage can be automated, but only safe, reversible, evidence-backed changes may auto-enter the implementation loop. Saju methodology, privacy/security, major product direction, public claims, and material spend remain human-reviewed.
+
+Tracked in #51.
 
 ## Release bar
 
@@ -85,69 +152,83 @@ At minimum it should have:
 
 - reproducible builds and deploys;
 - CI for core logic and release artifacts;
-- a staging path and a real production environment;
+- GitHub Pages production deployment over HTTPS;
 - deterministic/versioned chart results;
-- golden/regression tests around calendrical boundaries;
-- production error tracking and basic observability;
-- privacy-safe handling of birth inputs;
-- secrets management;
-- responsive/mobile usability and accessibility appropriate to the chosen client;
+- ≥200 golden/reference fixtures and boundary regression tests;
+- client-only privacy regression tests for network/storage/cache/console leakage;
+- no secret API keys in browser bundles;
+- responsive/mobile usability and accessibility;
 - graceful loading/error/empty states;
 - rollback/redeploy capability;
-- backup/restore validation for stateful production data;
 - public-figure source/confidence disclosure;
-- clear separation of public figures, synthetic characters, and real users.
+- clear separation of public figures, synthetic characters, and real users;
+- production smoke checks.
+
+## Active execution path
+
+```text
+#1 repo/toolchain/ADRs
+ ↓
+#8 open-source Manseryeok adapter
+ ↓
+#9–#14 validation + derived features + golden corpus
+ ↓
+#33–#34 compatibility evidence + uncertainty
+ ↓
+#50 public figures + #49 synthetic lab
+ ↓
+static comparison UI + deterministic explanation
+ ↓
+#43 sharing
+ ↓
+#52 zero-retention privacy verification
+ ↓
+#47 GitHub Pages production release
+ ↓
+#51 Reddit feedback loop
+```
+
+Historical marketplace P0 labels do not outrank this active first-release path.
 
 ## Start here for Codex
 
 1. Read `AGENTS.md`, `CODEX.md`, and `docs/TOY_PROJECT_MODE.md`.
-2. Read `SAJU_ENGINE_SPEC.md`, `MATCHING_SPEC.md`, `PRD.md`, and `ARCHITECTURE.md` as reference documents.
+2. Read `PRD.md`, `ARCHITECTURE.md`, `ROADMAP.md`, `BACKLOG.md`, `PRIVACY.md`, and `SAJU_ENGINE_SPEC.md`.
 3. Validate `.codex/config.toml` and run `scripts/check_harness.py`.
-4. Prioritize the active first-release path rather than blindly following historical marketplace P0 priorities.
+4. Operate in Independent Release Mode and follow the active static-release critical path.
 
 Recommended Codex instruction:
 
 ```text
-Read AGENTS.md, CODEX.md, docs/TOY_PROJECT_MODE.md, SAJU_ENGINE_SPEC.md,
-PRD.md and ARCHITECTURE.md.
+Read AGENTS.md, CODEX.md, docs/TOY_PROJECT_MODE.md, PRD.md,
+ARCHITECTURE.md, ROADMAP.md, BACKLOG.md, PRIVACY.md and SAJU_ENGINE_SPEC.md.
 
 Operate in Independent Release Mode.
-This is not a revenue-first startup project, but it IS intended for a real public release.
-Do not lower the engineering, privacy, reliability, UX, or deployment bar because it is a personal project.
+This is an independent personal project, but it IS intended for a real public release.
+Do not lower the engineering, privacy, reliability, UX, accessibility, or deployment bar.
 
-Prioritize the validated Manseryeok adapter, derived compatibility features,
-golden fixtures, public-figure dataset (#50), synthetic compatibility lab (#49),
-a polished comparison UI, and the production hardening required to release it.
+Use a zero-backend first-release architecture: GitHub Actions + GitHub Pages,
+with personal birth/comparison inputs processed only in browser memory.
 
-Do not rebuild calendrical primitives that a validated open-source dependency already provides.
-Continue implementation through staging and production release until a real Human Gate is reached.
+Prioritize #8 → #9-14 → #33-34 → #50/#49 → polished static UI →
+#43 sharing → #52 privacy verification → #47 production release → #51 Reddit feedback.
+
+Do not rebuild mature calendrical primitives that a validated open-source dependency provides.
+Do not introduce GCP/backend persistence unless a concrete requirement proves static architecture insufficient and the architecture/privacy change is explicitly reviewed.
+Continue through production release until a real Human Gate is reached.
 ```
-
-## Durable source-of-truth documents
-
-| Document | Purpose |
-|---|---|
-| `docs/TOY_PROJECT_MODE.md` | active Independent Release Mode and scope/quality distinction |
-| `CODEX.md` | autonomous execution and release contract |
-| `PRD.md` | broad product possibilities and historical marketplace design |
-| `ARCHITECTURE.md` | system/data boundaries and target technical design |
-| `SAJU_ENGINE_SPEC.md` | deterministic Four Pillars/Saju methodology requirements |
-| `MATCHING_SPEC.md` | compatibility and optional future dating constraints |
-| `BACKLOG.md` | historical issue map; active release scope determines execution order |
-| `BUSINESS.md` | optional future business/startup reference, not a current success requirement |
-| `SAFETY.md`, `PRIVACY.md` | safety/privacy constraints retained where applicable |
 
 ## Product invariants
 
 - Compatibility is context, not destiny.
 - No public soulmate percentage, star score, or pseudo-scientific probability.
-- LLMs explain deterministic facts; they do not calculate Saju.
+- LLMs do not calculate Saju or decide compatibility rules.
 - Missing birth time degrades gracefully; never invent one.
 - Public figures, synthetic characters, and real users are different entity types.
 - Synthetic/public-figure records never enter real Like/Match/Message state machines.
+- Personal birth/comparison data does not leave browser memory in the first release.
 - Do not make scientific predictive claims for Saju / Gung-hap.
 - Korean Saju/Gung-hap is described as Korean practice within the broader East Asian Four Pillars tradition.
-- Personal birth data should remain private and out of ordinary logs/analytics.
 
 ## Optional future Marketplace Mode
 
