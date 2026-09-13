@@ -1,358 +1,293 @@
 # INYEON Product Requirements Document
 
-Status: working product source of truth
-Research basis: September 2026 synthesis
+Status: active product source of truth for the first public release
 
 ## 1. Product thesis
 
-**INYEON — Dating through the Korean idea of connection.**
+**INYEON — Explore connection through Korean Saju and Gung-hap.**
 
-INYEON is a US-first dating marketplace that uses Korean Saju (사주), Gung-hap (궁합), and Inyeon (인연) as an explainable relationship-compatibility layer.
+INYEON is an independent personal project intended for a real public release. It is not being optimized for near-term startup, fundraising, or revenue outcomes, but it is held to a release-grade quality bar.
 
-The product is **dating first, Saju second**. Real-world mutual preferences, location, age, relationship intent, safety rules, blocks, and eligibility create the candidate set. Gung-hap may explain and boundedly re-rank eligible candidates; it must never make an otherwise ineligible or unsafe person eligible.
+The first product is a **Korean compatibility lab**, not a two-sided dating marketplace.
 
-Signature question:
+Primary user question:
 
-> **Why might we work?**
+> **What kinds of people and relationship dynamics seem interesting with my Saju?**
 
-Not:
+Secondary question:
 
-> How compatible are we on a 0–100 scale?
+> **Why might this dynamic feel easy, complementary, tense, or intriguing?**
 
 Do not present Saju or Gung-hap as scientifically validated predictors of relationship success.
 
-## 2. Why now
+## 2. First-release product shape
 
-The category is mature but still commercially large. The differentiated opportunity is not simply “astrology dating”; Western astrology features are already being productized by major incumbents. The wedge is the combination of:
+The product must be valuable with a single user and no marketplace liquidity.
 
-1. authentic Korean cultural vocabulary;
-2. deterministic, versioned Four Pillars calculation;
-3. transparent relationship explanations;
-4. a real dating marketplace rather than horoscope content alone;
-5. downstream outcome learning from conversations/dates;
-6. Couple Mode so the product remains useful after a successful match.
+Core modes:
 
-INYEON sits between intentional dating products such as Hinge, broad discovery products such as Tinder, and relationship/self-reflection products such as The Pattern, Co–Star, and CHANI.
+1. **My Saju** — enter birth data and get a deterministic Four Pillars result with uncertainty disclosure.
+2. **Me × Public Figure** — compare with globally recognizable public figures using sourced birth data.
+3. **Me × Synthetic Character** — explore thousands of clearly fictional reference characters across the compatibility space.
+4. **Me × Someone I Know** — optionally compare with another person whose birth information the user enters.
+5. **Share** — generate privacy-safe local share cards and links.
 
-## 3. Initial target customer
+Future real-user dating/matching remains an optional later mode.
 
-Primary US launch audience:
+## 3. Release principles
 
-- age 23–38 as the initial acquisition focus, while the service itself remains 18+;
-- relationship-oriented rather than purely swipe-volume driven;
-- culturally curious and K-culture adjacent;
-- explicitly LGBTQ+ inclusive;
-- one dense metro first, not nationwide.
+1. Independent project does not mean prototype quality.
+2. Build less, but build it for real.
+3. Compatibility is context, not destiny.
+4. No public soulmate percentage, stars, or pseudo-scientific probability.
+5. LLMs may help author copy during development, but do not calculate charts or decide rules.
+6. Unknown birth time remains unknown; never fabricate noon or any fallback hour.
+7. User personal birth/comparison data is processed locally and not stored/transmitted by INYEON application code.
+8. Public figures, synthetic characters, and real users are distinct entity types.
+9. Public figures are reference examples, not members, dating prospects, or endorsers.
+10. Synthetic characters are visibly fictional and never simulate real marketplace activity.
+11. Korean Saju/Gung-hap is described as Korean practice within the broader East Asian Four Pillars tradition.
+12. Real production deployment, CI, accessibility, privacy testing, and rollback are required for release.
 
-Priority personas:
+## 4. Core experience
 
-- **K-Culture Native** — already consumes Korean music, drama, food, beauty, language, or culture.
-- **Astrology-Curious Dater** — comfortable using symbolic systems for reflection without requiring literal belief.
-- **Intentional Dater** — wants fewer, better-explained introductions.
-- **Korean-American / Diaspora User** — culturally familiar and important for authenticity feedback.
-- **Compatibility Skeptic** — wants transparent logic, limitations, and evidence rather than Barnum-style copy.
-- **Existing Couple** — post-match lifecycle through Couple Mode.
+### 4.1 My Saju
 
-Do not build only for Korean-Americans. The product should expose a Korean cultural lens to a broader US audience while treating Korean/Korean-American users as credibility-critical early adopters.
+Input:
 
-## 4. Jobs to be done
-
-### Functional
-
-- Help me find people who already satisfy my actual dating constraints.
-- Help me understand why a specific person may feel easy, difficult, complementary, or interesting.
-- Give me a concrete question to ask instead of generic horoscope prose.
-- Let me continue using the product after a relationship begins.
-
-### Emotional
-
-- Reduce superficial swipe fatigue.
-- Make dating feel more intentional and narratively meaningful.
-- Give culturally interesting context without pretending destiny is measurable.
-
-### Trust
-
-- Show how an interpretation was derived.
-- Tell me when missing birth information lowers confidence.
-- Never hide a person or make a safety judgment because of astrology.
-
-## 5. Product principles
-
-1. Dating first, Saju second.
-2. Compatibility is context, not destiny.
-3. No public soulmate percentage, stars, or pseudo-scientific probability.
-4. Safety and mutual eligibility override all compatibility features.
-5. LGBTQ+, trans, and nonbinary users are first-class users.
-6. Traditional gender-role logic is not copied into modern matching.
-7. LLMs explain deterministic evidence; they never calculate Saju.
-8. Unknown birth time remains unknown and degrades gracefully.
-9. English explains meaning; Korean terminology explains cultural origin.
-10. Privacy-sensitive inputs are minimized, segregated, and never made public by default.
-
-## 6. Core user journeys
-
-### 6.1 Onboarding
-
-Sequence:
-
-`18+ → account → relationship intent → mutual preferences → profile → birth details → chart generated → discovery`
-
-Birth inputs:
-
-- birth date: required;
+- birth date;
 - birth time: exact / approximate / unknown;
-- birthplace: required to resolve historical timezone/calendrical inputs;
-- raw birth time and birthplace are private and not shown publicly.
+- birthplace only as needed for deterministic normalization.
 
-If time is unknown, tell the user that the chart can still be built but hour-dependent interpretations will be unavailable or lower-confidence.
+The browser computes the chart locally through `InyeonSajuAdapter`.
 
-### 6.2 Discovery
+Output includes:
 
-A profile must remain recognizably a dating profile: photos, prompts, intent, basics first.
+- Four Pillars / Eight Characters when supported by the available precision;
+- confidence/uncertainty disclosure;
+- key derived features used by compatibility;
+- methodology/version disclosure.
 
-Compatibility appears as context:
+Personal input/result state is in-memory only and disappears on refresh/tab close unless the user explicitly exports a local artifact.
+
+### 4.2 Me × Public Figure
+
+Users browse/search globally recognizable actors, musicians, athletes, creators, and other public figures.
+
+Each record must preserve:
+
+- source provenance;
+- birth-data confidence;
+- unknown/disputed time state;
+- licensed/non-infringing image metadata if an image is shown.
+
+Comparison output:
 
 - relationship archetype/headline;
 - **What clicks**;
-- **Worth watching**;
-- **Question to ask**;
-- **Why this?** with progressive disclosure into traditional logic.
+- **Potential friction**;
+- **Why this?** traditional evidence;
+- uncertainty/limitations.
 
-### 6.3 Inyeon Match
+No implication of endorsement, participation, romantic availability, or claims about the public figure's private relationships.
 
-A scarce curated candidate, initially one per week in free tier and configurable by experiment.
+### 4.3 Me × Synthetic Character
 
-Purpose:
+Synthetic characters provide broad compatibility exploration when no real dating supply exists.
 
-- create attention around a high-context introduction;
-- differentiate from endless swiping;
-- showcase Gung-hap explanation, not just scarcity.
+They must:
 
-### 6.4 Mutual match and chat
+- be generated reproducibly from versioned seeds/distributions;
+- cover the chart/relationship space intentionally rather than only randomly;
+- use the same compatibility engine as every other mode;
+- be persistently labeled fictional;
+- never expose Like/Match/Message/online-status/distance affordances.
 
-- Like → mutual match → chat.
-- Show a basic Gung-hap card after match.
-- Safety controls remain one tap away: report, block, unmatch.
-- Date prompts should translate interpretation into conversation behavior.
+Useful actions include:
 
-### 6.5 Full Gung-hap report
+- `Why this works`;
+- `Potential friction`;
+- `Compare`;
+- `Save archetype` only if implemented locally without personal persistence;
+- `Show another like this`.
 
-Sections:
+### 4.4 Me × Someone I Know
 
-- what feels easy;
-- where to take care;
-- what could make the relationship strong;
-- question to try on a date;
-- evidence and methodology disclosure;
-- confidence/limitations where relevant.
+Both subjects' personal data stays in browser memory only. The UI should remind users to enter another person's information only when they have an appropriate reason/permission to do so.
 
-Never use fatalistic language such as “doomed,” “bad spouse,” “will divorce,” or moral/sexual/fertility claims.
+## 5. Saju / Manseryeok strategy
 
-### 6.6 Post-date feedback
+The calendar layer is treated as a validated commodity dependency, not the main proprietary value.
 
-After sufficient interaction, optionally ask:
+Preferred pipeline:
 
-- Did you meet?
-- Would you like to see this person again?
-- Optional private safety feedback.
+`Birth input → INYEON normalization → InyeonSajuAdapter → normalized Four Pillars → derived features → compatibility rules → explanation`
 
-Use this to evaluate product outcomes, not to claim metaphysical causation.
+Primary open-source candidate: `yhj1024/manseryeok`, pinned behind an INYEON-owned adapter.
 
-### 6.7 Couple Mode
+Validation references may include `6tail/lunar-javascript`, Korean lunar/KASI-aligned references, and expert-reviewed fixtures.
 
-Mutual opt-in only.
+The product must maintain a versioned `korean-saju-v1` profile and a large golden corpus before public release.
 
-Capabilities:
+## 6. Compatibility contract
 
-- shared relationship themes;
-- conversation/check-in prompts;
-- explanation of recurring differences;
-- optional cycle-based reflective content;
-- revoke at any time.
+Compatibility is structured evidence, not an LLM opinion.
 
-Strategic purpose: retain successful relationships instead of treating churn from successful matching as inevitable.
+Rules should be versioned and produce machine-readable evidence for dimensions such as:
 
-## 7. MVP / V1 / V2 scope
+- pace;
+- communication rhythm;
+- stability;
+- novelty;
+- complementarity;
+- tension/growth.
 
-### MVP — months 0–3 / private alpha
+Traditional relationships such as combinations/clashes may contribute evidence, but the UI should translate them into balanced, non-fatalistic relationship language.
 
-- account and 18+ gate;
-- profile, photos, prompts, intent, preferences;
-- birth date/place and optional birth time;
-- deterministic Saju chart;
-- candidate discovery;
-- likes and mutual matches;
-- basic messaging;
-- basic Gung-hap card;
-- Inyeon Match;
-- report, block, unmatch;
-- human moderation console/workflow;
-- privacy export/delete foundation;
-- event instrumentation.
+Never infer or claim violence, criminality, morality, fidelity, fertility, mental illness, sexual behavior, or inevitable marriage/divorce outcomes from Saju.
 
-### V1 — months 3–6 / pilot-city beta
+## 7. First-release information architecture
 
-- liveness/photo verification;
-- full Gung-hap deep dive;
-- LLM narrative layer with structured-output validation;
-- post-date feedback;
-- subscriptions and entitlements;
-- Couple Mode;
-- optional Pattern Check/backtest trust feature;
-- referral/share cards;
-- DSAR/privacy center;
-- penetration/threat-model review.
+Suggested top-level structure:
 
-### V2 — months 6–12 / PMF search
+```text
+Home
+ ├─ My Saju
+ ├─ Public Figures
+ ├─ Inyeon Lab (synthetic)
+ ├─ Compare Someone
+ ├─ Methodology
+ └─ Privacy
+```
 
-- outcome-informed ranking experiments;
-- IRL K-culture events;
-- second-city launch;
-- creator/social compatibility artifacts;
-- localization expansion as justified;
-- advanced Couple Mode.
+A user should reach a meaningful comparison quickly without creating an account.
 
-Do not put nationwide US launch on the 12-month critical path.
+## 8. Sharing
 
-## 8. Compatibility product contract
+Sharing is a first-class feature because it drives discovery and Reddit/social discussion without requiring a backend.
 
-Eligibility is computed before compatibility.
+### 8.1 Share result card
 
-Recommended sequence:
+Generate an image in the browser and invoke native Web Share when available.
 
-`age/gender/orientation/intent → safety & block exclusions → metro/distance → activity/profile quality → candidate pool → behavioral/profile relevance → bounded Gung-hap features → diversity/repeated-exposure controls`
+Default card may include:
 
-Compatibility must not be a universal score in the UI. Internal ranking weights may exist but must be versioned, bounded, testable, and separable from baseline profile/behavioral features.
+- INYEON branding;
+- public figure/synthetic subject name when applicable;
+- relationship archetype;
+- short `What clicks` / `Potential friction` copy;
+- product URL.
 
-## 9. Cultural language
+Default card must not include raw birth date/time/place or other protected personal inputs.
 
-User-facing first layer / deeper optional layer:
+### 8.2 Share-safe result link
 
-- Saju → “your Korean birth pattern” / Saju, Four Pillars;
-- Gung-hap → “your relationship dynamic” / 궁합;
-- Inyeon → “a meaningful connection” / 인연;
-- Day Master / Five Elements / combinations/clashes are progressive disclosure.
+Links may contain only an allowlisted non-sensitive result payload. Protected birth inputs are forbidden in query strings or URL fragments.
 
-Cultural statement:
+### 8.3 Compare-with-me
 
-> Korean Saju and Gung-hap are Korean practices within the broader East Asian Four Pillars tradition.
+A separate explicit opt-in flow may create a link that lets another person compare with the sender. If any derived personal chart representation is embedded, the UI must explain exactly what is being shared before generation. This is never the default share action.
 
-Do not claim Korea uniquely invented the whole system.
+### 8.4 Public-figure pages
 
-## 10. Monetization hypotheses
+Build stable public pages and, where practical, prebuilt OG/social assets for recognizable public-figure entry points.
 
-Pricing is an experiment, not a fact.
+## 9. Privacy model
 
-- **Free** — dating, messaging, core compatibility card, limited Inyeon Match.
-- **Inyeon Plus** — starting hypothesis $14.99/mo or ~$89/yr; full Gung-hap, more curated matches, advanced non-sensitive filters, rewinds.
-- **Inyeon Premium** — starting hypothesis $24.99/mo or ~$149/yr; deeper reports, priority curated experience, premium Couple content.
-- **Gung-hap Pass** — $6.99 one-off report for two consenting/imported profiles.
-- **Couple Pass** — ~$39–49/year/couple.
-- **Founder Beta** — ~$59–79/year early-adopter plan.
+First-release privacy promise:
 
-Never monetize blocking, reporting, basic privacy controls, verification required for safety, or escape from harassment.
+> **INYEON application code does not collect, transmit, or store your personal birth/comparison inputs. Calculations happen in your browser.**
 
-## 11. Launch strategy
+Protected values must not enter:
 
-Pilot one metro.
+- localStorage/sessionStorage;
+- IndexedDB;
+- cookies;
+- service-worker/Cache API persistence;
+- URLs;
+- logs/console;
+- analytics;
+- third-party requests.
 
-Provisional recommendation: **Los Angeles**, unless NYC or another city can produce materially better pre-launch density.
+GitHub Pages itself may retain platform-level access/security logs; public copy must distinguish platform behavior from application-level zero retention.
 
-Launch gate: approximately **2,000 genuinely eligible, balanced, verified seeded profiles** before broad opening. Then target ~10k MAU pilot and ~50k MAU scale only after local liquidity works.
+## 10. Runtime / release architecture
 
-Acquisition wedge:
+First release is a static web application deployed through:
 
-- Korean-American and K-culture creators with cultural credibility;
-- TikTok/Reels/YouTube Shorts demonstrating Gung-hap as a conversation lens;
-- K-town events and “Gung-hap Night” concepts;
-- campus Korean/Asian-American organizations;
-- Korean restaurants, cafés, bookstores, and cultural venues;
-- dating/relationship creators.
+`GitHub repository → GitHub Actions → GitHub Pages`
 
-Hero messaging:
+No Cloud Run, Cloud SQL, Firebase database, or always-on GCP backend is required for the first release.
 
-> Maybe you do not need more matches. Maybe you need more context.
+Google Cloud remains a future option only when a feature proves it needs server-side state, protected secrets/APIs, authenticated accounts, realtime communication, or durable user data.
 
-## 12. Success metrics
+## 11. Reddit launch and feedback loop
 
-North-star:
+Reddit is the preferred initial promotion/feedback channel.
 
-> **Meaningful Connections per 100 Verified Weekly Active Users**
+Target operating loop:
 
-Initial definition:
+`owner-approved post → comments/reactions → compliant ingestion → dedupe/classify → GitHub issues → Codex bounded fix → CI/preview → production → changelog`
 
-`mutual match + both users message + conversation reaches >= 6 reciprocal messages`
+Human approval is required before:
 
-Graduate toward reported date + desire-to-see-again.
+- creating the Reddit account;
+- accepting Reddit developer terms/app access;
+- entering credentials;
+- publishing posts/replies;
+- any behavior that may conflict with subreddit rules.
 
-Supporting metrics:
+Feedback can automatically create/implement only bounded, reversible, well-evidenced issues such as reproducible bugs, copy/layout defects, accessibility problems, or verifiable public-figure data corrections.
 
-- verified MAU by metro / orientation / intent cohort;
-- eligible candidates per active user;
-- onboarding completion;
-- first-like activation;
-- Inyeon impression → profile open → like → match;
-- match → first message → reply → 6-message conversation;
-- D1/D7/D30/8-week retention;
-- report/block/scam rates and moderation SLA;
-- subscription conversion/churn/ARPPU;
-- exposure/match/reply fairness by supported cohort;
-- Couple Mode activation and 30/90-day retention.
+Human review remains required for methodology, privacy/security, major scope/positioning, public claims, and weak/contradictory feedback.
 
-## 13. Critical experiment
+## 12. First-release scope
 
-The highest-value product/business question is:
+Required:
 
-> **Does Gung-hap improve actual dating outcomes, or only make the product more interesting?**
+- deterministic Saju calculation via validated adapter;
+- uncertainty-aware chart representation;
+- derived compatibility features;
+- versioned compatibility rule engine;
+- deterministic explanation composer;
+- 500+ sourced public-figure records, scalable further;
+- synthetic-character generator/library;
+- polished responsive web UI;
+- share card + share-safe link flows;
+- methodology/privacy pages;
+- GitHub Pages CI/CD and rollback;
+- golden/regression/privacy/E2E/accessibility tests;
+- production smoke checks.
 
-Run user-level persistent assignment:
+Deferred from first release:
 
-- A — baseline ranking, no compatibility explanation;
-- B — baseline ranking + compatibility explanation;
-- C — baseline ranking + bounded Saju feature + explanation.
+- real-user dating discovery;
+- accounts/auth;
+- likes/matches/chat;
+- payments;
+- city marketplace seeding;
+- large-scale moderation;
+- server-side LLM runtime.
 
-Primary funnel:
+Deferred means out of current scope, not low quality.
 
-`mutual match → reciprocal conversation → 6-message conversation → reported date → want-to-see-again`
+## 13. Release success criteria
 
-This separates **presentation effect** from **matching effect**.
+The release is successful when:
 
-## 14. Falsifiable launch hypotheses
+- a stranger can open the public URL and complete the core flow without setup/help;
+- chart results are deterministic/versioned and pass golden tests;
+- unknown/disputed birth-time cases degrade correctly;
+- public-figure provenance is visible and auditable;
+- no protected personal value leaves browser memory;
+- sharing works without exposing protected inputs;
+- direct links/routes work reliably on GitHub Pages;
+- responsive/accessibility/error/empty/loading states are polished;
+- production deploy and rollback are reproducible;
+- Reddit feedback can be converted into traceable product work after required Human Gates.
 
-1. K-culture framing improves qualified signup without lowering trust.
-2. Gung-hap explanation increases reciprocal conversation, not just Likes.
-3. Bounded Saju ranking improves downstream outcomes versus explanation-only.
-4. Missing birth time does not materially damage onboarding completion when uncertainty is explained well.
-5. Balanced “what clicks / watch for” copy is trusted more than positive-only copy.
-6. Inyeon scarcity improves attention without harming D7 retention.
-7. First-date questions increase first reply or conversation depth.
-8. Couple Mode creates meaningful post-match retention.
-9. Share cards generate organic acquisition without privacy complaints.
-10. One-city density produces materially better outcomes than thin multi-city coverage.
-11. Verification improves trust enough to offset onboarding friction.
-12. Korean terminology increases curiosity only when paired with plain-English meaning.
+Business metrics such as revenue, CAC, or venture-scale growth are not first-release success criteria.
 
-## 15. Non-goals
+## 14. Future Marketplace Mode
 
-- National launch before local liquidity.
-- “Destined soulmate” claims.
-- Public compatibility percentages.
-- Astrology-based safety judgments.
-- Predicting fertility, morality, mental illness, infidelity, wealthworthiness, or spouse quality.
-- Hidden birth-time substitution.
-- Building proprietary biometric face-template infrastructure.
-- Sophisticated ML before baseline marketplace and measurement work.
-
-## 16. Human/legal gates
-
-Before public city beta, obtain qualified counsel review for:
-
-- US state privacy obligations and sensitive-data treatment;
-- automated decision/ranking disclosures and applicable California requirements;
-- biometric/photo verification vendor terms and state biometric laws;
-- subscription, auto-renewal, cancellation, and refund copy;
-- App Store / Google Play UGC and dating policy readiness;
-- Terms, Privacy Policy, Community Guidelines, Safety Center;
-- incident-response and law-enforcement request process.
-
-Product disclaimers do not cure misleading claims; functionality and marketing must be truthful by design.
+The prior US-first dating-marketplace design remains a possible future expansion. If activated, it must be treated as a separate architecture/product phase with new privacy, safety, legal, identity, moderation, and backend requirements rather than quietly added to the current zero-backend product.
