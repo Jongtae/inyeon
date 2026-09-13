@@ -1,6 +1,6 @@
 {
   "name": "@inyeon/saju-adapter",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "description": "INYEON-owned deterministic Korean Saju adapter boundary",
@@ -18,12 +18,16 @@
     "data"
   ],
   "scripts": {
+    "prebuild": "npm run build --workspace @inyeon/timezone-resolver",
     "build": "tsc -p tsconfig.build.json",
+    "pretypecheck": "npm run build --workspace @inyeon/timezone-resolver",
     "typecheck": "tsc --noEmit --pretty false",
-    "verify:data": "node scripts/generate-differential-corpus.mjs --check && node scripts/generate-solar-term-boundaries.mjs --check",
+    "preverify:data": "npm run build --workspace @inyeon/timezone-resolver",
+    "verify:data": "node scripts/generate-differential-corpus.mjs --check && node scripts/generate-solar-term-boundaries.mjs --check && node scripts/generate-year-month-differential.mjs --check",
     "test": "npm run verify:data && vitest run"
   },
   "dependencies": {
+    "@inyeon/timezone-resolver": "0.1.0",
     "manseryeok": "2.0.0"
   },
   "devDependencies": {

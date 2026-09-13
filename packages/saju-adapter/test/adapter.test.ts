@@ -49,7 +49,7 @@ describe('InyeonSajuAdapter', () => {
     expect(first.provenance).toEqual({
       profileVersion: 'korean-saju-v1',
       profileStatus: 'candidate',
-      adapterVersion: '0.2.0',
+      adapterVersion: '0.3.0',
       upstreamName: 'manseryeok',
       upstreamVersion: '2.0.0',
       timezoneDataVersion: 'fixed-kst-utc-plus-09-1989-2024-v1',
@@ -143,7 +143,7 @@ describe('InyeonSajuAdapter', () => {
       supportedCivilDateRange: { minimum: '1989-01-01', maximum: '2024-12-31' },
       productionEligible: false,
       derivedFeatures: { status: 'not-applicable' },
-      historicalTimeZonePolicy: { status: 'resolver-validated-not-integrated' },
+      historicalTimeZonePolicy: { status: 'resolver-integrated-for-year-month-only' },
     });
     expect(Object.isFrozen(SAJU_ADAPTER_CAPABILITIES)).toBe(true);
     expect(Object.isFrozen(SAJU_ADAPTER_CAPABILITIES.pendingEvidence)).toBe(true);

@@ -30,7 +30,7 @@ As inspected on 2026-09-13, `yhj1024/manseryeok` is MIT-licensed TypeScript, pub
 - day rollover uses local civil midnight (`midnight` upstream mode);
 - hour branches use two-hour civil-time intervals beginning with `자시` at 23:00;
 - true-solar-time/longitude/equation-of-time adjustment is off;
-- local instants and historical gaps/folds will use explicit, pinned IANA timezone/reference data once Issue #9 validates that normalization layer; until then, the adapter accepts only the narrow Seoul civil-time interval proven by its committed corpus and rejects all other timezone/history capability explicitly;
+- year/month-only calculation uses Issue #9's explicit pinned IANA resolver through the Issue #11 normalized-instant seam; complete day/hour charts retain the narrow Seoul civil-time interval until their local-civil semantics are separately proven;
 - hidden-stem weighting, Daewoon, and gender-directed calculations are outside v1 compatibility output until separately specified and evidenced.
 
 These candidate values are not production-approved conventions and must not be described as validated Korean practice. Issue #8 may confirm, revise, or reject each value based on its 50-case boundary-heavy comparison and documented references. A candidate becomes part of the production `korean-saju-v1` profile only after its supporting evidence and disagreement classification are recorded. Any candidate with unresolved reference or tradition disagreement is ineligible for production and must route through the Saju methodology Human Gate in `docs/HUMAN_GATES.md`.

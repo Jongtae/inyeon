@@ -1,4 +1,5 @@
 import { calculateFourPillars } from 'manseryeok';
+import { inyeonLocalTimeResolver } from '@inyeon/timezone-resolver';
 
 import type {
   EarthlyBranchHangul,
@@ -7,14 +8,29 @@ import type {
   InyeonPrimaryEngineOutput,
   InyeonSajuAdapter,
   InyeonSajuErrorCode,
-  InyeonSajuResult,
+  InyeonYearMonthResult,
   NormalizedPillar,
+  NormalizedYearMonthContext,
+  NormalizedYearMonthPillars,
 } from './types.js';
 
 const STEMS = ['갑', '을', '병', '정', '무', '기', '경', '신', '임', '계'] as const;
 const BRANCHES = ['자', '축', '인', '묘', '진', '사', '오', '미', '신', '유', '술', '해'] as const;
 const STEM_HANJA = ['甲', '乙', '丙', '丁', '戊', '己', '庚', '辛', '壬', '癸'] as const;
 const BRANCH_HANJA = ['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥'] as const;
+const MINIMUM_YEAR_MONTH_DATE = '1989-01-01';
+const MAXIMUM_YEAR_MONTH_DATE = '2024-12-31';
+const KST_OFFSET_MILLISECONDS = 9 * 60 * 60 * 1_000;
+const YEAR_MONTH_INPUT_KEYS = new Set([
+  'localDate',
+  'localTime',
+  'timePrecision',
+  'calendarKind',
+  'timeZone',
+  'profileVersion',
+  'timezoneDataVersion',
+  'referenceDataVersion',
+]);
 
 const defaultEngine: InyeonPrimaryEngine = {
   calculate(input) {
@@ -22,7 +38,7 @@ const defaultEngine: InyeonPrimaryEngine = {
   },
 };
 
-function fail(code: InyeonSajuErrorCode, message: string): InyeonSajuResult {
+function fail(code: InyeonSajuErrorCode, message: string): { status: 'error'; error: { code: InyeonSajuErrorCode; message: string } } {
   return { status: 'error', error: { code, message } };
 }
 
@@ -30,11 +46,28 @@ function provenance() {
   return {
     profileVersion: 'korean-saju-v1',
     profileStatus: 'candidate',
-    adapterVersion: '0.2.0',
+    adapterVersion: '0.3.0',
     upstreamName: 'manseryeok',
     upstreamVersion: '2.0.0',
     timezoneDataVersion: 'fixed-kst-utc-plus-09-1989-2024-v1',
     referenceDataVersion: 'issue-10-solar-term-boundaries-v1',
+    solarTermDataVersion: 'manseryeok-2.0.0-embedded-solar-terms-v1',
+    solarTermReferenceVersion: 'issue-10-astronomy-engine-2.1.19-v1',
+    solarTermPrecision: 'minute',
+    derivedFeatureVersion: 'not-applicable',
+  } as const;
+}
+
+function yearMonthProvenance() {
+  return {
+    profileVersion: 'korean-saju-v1',
+    profileStatus: 'candidate',
+    adapterVersion: '0.3.0',
+    upstreamName: 'manseryeok',
+    upstreamVersion: '2.0.0',
+    timezoneResolverVersion: '0.1.0',
+    timezoneDataVersion: 'iana-2026c-inyeon-filter-v1',
+    referenceDataVersion: 'issue-11-year-month-differential-v1',
     solarTermDataVersion: 'manseryeok-2.0.0-embedded-solar-terms-v1',
     solarTermReferenceVersion: 'issue-10-astronomy-engine-2.1.19-v1',
     solarTermPrecision: 'minute',
@@ -77,6 +110,49 @@ function normalizePillar(value: InyeonPrimaryEngineOutput['year']): NormalizedPi
     stemHanja: STEM_HANJA[stemIndex] ?? '',
     branchHanja: BRANCH_HANJA[branchIndex] ?? '',
   };
+}
+
+type ProjectedYearMonth =
+  | { readonly status: 'ok'; readonly pillars: NormalizedYearMonthPillars }
+  | { readonly status: 'out-of-range' }
+  | { readonly status: 'invalid-output' };
+
+function normalizedYearMonthAtInstant(engine: InyeonPrimaryEngine, instant: string): ProjectedYearMonth {
+  const instantMilliseconds = Date.parse(instant);
+  if (!Number.isFinite(instantMilliseconds) || instantMilliseconds % 60_000 !== 0) return { status: 'invalid-output' };
+  const projected = new Date(instantMilliseconds + KST_OFFSET_MILLISECONDS);
+  const projectedDate = projected.toISOString().slice(0, 10);
+  if (projectedDate < MINIMUM_YEAR_MONTH_DATE || projectedDate > MAXIMUM_YEAR_MONTH_DATE) return { status: 'out-of-range' };
+  const raw = engine.calculate({
+    year: projected.getUTCFullYear(),
+    month: projected.getUTCMonth() + 1,
+    day: projected.getUTCDate(),
+    hour: projected.getUTCHours(),
+    minute: projected.getUTCMinutes(),
+    dayBoundary: 'midnight',
+  });
+  const year = normalizePillar(raw.year);
+  const month = normalizePillar(raw.month);
+  return year && month ? { status: 'ok', pillars: { year, month } } : { status: 'invalid-output' };
+}
+
+function sameYearMonth(left: NormalizedYearMonthPillars, right: NormalizedYearMonthPillars): boolean {
+  return left.year.stem === right.year.stem
+    && left.year.branch === right.year.branch
+    && left.month.stem === right.month.stem
+    && left.month.branch === right.month.branch;
+}
+
+function mapResolverError(code: string): InyeonSajuErrorCode {
+  switch (code) {
+    case 'DATE_INVALID': return 'DATE_INVALID';
+    case 'DATE_OUT_OF_RANGE': return 'DATE_OUT_OF_RANGE';
+    case 'TIME_INVALID': return 'TIME_INVALID';
+    case 'TIME_PRECISION_INVALID': return 'TIME_PRECISION_UNSUPPORTED';
+    case 'TIMEZONE_UNSUPPORTED': return 'TIMEZONE_UNSUPPORTED';
+    case 'VERSION_UNSUPPORTED': return 'VERSION_UNSUPPORTED';
+    default: return 'INPUT_INVALID';
+  }
 }
 
 export function createInyeonSajuAdapter(engine: InyeonPrimaryEngine = defaultEngine): InyeonSajuAdapter {
@@ -131,6 +207,67 @@ export function createInyeonSajuAdapter(engine: InyeonPrimaryEngine = defaultEng
         };
       } catch {
         return fail('UPSTREAM_FAILURE', 'The primary calculation engine could not produce a normalized chart.');
+      }
+    },
+    calculateYearMonth(input: NormalizedYearMonthContext): InyeonYearMonthResult {
+      if (input == null || typeof input !== 'object') return fail('INPUT_INVALID', 'A normalized year/month birth context is required.');
+      if (Object.keys(input).some((key) => !YEAR_MONTH_INPUT_KEYS.has(key))) {
+        return fail('INPUT_INVALID', 'The year/month birth context contains unsupported fields.');
+      }
+      if (input.profileVersion !== 'korean-saju-v1') return fail('PROFILE_UNSUPPORTED', 'Only the korean-saju-v1 candidate profile is supported.');
+      if (input.referenceDataVersion !== 'issue-11-year-month-differential-v1') {
+        return fail('VERSION_UNSUPPORTED', 'Input reference versions do not match this adapter build.');
+      }
+      if (input.calendarKind !== 'solar') return fail('CALENDAR_UNSUPPORTED', 'Only the solar Gregorian calendar is supported by this adapter version.');
+      if (input.timePrecision !== 'exact') return fail('TIME_PRECISION_UNSUPPORTED', 'Year/month calculation currently requires an exact local time.');
+
+      const resolution = inyeonLocalTimeResolver.resolve({
+        localDate: input.localDate,
+        localTime: input.localTime,
+        timePrecision: input.timePrecision,
+        timeZone: input.timeZone,
+        timezoneDataVersion: input.timezoneDataVersion,
+      });
+      if (resolution.status === 'invalid' || resolution.status === 'unsupported') {
+        return fail(mapResolverError(resolution.error.code), 'The local civil time could not be normalized for year/month calculation.');
+      }
+      if (resolution.status === 'unknown') return fail('TIME_PRECISION_UNSUPPORTED', 'Year/month calculation currently requires an exact local time.');
+      if (resolution.status === 'nonexistent') return fail('NONEXISTENT_LOCAL_TIME', 'The local civil time does not exist in the selected timezone.');
+      try {
+        const projected = resolution.candidates.map((candidate) => normalizedYearMonthAtInstant(engine, candidate.instant));
+        if (projected.some((candidate) => candidate.status === 'out-of-range')) {
+          return fail('DATE_OUT_OF_RANGE', 'The resolved instant falls outside the validated KST-projected date range.');
+        }
+        if (projected.some((candidate) => candidate.status === 'invalid-output')) {
+          return fail('UPSTREAM_FAILURE', 'The primary calculation engine could not produce normalized year/month pillars.');
+        }
+        const normalized = projected.map((candidate) => (
+          candidate.status === 'ok' ? candidate.pillars : null
+        )).filter((candidate): candidate is NormalizedYearMonthPillars => candidate !== null);
+        const first = normalized[0];
+        if (!first) return fail('UPSTREAM_FAILURE', 'The primary calculation engine could not produce normalized year/month pillars.');
+        if (normalized.length === 1) {
+          return {
+            status: 'complete', pillars: first, resolution: 'unambiguous', candidateCount: 1,
+            alternatives: [], provenance: yearMonthProvenance(),
+          };
+        }
+        if (normalized.every((candidate) => sameYearMonth(first, candidate))) {
+          return {
+            status: 'complete', pillars: first, resolution: 'ambiguous-same-output', candidateCount: 2,
+            alternatives: [], provenance: yearMonthProvenance(),
+          };
+        }
+        const alternatives = normalized.filter((candidate, index, values) => (
+          values.findIndex((value) => sameYearMonth(value, candidate)) === index
+        ));
+        return {
+          status: 'ambiguous', reason: 'LOCAL_TIME_AMBIGUOUS_YEAR_MONTH', pillars: null,
+          resolution: 'ambiguous-different-outputs', candidateCount: 2, alternatives,
+          provenance: yearMonthProvenance(),
+        };
+      } catch {
+        return fail('UPSTREAM_FAILURE', 'The primary calculation engine could not produce normalized year/month pillars.');
       }
     },
   };

@@ -10,7 +10,7 @@ const zhi = Object.fromEntries([...'子丑寅卯辰巳午未申酉戌亥'].map((
 const toHangul = (value) => `${gan[value[0]]}${zhi[value[1]]}`;
 const fixtureProvenance = {
   profileVersion: 'korean-saju-v1',
-  adapterVersion: '0.2.0',
+  adapterVersion: '0.3.0',
   upstreamVersion: '2.0.0',
   timezoneDataVersion: 'fixed-kst-utc-plus-09-1989-2024-v1',
   referenceDataVersion: 'issue-10-solar-term-boundaries-v1',
@@ -170,7 +170,7 @@ const negativeCases = [
 for (const [id, input, expected] of negativeCases) records.push({
   id, input,
   provenance: fixtureProvenance,
-  primary: { engine: 'inyeon-adapter-validation', version: '0.2.0', output: null },
+  primary: { engine: 'inyeon-adapter-validation', version: '0.3.0', output: null },
   comparison: { engine: 'not-applicable', version: null, output: null },
   independentReference: { assertedProperty: 'adapter input contract', independentForAssertedProperty: false },
   classification: 'adapter_rejection_expected', expected,
@@ -183,7 +183,7 @@ const corpus = {
   schemaVersion: 1,
   generatedAt: '2026-09-13',
   profileVersion: 'korean-saju-v1',
-  adapterVersion: '0.2.0',
+  adapterVersion: '0.3.0',
   referenceDataVersion: 'issue-10-solar-term-boundaries-v1',
   solarTermDataVersion: 'manseryeok-2.0.0-embedded-solar-terms-v1',
   solarTermReferenceVersion: 'issue-10-astronomy-engine-2.1.19-v1',
@@ -195,7 +195,7 @@ const corpus = {
     'No Korean-methodology expert review is asserted.',
     'lunar-javascript chart comparison may share calendrical lineage and is not independent evidence.',
     'Astronomy Engine is independent only for apparent-Sun longitude boundary location.',
-    'Issue #9 validates separate timezone-normalization candidates, but that resolver is not integrated into Saju chart calculation.',
+    'Issue #9 timezone normalization is integrated only through Issue #11 year/month calculation; it does not expand this corpus\'s complete-chart capability.',
     'Day/hour convention differences are preserved for Issue #12; this corpus does not select a correct Korean methodology.',
   ],
   recordCount: records.length,
