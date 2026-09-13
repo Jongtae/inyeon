@@ -1,428 +1,341 @@
 # INYEON Architecture
 
-Status: target architecture for M0/M1; implementation ADRs may refine vendor choices without violating the boundaries below.
+Status: active architecture for the first public release. The historical dating-marketplace architecture remains a future option, not the current runtime target.
 
-## 1. Architecture goals
+## 1. Architecture thesis
 
-INYEON must be easy to change, test, deploy, observe, and roll back. The architecture should optimize first for correctness, privacy, safety, and developer velocity rather than premature scale.
+INYEON is an independent personal project intended for a real public release. The first release should be production-grade without introducing backend infrastructure that the product does not need.
 
-Core constraints:
+The active design is therefore **static-first, browser-only, zero-retention by application design**:
 
-- dating/profile data, sensitive birth data, compatibility logic, narrative generation, messaging, safety, and analytics are explicit boundaries;
-- deterministic inputs and pinned methodology produce reproducible Saju results;
-- LLMs never calculate charts or invent compatibility rules;
-- exact DOB, birth time, birthplace, orientation, precise location, private messages, and verification artifacts must not leak into public profiles, analytics, logs, or unnecessary LLM calls;
-- safety and eligibility override ranking;
-- use managed services before self-operated distributed infrastructure.
+```text
+GitHub repository
+      ↓
+GitHub Actions
+  ├─ test
+  ├─ build
+  ├─ generate/version reference data
+  └─ deploy
+      ↓
+GitHub Pages
+      ↓
+User browser
+  ├─ personal birth input in memory only
+  ├─ Manseryeok/Saju calculation
+  ├─ compatibility rules
+  ├─ deterministic explanation composition
+  ├─ public-figure comparison
+  ├─ synthetic-character comparison
+  └─ local share-card/link generation
+```
 
-## 2. Recommended repository shape
+Google Cloud is an explicit future escape hatch if a later feature truly requires server-side state, protected APIs, server secrets, realtime messaging, authenticated accounts, or durable user data. It is not on the first-release critical path.
+
+## 2. Core architectural invariants
+
+- Personal birth/comparison inputs are processed in the browser and are not transmitted to an INYEON backend because the first release has no application backend.
+- No account is required for the first release.
+- No database stores personal birth data or derived personal compatibility results.
+- Protected personal input must not be written to localStorage, sessionStorage, IndexedDB, cookies, Cache API/service-worker caches, URL query strings/fragments, logs, analytics, or third-party requests.
+- Public-figure and synthetic reference data are static/versioned assets and are technically distinct from real users.
+- LLMs never calculate Saju/Four Pillars or decide compatibility rules.
+- Runtime browser code must never contain secret API keys.
+- Unknown birth time remains unknown; no noon/default-hour substitution.
+- Compatibility output is context, not destiny; no public soulmate percentage or pseudo-scientific probability.
+- Release quality includes CI, regression tests, accessibility, responsive UX, privacy tests, rollback/redeploy, and production smoke tests.
+
+## 3. Recommended repository shape
 
 ```text
 inyeon/
 ├── apps/
-│   ├── mobile/             # Expo / React Native
-│   ├── admin/              # trust & safety / support console
-│   └── marketing-web/      # landing, methodology, policies
-├── services/
-│   ├── api/                # product API / auth boundary / orchestration
-│   ├── saju-engine/        # deterministic Four Pillars calculation
-│   ├── matching/           # candidate generation / ranking
-│   ├── narrative/          # structured facts -> validated LLM copy
-│   └── moderation/         # abuse/safety workflows
+│   └── web/                         # static React/TypeScript app
 ├── packages/
-│   ├── domain/
-│   ├── api-contracts/
-│   ├── compatibility-rules/
-│   ├── analytics-events/
-│   ├── design-system/
-│   └── privacy/
+│   ├── saju-adapter/                # INYEON-owned wrapper around pinned upstream
+│   ├── chart-domain/                # normalized chart + uncertainty model
+│   ├── compatibility-rules/         # deterministic/versioned rule engine
+│   ├── narrative/                   # deterministic explanation composer
+│   ├── share/                       # local share card / share-safe payloads
+│   └── design-system/
 ├── data/
-│   └── non-pii-reference/
+│   ├── public-figures/               # sourced/versioned public reference data
+│   ├── synthetic/                    # deterministic generated reference data
+│   └── reference/                    # non-personal calendrical/golden data
+├── scripts/
+│   ├── build-public-figures.*
+│   ├── generate-synthetic.*
+│   ├── validate-golden.*
+│   └── privacy-audit.*
 ├── tests/
 │   ├── golden-charts/
 │   ├── compatibility/
-│   ├── security/
+│   ├── privacy/
+│   ├── share/
 │   └── e2e/
-├── infra/
-│   ├── terraform/
-│   └── environments/
+├── .github/workflows/
+│   ├── ci.yml
+│   ├── pages.yml
+│   └── feedback-*.yml               # only after Reddit Human Gates
 └── docs/
     ├── adr/
     ├── methodology/
     ├── privacy/
-    ├── trust-safety/
     └── runbooks/
 ```
 
-No production birth data, photos, messages, biometrics, or other PII may ever be committed to the repository.
+## 4. Technology baseline
 
-## 3. Technology baseline
+Preferred first-release stack:
 
-Preferred initial stack:
-
-- **Mobile:** Expo + React Native + TypeScript.
-- **Admin / marketing:** Next.js + TypeScript.
-- **API:** TypeScript with Fastify or NestJS; choose one in an ADR and keep API contracts typed.
-- **Saju engine:** deterministic Python service/package if astronomical/calendar validation is materially easier there; otherwise a strongly-tested TypeScript package is acceptable. The engine must remain isolated and versioned either way.
-- **Primary database:** managed PostgreSQL; use PostGIS only where geospatial lookup materially requires it.
-- **Cache / ephemeral state:** managed Redis only when justified by measured need.
-- **Async jobs:** managed queue such as SQS or equivalent.
-- **Media:** object storage + CDN; signed upload/download URLs.
-- **Secrets / keys:** managed KMS + secret manager.
-- **Runtime:** small containerized services on a managed runtime (for example ECS/Fargate or equivalent). Do not introduce Kubernetes before operational evidence justifies it.
+- **Frontend:** React + TypeScript with a static build tool such as Vite.
+- **Hosting:** GitHub Pages.
 - **CI/CD:** GitHub Actions.
-- **IaC:** Terraform.
-- **Observability:** OpenTelemetry + managed logs/metrics/traces/error tracking.
-- **Feature flags:** managed flag service or thin internal abstraction with durable assignments.
-- **LLM:** provider abstraction behind server-side structured-output validation.
+- **Routing:** Pages-safe hash routing or a fully tested static fallback strategy.
+- **Saju/Manseryeok:** pinned `yhj1024/manseryeok` candidate behind `InyeonSajuAdapter`, validated against independent references such as `6tail/lunar-javascript`, Korean lunar/KASI-aligned references, and expert-reviewed fixtures.
+- **State:** in-memory only for personal inputs/results.
+- **Public data:** versioned JSON/static assets generated during build/maintenance workflows.
+- **Narrative:** deterministic templates/composition from structured evidence for the first release. No runtime secret-bearing LLM call.
+- **Sharing:** client-generated images + share-safe links; prebuilt public-figure pages/OG metadata where useful.
+- **Observability:** privacy-safe build/deploy/availability checks first. Any third-party browser telemetry requires explicit privacy review and must not include protected fields.
 
-An even leaner alpha may use managed auth + managed Postgres, but convenience must not collapse sensitive-data boundaries.
+## 5. Runtime data flows
 
-## 4. System decomposition
-
-```text
-Mobile / Web
-    ↓
-API Gateway / Product API
-    ├── Auth & account
-    ├── Profile & preferences
-    ├── Discovery / likes / matches
-    ├── Messaging
-    ├── Privacy / export / deletion
-    └── Safety endpoints
-
-Product API
-    ├── Sensitive Birth Data Vault
-    ├── Saju Engine
-    │     ├── IANA timezone data
-    │     ├── solar-term / ephemeris reference
-    │     └── immutable chart snapshot
-    ├── Compatibility Feature Generator
-    ├── Versioned Rule Engine
-    ├── Ranking Service
-    ├── Narrative Service
-    │     └── schema + safety validator
-    ├── Moderation / case management
-    └── Privacy-safe event stream → analytics warehouse
-```
-
-## 5. Data boundaries
-
-### 5.1 Identity / account
-
-Contains authentication identifiers, age-gate state, account status, consent versions, locale, and coarse service metadata.
-
-### 5.2 Dating profile
-
-Contains only fields necessary to present the public dating profile: display name, public age, metro/distance bucket, photos, prompts, intent, and visible preference-compatible fields.
-
-### 5.3 Sensitive birth vault
-
-Contains encrypted:
-
-- local DOB;
-- local birth time when known;
-- precision `exact | approximate | unknown`;
-- birthplace resolver token;
-- timezone ID;
-- any short-lived coordinates needed for deterministic calculation.
-
-Application code should derive the minimum chart representation required by downstream features, then avoid propagating raw birth inputs further than necessary.
-
-### 5.4 Immutable chart snapshot
-
-Store:
-
-- normalized pillars/features;
-- calculation profile version;
-- timezone-data version;
-- ephemeris/solar-term reference version;
-- input-completeness/confidence metadata;
-- derived-feature version.
-
-A chart snapshot is derived personal data and must still be covered by deletion/export policy.
-
-### 5.5 Compatibility snapshot
-
-Store pair-level structured evidence:
-
-- chart IDs / pseudonymous subject IDs;
-- compatibility feature vector;
-- rule IDs/versions;
-- confidence limitations;
-- ranking feature family values.
-
-Keep traditional features separable from learned behavioral features.
-
-### 5.6 Messaging
-
-Store message content in the messaging domain. Do not send raw message text to analytics. Moderation access must be role-bound and audited.
-
-### 5.7 Analytics
-
-Events use pseudonymous IDs and approved enums/buckets only. No raw birth data, private message text, exact coordinates, verification images, or government IDs.
-
-## 6. Saju calculation contract
-
-Raw normalized input:
+### 5.1 Personal Saju
 
 ```text
-birth_date_local
-birth_time_local | null
-birth_time_precision = exact | approximate | unknown
-birthplace resolver output
-timezone_id
-calculation_profile_version
-timezone_data_version
+Birth date/time/place entered by user
+      ↓ memory only
+input normalization
+      ↓
+InyeonSajuAdapter
+      ↓
+normalized chart + confidence/uncertainty
+      ↓
+render
 ```
+
+Refresh/tab close clears the state. A dedicated Clear action should also reset it.
+
+### 5.2 Me × Public Figure
+
+```text
+personal chart in memory
+      +
+static PublicFigure record + provenance/confidence
+      ↓
+compatibility engine
+      ↓
+structured evidence
+      ↓
+local explanation + share artifact
+```
+
+Public-figure records are references, not members or dating prospects. Unknown/disputed birth time suppresses unsupported hour-dependent claims.
+
+### 5.3 Me × Synthetic Character
+
+Synthetic characters are deterministic reference fixtures generated from pinned seeds/distributions. They are always marked fictional and cannot enter Like/Match/Message state machines.
+
+### 5.4 Me × Someone I Know
+
+Both subjects' personal inputs stay in memory. The app must make clear that the user should only enter another person's birth information when they have an appropriate reason/permission to do so.
+
+## 6. Manseryeok / Saju engine boundary
+
+Do not greenfield mature calendar primitives without evidence.
+
+```text
+Birth input
+  → INYEON normalization
+  → InyeonSajuAdapter
+  → normalized Four Pillars / uncertainty
+  → derived chart features
+  → compatibility rules
+```
+
+The adapter must pin and record:
+
+- upstream package/repository version;
+- INYEON calculation profile version;
+- timezone/reference-data version where relevant;
+- methodology choices that differ across traditions;
+- confidence when birth time or boundary conditions are uncertain.
 
 Required properties:
 
-1. same normalized input + same profile/version → same normalized output;
-2. methodology choices documented in `SAJU_ENGINE_SPEC.md` and versioned profile files;
-3. historic timezone/DST behavior pinned and reproducible;
-4. solar-term boundaries deterministic and testable;
-5. unknown time never replaced with a fabricated hour;
-6. hour-dependent rules suppressed or down-weighted when not supported;
-7. at least 200 expert/reference golden fixtures before public launch.
+1. same normalized input + same versions → same normalized output;
+2. upstream upgrades must pass the full golden corpus before production;
+3. at least 200 representative/boundary-heavy golden cases before public release;
+4. unknown time is never fabricated;
+5. disagreements across references are classified and documented rather than silently averaged.
 
-## 7. Compatibility rule architecture
+## 7. Compatibility architecture
 
-Rules are code/data, not prose prompts.
+Compatibility rules are code/data, not prompt prose.
 
-Example shape:
+Each rule should be versioned and emit structured evidence such as:
 
 ```json
 {
   "rule_id": "PAIR-DAY-BRANCH-CLASH-001",
   "version": "1.0.0",
-  "requires": ["user.day_branch", "candidate.day_branch"],
+  "requires": ["a.day_branch", "b.day_branch"],
   "evidence": {"relationship": "clash"},
   "dimensions": {"pace": -1, "novelty": 2, "stability": -1, "growth": 2},
   "allowed_narratives": ["different decision rhythms", "productive tension"],
-  "prohibited_narratives": ["doomed marriage", "infidelity", "divorce prediction"],
-  "expert_validation": "reviewed"
+  "prohibited_narratives": ["doomed marriage", "infidelity", "divorce prediction"]
 }
 ```
 
-Rule engine output must be explainable and versioned.
+The UI should present archetypes and balanced sections such as `What clicks`, `Potential friction`, and `Why this?`, not a universal compatibility percentage.
 
-## 8. Ranking architecture
+## 8. Explanation architecture
 
-Candidate generation:
+First-release runtime explanation is deterministic:
 
 ```text
-18+ / account eligibility
-→ mutual orientation/gender/intent compatibility
-→ age preferences
-→ blocks/reports/safety exclusions
-→ metro/distance policy
-→ deal-breakers/account activity
-→ eligible pool
+compatibility evidence
+    ↓
+rule-aware narrative composer
+    ↓
+validated copy blocks
 ```
 
-Ranking feature families:
+LLMs may help author/refine templates during development, but generated copy is stored/versioned. Browser runtime must not call a secret-bearing LLM API.
 
-1. profile/behavioral relevance;
-2. activity/profile quality;
-3. marketplace diversity/exposure controls;
-4. bounded Gung-hap features.
+## 9. Public-figure data architecture
 
-Saju may adjust ranking within an eligible pool. It must never override safety, blocks, or mutual preference eligibility.
+`PublicFigure` is separate from personal/synthetic entities.
 
-Every experiment must preserve the ability to run a baseline with Gung-hap weight = 0.
+Store at minimum:
 
-## 9. LLM narrative boundary
+- canonical name / aliases;
+- category / region metadata;
+- sourced birth date;
+- birthplace when reasonably sourced/needed;
+- birth time only when reliable;
+- value-level provenance;
+- source URLs / retrieval dates;
+- confidence such as `verified | well_sourced | disputed | date_only | unknown`;
+- data version;
+- optional appropriately licensed image metadata.
 
-The LLM receives structured compatibility evidence, never the full private user record.
+Never scrape arbitrary celebrity photos into the product. Never imply endorsement or romantic availability.
 
-Allowed example:
+## 10. Synthetic-character architecture
 
-```json
-{
-  "pair_id": "pseudo_123",
-  "relationship_features": [],
-  "rule_evidence": [],
-  "confidence": {},
-  "relationship_stage": "pre_match",
-  "tone": "warm_concise"
-}
-```
+`SyntheticCharacter` is a deterministic fictional reference entity, not a fake user.
 
-Normally exclude:
+Generate from versioned seeds/distributions, cover the compatibility space intentionally, and keep synthetic analytics/results separate from any later real-user outcomes.
 
-- legal name;
-- exact DOB/time;
-- birthplace;
-- exact current location;
-- private messages;
-- verification artifacts.
+No Like/Match/Message, online status, distance, fake inbound activity, or other deceptive dating affordance is allowed.
 
-Required structured output:
+## 11. Sharing architecture
 
-```json
-{
-  "headline": "Builder + Explorer",
-  "what_clicks": "...",
-  "watch_for": "...",
-  "question_to_ask": "...",
-  "rule_ids": ["..."],
-  "disclaimer_class": "reflective"
-}
-```
+Sharing is local-first and privacy-safe.
 
-Validate:
+### A. Share result card
 
-- schema;
-- rule references;
-- prohibited claims;
-- identity-sensitive language;
-- maximum length;
-- methodology/prompt/model versions.
+Generate a PNG/WebP client-side and invoke the Web Share API when available. Default card must omit raw birth date/time/place and other protected personal data.
 
-Narrative reproducibility key:
+### B. Share-safe result link
 
-`chart_version + rule_version + prompt_version + model_version`.
+A link may encode only an allowlisted result payload. Do **not** include birth inputs or derived data that enables meaningful birth-time reconstruction by default.
 
-## 10. Core entities
+For general share links, prefer non-sensitive archetype/result identifiers. If URL fragments are used, remember that fragment data is not sent as the HTTP request path but is still visible to anyone receiving the link and to browser history/local tooling; protected birth inputs remain forbidden there.
 
-- `User`
-- `DatingProfile`
-- `DatingPreference`
-- `BirthInput`
-- `BirthChart`
-- `CompatibilitySnapshot`
-- `Like`
-- `MatchRecord`
-- `Narrative`
-- `Message`
-- `SafetyReport`
-- `SafetyCase`
-- `Verification`
-- `CoupleRelationship`
-- `OutcomeFeedback`
-- `ExperimentExposure`
-- optional `BacktestResult`
-- `SubscriptionEntitlement`
-- `AuditLog`
+### C. Compare-with-me link
 
-Schemas must define ownership, retention, encryption class, export behavior, and deletion behavior.
+This is an explicit opt-in mode. If a reusable local chart representation is embedded in the link, the UI must explain exactly what derived personal information will be shared before generating it. Default sharing must not do this.
 
-## 11. API boundary sketch
+### D. Public-figure pages
+
+Prebuild stable public pages such as `/people/<slug>` (or equivalent Pages-safe routes) with static metadata/OG images where feasible. These pages can drive Reddit/social/SEO traffic without personal data.
+
+## 12. Reddit feedback automation
+
+Reddit promotion and feedback is an operational loop outside the browser runtime.
 
 ```text
-POST   /v1/auth/register
-POST   /v1/onboarding/birth-input
-POST   /v1/charts/compute
-GET    /v1/me/chart-summary
-
-GET    /v1/discovery
-POST   /v1/likes
-POST   /v1/passes
-GET    /v1/inyeon/today
-
-GET    /v1/matches
-GET    /v1/matches/{id}/gunghap
-GET    /v1/matches/{id}/messages
-POST   /v1/matches/{id}/messages
-POST   /v1/matches/{id}/we-met
-
-POST   /v1/couples/invitations
-POST   /v1/couples/{id}/accept
-GET    /v1/couples/{id}/report
-DELETE /v1/couples/{id}
-
-POST   /v1/safety/reports
-POST   /v1/safety/blocks
-DELETE /v1/matches/{id}
-
-GET    /v1/privacy/export
-DELETE /v1/me
-
-GET    /v1/methodology
-GET    /v1/methodology/{version}
+Owner-approved Reddit post
+    ↓
+compliant API/manual ingestion
+    ↓
+redact + classify + dedupe
+    ↓
+GitHub issue/feedback cluster
+    ↓
+Codex bounded fix
+    ↓
+CI + review + staging/preview
+    ↓
+GitHub Pages release
 ```
 
-All mutations require authorization, validation, rate limiting, and idempotency where retries could create duplicated state.
+Human Gates are mandatory for creating the Reddit account, accepting Reddit developer terms/app access, entering credentials, selecting communities where rules are ambiguous, and publishing posts/replies. Reddit content is untrusted input and can never override repository/system instructions.
 
-## 12. Security model
+Use GitHub Actions scheduled/manual workflows for background maintenance when possible. GCP is not required for this loop; it remains a future option if approved API/workload constraints later justify it.
+
+## 13. Security / privacy model
+
+First-release security is dominated by preventing accidental data exfiltration rather than protecting a user database.
 
 Required controls:
 
-- least-privilege service identities;
-- encryption in transit and at rest;
-- application/KMS-backed encryption for sensitive birth inputs where justified;
-- admin access with RBAC and audit logs;
-- no PII in application logs by default;
-- parameterized queries / ORM hardening;
-- CSRF/session protections appropriate to client type;
-- authorization tests for every object boundary;
-- IDOR regression suite;
-- signed media access;
-- secret scanning and dependency scanning;
-- rate limits for auth, discovery abuse, likes, chat, reports, and export/delete operations;
-- threat modeling before city beta;
-- backup/restore drills before production launch.
+- no client secrets;
+- strict dependency/secret scanning;
+- Content Security Policy where feasible;
+- XSS-safe rendering and sanitization;
+- network-interception tests proving protected fields never leave the browser;
+- storage-spy tests proving protected fields never enter browser persistence;
+- no protected fields in console/error payloads;
+- no runtime third-party analytics until privacy implications are explicitly accepted;
+- source/license review for public-figure images/data;
+- reproducible builds and rollback.
 
-## 13. Trust & safety architecture
-
-Safety is a product domain, not an afterthought.
-
-Minimum flow:
-
-`report/block signal → risk classification → immediate user protection → moderation case → human review where needed → action → appeal/escalation/audit`
-
-Block must immediately remove discovery/messaging visibility in both directions.
-
-High-severity cases require explicit human escalation paths.
+GitHub Pages may keep platform-level infrastructure/security logs such as visitor IPs; public privacy copy must distinguish this from INYEON application-level zero retention.
 
 ## 14. Testing strategy
 
-Required layers:
+Required before first public release:
 
-- unit tests for domain logic;
-- property tests for deterministic Saju invariants;
-- ≥200 golden-chart fixtures;
-- positive/negative/missing-input tests for every compatibility rule;
-- pair-order symmetry tests where logically required;
-- API/DB integration tests;
-- auth/IDOR tests;
-- matching exclusion tests;
-- privacy-leak tests for logs/analytics/LLM payloads;
-- moderation/report/block tests;
-- E2E onboarding → discovery → match → chat → report/block/delete;
-- payment lifecycle tests;
-- migration tests;
-- accessibility tests;
-- performance/load tests for discovery/chat;
-- production smoke tests.
+- unit/property tests for Saju/compatibility invariants;
+- ≥200 golden chart/reference fixtures;
+- differential tests against independent Manseryeok/BaZi references;
+- unknown/approximate/disputed time tests;
+- compatibility rule tests and symmetry/invariance tests where appropriate;
+- public-figure provenance/import tests;
+- synthetic generator determinism/distribution tests;
+- Playwright E2E for personal chart → public figure → synthetic → share flows;
+- privacy tests for network/storage/cache/console leakage;
+- share allowlist and image-generation snapshot tests;
+- accessibility/responsive tests;
+- GitHub Pages deep-link/direct-refresh tests;
+- production smoke and rollback/redeploy rehearsal.
 
-## 15. Environments and release model
+## 15. Release model
 
 ```text
-local → test → staging → production
+local → CI/test → preview/staging-equivalent → GitHub Pages production
 ```
 
-No direct production deployment from a developer branch.
+A feature working locally is not Done. Release gates live in `CODEX.md` and `ROADMAP.md`.
 
-Production release gates are defined in `CODEX.md` and `OPERATIONS.md`.
+## 16. ADRs required for the active release
 
-## 16. ADRs required before M1 expansion
+1. static web framework/package manager;
+2. GitHub Pages routing/base-path strategy;
+3. open-source Manseryeok dependency + adapter/version policy;
+4. `korean-saju-v1` methodology boundaries;
+5. public-figure provenance/confidence schema;
+6. synthetic generator/version policy;
+7. client-only zero-retention privacy boundary;
+8. deterministic narrative composer;
+9. share-safe payload/card/link design;
+10. GitHub Pages deployment/rollback strategy;
+11. Reddit feedback ingestion/automation governance;
+12. explicit criteria for introducing GCP/backend later.
 
-At minimum:
+## 17. Future Marketplace Mode
 
-1. monorepo/package manager/runtime architecture;
-2. API framework;
-3. auth provider and session model;
-4. managed Postgres provider and PII isolation strategy;
-5. Saju engine language and ephemeris/timezone dependencies;
-6. object storage/media pipeline;
-7. messaging transport/storage;
-8. moderation vendor vs internal controls;
-9. analytics collection/warehouse;
-10. feature-flag/experiment assignment;
-11. LLM provider abstraction and retention policy;
-12. staging/production runtime and IaC;
-13. backup/restore and disaster recovery.
-
-The default decision criterion is the simplest reversible option that satisfies safety, privacy, reproducibility, and launch requirements.
+The earlier account/profile/discovery/match/chat/moderation/payment architecture is intentionally deferred, not discarded. If the owner later activates Marketplace Mode, create a new architecture version/ADR rather than quietly introducing server state into the zero-backend release.
