@@ -48,6 +48,8 @@ It must not be written to:
 
 Refresh/tab close should naturally discard personal state. Provide an explicit `Clear` action as well.
 
+The Issue #53 web shell implements one in-memory personal session shared across its fixed hash routes. Refresh and `Clear personal data` remove both the personal chart and any dependent public, fictional, or second-person comparison result. Public-reference data is a lazy-loaded checked-in static asset; personal values are never used to form its request URL. CI browser verification covers route-only URLs/history, empty local/session storage, cookies, IndexedDB, Cache API, and service-worker registrations, no calculation-time requests or WebSockets, clean console/page-error output, direct refresh, and offline calculation after required static assets load. The broader adversarial browser matrix and deployed privacy gate remain Issue #52.
+
 ## 4. Client-side computation
 
 Personal flows must work locally:
@@ -72,7 +74,7 @@ Production records should preserve:
 
 - source/provenance;
 - retrieval date;
-- confidence/dispute state;
+- categorical source/time/dispute state;
 - nullable birth time;
 - image-license metadata if images are used.
 

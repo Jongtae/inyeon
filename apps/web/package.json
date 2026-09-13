@@ -5,15 +5,25 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "preview": "vite preview",
     "build": "tsc --noEmit && vite build",
-    "typecheck": "tsc --noEmit --pretty false",
-    "test": "vitest run"
+    "typecheck": "tsc --noEmit --pretty false && tsc -p tsconfig.e2e.json --pretty false",
+    "test": "vitest run",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
+    "@inyeon/compatibility-narrative": "0.1.0",
+    "@inyeon/compatibility-rules": "0.1.0",
+    "@inyeon/public-figures": "0.1.0",
+    "@inyeon/saju-adapter": "0.4.0",
+    "@inyeon/saju-derived-features": "0.1.0",
+    "@inyeon/synthetic-characters": "0.1.0",
     "react": "19.3.0",
     "react-dom": "19.3.0"
   },
   "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "@playwright/test": "1.63.0",
     "@testing-library/jest-dom": "7.0.1",
     "@testing-library/react": "16.3.3",
     "@types/node": "24.13.4",

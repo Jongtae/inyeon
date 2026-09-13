@@ -1,4 +1,12 @@
-export const routes = ['/', '/methodology', '/privacy'] as const;
+export const routes = [
+  '/',
+  '/my-saju',
+  '/public-figures',
+  '/inyeon-lab',
+  '/compare-someone',
+  '/methodology',
+  '/privacy',
+] as const;
 
 export type AppRoute = (typeof routes)[number];
 

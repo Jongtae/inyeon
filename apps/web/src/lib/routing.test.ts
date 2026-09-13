@@ -15,6 +15,10 @@ describe('Pages-safe routing', () => {
 
   it('accepts only public, fixed hash routes', () => {
     expect(routeFromHash('#/privacy')).toBe('/privacy');
+    expect(routeFromHash('#/my-saju')).toBe('/my-saju');
+    expect(routeFromHash('#/public-figures')).toBe('/public-figures');
+    expect(routeFromHash('#/inyeon-lab')).toBe('/inyeon-lab');
+    expect(routeFromHash('#/compare-someone')).toBe('/compare-someone');
     expect(routeFromHash('#/unknown?birth=private')).toBe('/');
     expect(hashForRoute('/methodology')).toBe('#/methodology');
   });
