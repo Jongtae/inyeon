@@ -92,6 +92,7 @@ Preferred first-release stack:
 - **CI/CD:** GitHub Actions.
 - **Routing:** Pages-safe hash routing or a fully tested static fallback strategy.
 - **Saju/Manseryeok:** pinned `yhj1024/manseryeok` candidate behind `InyeonSajuAdapter`. Reference independence is property-specific: `6tail/lunar-javascript` is a shared-lineage secondary comparison for solar terms, independent astronomy may locate boundary instants, and Korean lunar/KASI-aligned or expert-reviewed fixtures remain required before production.
+- **Local-time normalization:** dependency-free `@inyeon/timezone-resolver` runtime over a checked-in, exact-versioned IANA transition artifact. Generation-only Moment dependencies never enter the browser runtime. Resolver capability is separate from chart-calculation capability.
 - **State:** in-memory only for personal inputs/results.
 - **Public data:** versioned JSON/static assets generated during build/maintenance workflows.
 - **Narrative:** deterministic templates/composition from structured evidence for the first release. No runtime secret-bearing LLM call.
@@ -106,6 +107,13 @@ Preferred first-release stack:
 Birth date/time/place entered by user
       ↓ memory only
 input normalization
+      ↓
+unknown time ───────────────→ explicit unknown-time context
+exact local time
+      ↓
+LocalTimeResolver
+      ↓ 0 / 1 / 2 UTC candidates; never shifts or chooses
+validated calculation-capability intersection
       ↓
 InyeonSajuAdapter
       ↓

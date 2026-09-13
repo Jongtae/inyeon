@@ -1,0 +1,34 @@
+{
+  "name": "@inyeon/timezone-resolver",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Deterministic browser-side IANA local-time resolver for INYEON",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "data",
+    "README.md",
+    "PROVENANCE.md",
+    "LICENSES.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "generate:data": "node scripts/generate-timezone-data.mjs",
+    "verify:data": "node scripts/generate-timezone-data.mjs --check",
+    "typecheck": "tsc --noEmit --pretty false",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@types/node": "24.13.4",
+    "moment": "2.30.1",
+    "moment-timezone": "0.6.3",
+    "typescript": "6.0.3",
+    "vitest": "5.0.0"
+  }
+}

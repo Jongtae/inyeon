@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "fixtureVersion": "issue-9-iana-zic-2026c-v1",
+  "property": "IANA local civil time to UTC candidate normalization only; no Saju methodology assertion",
+  "provenance": {
+    "sourceUrl": "https://data.iana.org/time-zones/releases/tzdata2026c.tar.gz",
+    "sourceSha256": "e4a178a4477f3d0ea77cc31828ff72aa38feff8d61aa13e7e99e142e9d902be4",
+    "sourceSha512": "e0b4b7044b66fbc27bc21d13d18063abcdf78ab58d5ba5fd64bd1a88d86e9d495f45add4d8e65bb6c40249f9c94ca29b72c8ebba8d0e4c468f2965ac77932ef0",
+    "compiler": "Official tzcode2026c zic and zdump, built from tzcode2026c.tar.gz (SHA-256 b1cffc3ace4c4c7cd0efba2f7add86ec3d0b79da48bcf03582671fd3c8feace8)",
+    "inspection": "zdump -v -c 1908,2027 over official-compiler output; normalized SHA-256: Asia/Seoul 685bc27ce2caa984dc9675ee49298e3ccabd33ec9d3e91bbb7a867aca129ddb9, America/New_York e962000166ba28506af75c42e559f2776c2a0d30a5c104f696af58916c8d07db, America/Los_Angeles 0b015d80e4599c5935aca5e80d75a8f25190aba0fe8cb6bb43c131929d3d429c",
+    "latestReleaseReview": "The same official tzcode2026c compiler produced identical per-zone transition hashes from tzdata2026d (SHA-256 0cb2aa8e333c3dc049badc42a0c61f21987b8cd44e107fa900bad764aacc7767) for 1908 through 2026; 2026c remains the intentional exact resolver-data pin.",
+    "capturedAt": "2026-09-14",
+    "limitations": "These fixtures validate timezone normalization against official IANA data. They do not validate Four Pillars, solar terms, day boundaries, or Korean Saju conventions."
+  },
+  "fixtures": [
+    {
+      "id": "seoul-1908-standard-offset-gap",
+      "input": { "localDate": "1908-04-01", "localTime": "00:01", "timeZone": "Asia/Seoul" },
+      "expected": { "status": "nonexistent", "candidates": [] }
+    },
+    {
+      "id": "seoul-kst-0830-1909",
+      "input": { "localDate": "1909-01-01", "localTime": "12:00", "timeZone": "Asia/Seoul" },
+      "expected": { "status": "unambiguous", "candidates": [{ "instant": "1909-01-01T03:30:00.000Z", "offset": "+08:30", "offsetSeconds": 30600 }] }
+    },
+    {
+      "id": "seoul-jst-0900-1913",
+      "input": { "localDate": "1913-01-01", "localTime": "12:00", "timeZone": "Asia/Seoul" },
+      "expected": { "status": "unambiguous", "candidates": [{ "instant": "1913-01-01T03:00:00.000Z", "offset": "+09:00", "offsetSeconds": 32400 }] }
+    },
+    {
+      "id": "seoul-1948-dst-gap",
+      "input": { "localDate": "1948-06-01", "localTime": "00:30", "timeZone": "Asia/Seoul" },
+      "expected": { "status": "nonexistent", "candidates": [] }
+    },
+    {
+      "id": "seoul-1948-dst-fold",
+      "input": { "localDate": "1948-09-12", "localTime": "23:30", "timeZone": "Asia/Seoul" },
+      "expected": { "status": "ambiguous", "candidates": [{ "instant": "1948-09-12T13:30:00.000Z", "offset": "+10:00", "offsetSeconds": 36000 }, { "instant": "1948-09-12T14:30:00.000Z", "offset": "+09:00", "offsetSeconds": 32400 }] }
+    },
+    {
+      "id": "seoul-1954-standard-offset-fold",
+      "input": { "localDate": "1954-03-20", "localTime": "23:45", "timeZone": "Asia/Seoul" },
+      "expected": { "status": "ambiguous", "candidates": [{ "instant": "1954-03-20T14:45:00.000Z", "offset": "+09:00", "offsetSeconds": 32400 }, { "instant": "1954-03-20T15:15:00.000Z", "offset": "+08:30", "offsetSeconds": 30600 }] }
+    },
+    {
+      "id": "seoul-1961-standard-offset-gap",
+      "input": { "localDate": "1961-08-10", "localTime": "00:15", "timeZone": "Asia/Seoul" },
+      "expected": { "status": "nonexistent", "candidates": [] }
+    },
+    {
+      "id": "seoul-1988-dst-gap",
+      "input": { "localDate": "1988-05-08", "localTime": "02:30", "timeZone": "Asia/Seoul" },
+      "expected": { "status": "nonexistent", "candidates": [] }
+    },
+    {
+      "id": "seoul-1988-dst-fold",
+      "input": { "localDate": "1988-10-09", "localTime": "02:30", "timeZone": "Asia/Seoul" },
+      "expected": { "status": "ambiguous", "candidates": [{ "instant": "1988-10-08T16:30:00.000Z", "offset": "+10:00", "offsetSeconds": 36000 }, { "instant": "1988-10-08T17:30:00.000Z", "offset": "+09:00", "offsetSeconds": 32400 }] }
+    },
+    {
+      "id": "new-york-pre-2007-gap",
+      "input": { "localDate": "2006-04-02", "localTime": "02:30", "timeZone": "America/New_York" },
+      "expected": { "status": "nonexistent", "candidates": [] }
+    },
+    {
+      "id": "new-york-pre-2007-fold",
+      "input": { "localDate": "2006-10-29", "localTime": "01:30", "timeZone": "America/New_York" },
+      "expected": { "status": "ambiguous", "candidates": [{ "instant": "2006-10-29T05:30:00.000Z", "offset": "-04:00", "offsetSeconds": -14400 }, { "instant": "2006-10-29T06:30:00.000Z", "offset": "-05:00", "offsetSeconds": -18000 }] }
+    },
+    {
+      "id": "new-york-post-2007-gap",
+      "input": { "localDate": "2007-03-11", "localTime": "02:30", "timeZone": "America/New_York" },
+      "expected": { "status": "nonexistent", "candidates": [] }
+    },
+    {
+      "id": "new-york-post-2007-fold",
+      "input": { "localDate": "2007-11-04", "localTime": "01:30", "timeZone": "America/New_York" },
+      "expected": { "status": "ambiguous", "candidates": [{ "instant": "2007-11-04T05:30:00.000Z", "offset": "-04:00", "offsetSeconds": -14400 }, { "instant": "2007-11-04T06:30:00.000Z", "offset": "-05:00", "offsetSeconds": -18000 }] }
+    },
+    {
+      "id": "los-angeles-pre-2007-gap",
+      "input": { "localDate": "2006-04-02", "localTime": "02:30", "timeZone": "America/Los_Angeles" },
+      "expected": { "status": "nonexistent", "candidates": [] }
+    },
+    {
+      "id": "los-angeles-pre-2007-fold",
+      "input": { "localDate": "2006-10-29", "localTime": "01:30", "timeZone": "America/Los_Angeles" },
+      "expected": { "status": "ambiguous", "candidates": [{ "instant": "2006-10-29T08:30:00.000Z", "offset": "-07:00", "offsetSeconds": -25200 }, { "instant": "2006-10-29T09:30:00.000Z", "offset": "-08:00", "offsetSeconds": -28800 }] }
+    },
+    {
+      "id": "los-angeles-post-2007-gap",
+      "input": { "localDate": "2007-03-11", "localTime": "02:30", "timeZone": "America/Los_Angeles" },
+      "expected": { "status": "nonexistent", "candidates": [] }
+    },
+    {
+      "id": "los-angeles-post-2007-fold",
+      "input": { "localDate": "2007-11-04", "localTime": "01:30", "timeZone": "America/Los_Angeles" },
+      "expected": { "status": "ambiguous", "candidates": [{ "instant": "2007-11-04T08:30:00.000Z", "offset": "-07:00", "offsetSeconds": -25200 }, { "instant": "2007-11-04T09:30:00.000Z", "offset": "-08:00", "offsetSeconds": -28800 }] }
+    }
+  ]
+}

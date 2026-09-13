@@ -16,7 +16,7 @@
     "dev": "npm run dev --workspace @inyeon/web",
     "lint": "eslint . --max-warnings 0",
     "typecheck": "npm run typecheck --workspaces --if-present",
-    "test": "npm run test --workspaces --if-present",
+    "test": "npm run verify:data -w @inyeon/timezone-resolver && npm run test --workspaces --if-present",
     "build": "npm run build --workspaces --if-present && npm run verify:dist",
     "verify:dist": "node scripts/verify-static-build.mjs"
   },
