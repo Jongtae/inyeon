@@ -34,7 +34,7 @@ export interface NormalizedPillar {
 export interface CalculationProvenance {
   readonly profileVersion: 'korean-saju-v1';
   readonly profileStatus: 'candidate';
-  readonly adapterVersion: '0.2.0';
+  readonly adapterVersion: '0.3.0';
   readonly upstreamName: 'manseryeok';
   readonly upstreamVersion: '2.0.0';
   readonly timezoneDataVersion: 'fixed-kst-utc-plus-09-1989-2024-v1';
@@ -45,12 +45,72 @@ export interface CalculationProvenance {
   readonly derivedFeatureVersion: 'not-applicable';
 }
 
+export type YearMonthSupportedTimeZone = 'America/Los_Angeles' | 'America/New_York' | 'Asia/Seoul';
+
+export interface NormalizedYearMonthContext {
+  readonly localDate: string;
+  readonly localTime: string;
+  readonly timePrecision: 'exact';
+  readonly calendarKind: CalendarKind;
+  readonly timeZone: YearMonthSupportedTimeZone;
+  readonly profileVersion: 'korean-saju-v1';
+  readonly timezoneDataVersion: 'iana-2026c-inyeon-filter-v1';
+  readonly referenceDataVersion: 'issue-11-year-month-differential-v1';
+}
+
+export interface YearMonthCalculationProvenance {
+  readonly profileVersion: 'korean-saju-v1';
+  readonly profileStatus: 'candidate';
+  readonly adapterVersion: '0.3.0';
+  readonly upstreamName: 'manseryeok';
+  readonly upstreamVersion: '2.0.0';
+  readonly timezoneResolverVersion: '0.1.0';
+  readonly timezoneDataVersion: 'iana-2026c-inyeon-filter-v1';
+  readonly referenceDataVersion: 'issue-11-year-month-differential-v1';
+  readonly solarTermDataVersion: 'manseryeok-2.0.0-embedded-solar-terms-v1';
+  readonly solarTermReferenceVersion: 'issue-10-astronomy-engine-2.1.19-v1';
+  readonly solarTermPrecision: 'minute';
+  readonly derivedFeatureVersion: 'not-applicable';
+}
+
+export interface NormalizedYearMonthPillars {
+  readonly year: NormalizedPillar;
+  readonly month: NormalizedPillar;
+}
+
+export interface CompleteYearMonthResult {
+  readonly status: 'complete';
+  readonly pillars: NormalizedYearMonthPillars;
+  readonly resolution: 'unambiguous' | 'ambiguous-same-output';
+  readonly candidateCount: 1 | 2;
+  readonly alternatives: readonly [];
+  readonly provenance: YearMonthCalculationProvenance;
+}
+
+export interface AmbiguousYearMonthResult {
+  readonly status: 'ambiguous';
+  readonly reason: 'LOCAL_TIME_AMBIGUOUS_YEAR_MONTH';
+  readonly pillars: null;
+  readonly resolution: 'ambiguous-different-outputs';
+  readonly candidateCount: 2;
+  readonly alternatives: readonly NormalizedYearMonthPillars[];
+  readonly provenance: YearMonthCalculationProvenance;
+}
+
+export interface FailedYearMonthResult {
+  readonly status: 'error';
+  readonly error: { readonly code: InyeonSajuErrorCode; readonly message: string };
+}
+
+export type InyeonYearMonthResult = CompleteYearMonthResult | AmbiguousYearMonthResult | FailedYearMonthResult;
+
 export type InyeonSajuErrorCode =
   | 'AMBIGUOUS_LOCAL_TIME'
   | 'CALENDAR_UNSUPPORTED'
   | 'DATE_INVALID'
   | 'DATE_OUT_OF_RANGE'
   | 'INPUT_INVALID'
+  | 'NONEXISTENT_LOCAL_TIME'
   | 'PROFILE_UNSUPPORTED'
   | 'TIME_INVALID'
   | 'TIME_PRECISION_UNSUPPORTED'
@@ -91,6 +151,7 @@ export type InyeonSajuResult = CompleteSajuResult | PartialSajuResult | FailedSa
 
 export interface InyeonSajuAdapter {
   readonly calculate: (input: NormalizedBirthContext) => InyeonSajuResult;
+  readonly calculateYearMonth: (input: NormalizedYearMonthContext) => InyeonYearMonthResult;
 }
 
 /** Internal adapter seam. It is intentionally absent from the package's public exports. */

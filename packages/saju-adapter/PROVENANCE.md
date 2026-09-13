@@ -24,7 +24,15 @@ The artifact retains raw signed and absolute millisecond deltas. The maximum abs
 
 At every boundary, the artifact records primary year/month outputs 60 seconds before, exactly at, and 60 seconds after the embedded minute. The month pillar changes from before to at for all 432 boundaries, at equals after, and the year pillar changes only at 입춘 (Ipchun). These are deterministic observations of the pinned engine's existing behavior; they do not choose or certify a production Korean methodology.
 
-The supported positive interval is intentionally limited to `1989-01-01` through `2024-12-31` in `Asia/Seoul`, identified as `fixed-kst-utc-plus-09-1989-2024-v1`. That label describes the adapter's bounded fixed-offset strategy; it does not claim that an IANA timezone database participates in chart calculations. Issue #9's separate resolver validates timezone-normalization candidates, but it is not integrated into this adapter and therefore does not expand chart capability. Out-of-interval and non-Seoul inputs remain adapter contract negatives and do not count toward the positive differential corpus.
+The complete-chart positive interval remains intentionally limited to `1989-01-01` through `2024-12-31` in `Asia/Seoul`, identified as `fixed-kst-utc-plus-09-1989-2024-v1`. That label describes the complete-chart adapter's bounded fixed-offset strategy; it does not claim that IANA data participates in day/hour calculation.
+
+## Issue #11 year/month timezone evidence
+
+Adapter `0.3.0` adds reference-data version `issue-11-year-month-differential-v1` for year/month-only calculation. Its runtime dependency on `@inyeon/timezone-resolver@0.1.0` resolves exact civil input in Los Angeles, New York, or Seoul with `iana-2026c-inyeon-filter-v1`. Every UTC candidate is projected into UTC+09 civil fields for the documented public Manseryeok KST API; only year/month outputs are retained. Both the resolver source-civil range (`1908-04-01` through `2026-12-31`) and the narrower projected-KST date range (`1989-01-01` through `2024-12-31`) are enforced by their respective components.
+
+`data/year-month-differential.v1.json` has SHA-256 `54ca0e765e65db1f3c917b06251a1eb31f8f837ab3b92b267096f50b5fc3b3b7`. It records all 432 Issue #10 `절` boundaries in three zones at before/equality/after states, for 3,888 normalized states, plus ordinary, DST gap/fold, range-spill, and naive-US-timezone regressions. It also preserves 24 representative 2024 primary-versus-lunar year/month comparisons: 12 agreements and 12 classified source/reference inconsistencies. A gap is never shifted. Both fold candidates are calculated; equal outputs preserve `ambiguous-same-output`, and distinct outputs remain explicit alternatives. Raw inputs and resolved instants are absent from runtime results.
+
+No correction is present because the evidence demonstrated a timezone-input normalization gap, not an upstream year/month arithmetic defect. `lunar-javascript@1.7.7` remains a separate pillar implementation but shares solar-term lineage and is not a boundary authority. Astronomy Engine remains independent only for apparent-Sun longitude location. The new corpus does not production-approve `korean-saju-v1`; expert/KASI-aligned review and Issue #14 remain pending.
 
 ## Observed methodology differences
 

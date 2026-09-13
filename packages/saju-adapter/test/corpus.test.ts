@@ -54,7 +54,7 @@ describe('versioned differential corpus', () => {
       expect(record).toHaveProperty('classification');
       expect(record.provenance).toEqual({
         profileVersion: 'korean-saju-v1',
-        adapterVersion: '0.2.0',
+        adapterVersion: '0.3.0',
         upstreamVersion: '2.0.0',
         timezoneDataVersion: 'fixed-kst-utc-plus-09-1989-2024-v1',
         referenceDataVersion: 'issue-10-solar-term-boundaries-v1',

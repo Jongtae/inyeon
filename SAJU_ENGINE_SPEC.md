@@ -28,7 +28,7 @@ Suggested flow:
 
 `@inyeon/timezone-resolver` owns deterministic local-time normalization for its published canonical zones and range. It returns zero candidates for a DST gap, one for an unambiguous time, and two chronologically ordered candidates for a fold. It never moves a gap or chooses a fold candidate. Its browser runtime uses only its checked-in IANA transition artifact; generation-only timezone libraries, host `Intl`/Temporal data, network services, and geocoding are not calculation authorities.
 
-Resolver capability does not imply chart capability. The Saju adapter may consume a resolved context only within the independently validated intersection published by its own capability manifest. The current adapter therefore remains limited to its modern-Seoul candidate subset until a separate engine seam proves correct local-civil and UTC-instant semantics for other zones/history.
+Resolver capability does not imply complete-chart capability. The adapter's year/month-only seam consumes every resolved candidate for Los Angeles, New York, and Seoul, projects the UTC instant into the public upstream API's documented KST civil representation, and discards day/hour output. A gap fails; a fold is never selected, and distinct year/month alternatives remain explicit. The projected KST date must be within `1989-01-01` through `2024-12-31`; the resolver independently enforces its broader source-civil range. Complete day/hour charts remain limited to the separately validated modern-Seoul subset until Issue #12 proves local-civil semantics.
 
 The product/domain layer must not depend directly on one upstream library API.
 

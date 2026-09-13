@@ -49,7 +49,7 @@ IANA `2026d` was current at review time. Official `zic` output for the three sel
 
 Timezone resolution capability and Four Pillars calculation capability are separate. This ADR enables local-time normalization for the three zones and stated range. It does not make New York, Los Angeles, or historical Seoul inputs calculable through the current `manseryeok` civil-input API.
 
-The existing Saju adapter continues to expose only its independently validated modern-Seoul candidate range. A later issue must define a proven engine seam for resolved instants and local civil context before chart capability can expand. Issue #9 does not change `korean-saju-v1`, the Saju adapter contract, or `productionEligible: false`.
+Issue #11 subsequently defines a bounded year/month-only seam that consumes all resolver candidates across the three zones while retaining the modern-Seoul-only complete-chart range. It does not validate day/hour local-civil semantics or change `productionEligible: false`. See ADR 0013.
 
 ### Privacy and packaging
 
