@@ -1,5 +1,5 @@
 schema_version = 1
-updated_at = "2026-09-14T02:56:27+09:00"
+updated_at = "2026-09-14T03:25:12+09:00"
 maturity = "l4-candidate"
 operating_mode = "independent-release"
 current_phase = "build"
@@ -7,16 +7,18 @@ active_release = "v0.1.0"
 current_goal = "Ship INYEON as a production-grade zero-backend Korean Compatibility Lab, then prove five autonomous closed loops and recovery/eval criteria required for verified L4."
 production_url = ""
 last_known_good_sha = ""
-next_action = "Execute #6: define the versioned inclusive compatibility taxonomy and machine-usable prohibited-claims matrix while Issue #14 waits only on independent/expert exact-property approval at its declared methodology Human Gate."
+next_action = "Execute #33: build the typed, deterministic pair-evidence rule DSL against inclusive-compatibility-v1, keeping every traditional signal-to-dimension mapping candidate-only until applicable methodology review."
 
-active_critical_path = [14, 6, 33, 34, 50, 49, 35, 53, 43, 52, 47, 51]
-active_issues = [6, 14, 33, 34, 35, 43, 47, 49, 50, 51, 52, 53, 54]
+active_critical_path = [14, 33, 34, 50, 49, 35, 53, 43, 52, 47, 51]
+active_issues = [14, 33, 34, 35, 43, 47, 49, 50, 51, 52, 53, 54]
 active_experiments = []
 human_gates = [
-  "Issue #14 production validation is blocked: generated candidateObserved snapshots cannot independently establish full-chart correctness or resolve midnight-versus-late-Jasi, true-solar-time, or 61–72-second solar-term disagreements. Completed: 240 synthetic positive contexts, 12 separate negative cases, provenance/evidence grades, dispute isolation, candidate drift CI, and a separate empty non-generated approvals artifact. Smallest human action: approve qualified Korean Saju methodology authority/advisor scope and any paid terms, then review exact-property anchors; no approval is needed for candidate corpus merge or unrelated work. Unblocked: #6 and the remaining product/static-release path. Continuation: add attributable approvedExpected anchors, adjudicate disputed properties, rerun independent QA/CI, and only then consider productionValidated or closing #14."
+  "Issue #14 production validation is blocked: generated candidateObserved snapshots cannot independently establish full-chart correctness or resolve midnight-versus-late-Jasi, true-solar-time, or 61–72-second solar-term disagreements. Completed: 240 synthetic positive contexts, 12 separate negative cases, provenance/evidence grades, dispute isolation, candidate drift CI, and a separate empty non-generated approvals artifact. Smallest human action: approve qualified Korean Saju methodology authority/advisor scope and any paid terms, then review exact-property anchors; no approval is needed for candidate corpus merge or unrelated work. Unblocked: #33 and the remaining product/static-release path. Continuation: add attributable approvedExpected anchors, adjudicate disputed properties, rerun independent QA/CI, and only then consider productionValidated or closing #14.",
+  "Production approval of any traditional signal-to-modern-relationship-dimension mapping is blocked pending exact versioned #33 rules and qualified cultural/Saju methodology review. Completed: #6 candidate inclusive semantic contract, 8 neutral unordered dimensions, 15 machine-blocked claim categories, identity-input and temporal-uncertainty contracts, and independent product/QA/security review. Smallest human action: when candidate mappings are ready, approve qualified expert review scope and any paid terms; no approval is needed for the semantic contract or candidate DSL implementation. Unblocked: #33 candidate rule/evidence infrastructure, #34 confidence, and other static-product work. Continuation: review mapping evidence property by property and keep productionEligible false until approved."
 ]
 current_risks = [
   "The #8 Manseryeok adapter through #13 Hangul-primary derived-feature layer and #14's 240-context regression corpus remain non-production candidates. The corpus has 0 approved expectations: midnight-versus-late-Jasi, true-solar-time, and three measured 61–72-second solar-term disagreements remain explicit methodology/reference uncertainty pending independent/expert exact-property review.",
+  "The #6 inclusive-compatibility-v1 contract is an internally reviewed candidate with cultural/Saju expert review pending and productionEligible false. It contains no approved traditional signal-to-dimension mappings; actual US-user comprehension and utility remain unmeasured.",
   "The GitHub repository is private, GitHub Pages is disabled, and no production deployment workflow or release exists yet.",
   "L4 structural governance exists, but behavioral eval execution, five closed loops, fresh-session continuity, and recovery proof are still unverified.",
   "Framework creep could turn INYEON into an APH showcase instead of a focused product; optional frameworks require observed pain before adoption."
@@ -59,4 +61,4 @@ last_eval_status = "not-run"
 reddit_account_status = "not-configured"
 reddit_integration_status = "not-configured"
 last_experiment_id = ""
-last_decision_id = "D-0001"
+last_decision_id = "D-0002"

@@ -1,0 +1,24 @@
+{
+  "name": "@inyeon/compatibility-taxonomy",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Versioned inclusive semantic contract for INYEON compatibility evidence and copy",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": ["dist", "data", "README.md", "PROVENANCE.md"],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit --pretty false",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@types/node": "24.13.4",
+    "typescript": "6.0.3",
+    "vitest": "5.0.0"
+  }
+}
