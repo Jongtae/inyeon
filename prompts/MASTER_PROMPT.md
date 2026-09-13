@@ -65,7 +65,7 @@ Use:
 
 adopt → wrap → pin → differential-test → golden-test → patch only proven gaps.
 
-Primary candidate is yhj1024/manseryeok behind an INYEON-owned InyeonSajuAdapter. Cross-validate against independent references such as 6tail/lunar-javascript, Korean lunar/KASI-aligned references, and expert-reviewed fixtures.
+Primary candidate is yhj1024/manseryeok behind an INYEON-owned InyeonSajuAdapter. Record independence per property: 6tail/lunar-javascript is a shared-lineage secondary solar-term comparison, not an oracle; independent astronomy can locate boundary instants, and Korean lunar/KASI-aligned plus expert-reviewed fixtures remain required before production.
 
 Never invent an unknown birth time.
 

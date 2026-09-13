@@ -136,7 +136,7 @@ Preferred direction:
 
 `Birth input → INYEON normalization → InyeonSajuAdapter → normalized Four Pillars → INYEON derived features → compatibility rules → explanation`
 
-#8 adopts/evaluates a pinned open-source Manseryeok implementation behind an INYEON-owned adapter and validates it against independent references and golden fixtures.
+#8 adopts/evaluates a pinned open-source Manseryeok implementation behind an INYEON-owned adapter and records a non-production differential corpus. Independent evidence is limited to the property it actually checks; production validation remains gated by the later timezone, boundary, methodology, and ≥200-fixture work.
 
 INYEON-specific value should live above the commodity calculation layer:
 

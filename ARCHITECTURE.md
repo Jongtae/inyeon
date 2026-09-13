@@ -91,7 +91,7 @@ Preferred first-release stack:
 - **Hosting:** GitHub Pages.
 - **CI/CD:** GitHub Actions.
 - **Routing:** Pages-safe hash routing or a fully tested static fallback strategy.
-- **Saju/Manseryeok:** pinned `yhj1024/manseryeok` candidate behind `InyeonSajuAdapter`, validated against independent references such as `6tail/lunar-javascript`, Korean lunar/KASI-aligned references, and expert-reviewed fixtures.
+- **Saju/Manseryeok:** pinned `yhj1024/manseryeok` candidate behind `InyeonSajuAdapter`. Reference independence is property-specific: `6tail/lunar-javascript` is a shared-lineage secondary comparison for solar terms, independent astronomy may locate boundary instants, and Korean lunar/KASI-aligned or expert-reviewed fixtures remain required before production.
 - **State:** in-memory only for personal inputs/results.
 - **Public data:** versioned JSON/static assets generated during build/maintenance workflows.
 - **Narrative:** deterministic templates/composition from structured evidence for the first release. No runtime secret-bearing LLM call.

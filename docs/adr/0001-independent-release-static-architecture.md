@@ -76,7 +76,7 @@ Use:
 
 Primary candidate: `yhj1024/manseryeok`, behind an INYEON-owned `InyeonSajuAdapter`.
 
-Independent references include `6tail/lunar-javascript`, Korean lunar/KASI-aligned references, and expert/reference fixtures.
+Validation uses property-specific evidence. `6tail/lunar-javascript` is a shared-lineage secondary comparison for solar-term behavior, not an independent oracle; independent astronomy can locate boundary instants, while Korean lunar/KASI-aligned and expert/reference fixtures remain required before production.
 
 Unknown birth time is never fabricated. Boundary uncertainty may legitimately produce partial/multiple possible chart states.
 

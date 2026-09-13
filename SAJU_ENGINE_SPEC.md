@@ -14,7 +14,7 @@ Preferred engineering strategy:
 
 Primary candidate: `yhj1024/manseryeok` behind an INYEON-owned `InyeonSajuAdapter`.
 
-Independent references may include `6tail/lunar-javascript`, Korean lunar/KASI-aligned references, and expert-reviewed fixtures.
+Validation references may include `6tail/lunar-javascript`, independent astronomy data, Korean lunar/KASI-aligned references, and expert-reviewed fixtures. Reference independence must be recorded per property: lunar-javascript is a shared-lineage comparison for manseryeok solar-term data, while astronomy data can independently locate a solar-longitude boundary but cannot validate a complete Four Pillars result by itself.
 
 No upstream library is treated as infallible. Differences must be classified and documented.
 
@@ -102,7 +102,7 @@ Approximate/disputed time should be normalized to an explicit range/state and ev
 Before trusting the primary adapter:
 
 1. compare representative cases against at least one independent implementation/reference;
-2. oversample Ipchun/monthly solar-term boundaries, day rollover, DST gaps/folds, historical timezone changes, Korea, and multiple US time zones;
+2. oversample Ipchun/monthly solar-term boundaries and day rollover inside the adapter's currently declared capability; separately test that unsupported timezone/history inputs fail closed;
 3. classify every disagreement as one of:
    - upstream implementation bug;
    - deliberate methodology/tradition difference;
@@ -111,6 +111,8 @@ Before trusting the primary adapter:
    - unresolved expert-review item;
 4. do not average/confabulate across disagreement;
 5. add resolved cases to the regression/golden corpus.
+
+Issue #9 owns positive validation of IANA normalization, DST gaps/folds, historical timezone changes, Korea, and multiple US time zones. Such rejected inputs are useful negative tests in Issue #8 but do not count as supported differential/reference cases.
 
 ## Golden corpus requirements
 

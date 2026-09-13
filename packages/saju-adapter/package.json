@@ -1,0 +1,35 @@
+{
+  "name": "@inyeon/saju-adapter",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "INYEON-owned deterministic Korean Saju adapter boundary",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSES.md",
+    "PROVENANCE.md",
+    "data"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit --pretty false",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "manseryeok": "2.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "24.13.4",
+    "astronomy-engine": "2.1.19",
+    "lunar-javascript": "1.7.7",
+    "typescript": "6.0.3",
+    "vitest": "5.0.0"
+  }
+}
