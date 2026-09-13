@@ -196,12 +196,12 @@ Marketplace authorization/chat/moderation/payment tests become mandatory only if
 
 First-release sharing supports:
 
-1. client-generated result image;
-2. share-safe result link with allowlisted non-sensitive data;
-3. explicit `Compare with me` flow with clear disclosure if any derived personal representation is shared;
-4. static public-figure entry pages/OG assets where useful.
+1. client-generated claim-free reference/invitation image while approved relationship rules are empty;
+2. share-safe reference/invitation link with strictly allowlisted non-sensitive data;
+3. explicit `Compare with me` invitation containing no personal representation in v0.1; each participant enters details locally;
+4. static public-figure entry pages/OG assets where useful after the production origin is fixed.
 
-Never place raw personal birth input in a share payload.
+Never place raw or derived personal birth/chart/evidence data in a v0.1 share payload. Any future transferable personal representation requires a separate privacy decision under ADR 0007.
 
 ## Reddit operation and evidence governance
 

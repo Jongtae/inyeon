@@ -114,13 +114,15 @@ They solve the empty-product problem; they do not pretend to solve real dating-m
 
 Use client-side sharing:
 
-1. browser-generated PNG/WebP result card;
+1. browser-generated claim-free PNG/WebP reference/invitation card while approved relationship rules are empty;
 2. Web Share API where available with fallback;
-3. share-safe result links containing only allowlisted non-sensitive result data;
-4. explicit `Compare with me` flow if implemented, with preview/disclosure for any derived personal representation;
-5. prebuilt stable public-figure pages/OG assets where practical.
+3. share-safe reference/invitation links containing only strictly allowlisted non-sensitive data;
+4. explicit invitation-only `Compare with me` flow containing no reusable personal representation in v0.1;
+5. prebuilt stable public-figure pages/OG assets after the production origin is fixed, where practical.
 
-Raw birth date/time/place is never silently placed in a URL, image metadata, analytics, or remote rendering request.
+Raw or derived personal birth/chart/evidence data is never placed in a v0.1 URL, image metadata, analytics, or remote rendering request.
+
+ADR 0007 narrows this sharing boundary: any future transferable personal representation requires a separate privacy decision, disclosure design, abuse analysis, and new tests.
 
 ### 9. Reddit launch and feedback
 

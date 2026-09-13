@@ -1,5 +1,6 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test, type Page } from '@playwright/test';
+import { readFile } from 'node:fs/promises';
 
 const routeUrl = (route: string) => `/inyeon/#${route}`;
 
@@ -92,6 +93,10 @@ test('Fictional Lab stays default-off, persistently fictional, claim-free, and c
   await expect(page.getByText('Fictional character—not a real person or member.').first()).toBeVisible();
   await page.getByRole('button', { name: 'Compare with this fictional reference' }).click();
   await expectNoRelationshipClaims(page);
+  await page.getByRole('button', { name: 'Preview share options' }).click();
+  const syntheticLink = await page.getByLabel('Share-safe link').inputValue();
+  expect(syntheticLink).toContain('kind=synthetic-reference');
+  expect(syntheticLink).toContain('ref=synthetic%3Asynthetic-character-generator-v1%3A00001');
   await page.getByRole('button', { name: 'Clear personal data' }).click();
   await expect(page.getByText(/DEFAULT OFF/u)).toBeVisible();
   await expect(page.getByRole('heading', { name: /You \+ Inyeon Lab Character/ })).toHaveCount(0);
@@ -107,6 +112,8 @@ test('Someone I Know stays local, permission-framed, claim-free, and clearable',
   await page.getByRole('button', { name: 'Prepare second chart' }).click();
   await page.getByRole('button', { name: 'View comparison details' }).click();
   await expectNoRelationshipClaims(page);
+  await expect(page.getByRole('region', { name: 'You + someone you know' }).getByText('PRIVACY-SAFE SHARING')).toHaveCount(0);
+  await expect(page.getByRole('heading', { name: 'Invite someone into one private session.' })).toBeVisible();
   await page.getByRole('button', { name: 'Clear personal data' }).click();
   await expect(page.getByRole('heading', { name: 'You + someone you know' })).toHaveCount(0);
 });
@@ -180,4 +187,165 @@ test('personal canary never enters requests, persistence, URL/history, or browse
   await expect(page.getByRole('heading', { name: 'Your Four Pillars' })).toHaveCount(0);
   await expect(page.getByRole('button', { name: 'Clear personal data' })).toHaveCount(0);
   await expect(page.getByLabel(/^Birth date/)).toHaveValue('');
+});
+
+test('claim-free sharing uses a local PNG, native file share, copy fallback, and verified public link', async ({ page, context }) => {
+  await context.grantPermissions(['clipboard-read', 'clipboard-write']);
+  await page.addInitScript(() => {
+    const calls: unknown[] = [];
+    const historyCalls: string[] = [];
+    const pushState = history.pushState.bind(history);
+    const replaceState = history.replaceState.bind(history);
+    history.pushState = (data, unused, url) => {
+      historyCalls.push(String(url ?? ''));
+      return pushState(data, unused, url);
+    };
+    history.replaceState = (data, unused, url) => {
+      historyCalls.push(String(url ?? ''));
+      return replaceState(data, unused, url);
+    };
+    Object.defineProperty(window, '__inyeonShareCalls', { value: calls });
+    Object.defineProperty(window, '__inyeonShareHistoryCalls', { value: historyCalls });
+    Object.defineProperty(navigator, 'canShare', { configurable: true, value: (data: ShareData) => Boolean(data.files?.length) });
+    Object.defineProperty(navigator, 'share', {
+      configurable: true,
+      value: async (data: ShareData) => {
+        calls.push({
+          title: data.title,
+          text: data.text,
+          url: data.url,
+          files: data.files?.map((file) => ({ name: file.name, size: file.size, type: file.type })),
+        });
+      },
+    });
+  });
+  const requests: string[] = [];
+  const webSockets: string[] = [];
+  const consoleMessages: string[] = [];
+  const pageErrors: string[] = [];
+  page.on('request', (request) => requests.push(request.url()));
+  page.on('websocket', (socket) => webSockets.push(socket.url()));
+  page.on('console', (message) => consoleMessages.push(message.text()));
+  page.on('pageerror', (error) => pageErrors.push(error.message));
+  await openRoute(page, '/my-saju');
+  await page.getByLabel(/^Birth date/).fill('1994-07-19');
+  await page.getByLabel('Birth time', { exact: true }).fill('03:17');
+  await page.getByLabel(/^Birthplace \/ time zone/).selectOption('Asia/Seoul');
+  await page.getByRole('button', { name: 'Calculate my chart' }).click();
+  await expect(page.getByRole('heading', { name: 'Your Four Pillars' })).toBeVisible();
+  await page.getByRole('navigation', { name: 'Lab steps' }).getByRole('link', { name: /Public figures/u }).click();
+  await page.getByLabel('Search public figures').fill('Billie Eilish');
+  await page.getByRole('button', { name: /Billie Eilish/ }).click();
+  await page.getByRole('button', { name: 'Compare with this reference' }).click();
+  requests.length = 0;
+  consoleMessages.length = 0;
+  pageErrors.length = 0;
+  await page.evaluate(() => {
+    (window as unknown as { __inyeonShareHistoryCalls: string[] }).__inyeonShareHistoryCalls.length = 0;
+  });
+
+  await page.getByRole('button', { name: 'Preview share options' }).click();
+  await expect(page.getByRole('status').filter({ hasText: 'Preview ready.' })).toBeVisible({ timeout: 15_000 });
+  const preview = page.getByRole('img', { name: 'Claim-free INYEON share card preview' });
+  await expect(preview).toBeVisible();
+  await expect(preview).toHaveAttribute('src', /^blob:/u);
+  const safeLink = await page.getByLabel('Share-safe link').inputValue();
+  expect(safeLink).toContain('/inyeon/#/share?v=inyeon-share-v1&kind=public-reference');
+  expect(safeLink).toContain('ref=public%3Awd-q29564107');
+  expect(safeLink).not.toMatch(/1994-07-19|03%3A17|chart|evidence|narrative/iu);
+
+  await page.getByRole('button', { name: 'Open share sheet' }).click();
+  const shareCalls = await page.evaluate(() => (window as unknown as { __inyeonShareCalls: unknown[] }).__inyeonShareCalls);
+  expect(shareCalls).toEqual([expect.objectContaining({
+    title: 'INYEON · 인연',
+    files: [expect.objectContaining({ name: 'inyeon-share.png', type: 'image/png' })],
+  })]);
+  expect(JSON.stringify(shareCalls)).not.toMatch(/1994-07-19|03:17|chart|evidence|narrative/iu);
+
+  await page.getByRole('button', { name: 'Copy safe link' }).click();
+  const clipboardText = await page.evaluate(() => navigator.clipboard.readText());
+  expect(clipboardText).toBe(safeLink);
+
+  const downloadEvent = page.waitForEvent('download');
+  await page.getByRole('button', { name: 'Download PNG' }).click();
+  const download = await downloadEvent;
+  expect(download.suggestedFilename()).toBe('inyeon-share.png');
+  const downloadPath = await download.path();
+  expect(downloadPath).not.toBeNull();
+  const imageBytes = await readFile(downloadPath ?? '');
+  expect([...imageBytes.subarray(0, 8)]).toEqual([137, 80, 78, 71, 13, 10, 26, 10]);
+  const imageText = imageBytes.toString('utf8');
+  const historyCalls = await page.evaluate(() => (window as unknown as { __inyeonShareHistoryCalls: string[] }).__inyeonShareHistoryCalls);
+  const observedSurfaces = [
+    safeLink,
+    clipboardText,
+    JSON.stringify(shareCalls),
+    imageText,
+    requests.join('\n'),
+    webSockets.join('\n'),
+    consoleMessages.join('\n'),
+    pageErrors.join('\n'),
+    historyCalls.join('\n'),
+    page.url(),
+  ].join('\n');
+  for (const protectedCanary of ['1994-07-19', '03:17', 'Asia/Seoul', '갑술', 'private-feature-canary', 'private-evidence-canary']) {
+    expect(observedSurfaces).not.toContain(protectedCanary);
+  }
+  expect(requests.filter((url) => url.startsWith('http://') || url.startsWith('https://'))).toEqual([]);
+  expect(webSockets).toEqual([]);
+  expect(consoleMessages).toEqual([]);
+  expect(pageErrors).toEqual([]);
+  expect(historyCalls).toEqual([]);
+  expect(await page.evaluate(async () => ({
+    local: localStorage.length,
+    session: sessionStorage.length,
+    cookie: document.cookie,
+    indexedDb: typeof indexedDB.databases === 'function' ? (await indexedDB.databases()).length : 0,
+    caches: 'caches' in window ? (await caches.keys()).length : 0,
+    serviceWorkers: 'serviceWorker' in navigator ? (await navigator.serviceWorker.getRegistrations()).length : 0,
+  }))).toEqual({ local: 0, session: 0, cookie: '', indexedDb: 0, caches: 0, serviceWorkers: 0 });
+  expect(await context.cookies()).toEqual([]);
+
+  await page.setViewportSize({ width: 320, height: 812 });
+  await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth)).toBe(320);
+
+  await page.goto(safeLink);
+  await expect(page.getByRole('heading', { name: 'Explore Billie Eilish in INYEON.' })).toBeVisible();
+  await page.reload();
+  await expect(page.getByText('No private result traveled with this link.')).toBeVisible();
+  expect((await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa']).analyze()).violations).toEqual([]);
+});
+
+test('compare invitations contain no personal representation and hostile or confused entities fail closed', async ({ page }) => {
+  await page.addInitScript(() => {
+    Object.defineProperty(navigator, 'share', { configurable: true, value: undefined });
+    Object.defineProperty(navigator, 'clipboard', {
+      configurable: true,
+      value: { writeText: async () => Promise.reject(new DOMException('Denied', 'NotAllowedError')) },
+    });
+  });
+  await openRoute(page, '/compare-someone');
+  await expect(page.getByRole('heading', { name: 'Invite someone into one private session.' })).toBeVisible();
+  await page.getByRole('button', { name: 'Preview share options' }).click();
+  const inviteLink = await page.getByLabel('Share-safe link').inputValue();
+  expect(inviteLink).toContain('kind=compare-invite');
+  expect(inviteLink).not.toMatch(/ref=|birth|chart|evidence/iu);
+  await page.getByRole('button', { name: 'Open share sheet' }).click();
+  await expect(page.getByRole('status').filter({ hasText: 'Web Share is unavailable here.' })).toBeVisible();
+  await page.getByRole('button', { name: 'Copy safe link' }).click();
+  await expect(page.getByRole('status').filter({ hasText: 'selected for manual copying.' })).toBeVisible();
+  await expect(page.getByLabel('Share-safe link')).toBeFocused();
+  await page.goto(inviteLink);
+  await expect(page.getByRole('heading', { name: 'You’re invited to compare—privately.' })).toBeVisible();
+  await expect(page.getByText(/contains no birth details or chart/u)).toBeVisible();
+
+  await page.goto(`${routeUrl('/share')}?v=inyeon-share-v1&kind=synthetic-reference&copy=share-copy-en-us-v1&method=korean-saju-v1&ref=synthetic%3Asynthetic-character-generator-v1%3A00001`);
+  await expect(page.getByRole('heading', { name: 'Explore Inyeon Lab Character 00001.' })).toBeVisible();
+  await expect(page.getByText(/entirely fictional.+not a dating profile, a real person/iu)).toBeVisible();
+
+  await page.goto(`${routeUrl('/share')}?v=inyeon-share-v1&kind=public-reference&copy=share-copy-en-us-v1&method=korean-saju-v1&ref=synthetic%3Asynthetic-character-generator-v1%3A00001`);
+  await expect(page.getByRole('heading', { name: 'This invitation couldn’t be verified.' })).toBeVisible();
+
+  await page.goto(`${routeUrl('/share')}?v=inyeon-share-v1&kind=lab-invite&copy=share-copy-en-us-v1&method=korean-saju-v1&birth=1995-10-21`);
+  await expect(page.getByRole('heading', { name: 'This invitation couldn’t be verified.' })).toBeVisible();
 });

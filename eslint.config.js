@@ -9,7 +9,7 @@ const typescriptFiles = ['apps/web/**/*.{ts,tsx}', 'packages/**/*.{ts,tsx}'];
 
 export default defineConfig([
   {
-    ignores: ['**/dist/**', '**/node_modules/**', '**/coverage/**', '.playwright-cli/**'],
+    ignores: ['**/dist/**', '**/dist-sharing-disabled/**', '**/node_modules/**', '**/coverage/**', '.playwright-cli/**'],
   },
   {
     ...eslint.configs.recommended,

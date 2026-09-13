@@ -95,12 +95,12 @@ SHARING POLICY
 
 First release should support:
 
-1. browser-generated image card;
-2. share-safe result link using only allowlisted non-sensitive data;
-3. explicit Compare with me flow only with clear disclosure for any derived personal representation;
-4. stable public-figure entry pages/OG assets where practical.
+1. browser-generated claim-free reference/invitation image while approved relationship rules are empty;
+2. share-safe reference/invitation link using only strictly allowlisted non-sensitive data;
+3. explicit Compare with me invitation containing no reusable personal representation in v0.1;
+4. stable public-figure entry pages/OG assets after the production origin is fixed, where practical.
 
-Never silently put raw birth date/time/place into a share payload.
+Never put raw or derived personal birth/chart/evidence data into a v0.1 share payload. A future transferable representation requires the separate ADR 0007 privacy decision path.
 
 L4 TEAM POLICY
 

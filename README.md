@@ -65,7 +65,7 @@ npm ci
 npm run dev
 ```
 
-The development server exposes the app at `/inyeon/`. Client navigation uses fixed hash routes for the Lab, My Saju, public figures, Fictional Lab, Someone I Know, methodology, and privacy. The routes contain no personal values and remain refresh-safe on a GitHub Pages project site.
+The development server exposes the app at `/inyeon/`. Client navigation uses fixed hash routes for the Lab, My Saju, public figures, Fictional Lab, Someone I Know, claim-free sharing, methodology, and privacy. Share links contain only a strict non-personal reference/invitation allowlist; all routes remain refresh-safe on a GitHub Pages project site.
 
 Run the complete local verification set before opening a pull request:
 
@@ -156,13 +156,13 @@ Sharing is first-class and must preserve the zero-retention design.
 Preferred first-release share surfaces:
 
 1. **Share result card** — generate PNG/WebP in the browser and invoke native Web Share when available.
-2. **Share-safe result link** — encode only allowlisted non-sensitive result data; raw birth date/time/place never belongs in the URL.
-3. **Compare with me** — separate explicit opt-in flow; if derived personal chart data is embedded, explain exactly what is shared before generation.
-4. **Public-figure pages** — stable shareable pages with prebuilt social/OG metadata where practical.
+2. **Share-safe reference/invitation link** — encode only strict allowlisted identifiers and fixed versions; no raw or derived personal value belongs in the URL.
+3. **Compare with me** — a separate invitation containing no personal chart representation; each participant enters details locally.
+4. **Public-figure pages** — stable hash links now, with public-only prebuilt social/OG metadata evaluated after #47 fixes the production origin.
 
-Default share cards/links must not expose protected personal birth inputs.
+Default share cards/links must not expose protected personal values. Until reviewed relationship mappings exist, they also contain no archetype, score, or relationship claim.
 
-Tracked in #43.
+Implemented by #43 with independent QA/security approval. #52 still owns the broader zero-retention release matrix, and #47 owns production-origin and deployed smoke evidence.
 
 ## Privacy model
 

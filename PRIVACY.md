@@ -94,19 +94,18 @@ The v1 virtual catalog accepts only a bounded public ordinal and does not read p
 
 Sharing is opt-in and generated locally.
 
-Default share card/link may include only allowlisted non-sensitive result data such as:
+Default share card/link may include only allowlisted non-sensitive reference or invitation data such as:
 
 - INYEON branding;
 - public figure/synthetic subject identity where applicable;
-- relationship archetype;
-- short explanation copy;
-- methodology/result version identifiers where useful.
+- a fixed no-approved-interpretation statement;
+- schema, copy, and candidate-method version identifiers.
 
-Default sharing must not include raw birth date/time/place or protected personal chart payloads.
+Default sharing must not include raw birth date/time/place, protected personal charts/features, pair evidence, narrative objects, free-form text, reversible derivatives, or relationship claims. Received payloads are untrusted display hints and never calculation input.
 
-The narrative package's short `share` copy is not itself a share serializer. It removes participant birth-time precision codes and evidence references, replaces time-detail limitations with a generic omission notice, and leaves the final allowlisted projection to Issue #43.
+The narrative package's short `share` copy is not itself a share serializer. It removes participant birth-time precision codes and evidence references and replaces time-detail limitations with a generic omission notice. Issue #43's implemented serializer is a separate closed projection that accepts only fixed claim-free reference/invitation data.
 
-`Compare with me` is a distinct explicit mode. If it embeds any derived personal chart representation, the UI must explain exactly what will be shared and require a deliberate confirmation. It is never the default share action.
+`Compare with me` is a distinct explicit invitation mode. V0.1 embeds no derived personal chart representation: the preview states that no birth details or chart are included, and each person re-enters details locally in the active private session. Any future transferable representation requires a separate privacy decision and new abuse/privacy tests.
 
 ## 8. Analytics and telemetry
 

@@ -80,25 +80,27 @@ Exit:
 - when reviewed relationship rules exist, `What clicks / Potential friction / Why this?` output is clear and balanced; while the approved catalog is empty, these sections are absent and the no-approved-evidence state is explicit;
 - loading/error/empty states, responsive design, and accessibility are release quality.
 
-Issue #53 implements this bounded candidate UI and its CI Chromium regression layer. M2 relationship meaning remains gated by #14/#33; sharing, broader privacy verification, and production release remain M3/M4 work rather than evidence that the product is already public.
+Issue #53 implements this bounded candidate UI and its CI Chromium regression layer. M2 relationship meaning remains gated by #14/#33; #43 now implements the bounded claim-free sharing layer, while broader privacy verification and production release remain M4 work rather than evidence that the product is already public.
 
 **Gate:** public figures must not be presented as members/endorsers, and synthetic characters must never simulate real dating supply.
 
 ## M3 — Sharing and distribution readiness
 
-Primary work: #43 plus public-figure static entry pages.
+Primary work: #43's implemented claim-free sharing layer plus public-figure static entry pages after #47 fixes the production origin.
 
 Exit:
 
 - client-generated share card works on supported browsers;
 - native Web Share is used when available with graceful fallback;
-- default share payload contains no protected birth inputs;
-- share-safe links use an allowlist and never encode raw birth date/time/place;
-- optional `Compare with me` flow has explicit disclosure before sharing any derived personal representation;
-- public-figure pages have stable shareable URLs and prebuilt metadata/OG assets where practical;
+- default share payload contains no raw or derived protected personal values and no unapproved relationship claim;
+- share-safe links use a strict versioned reference/invitation allowlist;
+- `Compare with me` is an explicit personal-data-free invitation; each person re-enters details locally;
+- public-figure hash links are stable, and public-only crawler metadata/OG assets are evaluated with #47 after the production origin is fixed;
 - sharing tests cover privacy, direct-link behavior, and image generation.
 
 **Gate:** no share path may turn the zero-retention privacy design into accidental public disclosure.
+
+#43 passed independent QA/security review with strict reference/invitation payloads, local PNG/Web Share/download/copy paths, expanded privacy canaries, and an actual sharing-disabled production-build test. External usefulness, US-user comprehension, crawler-visible public assets, and deployed behavior remain unverified.
 
 ## M4 — Production hardening and GitHub Pages release
 

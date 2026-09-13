@@ -166,6 +166,28 @@ label small { color: var(--muted); font-size: .7rem; font-weight: 400; line-heig
 .detail-list li + li { margin-top: .55rem; }
 .disclosure-stack { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--line); }
 .result-actions { display: flex; justify-content: space-between; gap: 1rem; margin-top: 1.5rem; font-size: .72rem; }.result-actions span { color: var(--muted); }
+.share-controls { max-width: 74rem; margin: 2rem auto 0; padding: clamp(1.4rem, 4vw, 2.4rem); border: 1px solid #678276; background: #e4ebe4; }
+.share-controls h3 { margin: 0; font-family: Georgia, 'Nanum Myeongjo', serif; font-size: clamp(1.35rem, 2.4vw, 2rem); font-weight: 500; }
+.share-controls > p:not(.eyebrow) { max-width: 55rem; color: #4f5e57; font-size: .78rem; line-height: 1.65; }
+.secondary-button { display: inline-flex; align-items: center; justify-content: center; min-height: 3rem; margin-top: 1rem; border: 1px solid var(--ink); padding: .75rem 1rem; background: transparent; color: var(--ink); font: inherit; font-size: .75rem; font-weight: 700; cursor: pointer; }
+.secondary-button:hover { background: rgba(32, 29, 25, .08); }
+.share-workspace { display: grid; gap: 1.2rem; margin-top: 1.4rem; }
+.share-card-preview { overflow: hidden; max-width: 42rem; border: 1px solid rgba(32,29,25,.2); background: var(--paper); aspect-ratio: 1200 / 630; }
+.share-card-preview img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.share-card-placeholder { display: grid; place-items: center; width: 100%; height: 100%; color: var(--muted); font-size: .76rem; }
+.share-link { display: grid; gap: .5rem; max-width: 52rem; color: var(--ink); font-size: .72rem; font-weight: 700; }
+.share-link input { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .7rem; }
+.share-buttons { display: flex; flex-wrap: wrap; gap: .7rem; }
+.share-buttons .primary-button, .share-buttons .secondary-button { margin-top: 0; }
+.share-status { min-height: 1.4em; }
+.share-public-note { margin-bottom: 0; }
+.share-received { max-width: 52rem; padding: 1.5rem; border: 1px solid #678276; background: #e4ebe4; }
+.share-received > strong { font-family: Georgia, 'Nanum Myeongjo', serif; font-size: 1.2rem; }
+.share-received p { color: #4f5e57; line-height: 1.65; }
+.share-received dl { display: grid; gap: .7rem; margin: 1.4rem 0 0; }
+.share-received dl div { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: 1rem; border-top: 1px solid rgba(32,29,25,.15); padding-top: .7rem; }
+.share-received dt { color: var(--muted); font-size: .67rem; letter-spacing: .07em; text-transform: uppercase; }
+.share-received dd { margin: 0; overflow-wrap: anywhere; font-size: .78rem; }
 .glossary { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--line); }
 .glossary dl { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }.glossary dl div { padding: 1.2rem; border: 1px solid var(--line); }.glossary dt { font-family: Georgia, 'Nanum Myeongjo', serif; font-weight: 700; }.glossary dd { margin: .7rem 0 0; color: var(--muted); font-size: .8rem; line-height: 1.6; }
 
@@ -210,6 +232,7 @@ footer span:last-child { text-align: right; }
   .reference-detail { position: static; }
   .glossary dl { grid-template-columns: 1fr; }
   .result-actions { flex-direction: column; }
+  .share-received dl div { grid-template-columns: 1fr; gap: .3rem; }
   footer { grid-template-columns: 1fr; padding: 2rem 0; }
   footer span:last-child { text-align: left; }
 }
