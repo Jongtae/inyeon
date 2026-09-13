@@ -1,198 +1,205 @@
 # INYEON Backlog Guide
 
-GitHub Issues are the authoritative execution queue. This file is a durable map of the current research-backed backlog so Codex can understand intent, dependencies, and critical-path ordering without recreating the issue set.
+GitHub Issues are the authoritative execution queue. This file explains how to interpret the issue set under the active **Independent Release Mode**.
 
-Current backlog: **48 issues**, including seed Issue #1.
+The repository contains historical marketplace issues plus the newer static-release issues. Codex must not assume an old P0 marketplace issue outranks the active release path.
 
-## Working rule
+## Active release objective
 
-- Do not execute by issue number alone.
-- Select the highest-priority unblocked issue on the critical path.
-- If an issue is materially ambiguous, refine it in place rather than creating a duplicate.
-- If research or implementation reveals a new dependency, create the smallest new issue and update the dependency text of affected issues.
-- Stop only for a documented Human Gate; continue unrelated work when one stream is blocked.
+Ship a real public, production-grade static web product with:
 
-## Recommended first execution sequence
+- deterministic Saju/Four Pillars calculation;
+- validated open-source Manseryeok adapter;
+- uncertainty-aware compatibility logic;
+- sourced public figures;
+- clearly synthetic characters;
+- polished browser UX;
+- privacy-safe sharing;
+- zero-retention personal-data handling;
+- GitHub Pages production deployment;
+- governed Reddit feedback loop.
 
-The first Codex run should treat Issue #1 as the coordinator issue and then move into the M0 critical path:
+Business success is optional. Release quality is not.
 
-```text
-#1 Bootstrap/reconcile architecture + toolchain + ADRs
-  ├── #2 Product principles v1
-  ├── #3 Saju advisory process        [Human outreach gate after prep]
-  ├── #5 Pilot-city scorecard
-  ├── #6 Inclusive compatibility taxonomy
-  ├── #8 korean-saju-v1 calculation profile
-  └── #16 Domain schemas / privacy classes / API contracts
-          ↓
-#17 Auth/account      #18 Birth vault
-          ↓              ↓
-      #20 Profile       #9 Timezone normalization
-          ↓              ↓
-      #21 Baseline      #10 Solar terms
-      ranking           ├── #11 Year/month pillars
-          ↓             └── #12 Day/hour + uncertainty
-      #22 Like/match             ↓
-                               #13 Derived chart features
-                                  ↓
-                         #14 Golden fixture corpus
-                                  ↓
-                         #19 Chart-computation API
-                                  ↓
-                         #33 Compatibility rule DSL
-                                  ↓
-                         #34 Confidence/evidence model
-```
-
-Mobile work can begin in parallel after the contracts stabilize:
+## Current active critical path
 
 ```text
-#26 Onboarding → #27 Discovery → #30 Chat
-                   ↘ #31 Report/block/unmatch
+#1 Bootstrap/reconcile repo + toolchain + ADRs
+  ↓
+#8 Adopt/validate open-source Manseryeok adapter
+  ├─ #9 timezone/location behavior validation
+  ├─ #10 solar-term boundary/reference validation
+  ├─ #11 year/month pillar differential validation
+  └─ #12 day/hour + uncertainty validation
+       ↓
+#13 derived chart features
+       ↓
+#14 golden/reference corpus
+       ↓
+#33 compatibility-rule DSL/evidence
+       ↓
+#34 confidence/uncertainty model
+       ↓
+#50 public-figure dataset      #49 synthetic-character lab
+          ↘                    ↙
+        static web comparison UI
+                 ↓
+        deterministic narrative composer
+                 ↓
+#43 privacy-safe share/card/link system
+                 ↓
+#52 zero-retention privacy verification
+                 ↓
+#47 GitHub Pages production release
+                 ↓
+#51 Reddit governed feedback loop
 ```
 
-Platform/safety/analytics should not wait until the end:
+The exact issue numbers for the web shell/narrative implementation may be refined or added by Codex if no current issue cleanly owns that work; do not duplicate an existing issue unnecessarily.
+
+## Active P0/P1 issue families
+
+### Saju correctness
+
+- #8 — adopt/validate pinned open-source Manseryeok behind `InyeonSajuAdapter` — **P0**
+- #9 — historical timezone/birth-location behavior — **P0**, validate/wrap first, greenfield only for gaps
+- #10 — solar-term/reference behavior — **P0**, validate/pin first, greenfield only for gaps
+- #11 — year/month pillars — **P0**, differential validation around upstream/profile conventions
+- #12 — day/hour + unknown/approximate-time behavior — **P0**
+- #13 — derived compatibility features — **P0**
+- #14 — ≥200 golden/reference fixtures — **P0**
+- #15 — user-facing methodology/limitations — **P1**
+
+### Compatibility and explanation
+
+- #6 — inclusive compatibility taxonomy / prohibited claims — **P0**
+- #33 — versioned compatibility-rule DSL / pair evidence — **P0**
+- #34 — confidence / unknown-time evidence model — **P0**
+- historical #35 LLM narrative service is **not** the default first-release runtime; prefer deterministic client-side narrative composition unless an issue is explicitly rewritten.
+
+### Public/synthetic reference product
+
+- #49 — transparent synthetic compatibility sandbox / Inyeon Lab — **P0**
+- #50 — sourced public-figure birth dataset — **P0**
+
+### Privacy/platform/distribution
+
+- #52 — client-only zero-retention personal-data boundary — **P0**
+- #47 — release-grade GitHub Pages + GitHub Actions production path — **P0**
+- #43 — client-side share cards / share-safe links / compare-with-me — **P1 moving to release-critical**
+- #51 — Reddit release-feedback loop with governed auto-improvement — **P0 after production candidate exists**
+
+## Marketplace issues: deferred, not deleted
+
+The following historical families are outside the first-release scope unless the owner explicitly activates Marketplace Mode:
+
+- #5 pilot-city selection;
+- #16–#25 account/backend/dating core;
+- #26–#32 native/mobile dating flows;
+- #36 dating A/B/C outcome experiment;
+- #37–#42 marketplace privacy/moderation/verification/analytics/payments;
+- #44–#48 city seeding, expansion, post-date/Couple Mode portions that require real users.
+
+Some of those issues may still contain useful future requirements. Do not implement them merely because their historical priority says P0.
+
+## Open-source Manseryeok policy
+
+The first release must not spend weeks rebuilding commodity calendrical primitives without evidence.
+
+Preferred rule:
 
 ```text
-#47 Platform/IaC/CI/CD
-#37 Privacy map/Privacy Center
-#38 Moderation pipeline/admin
-#41 Analytics/experiments/dashboard
+adopt → wrap → pin → differential-test → golden-test → patch only proven gaps
 ```
 
-## Epic map
+The INYEON-owned value lives above that layer:
 
-### Product, culture, research, and GTM foundations
+- normalized uncertainty representation;
+- compatibility feature ontology;
+- rule engine;
+- explanations;
+- public/synthetic exploration;
+- privacy-safe sharing;
+- eventual real-user outcome learning if Marketplace Mode is activated.
 
-- #2 — Product principles and non-goals v1 — **P0 / M0**
-- #3 — Korean Saju advisory panel/review process — **P0 / M0**
-- #4 — US concept interviews and compatibility-language usability — **P0 / M0–M1**
-- #5 — Launch-market scorecard / pilot-city gate — **P0 / M0**
-- #6 — Inclusive compatibility taxonomy / prohibited claims — **P0 / M0**
-- #7 — Research-ready clickable prototype — **P1 / M0–M1**
+## Public-figure data contract
 
-### Deterministic Saju engine
+Public figures are reference records, not fake members.
 
-- #8 — `korean-saju-v1` calculation profile — **P0 / M0**
-- #9 — Historical timezone / birth-location normalization — **P0 / M1**
-- #10 — Solar-term calculation / reference versioning — **P0 / M1**
-- #11 — Year/month pillar calculation — **P0 / M1**
-- #12 — Day/hour pillar calculation + birth-time uncertainty — **P0 / M1**
-- #13 — Derived chart features for compatibility v1 — **P0 / M1**
-- #14 — ≥200 golden-chart fixture corpus — **P0 / M1**
-- #15 — User-facing methodology/limitations page — **P1 / M1–M2**
+Every production record should preserve source/provenance and confidence. Unknown/disputed birth time must never be silently defaulted. Image use must be license-aware.
 
-### Backend and dating core
+Initial target: 500–2,000 useful, diverse, recognizable records before scaling further.
 
-- #16 — Domain schemas / ownership / retention / API contracts — **P0 / M0–M1**
-- #17 — Auth / account lifecycle / consent / 18+ gate — **P0 / M1**
-- #18 — Encrypted sensitive birth-input vault — **P0 / M1**
-- #19 — Deterministic chart API / immutable snapshots — **P0 / M1**
-- #20 — Dating profile / mutual-preference APIs — **P0 / M1**
-- #21 — Eligibility filtering / candidate retrieval / baseline ranking — **P0 / M1**
-- #22 — Like / Pass / mutual-match state machine — **P0 / M1**
-- #23 — Realtime messaging / anti-abuse controls — **P0 / M2**
-- #24 — Account export / deletion cascade — **P0 / M2**
-- #25 — Couple Mode relationship object/backend — **P1 / M4**
+## Synthetic-character contract
 
-### Mobile app
+Synthetic characters solve the empty-product problem, not marketplace liquidity.
 
-- #26 — Account/profile/preferences/birth onboarding — **P0 / M1**
-- #27 — Discovery feed/profile detail — **P0 / M1**
-- #28 — Limited Inyeon Match experience — **P1 / M3**
-- #29 — Gung-hap summary / Why this? / deep dive — **P1 / M3–M4**
-- #30 — Match inbox / chat UI — **P0 / M2**
-- #31 — Report / block / unmatch / Safety Center UX — **P0 / M1–M2**
-- #32 — Localization/content keys / Korean glossary — **P1 / M2**
-- #48 — Post-date feedback / Couple Mode mobile — **P1 / M4**
+They are visibly fictional, reproducible, distribution-tested, and technically unable to enter Like/Match/Message states.
 
-### Matching, compatibility, and AI
+## Sharing contract
 
-- #33 — Versioned compatibility-rule DSL / pair feature generator — **P0 / M1–M2**
-- #34 — Compatibility confidence / unknown-time evidence model — **P0 / M2**
-- #35 — Structured LLM narrative service — **P1 / M3–M4**
-- #36 — A/B/C compatibility outcome experiment — **P1 / M3–M4**
+Release sharing should support:
 
-### Privacy, safety, and security
+1. browser-generated image card;
+2. share-safe result link with allowlisted non-sensitive payload;
+3. explicit `Compare with me` opt-in with disclosure for any derived personal representation;
+4. stable public-figure pages with prebuilt social/OG metadata where practical.
 
-- #37 — Data map / privacy threat review / Privacy Center — **P0 / M2–M4**
-- #38 — Moderation case pipeline / admin console / abuse detection — **P0 / M2–M3**
-- #39 — Photo/liveness verification integration — **P1 / M4**
-- #40 — Threat model / penetration-test readiness — **P1 / M4**
-- #46 — US legal/app-store/UGC/subscription launch-readiness — **P0 / M4–M5**
+Raw birth date/time/place never belongs in URLs, share cards, analytics, or remote requests.
 
-### Analytics and experimentation
+## Reddit feedback contract
 
-- #41 — Privacy-safe event pipeline / assignments / dashboards — **P0 / M2–M3**
+Reddit is the preferred early public-feedback channel, but automation is governed.
 
-### Revenue
+Human Gate before:
 
-- #42 — Subscriptions / entitlements / receipt validation — **P1 / M4**
+- Reddit account creation;
+- developer/API terms/access;
+- credential entry;
+- public posts/replies;
+- ambiguous subreddit-rule decisions.
 
-### Growth and launch
+After approved access, feedback may be ingested, clustered, and converted into GitHub issues. Only bounded/reversible/evidence-backed fixes may auto-enter the implementation pipeline. Methodology, privacy/security, public claims, and major product direction remain human-reviewed.
 
-- #43 — Referral / invite / share cards — **P1 / M3–M4**
-- #44 — Pilot-city supply seeding / invite-only beta / liquidity gates — **P0 / M3–M5**
-- #45 — Second-city expansion gate / Couple Mode growth — **P2 / M6**
+## First-release blockers
 
-### Platform and operations
+A feature-complete build is still **No-Go** if:
 
-- #47 — Reproducible staging/production infrastructure, CI/CD, observability, backup/restore — **P0 / M2–M4**
+- chart output is not deterministic/versioned;
+- golden/reference tests expose unresolved material boundary errors;
+- unknown birth time is fabricated;
+- personal birth/comparison values leave browser memory;
+- protected values enter storage, URLs, logs, analytics, or third-party requests;
+- public-figure provenance/confidence is missing;
+- synthetic figures can be mistaken for real members;
+- sharing leaks protected inputs;
+- browser runtime contains secrets;
+- GitHub Pages direct routes/deep links are broken;
+- CI/deploy/rollback is not reproducible;
+- critical accessibility/security/privacy defects remain open.
 
-## Critical business hypotheses attached to the backlog
+## Human Gates for the active release
 
-The implementation should preserve the ability to falsify these hypotheses:
+Codex should stop for:
 
-1. K-culture framing can attract qualified US users without reducing trust.
-2. Gung-hap explanations improve reciprocal conversation quality, not only Like rate.
-3. Bounded Saju ranking adds value beyond explanation-only presentation.
-4. Unknown birth time can degrade gracefully without destroying onboarding completion.
-5. Balanced `What clicks + Worth watching` language is trusted more than positive-only horoscope prose.
-6. Scarce Inyeon Match increases attention without damaging retention or marketplace breadth.
-7. Contextual date questions improve first reply or conversation depth.
-8. Verification creates enough trust value to justify its friction and privacy cost.
-9. One-city density performs materially better than thin multi-city launch.
-10. Couple Mode creates legitimate post-match value and retention without trapping users in dating discovery.
-
-## Release blockers that outrank feature completion
-
-A feature-complete build is still **No-Go** for public launch if any of the following is true:
-
-- block/report is unreliable;
-- serious moderation has no accountable human process;
-- account deletion/export is incomplete;
-- exact/precise location can leak;
-- sensitive birth/profile/message data reaches ordinary logs, analytics, or unnecessary LLM payloads;
-- Saju engine correctness is not validated against the golden corpus;
-- compatibility can override safety or mutual eligibility;
-- production backup/restore or rollback is untested;
-- critical security/privacy findings remain open;
-- required legal/app-store/vendor Human Gates are unresolved;
-- the pilot marketplace lacks sufficient compatible supply for core cohorts.
-
-## Human Gates embedded in the backlog
-
-Codex can prepare everything up to these boundaries but must not silently cross them:
-
-- recruiting/contracting paid Saju advisors or research participants;
-- selecting a paid verification/analytics/hosting vendor when spend exceeds configured budget;
-- qualified US legal counsel signoff;
-- acceptance of Apple/Google/vendor terms;
-- final paid production subscriptions/accounts where authorization is missing;
-- production destructive data operations;
-- serious safety adjudication / law-enforcement escalation / public incident communication;
-- pilot-city broad-open decision when safety/liquidity gates are borderline.
+- paid/contracted Saju advisor engagement if required;
+- custom-domain purchase/DNS credentials if owner action is required;
+- Reddit account creation and platform/developer terms;
+- Reddit credentials and public posting/replying;
+- new paid vendor/material spend;
+- introducing GCP/backend persistence that changes the zero-retention architecture;
+- material Saju methodology changes;
+- material privacy/security/public-claim decisions.
 
 ## Backlog maintenance contract
 
-At the end of each completed issue, Codex should:
+At the end of each completed issue:
 
-1. verify acceptance criteria and required tests;
-2. update affected docs/ADRs;
-3. add or adjust dependencies only when evidence changed;
-4. avoid duplicating an existing issue;
-5. create regression issues from material review/incident findings;
-6. select the next highest-priority unblocked critical-path issue;
-7. continue without waiting unless a Human Gate applies.
+1. verify acceptance criteria/tests;
+2. update docs/ADRs when evidence changes;
+3. adjust dependencies rather than duplicating issues;
+4. preserve zero-retention and release-grade invariants;
+5. select the next highest-value unblocked issue on the active critical path;
+6. continue until a real Human Gate is reached.
 
-`ROADMAP.md` defines milestone outcomes. GitHub Issues define executable work. This file exists only to preserve the execution graph and research intent.
+`ROADMAP.md` defines milestone outcomes. GitHub Issues define executable work. Historical marketplace requirements remain reference material until explicitly reactivated.
