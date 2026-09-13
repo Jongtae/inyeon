@@ -1,47 +1,78 @@
-# INYEON Toy Project Mode
+# INYEON Independent Release Mode
+
+> The filename is retained for continuity, but **"toy project" describes ownership and business intent, not quality level.**
 
 ## Intent
 
-INYEON is currently a personal toy / research project, not a startup execution program and not a commitment to achieve near-term commercial success.
+INYEON is an independent personal project rather than a revenue-first startup program. Near-term commercial success, fundraising, CAC/LTV optimization, and marketplace scale are not success criteria.
+
+However, the project is intended to be **properly released to real users**. It is not a throwaway prototype, hackathon demo, local-only experiment, or excuse for reduced engineering quality.
 
 The project should optimize for:
 
 1. learning how Korean Saju / Gung-hap can be represented as deterministic software;
-2. building an interesting, polished compatibility experience;
+2. shipping an interesting, polished public compatibility product;
 3. experimenting with transparent explanations rather than fortune-telling scores;
-4. making the project enjoyable to build and easy to evolve;
-5. preserving the option to become a real dating product later without paying the full operational cost now.
+4. maintaining high correctness, privacy, reliability, accessibility, and release quality;
+5. keeping the architecture simple enough for an independent project to operate;
+6. preserving the option to evolve into a real dating marketplace later.
 
-Business, GTM, monetization, marketplace-liquidity, legal-launch, moderation-at-scale, and production-operations documents remain useful future references, but they are not the default execution target in Toy Mode.
+**Business ambition may be intentionally modest. Release quality is not.**
 
-## Toy-mode product shape
+## Active first-release product shape
 
-The preferred first usable product is a **Compatibility Lab** rather than a complete two-sided dating marketplace.
+The preferred first public product is a **Compatibility Lab**, not yet a complete two-sided dating marketplace.
 
 Primary flows:
 
 - Me → calculate my Saju / Four Pillars.
-- Me × Public Figure → compare with well-known people whose public birth data can be sourced.
+- Me × Public Figure → compare with well-known people whose public birth data is sourced and confidence-labelled.
 - Me × Synthetic Character → explore thousands of clearly fictional relationship patterns.
-- Me × Someone I Know → optionally compare with a person whose birth data the user enters with appropriate consent/context.
-- Explain → show what clicks, potential friction, and the traditional evidence behind the interpretation.
+- Me × Someone I Know → compare with a person whose birth data the user enters with appropriate context/consent.
+- Explain → show `What clicks`, `Potential friction`, `Why this?`, and methodology/uncertainty.
 
-Real-user discovery, likes, matches, chat, payments, city seeding, app-store launch, and production moderation are later optional layers.
+Real-user discovery, likes, matches, chat, city seeding, payments, and dating-marketplace moderation are later product layers. They are deferred because they are outside the first product scope, **not because production quality is optional**.
 
-## Execution order in Toy Mode
+## Public release target
 
-Prioritize work roughly in this order:
+The first release should be a real, publicly usable product. Depending on the chosen client strategy this may be web/PWA first, native app first, or both, but it must have an actual production environment.
+
+Minimum release expectations:
+
+- reproducible build and deploy;
+- `local → test → staging → production` environments where relevant;
+- CI checks for core logic and release artifacts;
+- deterministic/versioned Saju results;
+- golden/regression coverage for calendrical boundaries;
+- production error tracking and basic observability;
+- secrets kept out of source control;
+- secure handling of personal birth inputs;
+- privacy policy and clear data-retention/deletion behavior for any persisted personal data;
+- accessibility and responsive/mobile usability appropriate to the chosen clients;
+- graceful loading/error/empty states;
+- rollback/redeploy path;
+- backups and restore validation for stateful production data;
+- source/confidence disclosure for public-figure birth data;
+- unmistakable separation of real users, public figures, and synthetic characters;
+- no fabricated birth times or hidden LLM chart calculation.
+
+A release is not complete merely because the feature works locally.
+
+## Execution order
+
+Prioritize roughly in this order:
 
 1. validated open-source Manseryeok adapter and `korean-saju-v1` profile;
 2. normalized chart / derived compatibility features;
-3. golden fixtures and deterministic tests;
+3. golden fixtures and deterministic regression tests;
 4. public-figure reference dataset;
 5. synthetic-character compatibility sandbox;
-6. simple personal UI for chart + comparison + explanation;
-7. shareable / exportable result cards if useful;
-8. only then consider real dating marketplace features.
+6. polished end-to-end chart/comparison/explanation UI;
+7. production platform, privacy controls, observability, and release hardening needed for the public Compatibility Lab;
+8. public launch and post-launch quality fixes;
+9. only then consider the full real-user dating marketplace unless the owner explicitly changes scope sooner.
 
-Marketplace-oriented P0 issues are **deferred by mode**, even if their historical issue priority says P0, until the owner explicitly switches the project to Marketplace Mode.
+Marketplace-specific P0 issues may be deferred by product scope, but **release-engineering, privacy, security, observability, and production-readiness work required by the Compatibility Lab are not deferred**.
 
 ## Public-figure data rules
 
@@ -58,7 +89,7 @@ For every person record:
 - prefer multiple sources for disputed values;
 - suppress hour-dependent claims when time is unknown or disputed;
 - do not imply endorsement, participation, or actual romantic availability;
-- if images are used, use appropriately licensed assets (for example compatible Wikimedia Commons assets) or clearly synthetic/illustrative avatars.
+- if images are used, use appropriately licensed assets or a non-infringing alternative.
 
 Recommended confidence values:
 
@@ -66,21 +97,40 @@ Recommended confidence values:
 
 ## Engineering bar
 
-Toy project does not mean sloppy core logic.
+"Toy" does **not** mean sloppy, temporary, or demo-quality.
 
-Keep these production-like properties because they are intrinsic to the experiment:
+Keep these strict:
 
 - deterministic chart calculation;
-- versioned methodology;
+- versioned methodology and dependencies;
 - reproducible datasets;
-- automated tests;
+- automated unit/integration/E2E tests where useful;
+- golden fixtures and boundary regression tests;
 - no hidden LLM calculation;
 - explicit uncertainty;
-- privacy-safe handling of personal birth inputs;
-- clear distinction between public figures, synthetic characters, and real users.
+- privacy-safe personal data handling;
+- production-grade error handling and observability;
+- clear distinction between public figures, synthetic characters, and real users;
+- maintainable code, migrations, and release process.
 
-Everything else should favor simplicity over enterprise completeness.
+Simplicity is preferred over enterprise complexity, but **simplicity must still be production-capable**.
+
+## What is intentionally not required
+
+The first release does not need to prove:
+
+- product-market fit;
+- profitable unit economics;
+- venture-scale growth;
+- nationwide dating-marketplace liquidity;
+- subscription monetization;
+- sophisticated ML ranking;
+- large operations teams.
+
+These are business/scale questions, not prerequisites for a high-quality public release.
 
 ## Mode change
 
-Switch to Marketplace Mode only by an explicit owner decision. At that point re-activate deferred dating-marketplace, trust & safety, legal, payments, city-liquidity, and production-operations work.
+The active mode is **Independent Release / Compatibility Lab**.
+
+Switch to full **Marketplace Mode** only by explicit owner decision. At that point activate the real-user dating, trust & safety, legal, payments, city-liquidity, and marketplace-operations work that is currently outside first-release scope.
