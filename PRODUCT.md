@@ -81,13 +81,13 @@ The first release does not require account creation, marketplace density, or a d
 
 Default share surfaces:
 
-- browser-generated image card;
+- browser-generated claim-free reference/invitation image while approved relationship rules are empty;
 - native Web Share where available with fallback;
-- share-safe result link containing only allowlisted non-sensitive data;
-- explicit `Compare with me` flow with disclosure if any derived personal representation is shared;
-- stable public-figure pages/OG assets where practical.
+- share-safe reference/invitation link containing only strictly allowlisted non-sensitive data;
+- explicit `Compare with me` invitation containing no reusable personal representation in v0.1;
+- stable public-figure pages/OG assets after the production origin is fixed, where practical.
 
-Raw birth date/time/place is never silently included in share payloads.
+Raw or derived personal birth/chart/evidence data is never included in v0.1 share payloads. Any future transferable representation follows ADR 0007's separate privacy decision path.
 
 ## Privacy
 

@@ -88,7 +88,7 @@ Issue #35 owns deterministic narrative composition and #53 owns the integrated s
 
 - #52 — client-only zero-retention personal-data boundary — **P0**
 - #47 — release-grade GitHub Pages + GitHub Actions production path — **P0**
-- #43 — client-side share cards / share-safe links / compare-with-me — **P1 moving to release-critical**
+- #43 — client-side claim-free cards / share-safe links / compare-with-me invitation — **implemented for the candidate release; deployed evidence remains #47-owned**
 - #51 — Reddit release-feedback loop with governed auto-improvement — **P0 after production candidate exists**
 
 ## Marketplace issues: deferred, not deleted
@@ -143,11 +143,11 @@ They are visibly fictional, reproducible, distribution-tested, and technically u
 Release sharing should support:
 
 1. browser-generated image card;
-2. share-safe result link with allowlisted non-sensitive payload;
-3. explicit `Compare with me` opt-in with disclosure for any derived personal representation;
-4. stable public-figure pages with prebuilt social/OG metadata where practical.
+2. share-safe reference/invitation link with a strict non-sensitive allowlist;
+3. explicit `Compare with me` invitation containing no personal representation; each person re-enters details locally;
+4. stable public-figure pages with public-only social/OG metadata after #47 fixes the production origin, where practical.
 
-Raw birth date/time/place never belongs in URLs, share cards, analytics, or remote requests.
+Raw or derived personal data never belongs in URLs, share cards, analytics, or remote requests. Until approved relationship rules and copy exist, sharing contains no archetype or relationship claim.
 
 ## Reddit feedback contract
 

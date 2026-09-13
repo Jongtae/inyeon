@@ -177,27 +177,27 @@ Sharing is a first-class feature because it drives discovery and Reddit/social d
 
 Generate an image in the browser and invoke native Web Share when available.
 
-Default card may include:
+While the approved relationship-rule and copy catalogs are empty, a default card may include only:
 
 - INYEON branding;
 - public figure/synthetic subject name when applicable;
-- relationship archetype;
-- short `What clicks` / `Potential friction` copy;
+- fixed schema, copy, and candidate-method version identifiers;
+- an honest statement that relationship interpretation is still under review;
 - product URL.
 
-Default card must not include raw birth date/time/place or other protected personal inputs.
+It must not include an archetype, score, relationship claim, raw birth date/time/place, chart, derived feature, pair evidence, or other protected personal value.
 
 ### 8.2 Share-safe result link
 
-Links may contain only an allowlisted non-sensitive result payload. Protected birth inputs are forbidden in query strings or URL fragments.
+Links may contain only a strictly validated, allowlisted non-sensitive reference or invitation payload. Protected birth inputs and derived personal values are forbidden in query strings or URL fragments. Received values are untrusted display hints and never chart-engine input.
 
 ### 8.3 Compare-with-me
 
-A separate explicit opt-in flow may create a link that lets another person compare with the sender. If any derived personal chart representation is embedded, the UI must explain exactly what is being shared before generation. This is never the default share action.
+A separate explicit flow may create a personal-data-free invitation. In v0.1 it never embeds a reusable personal chart representation: each participant enters details locally in an active private session. A transferable representation requires a future privacy decision, abuse analysis, disclosure design, and new tests.
 
 ### 8.4 Public-figure pages
 
-Build stable public pages and, where practical, prebuilt OG/social assets for recognizable public-figure entry points.
+After #47 fixes the production origin, evaluate bounded stable public pages and prebuilt OG/social assets for recognizable public-figure entry points. They may contain public reference data only, never personal comparisons.
 
 ## 9. Privacy model
 

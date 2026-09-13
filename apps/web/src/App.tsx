@@ -14,6 +14,7 @@ import {
 
 import { BirthForm } from './components/BirthForm';
 import { BrandMark } from './components/BrandMark';
+import { ShareControls } from './components/ShareControls';
 import {
   calculateProfile,
   compareProfiles,
@@ -22,6 +23,14 @@ import {
   type ComparisonResult,
 } from './lib/product';
 import { type AppRoute, hashForRoute, routeFromHash } from './lib/routing';
+import {
+  SHARING_ENABLED,
+  createSharePayload,
+  parseShareHash,
+  type PublicReferenceId,
+  type SharePayload,
+  type SyntheticReferenceId,
+} from './lib/sharing';
 
 const pillars = [
   { index: '01', title: 'Korean Saju', titleEn: '사주 · Four Pillars', description: 'See a Korean Four Pillars chart through explicit calendar rules and visible limits.' },
@@ -31,17 +40,17 @@ const pillars = [
 
 const positions = [['year', 'Year'], ['month', 'Month'], ['day', 'Day'], ['hour', 'Hour']] as const;
 
-function useHashRoute(): AppRoute {
-  const [route, setRoute] = useState(() => routeFromHash(window.location.hash));
+function useHashRoute(): { readonly route: AppRoute; readonly hash: string } {
+  const [hash, setHash] = useState(() => window.location.hash);
   useEffect(() => {
-    const updateRoute = () => setRoute(routeFromHash(window.location.hash));
+    const updateRoute = () => setHash(window.location.hash);
     window.addEventListener('hashchange', updateRoute);
     return () => window.removeEventListener('hashchange', updateRoute);
   }, []);
   useEffect(() => {
     requestAnimationFrame(() => document.querySelector<HTMLElement>('#page-title')?.focus());
-  }, [route]);
-  return route;
+  }, [hash]);
+  return { route: routeFromHash(hash), hash };
 }
 
 function PageIntro({ eyebrow, title, children }: { readonly eyebrow: string; readonly title: string; readonly children: React.ReactNode }) {
@@ -70,7 +79,7 @@ function ChartCard({ profile, title }: { readonly profile: CalculatedProfile; re
   );
 }
 
-function ComparisonPanel({ result, targetLabel }: { readonly result: ComparisonResult; readonly targetLabel: string }) {
+function ComparisonPanel({ result, targetLabel, sharePayload }: { readonly result: ComparisonResult; readonly targetLabel: string; readonly sharePayload?: SharePayload }) {
   if (result.status === 'error') return <p className="form-error" role="alert">{result.message}</p>;
   const { narrative } = result;
   return (
@@ -79,7 +88,8 @@ function ComparisonPanel({ result, targetLabel }: { readonly result: ComparisonR
       <div className="no-evidence-panel"><strong>Compatibility interpretation isn’t available yet.</strong><p>{narrative.status.text}</p><p>INYEON currently has no relationship mappings that have completed evidence and cultural review. We won’t fill the gap with guesses.</p></div>
       {narrative.limitations.length > 0 && <div className="detail-list"><h3>What this result can and cannot support</h3><ul>{narrative.limitations.map((item) => <li key={item.copyKey}>{item.text}</li>)}</ul></div>}
       <div className="disclosure-stack">{narrative.disclosures.map((item) => <p key={item.copyKey}>{item.text}</p>)}</div>
-      <div className="result-actions"><a href={hashForRoute('/methodology')}>Read the methodology</a><span>Sharing will be added after privacy review in Issue #43.</span></div>
+      <div className="result-actions"><a href={hashForRoute('/methodology')}>Read the methodology</a><span>Your private chart and comparison stay in this tab.</span></div>
+      {sharePayload && <ShareControls payload={sharePayload} />}
     </section>
   );
 }
@@ -92,7 +102,8 @@ function Landing() {
   return (
     <><section className="hero" aria-labelledby="page-title"><div className="hero-copy"><p className="eyebrow">KOREAN COMPATIBILITY LAB</p><h1 id="page-title" tabIndex={-1}>Connection isn’t a verdict.<br /><em>It’s a conversation.</em></h1><p className="hero-lead">Explore Korean Saju (사주)—part of the broader East Asian Four Pillars tradition—as a lens for reflection, not a prediction or score.</p><a className="primary-link" href={hashForRoute('/my-saju')}>Start with my Saju <span aria-hidden="true">→</span></a><p className="release-note">CANDIDATE METHOD · PUBLIC RELEASE PENDING REVIEW</p></div><div className="hero-orbit" aria-hidden="true"><div className="orbit orbit-outer" /><div className="orbit orbit-inner" /><div className="orb orb-sun" /><div className="orb orb-moon" /><span className="glyph glyph-left">인</span><span className="glyph glyph-right">연</span></div></section>
       <section className="pillars" aria-label="Product principles">{pillars.map((pillar) => <article key={pillar.index}><span className="pillar-index">{pillar.index}</span><h2>{pillar.title}<small>{pillar.titleEn}</small></h2><p>{pillar.description}</p></article>)}</section>
-      <aside className="context-note"><span>COMPATIBILITY IS CONTEXT, NOT DESTINY.</span><p>INYEON never assigns a soulmate score, ranks people, or predicts whether a relationship will succeed.</p></aside></>
+      <aside className="context-note"><span>COMPATIBILITY IS CONTEXT, NOT DESTINY.</span><p>INYEON never assigns a soulmate score, ranks people, or predicts whether a relationship will succeed.</p></aside>
+      <ShareControls payload={createSharePayload('lab-invite')} heading="Share the Korean Compatibility Lab." /></>
   );
 }
 
@@ -134,7 +145,7 @@ function PublicFiguresPage({ personal }: { readonly personal: CalculatedProfile 
       <div className="browse-layout"><div><div className="filter-bar" role="search"><label><span>Search public figures</span><input type="search" value={query} onChange={(event) => { setQuery(event.target.value); setVisibleCount(24); }} placeholder="Search by name" /></label><label><span>Category</span><select value={category} onChange={(event) => { setCategory(event.target.value as PublicFigureCategory | ''); setVisibleCount(24); }}><option value="">All categories</option><option value="actor">Actors</option><option value="music">Music</option><option value="sports">Sports</option><option value="creator">Creators</option></select></label><label className="checkbox-field"><input type="checkbox" checked={eligibleOnly} onChange={(event) => { setEligibleOnly(event.target.checked); setVisibleCount(24); }} /> Comparison available now</label></div><p className="result-count" aria-live="polite">{results.length} reference{results.length === 1 ? '' : 's'} found</p>
         {catalogError ? <div className="empty-state" role="alert"><strong>Public references could not be loaded.</strong><p>Refresh the page and try again.</p></div> : !catalog ? <div className="empty-state" role="status"><strong>Loading public references…</strong><p>The checked-in catalog is loading from this static site.</p></div> : results.length === 0 ? <div className="empty-state"><strong>No public references match those filters.</strong><p>Try a different name or category.</p></div> : <><div className="reference-grid">{results.slice(0, visibleCount).map((entry) => <button key={entry.id} className="reference-card" type="button" onClick={() => open(entry.id)} aria-pressed={selected?.id === entry.id}><span className="reference-monogram" aria-hidden="true">{entry.displayName.split(/\s+/u).map((part) => part[0]).join('').slice(0, 2)}</span><span><strong>{entry.displayName}</strong><small>{entry.category} · {entry.regions[0]}</small></span><em className={entry.comparisonEligibility === 'eligible' ? 'available' : ''}>{entry.comparisonEligibility === 'eligible' ? 'Comparison available' : 'Browse only'}</em></button>)}</div>{visibleCount < results.length && <button className="show-more" type="button" onClick={() => setVisibleCount((count) => count + 24)}>Show 24 more <span aria-hidden="true">↓</span></button>}</>}</div>
         <aside className="reference-detail" aria-live="polite">{selected ? <><p className="eyebrow">PUBLIC REFERENCE</p><h2>{selected.displayName}</h2><dl><div><dt>Birth date</dt><dd>{selected.birth.date.value}</dd></div><div><dt>Birth data status</dt><dd>Date only · no birth time assumed</dd></div><div><dt>Birthplace source</dt><dd>{selected.birth.place.value?.label ?? 'Unavailable'}</dd></div><div><dt>Source status</dt><dd>Single structured source</dd></div></dl><p>{PUBLIC_FIGURE_DISCLOSURE.short}</p><p>{PUBLIC_FIGURE_DISCLOSURE.dateOnly}</p><a href={selected.sourceRecords[0]?.url} target="_blank" rel="noreferrer">View source on Wikidata <span aria-hidden="true">↗</span></a>{selected.comparisonEligibility.status === 'eligible' ? <button type="button" className="primary-button" onClick={compare} disabled={!personal}>Compare with this reference</button> : <div className="unavailable-note"><strong>Comparison unavailable</strong><ul>{selected.comparisonEligibility.reasons.map((reason) => <li key={reason}>{reason === 'BIRTH_DATE_OUTSIDE_ADAPTER_RANGE' ? 'The birth date is outside the current 1989–2024 calculation range.' : 'The birthplace is outside the current Los Angeles, New York City, and Seoul timezone set.'}</li>)}</ul></div>}</> : <div className="empty-state"><strong>Select a reference.</strong><p>Source and availability details will appear here.</p></div>}</aside></div>
-      {comparison && selected && <ComparisonPanel result={comparison} targetLabel={selected.displayName} />}
+      {comparison && selected && <ComparisonPanel result={comparison} targetLabel={selected.displayName} sharePayload={createSharePayload('public-reference', selected.id as PublicReferenceId)} />}
     </section>
   );
 }
@@ -157,7 +168,7 @@ function InyeonLabPage({ personal }: { readonly personal: CalculatedProfile | nu
   return (
     <section className="lab-page"><PageIntro eyebrow="INYEON LAB · 인연 실험실" title="Explore a clearly fictional reference."><p>Abstract characters make the calculation flow explorable without pretending to be real people, members, or dating activity.</p></PageIntro>{!personal && <SessionEnded />}
       {!enabled ? <div className="preview-gate"><p className="eyebrow">CANDIDATE PREVIEW · DEFAULT OFF</p><h2>Fictional Lab exploration is still under release review.</h2><p>{SYNTHETIC_DISCLOSURE.full}</p><button className="primary-button" type="button" onClick={() => setEnabled(true)}>Open this tab’s preview</button></div> : <><p className="persistent-disclosure">{SYNTHETIC_DISCLOSURE.short}</p><div className="synthetic-grid">{characters.map((character) => <SyntheticCard key={character.id} character={character} selected={selected?.id === character.id} onSelect={() => { setSelected(character); setComparison(null); }} />)}</div>{selected && <section className="synthetic-detail"><div className={`abstract-avatar large ${selected.avatar.paletteId}`} aria-label={selected.avatar.alt}><i /><i /><i /></div><div><p className="eyebrow">FICTIONAL LAB CHARACTER</p><h2>{selected.displayName}</h2><p>{selected.fictional.shortDisclosure}</p><p>{SYNTHETIC_DISCLOSURE.fixture}</p><p className="scenario-line">Independent scene prompts: {selected.scenarioPrompts.map(({ label }) => label).join(' · ')}</p><button className="primary-button" type="button" onClick={compare} disabled={!personal}>Compare with this fictional reference</button></div></section>}</>}
-      {comparison && selected && <ComparisonPanel result={comparison} targetLabel={selected.displayName} />}
+      {comparison && selected && <ComparisonPanel result={comparison} targetLabel={selected.displayName} sharePayload={createSharePayload('synthetic-reference', selected.id as SyntheticReferenceId)} />}
     </section>
   );
 }
@@ -170,8 +181,52 @@ function SomeonePage({ personal }: { readonly personal: CalculatedProfile | null
       {personal && <BirthForm idPrefix="someone" title="Add the second chart" description="Their details are calculated locally in this tab and are not saved." submitLabel="Prepare second chart" onCalculated={(profile) => { setOther(profile); setComparison(null); }} />}
       {personal && other && <div className="result-stack"><ChartCard profile={other} title="Second Four Pillars chart" /><button className="primary-button" type="button" onClick={() => setComparison(compareProfiles(personal, other, 'someone-i-know'))}>View comparison details</button></div>}
       {comparison && <ComparisonPanel result={comparison} targetLabel="someone you know" />}
+      <ShareControls payload={createSharePayload('compare-invite')} heading="Invite someone into one private session." />
     </section>
   );
+}
+
+function SharePage({ hash }: { readonly hash: string }) {
+  const payload = SHARING_ENABLED ? parseShareHash(hash) : null;
+  const publicReferenceId = payload?.kind === 'public-reference' ? payload.ref : null;
+  const [publicLookup, setPublicLookup] = useState<{ readonly id: string; readonly record: PublicFigureRecord | null } | null>(null);
+  useEffect(() => {
+    let active = true;
+    if (!publicReferenceId) return () => { active = false; };
+    void import('@inyeon/public-figures/catalog')
+      .then((catalog) => { if (active) setPublicLookup({ id: publicReferenceId, record: catalog.getPublicFigure(publicReferenceId as PublicFigureRecord['id']) }); })
+      .catch(() => { if (active) setPublicLookup({ id: publicReferenceId, record: null }); });
+    return () => { active = false; };
+  }, [publicReferenceId]);
+  const publicReference = publicReferenceId && publicLookup?.id === publicReferenceId ? publicLookup.record : undefined;
+
+  if (!SHARING_ENABLED) {
+    return <section className="detail-page"><PageIntro eyebrow="SHARING PAUSED" title="Sharing is temporarily unavailable."><p>Private Saju calculation still works normally. No share-link content has been reconstructed.</p></PageIntro><a className="primary-link" href={hashForRoute('/')}>Open the Lab <span aria-hidden="true">→</span></a></section>;
+  }
+  if (!payload || (payload.kind === 'public-reference' && publicReference === null)) {
+    return <section className="detail-page"><PageIntro eyebrow="INVALID SHARE LINK" title="This invitation couldn’t be verified."><p>INYEON rejected unknown or altered share data. Nothing from this link was used for a chart or comparison.</p></PageIntro><a className="primary-link" href={hashForRoute('/')}>Open the Lab safely <span aria-hidden="true">→</span></a></section>;
+  }
+  if (payload.kind === 'public-reference' && publicReference === undefined) {
+    return <section className="detail-page"><PageIntro eyebrow="PUBLIC REFERENCE" title="Checking this public reference…"><p>The checked-in catalog is loading. No personal calculation is running.</p></PageIntro></section>;
+  }
+
+  const syntheticCode = payload.kind === 'synthetic-reference' ? payload.ref.split(':').at(-1) : null;
+  const title = payload.kind === 'compare-invite'
+    ? 'You’re invited to compare—privately.'
+    : payload.kind === 'public-reference'
+      ? `Explore ${publicReference?.displayName ?? 'a public reference'} in INYEON.`
+      : payload.kind === 'synthetic-reference'
+        ? `Explore Inyeon Lab Character ${syntheticCode}.`
+        : 'You’re invited to explore Korean Saju.';
+  const disclosure = payload.kind === 'public-reference'
+    ? PUBLIC_FIGURE_DISCLOSURE.full
+    : payload.kind === 'synthetic-reference'
+      ? SYNTHETIC_DISCLOSURE.full
+      : payload.kind === 'compare-invite'
+        ? 'This link contains no birth details or chart. Enter each person’s details locally in one private browser session.'
+        : 'This invitation contains only fixed INYEON product information.';
+  const nextRoute: AppRoute = payload.kind === 'synthetic-reference' ? '/inyeon-lab' : '/my-saju';
+  return <section className="detail-page share-page"><PageIntro eyebrow="INYEON · 인연 INVITATION" title={title}><p>{disclosure}</p></PageIntro><div className="share-received"><strong>No private result traveled with this link.</strong><p>Relationship interpretation is still under review. This invitation contains no score, birth data, Four Pillars chart, or private comparison evidence.</p><dl><div><dt>Share schema</dt><dd>{payload.v}</dd></div><div><dt>Candidate method</dt><dd>{payload.method}</dd></div><div><dt>Invitation type</dt><dd>{payload.kind}</dd></div></dl></div><a className="primary-link" href={hashForRoute(nextRoute)}>Continue in my private session <span aria-hidden="true">→</span></a></section>;
 }
 
 function Methodology() {
@@ -189,7 +244,7 @@ function LabNav({ route }: { readonly route: AppRoute }) {
 }
 
 export default function App() {
-  const route = useHashRoute();
+  const { route, hash } = useHashRoute();
   const [personal, setPersonal] = useState<CalculatedProfile | null>(null);
   const [resetVersion, setResetVersion] = useState(0);
   const [clearMessage, setClearMessage] = useState('');
@@ -200,6 +255,7 @@ export default function App() {
   else if (route === '/public-figures') page = <PublicFiguresPage key={resetVersion} personal={personal} />;
   else if (route === '/inyeon-lab') page = <InyeonLabPage key={resetVersion} personal={personal} />;
   else if (route === '/compare-someone') page = <SomeonePage key={resetVersion} personal={personal} />;
+  else if (route === '/share') page = <SharePage hash={hash} />;
   else if (route === '/methodology') page = <Methodology />;
   else page = <Privacy />;
   return (

@@ -1,5 +1,5 @@
 import { fireEvent, render, screen, within } from '@testing-library/react';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import App from './App';
 
@@ -20,6 +20,8 @@ describe('INYEON Compatibility Lab', () => {
   beforeEach(() => {
     window.location.hash = '#/';
   });
+
+  afterEach(() => vi.restoreAllMocks());
 
   it('presents a US-first Korean-rooted product without claiming approved relationship meaning', () => {
     render(<App />);
@@ -206,5 +208,57 @@ describe('INYEON Compatibility Lab', () => {
       expect(text.indexOf(hangul)).toBeGreaterThanOrEqual(0);
       expect(text.indexOf(hangul)).toBeLessThan(text.indexOf(hanja));
     }
+  });
+
+  it('previews a locally generated claim-free Lab card and safe link', async () => {
+    const context = {
+      createLinearGradient: vi.fn(() => ({ addColorStop: vi.fn() })),
+      fillRect: vi.fn(),
+      fillText: vi.fn(),
+      measureText: vi.fn((text: string) => ({ width: text.length * 10 })),
+      fillStyle: '',
+      font: '',
+    } as unknown as CanvasRenderingContext2D;
+    vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue(context);
+    vi.spyOn(HTMLCanvasElement.prototype, 'toBlob').mockImplementation((callback) => callback(new Blob(['safe-png'], { type: 'image/png' })));
+    vi.spyOn(URL, 'createObjectURL').mockReturnValue('blob:inyeon-local-preview');
+    vi.spyOn(URL, 'revokeObjectURL').mockImplementation(() => undefined);
+
+    render(<App />);
+    fireEvent.click(screen.getByRole('button', { name: 'Preview share options' }));
+    expect(await screen.findByRole('img', { name: 'Claim-free INYEON share card preview' })).toHaveAttribute('src', 'blob:inyeon-local-preview');
+    const link = screen.getByLabelText('Share-safe link') as HTMLInputElement;
+    expect(link.value).toContain('#/share?v=inyeon-share-v1&kind=lab-invite');
+    expect(link.value).not.toMatch(/birth|chart|evidence|1995-10-21|14%3A30/iu);
+    expect(screen.getByText(/contains no birth details, Four Pillars chart/)).toBeInTheDocument();
+  });
+
+  it('reconstructs only verified reference or invitation hints and rejects altered links', async () => {
+    render(<App />);
+    navigate('#/share?v=inyeon-share-v1&kind=public-reference&copy=share-copy-en-us-v1&method=korean-saju-v1&ref=public%3Awd-q29564107');
+    expect(await screen.findByRole('heading', { name: 'Explore Billie Eilish in INYEON.' })).toBeInTheDocument();
+    expect(screen.getByText(/not imply endorsement, participation/)).toBeInTheDocument();
+    expect(screen.getByText('No private result traveled with this link.')).toBeInTheDocument();
+
+    navigate('#/share?v=inyeon-share-v1&kind=compare-invite&copy=share-copy-en-us-v1&method=korean-saju-v1');
+    expect(screen.getByRole('heading', { name: 'You’re invited to compare—privately.' })).toBeInTheDocument();
+    expect(screen.getByText(/contains no birth details or chart/)).toBeInTheDocument();
+
+    navigate('#/share?v=inyeon-share-v1&kind=lab-invite&copy=share-copy-en-us-v1&method=korean-saju-v1&birth=1995-10-21');
+    expect(screen.getByRole('heading', { name: 'This invitation couldn’t be verified.' })).toBeInTheDocument();
+  });
+
+  it('keeps Someone I Know results private while offering a separate data-free invitation', () => {
+    render(<App />);
+    completePersonalChart();
+    navigate('#/compare-someone');
+    fireEvent.change(screen.getByLabelText(/^Birth date/), { target: { value: '1992-11-27' } });
+    fireEvent.click(screen.getByLabelText(/^Unknown/));
+    fireEvent.click(screen.getByRole('button', { name: 'Prepare second chart' }));
+    fireEvent.click(screen.getByRole('button', { name: 'View comparison details' }));
+    const comparison = screen.getByRole('region', { name: 'You + someone you know' });
+    expect(within(comparison).queryByText(/PRIVACY-SAFE SHARING/)).not.toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Invite someone into one private session.' })).toBeInTheDocument();
+    expect(screen.getByText(/fixed public allowlist/)).toBeInTheDocument();
   });
 });

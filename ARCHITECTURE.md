@@ -215,7 +215,7 @@ validated copy blocks
 
 LLMs may help author/refine templates during development, but generated copy is stored/versioned. Browser runtime must not call a secret-bearing LLM API.
 
-The implemented `@inyeon/compatibility-narrative` package accepts only `compatibility-snapshot-v2` plus closed context/format/tone enums. Its release-locked US-English catalog has zero product claim entries while the approved rule catalog is empty. The actual output therefore has a null relationship headline, empty `What clicks`, `Potential friction`, and `Why this?` sections, and no personalized question. It may show only categorical availability/methodology limitations and fixed public-reference, fictional-reference, or permission disclosures. Hanja is accepted only after the matching Hangul term. Share-length copy removes protected birth-time precision and evidence references; the final share allowlist remains #43-owned.
+The implemented `@inyeon/compatibility-narrative` package accepts only `compatibility-snapshot-v2` plus closed context/format/tone enums. Its release-locked US-English catalog has zero product claim entries while the approved rule catalog is empty. The actual output therefore has a null relationship headline, empty `What clicks`, `Potential friction`, and `Why this?` sections, and no personalized question. It may show only categorical availability/methodology limitations and fixed public-reference, fictional-reference, or permission disclosures. Hanja is accepted only after the matching Hangul term. Share-length copy removes protected birth-time precision and evidence references; #43's separate final share allowlist accepts only fixed claim-free reference/invitation projections.
 
 The Issue #53 web integration uses fixed hash routes under the repository base path and keeps personal state only in the root React session. `My Saju`, public-reference, fictional-reference, and `Someone I Know` flows all call the same adapter → derived features → evaluator → narrative path. The checked-in 582-record public catalog is loaded as a separate static route chunk and exposed through an immutable browse index plus exact-ID accessor; search, filtering, progressive browse, source detail, and unsupported reasons do not require runtime network data. The fictional Lab remains behind an explicit per-tab preview action. Refresh or `Clear personal data` removes the private session, and no relationship section is mounted while the approved rule/copy catalogs remain empty.
 
@@ -266,25 +266,25 @@ No Like/Match/Message, online status, distance, fake inbound activity, or other 
 
 ## 11. Sharing architecture
 
-Sharing is local-first and privacy-safe.
+Sharing is local-first, claim-free, and privacy-safe. Its input is a closed share view model, never a chart, derived feature, compatibility snapshot, narrative object, or free-form user value.
 
 ### A. Share result card
 
-Generate a PNG/WebP client-side and invoke the Web Share API when available. Default card must omit raw birth date/time/place and other protected personal data.
+Generate a PNG client-side and invoke the Web Share API when file sharing is available, with local download and copy-link fallbacks. While the approved rule catalog is empty, cards may identify only the product and a validated public/fictional reference or invitation context, plus the fixed no-approved-interpretation status. They omit all personal result data and relationship claims.
 
 ### B. Share-safe result link
 
-A link may encode only an allowlisted result payload. Do **not** include birth inputs or derived data that enables meaningful birth-time reconstruction by default.
+A link may encode only a versioned allowlisted reference or invitation payload with fixed enums and, where applicable, one canonical public/synthetic ID. Birth inputs, personal charts/features, pair evidence, narrative output, free-form text, and reversible derivatives are prohibited.
 
-For general share links, prefer non-sensitive archetype/result identifiers. If URL fragments are used, remember that fragment data is not sent as the HTTP request path but is still visible to anyone receiving the link and to browser history/local tooling; protected birth inputs remain forbidden there.
+Received payloads are untrusted display hints: reject unknown keys, versions, enums, identifiers, or excessive length; re-resolve IDs from checked-in data; and never use a share payload as chart-engine input. URL fragments remain visible to recipients and browser tooling and are not a privacy control.
 
 ### C. Compare-with-me link
 
-This is an explicit opt-in mode. If a reusable local chart representation is embedded in the link, the UI must explain exactly what derived personal information will be shared before generating it. Default sharing must not do this.
+This is an explicit invitation-only mode in v0.1. Its preview states that the link contains no birth details or chart and that each participant must enter details locally in the same private session. A reusable personal representation is prohibited unless a future privacy decision, abuse analysis, disclosure design, and new test suite explicitly replace this boundary.
 
 ### D. Public-figure pages
 
-Prebuild stable public pages such as `/people/<slug>` (or equivalent Pages-safe routes) with static metadata/OG images where feasible. These pages can drive Reddit/social/SEO traffic without personal data.
+After #47 fixes the production origin, evaluate bounded stable public pages such as `/people/<slug>` with static metadata/OG images. These pages may contain public reference data only. Hash share links remain the v0.1 client flow; no personalized crawler-visible result is allowed.
 
 ## 12. Reddit feedback automation
 

@@ -4,6 +4,7 @@ export const routes = [
   '/public-figures',
   '/inyeon-lab',
   '/compare-someone',
+  '/share',
   '/methodology',
   '/privacy',
 ] as const;
@@ -22,7 +23,9 @@ export function repositoryBasePath(repository?: string): string {
 }
 
 export function routeFromHash(hash: string): AppRoute {
-  const candidate = hash.startsWith('#') ? hash.slice(1) : hash;
+  const candidateWithQuery = hash.startsWith('#') ? hash.slice(1) : hash;
+  const [candidate = '', query] = candidateWithQuery.split('?', 2);
+  if (query !== undefined && candidate !== '/share') return '/';
   return routes.includes(candidate as AppRoute) ? (candidate as AppRoute) : '/';
 }
 

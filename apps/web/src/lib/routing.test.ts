@@ -19,6 +19,8 @@ describe('Pages-safe routing', () => {
     expect(routeFromHash('#/public-figures')).toBe('/public-figures');
     expect(routeFromHash('#/inyeon-lab')).toBe('/inyeon-lab');
     expect(routeFromHash('#/compare-someone')).toBe('/compare-someone');
+    expect(routeFromHash('#/share?v=1&kind=lab-invite')).toBe('/share');
+    expect(routeFromHash('#/my-saju?birth=private')).toBe('/');
     expect(routeFromHash('#/unknown?birth=private')).toBe('/');
     expect(hashForRoute('/methodology')).toBe('#/methodology');
   });

@@ -5,6 +5,7 @@
 node_modules/
 .expo/
 dist/
+dist-sharing-disabled/
 build/
 coverage/
 *.tsbuildinfo

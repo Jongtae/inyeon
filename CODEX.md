@@ -155,15 +155,15 @@ Default sharing may expose only allowlisted non-sensitive result data.
 
 Required release surfaces:
 
-- client-generated PNG/WebP card;
+- client-generated claim-free reference/invitation PNG while approved relationship rules are empty;
 - Web Share API when available with fallback;
-- share-safe result link;
-- explicit `Compare with me` flow if implemented;
-- static public-figure entry pages/OG metadata where practical.
+- share-safe reference/invitation link;
+- explicit personal-data-free `Compare with me` invitation;
+- static public-figure entry pages/OG metadata after the production origin is fixed, where practical.
 
-If `Compare with me` includes any derived personal chart representation, show exactly what will be shared and require deliberate confirmation.
+V0.1 `Compare with me` includes no reusable personal chart representation; each participant enters details locally. A future transferable representation requires a separate privacy decision, precise disclosure, abuse analysis, and new tests under ADR 0007.
 
-Raw birth date/time/place is never silently included.
+Raw or derived personal birth/chart/evidence data is never included in a v0.1 share payload.
 
 ## Reddit operation and product-learning governance
 
