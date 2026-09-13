@@ -1,4 +1,4 @@
-name: Harness Check
+name: Harness and L4 Governance Check
 
 on:
   push:
@@ -12,4 +12,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: python scripts/check_harness.py
+      - name: Validate harness
+        run: python scripts/check_harness.py
+      - name: Validate L4 governance structure
+        run: python scripts/check_l4.py
