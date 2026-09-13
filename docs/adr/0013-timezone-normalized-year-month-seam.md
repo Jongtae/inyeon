@@ -34,7 +34,7 @@ The checked-in `year-month-differential.v1.json` artifact contains all 432 Issue
 
 No INYEON correction is added because no upstream year/month arithmetic defect was demonstrated. The fault reproduced by the issue is input/timezone normalization. `lunar-javascript@1.7.7` is a separate pillar implementation but shared-lineage for solar-term timing, so it is not a boundary authority. Astronomy Engine independently locates only the apparent-Sun longitude crossing. The three Issue #10 differences of 61–72 seconds remain recorded methodology/reference uncertainty and are neither averaged nor substituted.
 
-The artifact is byte-checked in CI and has SHA-256 `54ca0e765e65db1f3c917b06251a1eb31f8f837ab3b92b267096f50b5fc3b3b7`. Dependency, adapter, timezone, reference, and solar-term versions are preserved in result and fixture provenance.
+The Issue #11 acceptance artifact had SHA-256 `54ca0e765e65db1f3c917b06251a1eb31f8f837ab3b92b267096f50b5fc3b3b7`. Adapter `0.4.0` later regenerated its version and corrected comparison-mode provenance without changing pinned calculation outputs; the current byte-checked artifact has SHA-256 `82462131e10664439d8c1ff29fa41523551ccab44fee42b2268cdc3cb1a909c7`. Dependency, adapter, timezone, reference, and solar-term versions are preserved in result and fixture provenance.
 
 ## Alternatives considered
 

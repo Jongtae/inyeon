@@ -1,6 +1,6 @@
 {
   "manifestVersion": 1,
-  "adapterVersion": "0.3.0",
+  "adapterVersion": "0.4.0",
   "profile": { "version": "korean-saju-v1", "status": "candidate" },
   "supportedCalendars": ["solar"],
   "supportedTimeZones": ["Asia/Seoul"],
@@ -17,11 +17,27 @@
   "dayBoundary": { "value": "midnight", "status": "candidate", "productionValidated": false },
   "hourBranchConvention": { "value": "civil-two-hour-intervals-from-23:00", "status": "candidate", "productionValidated": false },
   "trueSolarTime": { "enabled": false, "status": "candidate", "productionValidated": false },
-  "unknownTime": { "fabricatedDefault": false, "result": "partial-with-no-pillars" },
-  "approximateTime": { "status": "unsupported", "owner": "Issue #12" },
-  "disputedTime": { "status": "unsupported", "owner": "Issue #12" },
+  "chartCalculation": {
+    "status": "bounded-candidate",
+    "supportedTimeZones": ["America/Los_Angeles", "America/New_York", "Asia/Seoul"],
+    "supportedSourceCivilDateRange": { "minimum": "1989-01-01", "maximum": "2024-12-31" },
+    "supportedProjectedKstDateRange": { "minimum": "1989-01-01", "maximum": "2024-12-31" },
+    "temporalSupport": ["exact", "approximate", "disputed", "date-only", "unknown"],
+    "maximumUniqueCivilMinutes": 2880,
+    "dayBoundary": "local-civil-midnight",
+    "hourBranchConvention": "local-civil-two-hour-intervals-from-23:00",
+    "foldPolicy": "calculate-all-candidates",
+    "gapPolicy": "exclude-with-count-or-fail-when-all-nonexistent",
+    "referenceDataVersion": "issue-12-day-hour-uncertainty-v1",
+    "yearMonthReferenceDataVersion": "issue-11-year-month-differential-v1",
+    "uncertaintyAlgebraVersion": "birth-time-uncertainty-v1",
+    "productionValidated": false
+  },
+  "unknownTime": { "fabricatedDefault": false, "result": "bounded-year-month-day-with-hour-suppressed" },
+  "approximateTime": { "status": "bounded-candidate", "owner": "Issue #12" },
+  "disputedTime": { "status": "bounded-candidate", "owner": "Issue #12" },
   "derivedFeatures": { "status": "not-applicable", "owner": "Issue #13" },
-  "historicalTimeZonePolicy": { "status": "resolver-integrated-for-year-month-only", "owner": "Issue #11" },
+  "historicalTimeZonePolicy": { "status": "resolver-integrated-for-year-month-and-chart", "owner": "Issues #11 and #12" },
   "yearMonthCalculation": {
     "status": "resolver-integrated-candidate",
     "supportedTimeZones": ["America/Los_Angeles", "America/New_York", "Asia/Seoul"],
@@ -38,7 +54,7 @@
   "genderDirectedCalculations": { "status": "out-of-scope" },
   "productionEligible": false,
   "pendingEvidence": [
-    "A proven local-civil day/hour seam before expanding complete-chart timezone support",
+    "Resolution of the midnight-versus-late-Jasi methodology disagreement before production promotion",
     "Korean methodology/expert review",
     "Issue #14 >=200 reference-backed golden corpus"
   ]

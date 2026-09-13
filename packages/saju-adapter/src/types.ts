@@ -34,7 +34,7 @@ export interface NormalizedPillar {
 export interface CalculationProvenance {
   readonly profileVersion: 'korean-saju-v1';
   readonly profileStatus: 'candidate';
-  readonly adapterVersion: '0.3.0';
+  readonly adapterVersion: '0.4.0';
   readonly upstreamName: 'manseryeok';
   readonly upstreamVersion: '2.0.0';
   readonly timezoneDataVersion: 'fixed-kst-utc-plus-09-1989-2024-v1';
@@ -61,7 +61,7 @@ export interface NormalizedYearMonthContext {
 export interface YearMonthCalculationProvenance {
   readonly profileVersion: 'korean-saju-v1';
   readonly profileStatus: 'candidate';
-  readonly adapterVersion: '0.3.0';
+  readonly adapterVersion: '0.4.0';
   readonly upstreamName: 'manseryeok';
   readonly upstreamVersion: '2.0.0';
   readonly timezoneResolverVersion: '0.1.0';
@@ -112,6 +112,8 @@ export type InyeonSajuErrorCode =
   | 'INPUT_INVALID'
   | 'NONEXISTENT_LOCAL_TIME'
   | 'PROFILE_UNSUPPORTED'
+  | 'RANGE_INVALID'
+  | 'RANGE_TOO_LARGE'
   | 'TIME_INVALID'
   | 'TIME_PRECISION_UNSUPPORTED'
   | 'TIMEZONE_UNSUPPORTED'
@@ -152,7 +154,146 @@ export type InyeonSajuResult = CompleteSajuResult | PartialSajuResult | FailedSa
 export interface InyeonSajuAdapter {
   readonly calculate: (input: NormalizedBirthContext) => InyeonSajuResult;
   readonly calculateYearMonth: (input: NormalizedYearMonthContext) => InyeonYearMonthResult;
+  readonly calculateChart: (input: NormalizedChartContext) => InyeonChartResult;
 }
+
+export type ChartTemporalSupport = 'exact' | 'approximate' | 'disputed' | 'date-only' | 'unknown';
+
+export interface ChartLocalDateTimeWindow {
+  /** Inclusive, minute-precision local civil boundary without an offset. */
+  readonly startLocalDateTime: string;
+  /** Inclusive, minute-precision local civil boundary without an offset. */
+  readonly endLocalDateTime: string;
+}
+
+interface ChartContextBase {
+  readonly calendarKind: CalendarKind;
+  readonly timeZone: YearMonthSupportedTimeZone;
+  readonly profileVersion: 'korean-saju-v1';
+  readonly timezoneDataVersion: 'iana-2026c-inyeon-filter-v1';
+  readonly referenceDataVersion: 'issue-12-day-hour-uncertainty-v1';
+}
+
+export interface ExactChartContext extends ChartContextBase {
+  readonly temporalSupport: 'exact';
+  readonly localDate: string;
+  readonly localTime: string;
+}
+
+export interface ApproximateChartContext extends ChartContextBase {
+  readonly temporalSupport: 'approximate';
+  readonly window: ChartLocalDateTimeWindow;
+}
+
+export interface DisputedChartContext extends ChartContextBase {
+  readonly temporalSupport: 'disputed';
+  /** A union of asserted possibilities. Minutes between windows are never interpolated. */
+  readonly windows: readonly ChartLocalDateTimeWindow[];
+}
+
+export interface DateOnlyChartContext extends ChartContextBase {
+  readonly temporalSupport: 'date-only';
+  readonly localDate: string;
+}
+
+export interface UnknownTimeChartContext extends ChartContextBase {
+  readonly temporalSupport: 'unknown';
+  readonly localDate: string;
+}
+
+export type NormalizedChartContext =
+  | ExactChartContext
+  | ApproximateChartContext
+  | DisputedChartContext
+  | DateOnlyChartContext
+  | UnknownTimeChartContext;
+
+export type ChartPillarSupport =
+  | { readonly support: 'invariant'; readonly pillar: NormalizedPillar }
+  | { readonly support: 'alternative'; readonly pillar: null }
+  | { readonly support: 'unavailable'; readonly pillar: null };
+
+export interface FullChartVariant {
+  readonly id: string;
+  readonly pillars: {
+    readonly year: NormalizedPillar;
+    readonly month: NormalizedPillar;
+    readonly day: NormalizedPillar;
+    readonly hour: NormalizedPillar;
+  };
+}
+
+export interface HourSuppressedChartVariant {
+  readonly id: string;
+  readonly pillars: {
+    readonly year: NormalizedPillar;
+    readonly month: NormalizedPillar;
+    readonly day: NormalizedPillar;
+  };
+}
+
+export interface ChartCalculationProvenance {
+  readonly profileVersion: 'korean-saju-v1';
+  readonly profileStatus: 'candidate';
+  readonly adapterVersion: '0.4.0';
+  readonly upstreamName: 'manseryeok';
+  readonly upstreamVersion: '2.0.0';
+  readonly timezoneResolverVersion: '0.1.0';
+  readonly timezoneDataVersion: 'iana-2026c-inyeon-filter-v1';
+  readonly referenceDataVersion: 'issue-12-day-hour-uncertainty-v1';
+  readonly yearMonthReferenceDataVersion: 'issue-11-year-month-differential-v1';
+  readonly solarTermDataVersion: 'manseryeok-2.0.0-embedded-solar-terms-v1';
+  readonly solarTermReferenceVersion: 'issue-10-astronomy-engine-2.1.19-v1';
+  readonly uncertaintyAlgebraVersion: 'birth-time-uncertainty-v1';
+  readonly dayBoundary: 'local-civil-midnight';
+  readonly hourBranchConvention: 'local-civil-two-hour-intervals-from-23:00';
+  readonly trueSolarTime: false;
+  readonly productionValidated: false;
+}
+
+export interface ChartResultBase {
+  readonly temporalSupport: ChartTemporalSupport;
+  readonly stablePillars: {
+    readonly year: ChartPillarSupport;
+    readonly month: ChartPillarSupport;
+    readonly day: ChartPillarSupport;
+    readonly hour: ChartPillarSupport;
+  };
+  readonly candidateCount: number;
+  readonly variantCount: number;
+  readonly evaluatedCivilMinuteCount: number;
+  readonly nonexistentCivilMinuteCount: number;
+  readonly containsFold: boolean;
+  readonly hourDependentEvidence:
+    | { readonly eligible: true; readonly reason: null }
+    | { readonly eligible: false; readonly reason: 'HOUR_VARIES' | 'TIME_NOT_SUPPORTED' };
+  readonly provenance: ChartCalculationProvenance;
+}
+
+export interface CompleteChartResult extends ChartResultBase {
+  readonly status: 'complete';
+  readonly temporalSupport: 'exact';
+  readonly variants: readonly [FullChartVariant];
+}
+
+export interface BoundedFullChartResult extends ChartResultBase {
+  readonly status: 'bounded';
+  readonly temporalSupport: 'exact' | 'approximate' | 'disputed';
+  readonly variants: readonly FullChartVariant[];
+}
+
+export interface BoundedHourSuppressedChartResult extends ChartResultBase {
+  readonly status: 'bounded';
+  readonly temporalSupport: 'date-only' | 'unknown';
+  readonly variants: readonly HourSuppressedChartVariant[];
+}
+
+export interface FailedChartResult {
+  readonly status: 'error';
+  readonly error: { readonly code: InyeonSajuErrorCode; readonly message: string };
+}
+
+export type InyeonChartResult = CompleteChartResult | BoundedFullChartResult | BoundedHourSuppressedChartResult | FailedChartResult;
 
 /** Internal adapter seam. It is intentionally absent from the package's public exports. */
 export interface InyeonPrimaryEngineOutput {

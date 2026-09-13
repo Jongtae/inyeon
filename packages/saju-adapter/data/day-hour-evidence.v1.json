@@ -1,0 +1,731 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-14",
+  "adapterVersion": "0.4.0",
+  "profileVersion": "korean-saju-v1",
+  "referenceDataVersion": "issue-12-day-hour-uncertainty-v1",
+  "uncertaintyAlgebraVersion": "birth-time-uncertainty-v1",
+  "profileStatus": "candidate",
+  "productionValidated": false,
+  "productionEligible": false,
+  "correctionCount": 0,
+  "primaryApiMode": {
+    "dayBoundary": "midnight",
+    "trueSolarTime": false
+  },
+  "comparisonApiMode": {
+    "day": "getDayInGanZhiExact",
+    "hour": "getTimeInGanZhi",
+    "observedLateZiSemantics": "23:00 begins the comparison implementation next-day day/hour-stem convention"
+  },
+  "evidenceScope": {
+    "separateImplementationForDayHourMapping": true,
+    "independentKoreanMethodologyAuthority": false,
+    "limitation": "The comparison reproduces a deliberate late 자시 (Jasi) convention difference. It cannot production-approve one Korean methodology."
+  },
+  "summary": {
+    "hourBoundaryRecordCount": 36,
+    "upstreamModeRecordCount": 12
+  },
+  "fullRangeDifferential": {
+    "startDate": "1989-01-01",
+    "endDate": "2024-12-31",
+    "representativeTimes": [
+      "00:00",
+      "01:00",
+      "03:00",
+      "05:00",
+      "07:00",
+      "09:00",
+      "11:00",
+      "12:34",
+      "13:00",
+      "15:00",
+      "17:00",
+      "19:00",
+      "21:00",
+      "23:00"
+    ],
+    "civilDateCount": 13149,
+    "observationCount": 184086,
+    "dayMismatchCount": 13149,
+    "hourMismatchCount": 13149,
+    "mismatchOutside2300Count": 0
+  },
+  "hourBoundaryRecords": [
+    {
+      "id": "hour-0059-before",
+      "state": "before",
+      "localTime": "00:59",
+      "primary": {
+        "day": "경술",
+        "hour": "병자"
+      },
+      "comparison": {
+        "day": "경술",
+        "hour": "병자"
+      },
+      "classification": "agreement"
+    },
+    {
+      "id": "hour-0100-at",
+      "state": "at",
+      "localTime": "01:00",
+      "primary": {
+        "day": "경술",
+        "hour": "정축"
+      },
+      "comparison": {
+        "day": "경술",
+        "hour": "정축"
+      },
+      "classification": "agreement"
+    },
+    {
+      "id": "hour-0101-after",
+      "state": "after",
+      "localTime": "01:01",
+      "primary": {
+        "day": "경술",
+        "hour": "정축"
+      },
+      "comparison": {
+        "day": "경술",
+        "hour": "정축"
+      },
+      "classification": "agreement"
+    },
+    {
+      "id": "hour-0259-before",
+      "state": "before",
+      "localTime": "02:59",
+      "primary": {
+        "day": "경술",
+        "hour": "정축"
+      },
+      "comparison": {
+        "day": "경술",
+        "hour": "정축"
+      },
+      "classification": "agreement"
+    },
+    {
+      "id": "hour-0300-at",
+      "state": "at",
+      "localTime": "03:00",
+      "primary": {
+        "day": "경술",
+        "hour": "무인"
+      },
+      "comparison": {
+        "day": "경술",
+        "hour": "무인"
+      },
+      "classification": "agreement"
+    },
+    {
+      "id": "hour-0301-after",
+      "state": "after",
+      "localTime": "03:01",
+      "primary": {
+        "day": "경술",
+        "hour": "무인"
+      },
+      "comparison": {
+        "day": "경술",
+        "hour": "무인"
+      },
+      "classification": "agreement"
+    },
+    {
+      "id": "hour-0459-before",
+      "state": "before",
+      "localTime": "04:59",
+      "primary": {
+        "day": "경술",
+        "hour": "무인"
+      },
+      "comparison": {
+        "day": "경술",
+        "hour": "무인"
+      },
+      "classification": "agreement"
+    },
+    {
+      "id": "hour-0500-at",
+      "state": "at",
+      "localTime": "05:00",
+      "primary": {
+        "day": "경술",
+        "hour": "기묘"
+      },
+      "comparison": {
+        "day": "경술",
+        "hour": "기묘"
+      },
+      "classification": "agreement"
+    },
+    {
+      "id": "hour-0501-after",
+      "state": "after",
+      "localTime": "05:01",
+      "primary": {
+        "day": "경술",
+        "hour": "기묘"
+      },
+      "comparison": {
+        "day": "경술",
+        "hour": "기묘"
+      },
+      "classification": "agreement"
+    },
+    {
+      "id": "hour-0659-before",
+      "state": "before",
+      "localTime": "06:59",
+      "primary": {
+        "day": "경술",
+        "hour": "기묘"
+      },
+      "comparison": {
+        "day": "경술",
+        "hour": "기묘"
+      },
+      "classification": "agreement"
+    },
+    {
+      "id": "hour-0700-at",
+      "state": "at",
+      "localTime": "07:00",
+      "primary": {
+        "day": "경술",
+        "hour": "경진"
+      },
+      "comparison": {
+        "day": "경술",
+        "hour": "경진"
+      },
+      "classification": "agreement"
+    },
+    {
+      "id": "hour-0701-after",
+      "state": "after",
+      "localTime": "07:01",
+      "primary": {
+        "day": "경술",
+        "hour": "경진"
+      },
+      "comparison": {
+        "day": "경술",
+        "hour": "경진"
+      },
+      "classification": "agreement"
+    },
+    {
+      "id": "hour-0859-before",
+      "state": "before",
+      "localTime": "08:59",
+      "primary": {
+        "day": "경술",
+        "hour": "경진"
+      },
+      "comparison": {
+        "day": "경술",
+        "hour": "경진"
+      },
+      "classification": "agreement"
+    },
+    {
+      "id": "hour-0900-at",
+      "state": "at",
+      "localTime": "09:00",
+      "primary": {
+        "day": "경술",
+        "hour": "신사"
+      },
+      "comparison": {
+        "day": "경술",
+        "hour": "신사"
+      },
+      "classification": "agreement"
+    },
+    {
+      "id": "hour-0901-after",
+      "state": "after",
+      "localTime": "09:01",
+      "primary": {
+        "day": "경술",
+        "hour": "신사"
+      },
+      "comparison": {
+        "day": "경술",
+        "hour": "신사"
+      },
+      "classification": "agreement"
+    },
+    {
+      "id": "hour-1059-before",
+      "state": "before",
+      "localTime": "10:59",
+      "primary": {
+        "day": "경술",
+        "hour": "신사"
+      },
+      "comparison": {
+        "day": "경술",
+        "hour": "신사"
+      },
+      "classification": "agreement"
+    },
+    {
+      "id": "hour-1100-at",
+      "state": "at",
+      "localTime": "11:00",
+      "primary": {
+        "day": "경술",
+        "hour": "임오"
+      },
+      "comparison": {
+        "day": "경술",
+        "hour": "임오"
+      },
+      "classification": "agreement"
+    },
+    {
+      "id": "hour-1101-after",
+      "state": "after",
+      "localTime": "11:01",
+      "primary": {
+        "day": "경술",
+        "hour": "임오"
+      },
+      "comparison": {
+        "day": "경술",
+        "hour": "임오"
+      },
+      "classification": "agreement"
+    },
+    {
+      "id": "hour-1259-before",
+      "state": "before",
+      "localTime": "12:59",
+      "primary": {
+        "day": "경술",
+        "hour": "임오"
+      },
+      "comparison": {
+        "day": "경술",
+        "hour": "임오"
+      },
+      "classification": "agreement"
+    },
+    {
+      "id": "hour-1300-at",
+      "state": "at",
+      "localTime": "13:00",
+      "primary": {
+        "day": "경술",
+        "hour": "계미"
+      },
+      "comparison": {
+        "day": "경술",
+        "hour": "계미"
+      },
+      "classification": "agreement"
+    },
+    {
+      "id": "hour-1301-after",
+      "state": "after",
+      "localTime": "13:01",
+      "primary": {
+        "day": "경술",
+        "hour": "계미"
+      },
+      "comparison": {
+        "day": "경술",
+        "hour": "계미"
+      },
+      "classification": "agreement"
+    },
+    {
+      "id": "hour-1459-before",
+      "state": "before",
+      "localTime": "14:59",
+      "primary": {
+        "day": "경술",
+        "hour": "계미"
+      },
+      "comparison": {
+        "day": "경술",
+        "hour": "계미"
+      },
+      "classification": "agreement"
+    },
+    {
+      "id": "hour-1500-at",
+      "state": "at",
+      "localTime": "15:00",
+      "primary": {
+        "day": "경술",
+        "hour": "갑신"
+      },
+      "comparison": {
+        "day": "경술",
+        "hour": "갑신"
+      },
+      "classification": "agreement"
+    },
+    {
+      "id": "hour-1501-after",
+      "state": "after",
+      "localTime": "15:01",
+      "primary": {
+        "day": "경술",
+        "hour": "갑신"
+      },
+      "comparison": {
+        "day": "경술",
+        "hour": "갑신"
+      },
+      "classification": "agreement"
+    },
+    {
+      "id": "hour-1659-before",
+      "state": "before",
+      "localTime": "16:59",
+      "primary": {
+        "day": "경술",
+        "hour": "갑신"
+      },
+      "comparison": {
+        "day": "경술",
+        "hour": "갑신"
+      },
+      "classification": "agreement"
+    },
+    {
+      "id": "hour-1700-at",
+      "state": "at",
+      "localTime": "17:00",
+      "primary": {
+        "day": "경술",
+        "hour": "을유"
+      },
+      "comparison": {
+        "day": "경술",
+        "hour": "을유"
+      },
+      "classification": "agreement"
+    },
+    {
+      "id": "hour-1701-after",
+      "state": "after",
+      "localTime": "17:01",
+      "primary": {
+        "day": "경술",
+        "hour": "을유"
+      },
+      "comparison": {
+        "day": "경술",
+        "hour": "을유"
+      },
+      "classification": "agreement"
+    },
+    {
+      "id": "hour-1859-before",
+      "state": "before",
+      "localTime": "18:59",
+      "primary": {
+        "day": "경술",
+        "hour": "을유"
+      },
+      "comparison": {
+        "day": "경술",
+        "hour": "을유"
+      },
+      "classification": "agreement"
+    },
+    {
+      "id": "hour-1900-at",
+      "state": "at",
+      "localTime": "19:00",
+      "primary": {
+        "day": "경술",
+        "hour": "병술"
+      },
+      "comparison": {
+        "day": "경술",
+        "hour": "병술"
+      },
+      "classification": "agreement"
+    },
+    {
+      "id": "hour-1901-after",
+      "state": "after",
+      "localTime": "19:01",
+      "primary": {
+        "day": "경술",
+        "hour": "병술"
+      },
+      "comparison": {
+        "day": "경술",
+        "hour": "병술"
+      },
+      "classification": "agreement"
+    },
+    {
+      "id": "hour-2059-before",
+      "state": "before",
+      "localTime": "20:59",
+      "primary": {
+        "day": "경술",
+        "hour": "병술"
+      },
+      "comparison": {
+        "day": "경술",
+        "hour": "병술"
+      },
+      "classification": "agreement"
+    },
+    {
+      "id": "hour-2100-at",
+      "state": "at",
+      "localTime": "21:00",
+      "primary": {
+        "day": "경술",
+        "hour": "정해"
+      },
+      "comparison": {
+        "day": "경술",
+        "hour": "정해"
+      },
+      "classification": "agreement"
+    },
+    {
+      "id": "hour-2101-after",
+      "state": "after",
+      "localTime": "21:01",
+      "primary": {
+        "day": "경술",
+        "hour": "정해"
+      },
+      "comparison": {
+        "day": "경술",
+        "hour": "정해"
+      },
+      "classification": "agreement"
+    },
+    {
+      "id": "hour-2259-before",
+      "state": "before",
+      "localTime": "22:59",
+      "primary": {
+        "day": "경술",
+        "hour": "정해"
+      },
+      "comparison": {
+        "day": "경술",
+        "hour": "정해"
+      },
+      "classification": "agreement"
+    },
+    {
+      "id": "hour-2300-at",
+      "state": "at",
+      "localTime": "23:00",
+      "primary": {
+        "day": "경술",
+        "hour": "병자"
+      },
+      "comparison": {
+        "day": "신해",
+        "hour": "무자"
+      },
+      "classification": "methodology_difference"
+    },
+    {
+      "id": "hour-2301-after",
+      "state": "after",
+      "localTime": "23:01",
+      "primary": {
+        "day": "경술",
+        "hour": "병자"
+      },
+      "comparison": {
+        "day": "신해",
+        "hour": "무자"
+      },
+      "classification": "methodology_difference"
+    }
+  ],
+  "modeRecords": [
+    {
+      "id": "midnight-2024-06-15-2259",
+      "dayBoundary": "midnight",
+      "date": "2024-06-15",
+      "localTime": "22:59",
+      "primary": {
+        "day": "경술",
+        "hour": "정해"
+      },
+      "comparison": {
+        "day": "경술",
+        "hour": "정해"
+      }
+    },
+    {
+      "id": "midnight-2024-06-15-2300",
+      "dayBoundary": "midnight",
+      "date": "2024-06-15",
+      "localTime": "23:00",
+      "primary": {
+        "day": "경술",
+        "hour": "병자"
+      },
+      "comparison": {
+        "day": "신해",
+        "hour": "무자"
+      }
+    },
+    {
+      "id": "midnight-2024-06-15-2359",
+      "dayBoundary": "midnight",
+      "date": "2024-06-15",
+      "localTime": "23:59",
+      "primary": {
+        "day": "경술",
+        "hour": "병자"
+      },
+      "comparison": {
+        "day": "신해",
+        "hour": "무자"
+      }
+    },
+    {
+      "id": "midnight-2024-06-16-0000",
+      "dayBoundary": "midnight",
+      "date": "2024-06-16",
+      "localTime": "00:00",
+      "primary": {
+        "day": "신해",
+        "hour": "무자"
+      },
+      "comparison": {
+        "day": "신해",
+        "hour": "무자"
+      }
+    },
+    {
+      "id": "jasi-2024-06-15-2259",
+      "dayBoundary": "jasi",
+      "date": "2024-06-15",
+      "localTime": "22:59",
+      "primary": {
+        "day": "경술",
+        "hour": "정해"
+      },
+      "comparison": {
+        "day": "경술",
+        "hour": "정해"
+      }
+    },
+    {
+      "id": "jasi-2024-06-15-2300",
+      "dayBoundary": "jasi",
+      "date": "2024-06-15",
+      "localTime": "23:00",
+      "primary": {
+        "day": "신해",
+        "hour": "무자"
+      },
+      "comparison": {
+        "day": "신해",
+        "hour": "무자"
+      }
+    },
+    {
+      "id": "jasi-2024-06-15-2359",
+      "dayBoundary": "jasi",
+      "date": "2024-06-15",
+      "localTime": "23:59",
+      "primary": {
+        "day": "신해",
+        "hour": "무자"
+      },
+      "comparison": {
+        "day": "신해",
+        "hour": "무자"
+      }
+    },
+    {
+      "id": "jasi-2024-06-16-0000",
+      "dayBoundary": "jasi",
+      "date": "2024-06-16",
+      "localTime": "00:00",
+      "primary": {
+        "day": "신해",
+        "hour": "무자"
+      },
+      "comparison": {
+        "day": "신해",
+        "hour": "무자"
+      }
+    },
+    {
+      "id": "splitJasi-2024-06-15-2259",
+      "dayBoundary": "splitJasi",
+      "date": "2024-06-15",
+      "localTime": "22:59",
+      "primary": {
+        "day": "경술",
+        "hour": "정해"
+      },
+      "comparison": {
+        "day": "경술",
+        "hour": "정해"
+      }
+    },
+    {
+      "id": "splitJasi-2024-06-15-2300",
+      "dayBoundary": "splitJasi",
+      "date": "2024-06-15",
+      "localTime": "23:00",
+      "primary": {
+        "day": "경술",
+        "hour": "무자"
+      },
+      "comparison": {
+        "day": "신해",
+        "hour": "무자"
+      }
+    },
+    {
+      "id": "splitJasi-2024-06-15-2359",
+      "dayBoundary": "splitJasi",
+      "date": "2024-06-15",
+      "localTime": "23:59",
+      "primary": {
+        "day": "경술",
+        "hour": "무자"
+      },
+      "comparison": {
+        "day": "신해",
+        "hour": "무자"
+      }
+    },
+    {
+      "id": "splitJasi-2024-06-16-0000",
+      "dayBoundary": "splitJasi",
+      "date": "2024-06-16",
+      "localTime": "00:00",
+      "primary": {
+        "day": "신해",
+        "hour": "무자"
+      },
+      "comparison": {
+        "day": "신해",
+        "hour": "무자"
+      }
+    }
+  ]
+}

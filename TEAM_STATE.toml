@@ -1,5 +1,5 @@
 schema_version = 1
-updated_at = "2026-09-14T01:20:38+09:00"
+updated_at = "2026-09-14T01:49:53+09:00"
 maturity = "l4-candidate"
 operating_mode = "independent-release"
 current_phase = "build"
@@ -7,14 +7,14 @@ active_release = "v0.1.0"
 current_goal = "Ship INYEON as a production-grade zero-backend Korean Compatibility Lab, then prove five autonomous closed loops and recovery/eval criteria required for verified L4."
 production_url = ""
 last_known_good_sha = ""
-next_action = "Execute #12: validate pinned day-rollover and hour-branch behavior against property-scoped independent references, then implement exact/approximate/disputed/date-only/unknown birth-time states that preserve legitimate alternatives and never fabricate an hour pillar."
+next_action = "Execute #13: derive only the versioned, gender-neutral chart features actually required by compatibility v1, preserving the Issue #12 invariant/alternative/unavailable dependency lattice and routing unresolved Korean methodology choices to the declared Human Gate."
 
-active_critical_path = [12, 13, 14, 6, 33, 34, 50, 49, 35, 53, 43, 52, 47, 51]
-active_issues = [6, 12, 13, 14, 33, 34, 35, 43, 47, 49, 50, 51, 52, 53, 54]
+active_critical_path = [13, 14, 6, 33, 34, 50, 49, 35, 53, 43, 52, 47, 51]
+active_issues = [6, 13, 14, 33, 34, 35, 43, 47, 49, 50, 51, 52, 53, 54]
 active_experiments = []
 human_gates = []
 current_risks = [
-  "The #8 Manseryeok adapter, #9 local-time resolver, #10 full-range solar-term corpus, and #11 three-zone year/month seam are non-production candidates only: complete charts remain modern-Seoul-only, day/hour and birth-time uncertainty remain deferred to #12, three measured solar-term differences of 61–72 seconds remain explicit methodology/reference uncertainty rather than an authority decision, and expert/KASI-aligned release validation remains required by #14.",
+  "The #8 Manseryeok adapter, #9 local-time resolver, #10 full-range solar-term corpus, #11 three-zone year/month seam, and #12 three-zone day/hour uncertainty contract are non-production candidates only: the midnight-versus-late-Jasi disagreement and true-solar-time choice remain unresolved production-methodology Human Gates, three measured solar-term differences of 61–72 seconds remain explicit methodology/reference uncertainty rather than an authority decision, and expert/KASI-aligned release validation remains required by #14.",
   "The GitHub repository is private, GitHub Pages is disabled, and no production deployment workflow or release exists yet.",
   "L4 structural governance exists, but behavioral eval execution, five closed loops, fresh-session continuity, and recovery proof are still unverified.",
   "Framework creep could turn INYEON into an APH showcase instead of a focused product; optional frameworks require observed pain before adoption."

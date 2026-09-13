@@ -10,7 +10,7 @@ const zhi = Object.fromEntries([...'子丑寅卯辰巳午未申酉戌亥'].map((
 const toHangul = (value) => `${gan[value[0]]}${zhi[value[1]]}`;
 const fixtureProvenance = {
   profileVersion: 'korean-saju-v1',
-  adapterVersion: '0.3.0',
+  adapterVersion: '0.4.0',
   upstreamVersion: '2.0.0',
   timezoneDataVersion: 'fixed-kst-utc-plus-09-1989-2024-v1',
   referenceDataVersion: 'issue-10-solar-term-boundaries-v1',
@@ -65,9 +65,9 @@ function classifyFindings(input, result) {
       primaryOutput: result.primary[pillar],
       comparisonOutput: result.comparison[pillar],
       evidence: category === 'methodology_difference'
-        ? 'The configured primary midnight rule and lunar-javascript default comparison mode exhibit different documented 23:xx day/hour behavior; this does not decide which convention is correct.'
+        ? 'The configured primary midnight rule and the explicit lunar getDayInGanZhiExact/getTimeInGanZhi getters exhibit different 23:xx day/hour behavior; this does not decide which convention is correct.'
         : 'The implementations place a solar-term boundary at different precision/instants; neither is treated as an oracle.',
-      disposition: category === 'methodology_difference' ? 'deferred-to-issue-12' : 'recorded-in-issue-10-boundary-corpus',
+      disposition: category === 'methodology_difference' ? 'recorded-in-issue-12-day-hour-corpus' : 'recorded-in-issue-10-boundary-corpus',
     };
   });
 }
@@ -95,7 +95,7 @@ for (const term of terms) {
       input,
       provenance: fixtureProvenance,
       primary: { engine: 'manseryeok', version: '2.0.0', apiMode: { dayBoundary: 'midnight' }, output: result.primary },
-      comparison: { engine: 'lunar-javascript', version: '1.7.7', apiMode: { year: 'getYearInGanZhiExact', month: 'getMonthInGanZhiExact', day: 'getDayInGanZhiExact', hour: 'getTimeInGanZhi', sect: 'library-default' }, output: result.comparison },
+      comparison: { engine: 'lunar-javascript', version: '1.7.7', apiMode: { year: 'getYearInGanZhiExact', month: 'getMonthInGanZhiExact', day: 'getDayInGanZhiExact', hour: 'getTimeInGanZhi', observedLateZiSemantics: '23:00 begins its next-day day/hour-stem convention' }, output: result.comparison },
       independentReference: {
         engine: 'astronomy-engine', version: '2.1.19', assertedProperty: 'apparent-sun-longitude boundary location',
         independentForAssertedProperty: true, longitudeDegrees: longitude,
@@ -122,13 +122,13 @@ for (const date of dates) {
       input,
       provenance: fixtureProvenance,
       primary: { engine: 'manseryeok', version: '2.0.0', apiMode: { dayBoundary: 'midnight' }, output: result.primary },
-      comparison: { engine: 'lunar-javascript', version: '1.7.7', apiMode: { year: 'getYearInGanZhiExact', month: 'getMonthInGanZhiExact', day: 'getDayInGanZhiExact', hour: 'getTimeInGanZhi', sect: 'library-default' }, output: result.comparison },
+      comparison: { engine: 'lunar-javascript', version: '1.7.7', apiMode: { year: 'getYearInGanZhiExact', month: 'getMonthInGanZhiExact', day: 'getDayInGanZhiExact', hour: 'getTimeInGanZhi', observedLateZiSemantics: '23:00 begins its next-day day/hour-stem convention' }, output: result.comparison },
       independentReference: { assertedProperty: 'none', independentForAssertedProperty: false },
       classification: summarize(findings),
       differingPillars: result.differing,
       findings,
       evidenceSourceCategory: date.includes('02-') ? 'leap_and_civil_day_boundary_shared_lineage_comparison' : 'civil_day_boundary_shared_lineage_comparison',
-      notes: time.startsWith('23:') ? 'The configured midnight and lunar default comparison modes are known to differ at 23:xx; the fixture preserves that difference for Issue #12 without choosing a correct convention.' : 'Comparison implementation is not treated as an oracle.',
+      notes: time.startsWith('23:') ? 'The configured midnight mode and explicit lunar day/time getters are known to differ at 23:xx; the Issue #12 evidence preserves that difference without choosing a correct convention.' : 'Comparison implementation is not treated as an oracle.',
     });
   }
 }
@@ -144,7 +144,7 @@ for (const hour of [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23]) {
       input,
       provenance: fixtureProvenance,
       primary: { engine: 'manseryeok', version: '2.0.0', apiMode: { dayBoundary: 'midnight' }, output: result.primary },
-      comparison: { engine: 'lunar-javascript', version: '1.7.7', apiMode: { year: 'getYearInGanZhiExact', month: 'getMonthInGanZhiExact', day: 'getDayInGanZhiExact', hour: 'getTimeInGanZhi', sect: 'library-default' }, output: result.comparison },
+      comparison: { engine: 'lunar-javascript', version: '1.7.7', apiMode: { year: 'getYearInGanZhiExact', month: 'getMonthInGanZhiExact', day: 'getDayInGanZhiExact', hour: 'getTimeInGanZhi', observedLateZiSemantics: '23:00 begins its next-day day/hour-stem convention' }, output: result.comparison },
       independentReference: { assertedProperty: 'none', independentForAssertedProperty: false },
       classification: summarize(findings),
       differingPillars: result.differing,
@@ -170,7 +170,7 @@ const negativeCases = [
 for (const [id, input, expected] of negativeCases) records.push({
   id, input,
   provenance: fixtureProvenance,
-  primary: { engine: 'inyeon-adapter-validation', version: '0.3.0', output: null },
+  primary: { engine: 'inyeon-adapter-validation', version: '0.4.0', output: null },
   comparison: { engine: 'not-applicable', version: null, output: null },
   independentReference: { assertedProperty: 'adapter input contract', independentForAssertedProperty: false },
   classification: 'adapter_rejection_expected', expected,
@@ -181,9 +181,9 @@ for (const [id, input, expected] of negativeCases) records.push({
 
 const corpus = {
   schemaVersion: 1,
-  generatedAt: '2026-09-13',
+  generatedAt: '2026-09-14',
   profileVersion: 'korean-saju-v1',
-  adapterVersion: '0.3.0',
+  adapterVersion: '0.4.0',
   referenceDataVersion: 'issue-10-solar-term-boundaries-v1',
   solarTermDataVersion: 'manseryeok-2.0.0-embedded-solar-terms-v1',
   solarTermReferenceVersion: 'issue-10-astronomy-engine-2.1.19-v1',
@@ -193,10 +193,10 @@ const corpus = {
   limitations: [
     'No KASI provenance is asserted.',
     'No Korean-methodology expert review is asserted.',
-    'lunar-javascript chart comparison may share calendrical lineage and is not independent evidence.',
+    'lunar-javascript is a separate implementation for the compared day/hour mapping but is not an independent Korean-methodology authority.',
     'Astronomy Engine is independent only for apparent-Sun longitude boundary location.',
     'Issue #9 timezone normalization is integrated only through Issue #11 year/month calculation; it does not expand this corpus\'s complete-chart capability.',
-    'Day/hour convention differences are preserved for Issue #12; this corpus does not select a correct Korean methodology.',
+    'Day/hour convention differences are preserved by the Issue #12 evidence corpus; neither corpus selects a correct Korean methodology.',
   ],
   recordCount: records.length,
   records,
