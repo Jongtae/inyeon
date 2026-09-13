@@ -13,6 +13,9 @@ REQUIRED_FILES = [
     "docs/ROLE_AUTHORITY_MATRIX.md",
     "docs/REDDIT_EXPERIMENT_GOVERNANCE.md",
     "docs/HUMAN_GATES.md",
+    "docs/adr/0004-verified-l4-autonomy.md",
+    "docs/autonomy_runs/README.md",
+    "docs/decisions/README.md",
     "evals/autonomy/cases.json",
     ".codex/config.toml",
 ]
