@@ -10,6 +10,9 @@ import {
   type SupportedTimeZone,
 } from '../lib/product';
 
+const MIN_SUPPORTED_DATE = '1989-01-01';
+const MAX_SUPPORTED_DATE = '2024-12-31';
+
 const INITIAL_VALUE: BirthFormValue = {
   localDate: '',
   timeZone: 'America/Los_Angeles',
@@ -29,6 +32,27 @@ interface BirthFormProps {
   readonly onCalculated: (profile: CalculatedProfile) => void;
 }
 
+function validationError(value: BirthFormValue): string | null {
+  if (!/^\d{4}-\d{2}-\d{2}$/u.test(value.localDate)) {
+    return 'Enter a birth date before calculating.';
+  }
+  if (value.localDate < MIN_SUPPORTED_DATE || value.localDate > MAX_SUPPORTED_DATE) {
+    return 'This preview currently supports birth dates from 1989 through 2024. The calculation did not run because dates outside that validated range are not supported yet.';
+  }
+  if (value.temporalSupport === 'exact' && !value.exactTime) {
+    return 'Enter the exact birth time, or choose Unknown if you do not know it.';
+  }
+  if (value.temporalSupport === 'approximate'
+    && (!value.approximateStart || !value.approximateEnd || value.approximateStart >= value.approximateEnd)) {
+    return 'Approximate ranges must run from an earlier time to a later time.';
+  }
+  if (value.temporalSupport === 'disputed'
+    && (!value.disputedTimeA || !value.disputedTimeB || value.disputedTimeA === value.disputedTimeB)) {
+    return 'Disputed times require two different plausible times.';
+  }
+  return null;
+}
+
 export function BirthForm({ idPrefix, title, description, submitLabel, onCalculated }: BirthFormProps) {
   const [value, setValue] = useState<BirthFormValue>(INITIAL_VALUE);
   const [error, setError] = useState<string | null>(null);
@@ -40,6 +64,13 @@ export function BirthForm({ idPrefix, title, description, submitLabel, onCalcula
 
   const submit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    const formError = validationError(value);
+    if (formError) {
+      setError(formError);
+      return;
+    }
+
     const context = chartContextFromForm(value);
     if (!context) {
       setError('Check the date and time details. Approximate ranges must run from an earlier time to a later time, and disputed times must be different.');
@@ -57,7 +88,7 @@ export function BirthForm({ idPrefix, title, description, submitLabel, onCalcula
   const errorId = `${idPrefix}-error`;
 
   return (
-    <form className="birth-form" onSubmit={submit} aria-describedby={error ? errorId : undefined}>
+    <form className="birth-form" onSubmit={submit} noValidate aria-describedby={error ? errorId : undefined}>
       <div className="section-heading compact-heading">
         <p className="eyebrow">PRIVATE INPUT · MEMORY ONLY</p>
         <h2>{title}</h2>
@@ -69,13 +100,10 @@ export function BirthForm({ idPrefix, title, description, submitLabel, onCalcula
           <span>Birth date</span>
           <input
             type="date"
-            min="1989-01-01"
-            max="2024-12-31"
             value={value.localDate}
             onChange={(event) => update('localDate', event.target.value)}
-            required
           />
-          <small>Currently supported: 1989–2024.</small>
+          <small>Candidate calculation currently supports 1989–2024. Unsupported dates show an explicit message instead of failing silently.</small>
         </label>
 
         <label>
@@ -116,19 +144,19 @@ export function BirthForm({ idPrefix, title, description, submitLabel, onCalcula
       {value.temporalSupport === 'exact' && (
         <label className="single-field">
           <span>Birth time</span>
-          <input type="time" value={value.exactTime} onChange={(event) => update('exactTime', event.target.value)} required />
+          <input type="time" value={value.exactTime} onChange={(event) => update('exactTime', event.target.value)} />
         </label>
       )}
       {value.temporalSupport === 'approximate' && (
         <div className="field-grid" aria-label="Approximate birth-time range">
-          <label><span>Earliest possible time</span><input type="time" value={value.approximateStart} onChange={(event) => update('approximateStart', event.target.value)} required /></label>
-          <label><span>Latest possible time</span><input type="time" value={value.approximateEnd} onChange={(event) => update('approximateEnd', event.target.value)} required /></label>
+          <label><span>Earliest possible time</span><input type="time" value={value.approximateStart} onChange={(event) => update('approximateStart', event.target.value)} /></label>
+          <label><span>Latest possible time</span><input type="time" value={value.approximateEnd} onChange={(event) => update('approximateEnd', event.target.value)} /></label>
         </div>
       )}
       {value.temporalSupport === 'disputed' && (
         <div className="field-grid" aria-label="Disputed birth-time possibilities">
-          <label><span>First reported time</span><input type="time" value={value.disputedTimeA} onChange={(event) => update('disputedTimeA', event.target.value)} required /></label>
-          <label><span>Second reported time</span><input type="time" value={value.disputedTimeB} onChange={(event) => update('disputedTimeB', event.target.value)} required /></label>
+          <label><span>First reported time</span><input type="time" value={value.disputedTimeA} onChange={(event) => update('disputedTimeA', event.target.value)} /></label>
+          <label><span>Second reported time</span><input type="time" value={value.disputedTimeB} onChange={(event) => update('disputedTimeB', event.target.value)} /></label>
         </div>
       )}
 
