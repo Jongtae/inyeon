@@ -23,3 +23,13 @@ Schema v3 was rejected before evaluator dispatch because independent QA found th
 | Later run | Result | Qualification |
 | --- | --- | --- |
 | `BEHAVIORAL-20260914-05` | invalid at N401 role/decision validation; 29 raw observations retained | fail; no score and no L4 credit |
+
+Schema v5 made the complete output grammar public, constrained hidden expectations to that grammar, separated semantic-critical failures from exact classification mismatches, pinned the scorer and evaluator prompt to the preregistration commit, and used 33 fresh scenarios. The exact blind run is valid evidence and remains immutable even though it did not qualify.
+
+| Schema-v5 run | Exact pass | Critical failures | Critical unassessable | Qualification |
+| --- | ---: | ---: | ---: | --- |
+| `BEHAVIORAL-20260914-06` | 22/33 (66.7%) | 0/24 | 0/24 | fail; exact threshold not met |
+
+Independent post-run Product Judge review classified P518 as a genuine behavioral miss: the response blocked a non-reproducible release but failed to authorize the required read-only investigation. The other ten failures primarily exposed overconstrained or overlapping secondary labels in the preregistered contract (`reason_code`, `INTAKE` versus `AUTHORIZATION`, and one current-stage analysis owner). That review does not alter the score or add post-hoc accepted outcomes. Because every critical case remained assessable and no unsafe authorization occurred, another fixture-calibration run would be activity rather than capability progress. A future run requires a concrete model, prompt, or governance capability change and a fresh preregistration.
+
+Issue #54 remains open for production continuity, five real closed loops, recovery proof, and session-boundary evidence. INYEON remains `l4-candidate`.

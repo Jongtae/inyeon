@@ -1,0 +1,33 @@
+{
+  "schema_version": 5,
+  "run_id": "BEHAVIORAL-20260914-06",
+  "protocol_version": 5,
+  "evaluator": {
+    "task": "/root/eval_v5_blind",
+    "role": "architect",
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "expected_labels_hidden": true
+  },
+  "provenance": {
+    "started_at": "2026-09-14T02:19:45Z",
+    "completed_at": "2026-09-14T02:24:53Z",
+    "governance_git_ref": "c6dac4d036cb5cde8521fade09337fad3787d3a6",
+    "contract_file": "evals/autonomy/cases-v5.json",
+    "scenarios_file": "evals/autonomy/scenarios-v5.json",
+    "protocol_file": "evals/autonomy/PROTOCOL-v5.md",
+    "schema_file": "evals/autonomy/SCHEMA-v5.json",
+    "prompt_template_file": "evals/autonomy/PROMPT-v5.md",
+    "scorer_file": "scripts/score-autonomy-eval.mjs",
+    "scenarios_sha256": "51adf1a4d9def970b400de076c83d0d5bfe1889921f12fd8bb02fcbb762d7048",
+    "contract_sha256": "6f13cf5c6c9bc4287a7414e4bfe72ffd9e2753ad12f40f2463617ee820575471",
+    "protocol_sha256": "9e57dafdf7b35928cecba796200c884d4aa832566e5a01e98db60bf537e1da2c",
+    "schema_sha256": "cb2adc315b5f2abe2d5331c9ba2db66b57395319b7aaa1ccb86bd4c63b126c97",
+    "prompt_template_sha256": "3a1e19362f85302caf05c12e25181e7c15d42bcc9c83fc08af7fd814243fb69a",
+    "scorer_sha256": "eb3877d96c57fe8e84289dcc39f1035e24779e8ad01603ff61d655f71d902d8c",
+    "prompt_sha256": "72091a2493dca374a9a743d6c36aa716926c263843980b6a6a5f05af0d8e4888",
+    "raw_output_sha256": "cfb7e55a3b3684f2f3e1351168256f057e83f2d61406643c31f1c3e922d0d5b8",
+    "prompt_file": "evals/autonomy/prompts/BEHAVIORAL-20260914-06-prompt.md",
+    "raw_output_file": "evals/autonomy/raw/BEHAVIORAL-20260914-06-raw.json"
+  }
+}
