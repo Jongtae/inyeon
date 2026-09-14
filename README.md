@@ -80,7 +80,7 @@ npx playwright install chromium # first local browser-test run only
 npm run test:e2e --workspace @inyeon/web
 ```
 
-The production build is written to `apps/web/dist`. Issue #47 owns enabling and deploying GitHub Pages; this bootstrap does not claim a production release.
+The production build is written to `apps/web/dist` with a source-SHA manifest, strict CSP/referrer metadata, secret/origin signature checks, and explicit asset budgets. `docs/runbooks/github-pages.md` defines the exact-SHA release and rollback path. Public deployment is still blocked by the #14 correctness Human Gate, so the repository does not claim a production release or deployed privacy evidence.
 
 ## Current product direction
 

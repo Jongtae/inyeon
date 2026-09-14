@@ -127,6 +127,8 @@ Optional Human Gate:
 
 **Gate:** local success is not release success. Production URL, repeatable deploy, privacy invariants, and rollback must work.
 
+#47's release-engineering candidate now supplies the exact-SHA Pages workflow, rebuild-based rollback, artifact manifest/security/size checks, production-only CSP, privacy-silent error boundary, and local rehearsal of the remote smoke suite. The workflow cannot publicly deploy while `INYEON_PRODUCTION_ENABLED` is absent/false or the repository's #14 production-readiness artifacts remain unapproved. No production URL, release SHA, rollback proof, or deployed privacy evidence is recorded yet.
+
 ## M5 — Reddit launch and governed feedback loop
 
 Primary work: #51.

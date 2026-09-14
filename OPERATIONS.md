@@ -178,6 +178,10 @@ Post-deploy:
 - confirm protected canary does not appear in network/storage/URL/console;
 - record production SHA and known-good rollback SHA.
 
+The executable release and rollback procedure is `docs/runbooks/github-pages.md`. `Release GitHub Pages` accepts only a full SHA belonging to `main`, rebuilds it with the pinned lockfile, records an artifact manifest, deploys through the `github-pages` environment, and runs a fresh-browser production smoke. The same workflow redeploys a known-good SHA for rollback.
+
+Public deployment is currently fail-closed. `INYEON_PRODUCTION_ENABLED=true` is necessary but not sufficient: `npm run check:production-readiness` must also confirm that the #14 chart/golden-corpus correctness gate has been truthfully promoted. Candidate validation runs do not create a production release, known-good SHA, deployed privacy evidence, or L4 recovery evidence.
+
 No migration or backup/restore gate exists unless a future approved feature introduces stateful application data.
 
 ## 7. Incident classes
@@ -215,6 +219,8 @@ Operational privacy requirements instead are:
 - no personal birth values in bug reports/issues/fixtures unless synthetic fixtures are used.
 
 If durable personal storage is ever introduced, stop and design a new retention/export/deletion architecture before release.
+
+The current static release also uses a production-only CSP meta policy and `no-referrer`, with no runtime error-reporting service. GitHub Pages does not provide arbitrary application-controlled response headers, and meta CSP cannot enforce `frame-ancestors` or reporting directives; those limitations are documented rather than hidden.
 
 ## 9. Public-figure data operations
 
