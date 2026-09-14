@@ -80,7 +80,9 @@ jobs:
         env:
           INYEON_RELEASE_SHA: ${{ steps.source.outputs.review_sha }}
           VITE_METHODOLOGY_REVIEW_BUILD: 'true'
-        run: npm run build
+        run: |
+          npm run build --workspace @inyeon/web
+          npm run verify:dist
 
       - name: Mark user preview as non-production and non-indexable
         run: |
