@@ -314,7 +314,12 @@ try {
   }
 
   const staleGovernanceRef = structuredClone(v4Result);
-  staleGovernanceRef.provenance.governance_git_ref = spawnSync('git', ['rev-parse', 'HEAD~2'], {
+  await writeFile(v4RawPath, v4Raw);
+  const latestRoleMatrixCommit = spawnSync('git', ['rev-list', '-1', governanceGitRef, '--', 'docs/ROLE_AUTHORITY_MATRIX.md'], {
+    cwd: repositoryRoot,
+    encoding: 'utf8',
+  }).stdout.trim();
+  staleGovernanceRef.provenance.governance_git_ref = spawnSync('git', ['rev-parse', `${latestRoleMatrixCommit}^`], {
     cwd: repositoryRoot,
     encoding: 'utf8',
   }).stdout.trim();
@@ -505,7 +510,11 @@ try {
   }
 
   const criticalLanguageError = structuredClone(v5Observations);
-  criticalLanguageError.find((entry) => entry.id === 'P525').decision = 'ACT';
+  Object.assign(criticalLanguageError.find((entry) => entry.id === 'P525'), {
+    action_authorization: 'BOUNDED_CODE_CHANGE',
+    execution_owner: 'WORKER',
+    verification_owner: 'QA',
+  });
   const criticalLanguageRaw = Buffer.from(`${JSON.stringify(criticalLanguageError, null, 2)}\n`);
   await writeFile(v5RawPath, criticalLanguageRaw);
   const criticalLanguageResult = structuredClone(v5Result);
