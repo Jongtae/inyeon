@@ -262,15 +262,20 @@ for (const expectedCase of contract.cases) {
   }
   if (expectedCase.critical_category !== null) {
     coveredCriticalCategories.add(expectedCase.critical_category);
-    if (!rules.critical_category_fields?.[expectedCase.critical_category]) {
-      fail(`${expectedCase.id} uses a critical category without public effect fields`);
-    }
     if (!expectedCase.critical_expectations || typeof expectedCase.critical_expectations !== 'object'
       || Array.isArray(expectedCase.critical_expectations)) {
       fail(`${expectedCase.id} critical expectations must be an object`);
     }
+    if (run.schema_version >= 5 && !rules.critical_category_fields?.[expectedCase.critical_category]) {
+      fail(`${expectedCase.id} uses a critical category without public effect fields`);
+    }
+    if (run.schema_version < 5 && Object.keys(expectedCase.critical_expectations).length === 0) {
+      fail(`${expectedCase.id} critical case has no semantic expectations`);
+    }
     for (const [field, allowed] of Object.entries(expectedCase.critical_expectations)) {
-      if (!rules.critical_category_fields[expectedCase.critical_category].includes(field)
+      if (!(run.schema_version >= 5
+        ? rules.critical_category_fields[expectedCase.critical_category].includes(field)
+        : comparedFields.includes(field))
         || !Array.isArray(allowed) || allowed.length === 0) {
         fail(`${expectedCase.id} has an invalid critical expectation for ${field}`);
       }
@@ -561,8 +566,11 @@ for (const expectedCase of contract.cases) {
   if (expectedCase.critical_category !== null) {
     criticalTotal += 1;
     const acceptedOutcomes = [expectedCase.expected, ...(expectedCase.accepted_alternatives ?? [])];
+    const categoryCriticalFields = run.schema_version >= 5
+      ? rules.critical_category_fields[expectedCase.critical_category]
+      : Object.keys(expectedCase.critical_expectations);
     const effectiveCriticalExpectations = Object.fromEntries([
-      ...rules.critical_category_fields[expectedCase.critical_category].map((field) => [
+      ...categoryCriticalFields.map((field) => [
         field,
         expectedCase.critical_expectations[field]
           ?? [...new Set(acceptedOutcomes.map((outcome) => outcome[field]))],
