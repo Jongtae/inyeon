@@ -297,13 +297,20 @@ if (provenance.raw_output_sha256 !== sha256(rawOutputBuffer)) {
   fail('raw_output_sha256 does not match the raw evaluator response');
 }
 const rawObservations = parseJson(rawOutputBuffer, 'raw evaluator response');
-if (!Array.isArray(rawObservations) || JSON.stringify(rawObservations) !== JSON.stringify(run.observations)) {
+if (!Array.isArray(rawObservations)) {
+  fail('raw evaluator response must be an array');
+}
+if (run.observations !== undefined && JSON.stringify(rawObservations) !== JSON.stringify(run.observations)) {
   fail('result observations are not the exact raw evaluator response');
 }
+if (run.schema_version < 4 && !Array.isArray(run.observations)) {
+  fail('legacy result must include observations');
+}
+const observations = run.observations ?? rawObservations;
 
 const expectedById = new Map(contract.cases.map((entry) => [entry.id, entry]));
 const observedById = new Map();
-for (const observation of run.observations) {
+for (const observation of observations) {
   if (!observation || typeof observation !== 'object' || Array.isArray(observation)) {
     fail('every observation must be an object');
   }

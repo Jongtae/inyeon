@@ -1,5 +1,5 @@
 schema_version = 1
-updated_at = "2026-09-14T09:44:03+09:00"
+updated_at = "2026-09-14T10:27:17+09:00"
 maturity = "l4-candidate"
 operating_mode = "independent-release"
 current_phase = "build"
@@ -29,7 +29,7 @@ current_risks = [
   "The #52 `inyeon-zero-retention-v1` contract and CI matrix prove the current candidate's local application boundary across forbidden storage, cache, cookie, service-worker, egress, history, log/error, clipboard, share, Canvas, and PNG surfaces. This is not deployed evidence: the repository is private, Pages is disabled, no production origin exists, and #47 must still prove real-host behavior and rollback.",
   "The #47 release-engineering candidate is merged on main at 6e4d51f6d7e95ec4fab9a44b5fdd2c67e3afa37a. Its exact-main-SHA workflow uses commit-pinned official Actions, least-privilege build/deploy separation, full gates, an immutable release manifest, rebuild-based rollback, production-only exact CSP/no-referrer, privacy-silent React error handling, parsed-origin/high-signal secret checks, 2 MiB/320 KiB gzip artifact budgets, eight fault-injection cases, and a two-case local deployed-origin smoke rehearsal. Independent QA/security, PR/main CI, and the manual exact-SHA candidate rehearsal run 34792365843 passed. Upload/deploy/remote smoke correctly skipped because public deployment is fail-closed behind INYEON_PRODUCTION_ENABLED plus code-owned #14 readiness; no Pages production evidence exists.",
   "The GitHub repository is private, GitHub Pages is disabled, the account plan is not observable with the current token, and no production release exists. After #14 clears, private Pages may require a qualifying paid plan; making the repository public instead is a material owner visibility decision and must not be assumed.",
-  "L4 structural governance exists. The first fully blinded schema-v2 behavioral run BEHAVIORAL-20260914-04 scored 24/32 (75%) with four semantic critical failures and is undergoing independent contract-versus-evaluator classification; it does not qualify. Five closed loops, fresh-session continuity, and recovery proof are still unverified.",
+  "L4 structural governance exists. BEHAVIORAL-20260914-04 remains the latest valid scored run at 24/32 (75%) with four historical scorer-reported critical failures; independent review found zero unsafe authorizations but invalidated its contract for qualification. The fresh v4 run BEHAVIORAL-20260914-05 retained 29 raw observations but failed closed as structurally invalid at N401 because the evaluator-visible protocol omitted the scorer-only role/decision compatibility map; it has no score or L4 credit. Five closed loops, fresh-session continuity, and recovery proof are still unverified.",
   "Framework creep could turn INYEON into an APH showcase instead of a focused product; optional frameworks require observed pain before adoption."
 ]
 
@@ -55,7 +55,7 @@ rework_rate = 0.0
 rollback_rate = 0.0
 escaped_defect_rate = 0.0
 decision_reversal_rate = 0.0
-agent_retry_count = 3
+agent_retry_count = 4
 model_cost_per_shipped_issue_usd = 0.0
 
 [release_state]
@@ -64,7 +64,7 @@ release_sha = ""
 rollback_sha = ""
 last_smoke_status = "not-run"
 last_privacy_status = "local-candidate-passed"
-last_eval_status = "BEHAVIORAL-20260914-04-failed-24-of-32-4-critical-pending-independent-review"
+last_eval_status = "BEHAVIORAL-20260914-05-invalid-unscored-role-decision-contract-review-pending"
 
 [feedback_state]
 reddit_account_status = "not-configured"

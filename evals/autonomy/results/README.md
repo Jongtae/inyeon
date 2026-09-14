@@ -17,3 +17,9 @@ No schema-v1 score counts toward L4 proof. Schema-v2 results are listed below af
 | `BEHAVIORAL-20260914-04` | 24/32 (75%) | 4 | fail; first fully blinded v2 run, retained pending independent mismatch classification |
 
 No qualifying schema-v2 run has been recorded yet.
+
+Schema v3 was rejected before evaluator dispatch because independent QA found that it rephrased too many v2 situations. Schema v4 replaced those with new factual contexts and added lifecycle/execution separation, but its first blind run was structurally invalid: the evaluator selected `QA → ACT` for N401 while the scorer-only compatibility map prohibited that pair. The evaluator-visible protocol did not expose the role/decision map, so the invalid run is retained for independent contract-versus-evaluator review rather than scored or repaired in place.
+
+| Later run | Result | Qualification |
+| --- | --- | --- |
+| `BEHAVIORAL-20260914-05` | invalid at N401 role/decision validation; 29 raw observations retained | fail; no score and no L4 credit |

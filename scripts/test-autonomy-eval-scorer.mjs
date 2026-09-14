@@ -278,6 +278,14 @@ try {
     throw new Error('registered schema-v4 contract did not meet qualification on a perfect fixture');
   }
 
+  const rawOnlyManifest = structuredClone(v4Result);
+  delete rawOnlyManifest.observations;
+  await writeFile(v4ResultPath, JSON.stringify(rawOnlyManifest));
+  const rawOnlyResult = run(v4ResultPath, '--require-threshold');
+  if (rawOnlyResult.status !== 0 || JSON.parse(rawOnlyResult.stdout).passed !== 29) {
+    throw new Error('schema-v4 raw-only evidence manifest did not score the immutable raw response');
+  }
+
   const qaRepairAlternative = structuredClone(v4Result);
   Object.assign(
     qaRepairAlternative.observations.find((entry) => entry.id === 'N401'),
