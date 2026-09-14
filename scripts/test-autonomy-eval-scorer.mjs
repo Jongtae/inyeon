@@ -320,7 +320,9 @@ try {
   }).stdout.trim();
   await writeFile(v4ResultPath, JSON.stringify(staleGovernanceRef));
   const staleGovernanceResult = run(v4ResultPath);
-  if (staleGovernanceResult.status === 0 || !staleGovernanceResult.stderr.includes('does not match the artifact at governance_git_ref')) {
+  if (staleGovernanceResult.status === 0
+    || (!staleGovernanceResult.stderr.includes('does not match the artifact at governance_git_ref')
+      && !staleGovernanceResult.stderr.includes('does not match the governance document at governance_git_ref'))) {
     throw new Error('schema-v4 governance commit could omit or drift from the evaluated contract');
   }
 
