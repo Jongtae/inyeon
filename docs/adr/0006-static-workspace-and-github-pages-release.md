@@ -36,6 +36,7 @@ ADR 0001 fixes the zero-backend runtime boundary but leaves the implementation t
 - Identify every release by source commit SHA and artifact metadata. Do not maintain a hand-edited `gh-pages` branch as a second source of truth.
 - Rollback means redeploying a recorded last-known-good commit through the same build-and-deploy workflow. If default-branch history must remain monotonic, revert the bad change and deploy the revert. Never reconstruct or edit production files manually.
 - A release is complete only after production smoke checks. A rollback rehearsal must demonstrate that the recorded SHA can be rebuilt, deployed, and verified.
+- The implemented workflow is fail-closed: exact `main`-ancestor SHAs are rebuilt with commit-pinned official Actions, and public deployment requires both `INYEON_PRODUCTION_ENABLED=true` and the repository-owned production-readiness check. Candidate builds cannot bypass incomplete correctness gates merely because Pages credentials exist.
 
 Custom-domain purchase, DNS ownership, and owner-only credentials remain Human Gates. They are not required to ship the repository project site over HTTPS.
 
@@ -53,6 +54,8 @@ The runtime stays portable static output, local setup stays small, and all clien
 ## Security / privacy / safety impact
 
 The browser bundle may contain only public code and assets, never runtime secrets. Build and deployment metadata may be retained by GitHub, but protected personal values must never enter Actions inputs/artifacts. Dependency and secret scanning remain release gates.
+
+The operational procedure, artifact budgets, Pages/meta-CSP limitations, custom-domain steps, and same-workflow rollback command are maintained in `docs/runbooks/github-pages.md` rather than creating a second release ADR.
 
 ## Rollback / migration
 

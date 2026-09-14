@@ -17,8 +17,11 @@
     "lint": "eslint . --max-warnings 0",
     "typecheck": "npm run typecheck --workspaces --if-present",
     "test": "npm run verify:data -w @inyeon/timezone-resolver && npm run test --workspaces --if-present",
-    "build": "npm run build --workspaces --if-present && npm run verify:dist",
-    "verify:dist": "node scripts/verify-static-build.mjs"
+    "build": "npm run build --workspaces --if-present && npm run verify:dist && npm run release:manifest && npm run verify:release",
+    "verify:dist": "node scripts/verify-static-build.mjs",
+    "release:manifest": "node scripts/create-release-manifest.mjs",
+    "verify:release": "node scripts/verify-release-artifact.mjs && node scripts/test-release-artifact-verifier.mjs",
+    "check:production-readiness": "node scripts/check-production-readiness.mjs"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",
