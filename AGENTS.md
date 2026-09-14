@@ -22,18 +22,19 @@ Before material work, read:
 
 1. `TEAM_STATE.toml`
 2. `CODEX.md`
-3. `docs/AUTONOMY_L4.md`
-4. `docs/ROLE_AUTHORITY_MATRIX.md`
-5. `docs/TOY_PROJECT_MODE.md`
-6. `PRD.md`
-7. `ARCHITECTURE.md`
-8. `ROADMAP.md`
-9. `BACKLOG.md`
-10. `PRIVACY.md`
-11. `SAJU_ENGINE_SPEC.md`
-12. `docs/HUMAN_GATES.md`
-13. `docs/REDDIT_EXPERIMENT_GOVERNANCE.md`
-14. relevant accepted ADRs, decision-ledger entries, and issue context
+3. `docs/USER_VALUE_GATE.md`
+4. `docs/AUTONOMY_L4.md`
+5. `docs/ROLE_AUTHORITY_MATRIX.md`
+6. `docs/TOY_PROJECT_MODE.md`
+7. `PRD.md`
+8. `ARCHITECTURE.md`
+9. `ROADMAP.md`
+10. `BACKLOG.md`
+11. `PRIVACY.md`
+12. `SAJU_ENGINE_SPEC.md`
+13. `docs/HUMAN_GATES.md`
+14. `docs/REDDIT_EXPERIMENT_GOVERNANCE.md`
+15. relevant accepted ADRs, decision-ledger entries, and issue context
 
 `PRODUCT.md`, `MATCHING_SPEC.md`, `SAFETY.md`, `BUSINESS.md`, and other marketplace documents may contain useful historical/future requirements but do not override active Independent Release Mode.
 
@@ -48,11 +49,11 @@ At the start of a substantial run:
 1. read it;
 2. compare it with current issues/code/release reality;
 3. repair stale state before selecting work;
-4. choose the highest-value unblocked action.
+4. choose the highest-value unblocked action at the earliest unproven product-value rung.
 
-At meaningful milestones update changed state fields, including active issues/experiments, Human Gates, risks, release state, next action, and autonomy proof metrics when real evidence exists.
+At meaningful milestones update changed state fields, including active issues/experiments, Human Gates, risks, release state, next action, Product Acceptance state when represented, and autonomy proof metrics when real evidence exists.
 
-Never fabricate progress or autonomy metrics.
+Never fabricate progress, Product Acceptance, or autonomy metrics.
 
 ## Communication and language policy
 
@@ -74,9 +75,11 @@ A Human Gate request that occurs during execution is a blocker/progress update, 
 
 ## Active critical path
 
-Prefer roughly:
+During Product Recovery, prefer:
 
-`#1 → #8 → #9-14 → #6 → #33-34 → #50/#49 → #35 deterministic explanation + #53 static web UI → #43 → #52 → #47 → #51`
+`#78 Product Recovery / User Value Gate → #14 methodology validation → #33 reviewed compatibility mappings → #47 production release/recovery → #51 external evidence → #54 L4 proof`
+
+The historical implementation path remains useful context, but completed infrastructure work does not outrank the earliest unproven user-value milestone.
 
 Historical marketplace P0 labels do not outrank this active path.
 
@@ -84,11 +87,35 @@ Historical marketplace P0 labels do not outrank this active path.
 
 GitHub Issues are the execution queue. Do not stop after producing a plan when the issue can be implemented.
 
-For each issue:
+For material repository work, use:
 
-`READY → inspect → implement → test → self-review → independent review when warranted → fix → CI → docs/ADR/state → PR → merge when gates pass → close → next issue`
+`Issue → branch/change → inspect → implement → test → self-review → independent review when warranted → fix → PR → CI → merge when gates pass → close only when the issue Definition of Done is satisfied → next issue`
 
-A feature is not complete because code exists. Acceptance criteria, privacy invariants, required tests, release integration, and state updates must pass.
+A PR may deliver one coherent part of a larger issue without closing the issue when its Definition of Done remains unmet. Direct-to-main material changes are not the normal operating path.
+
+A feature is not complete because code exists. Acceptance criteria, the User Value Gate, privacy invariants, required tests, release integration, and state updates must pass.
+
+## User Value Gate / anti-waste rule
+
+`docs/USER_VALUE_GATE.md` is mandatory product governance.
+
+Use the rule:
+
+> **Autonomy cannot advance beyond the highest product-value milestone that has been demonstrated end to end.**
+
+Use the proof ladder:
+
+`functionality → user value → correctness/methodology → safety/privacy/reliability → release/recovery → autonomy proof`
+
+For new capabilities and Product Recovery, use **Vertical Slice First**. Prove one complete real user journey through the deployed or release-candidate product before expanding infrastructure, datasets, governance artifacts, external operations, or autonomy proof.
+
+Passing tests, CI, privacy/security checks, release engineering, or autonomy evals does not by itself prove product value. Product Acceptance must be black-box and outcome-oriented against the product goal.
+
+Progress means a material change in user-visible capability, Product Acceptance, release state, real evidence, or a concrete blocker. Commits, fixtures, ADRs, repeated reviews, repeated CI, and synthetic-data volume do not count as progress by themselves.
+
+If **three substantial implementation cycles** complete without either changing black-box Product Acceptance or materially reducing its concrete blocker, stop that stream and re-evaluate the goal, acceptance contract, or approach before doing more work.
+
+Do not turn this re-evaluation into a routine Human Gate. The team should correct itself unless an existing Human Gate genuinely applies.
 
 ## Autonomy
 
@@ -100,11 +127,13 @@ A Human Gate in one stream must not block unrelated unblocked work.
 
 Do not invent extra Human Gates merely to avoid responsibility. Do not bypass real Human Gates merely to improve autonomy metrics.
 
+Do not add owner approvals merely to compensate for weak Product Acceptance; improve the automated black-box acceptance instead.
+
 ## L4 operating loop
 
 The desired closed loop is:
 
-`state/goal → select work → implement → independent review → CI → release → observe → analyze → judge → decision ledger/state update → next work`
+`state/goal → earliest unproven product-value rung → select work → implement → black-box Product Acceptance when applicable → independent review → CI → release → observe → analyze → judge → decision ledger/state update → next work`
 
 Feedback-driven material changes should preserve:
 
@@ -114,7 +143,7 @@ Operational failures should preserve:
 
 `detect → contain → rollback/recover → incident record → root cause → regression protection → redeploy → verify`
 
-Graduation to `l4-verified` is governed only by `docs/AUTONOMY_L4.md` and must be backed by durable evidence.
+Graduation to `l4-verified` is governed only by `docs/AUTONOMY_L4.md`, is downstream of demonstrated user value, and must be backed by durable evidence.
 
 ## Product invariants
 
@@ -175,6 +204,10 @@ Do not hide domain rules inside prompts. Compatibility logic is deterministic/ve
 
 First-release explanation should be deterministic client-side composition from structured evidence. LLMs may assist offline authoring/review but are not required at runtime.
 
+The **review/development preview may render deterministic candidate compatibility mappings and explanation copy before expert approval** only when clearly labeled `CANDIDATE · NOT YET EXPERT REVIEWED` or equivalent, traceable to versioned artifacts, and still compliant with all privacy/safety invariants.
+
+Production remains fail-closed for unapproved relationship claims until the applicable #14/#33 methodology and cultural-review gates pass. Methodology review is a production-promotion gate, not a reason for the review preview to remain functionally empty.
+
 ### Privacy
 
 Protected personal values must never enter:
@@ -202,6 +235,8 @@ At minimum maintain for the first public release:
 - privacy canary tests for network/storage/cache/URL/console leakage;
 - sharing allowlist and generated-image/link tests;
 - Playwright E2E for My Saju → public figure → synthetic → sharing;
+- **deployed/release-candidate black-box Product Acceptance for the primary journey: birth input → My Saju → reference → compatibility result → explanation**;
+- Product Acceptance regression cases that fail on placeholder/no-result states or unrealistic-only input coverage;
 - accessibility/responsive checks;
 - GitHub Pages routing/direct-refresh tests;
 - production smoke and rollback/redeploy rehearsal;
@@ -214,7 +249,7 @@ Marketplace authorization/chat/moderation/payment tests become mandatory only if
 
 First-release sharing supports:
 
-1. client-generated claim-free reference/invitation image while approved relationship rules are empty;
+1. client-generated claim-free reference/invitation image while approved relationship rules are empty in production;
 2. share-safe reference/invitation link with strictly allowlisted non-sensitive data;
 3. explicit `Compare with me` invitation containing no personal representation in v0.1; each participant enters details locally;
 4. static public-figure entry pages/OG assets where useful after the production origin is fixed.
@@ -251,6 +286,8 @@ Follow `docs/ROLE_AUTHORITY_MATRIX.md`.
 
 Material changes should not collapse Operator, Analyst, Judge, Implementer, and Release Verifier into one persuasive context when independent review is practical.
 
+Black-box Product Acceptance for a material user-value milestone should be independent of implementation self-review when practical.
+
 QA/security reviewers may block release only by citing concrete failing acceptance criteria, tests, invariants, or current governance.
 
 ## Subagent policy
@@ -261,7 +298,7 @@ Use specialist roles defined by `.codex/config.toml` when independent parallel w
 - `worker`: implementation and difficult debugging
 - `explorer`: repository/API/docs exploration, read-heavy work
 - `security-reviewer`: security/privacy review; prefer independent/read-only review
-- `qa`: regression, edge cases, test design and release verification
+- `qa`: regression, edge cases, test design, Product Acceptance support, and release verification
 - `fast-worker`: mechanical fixtures/docs/repetitive leaf work
 - `reddit-operator`: transparent Reddit operation and raw-evidence handoff
 - `feedback-analyst`: independent feedback clustering/root-cause/bias analysis
@@ -273,6 +310,6 @@ If the same approach fails once, a retry must add new evidence, a new hypothesis
 
 ## Policy consistency
 
-If root instructions, prompts, ADRs, Human Gates, or issue text conflict, use the precedence/current-policy rules in `docs/AUTONOMY_L4.md`, repair stale lower-precedence text, and extend consistency checks when practical.
+If root instructions, prompts, ADRs, Human Gates, Product Acceptance rules, or issue text conflict, use the precedence/current-policy rules in `docs/AUTONOMY_L4.md`, repair stale lower-precedence text, and extend consistency checks when practical.
 
 Do not continue with knowingly contradictory governance.
