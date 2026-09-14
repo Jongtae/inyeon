@@ -16,7 +16,7 @@ const MAX_SUPPORTED_DATE = '2024-12-31';
 const INITIAL_VALUE: BirthFormValue = {
   localDate: '',
   timeZone: 'America/Los_Angeles',
-  temporalSupport: 'unknown',
+  temporalSupport: 'exact',
   exactTime: '',
   approximateStart: '',
   approximateEnd: '',
