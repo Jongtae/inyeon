@@ -278,6 +278,21 @@ try {
     throw new Error('registered schema-v4 contract did not meet qualification on a perfect fixture');
   }
 
+  const qaRepairAlternative = structuredClone(v4Result);
+  Object.assign(
+    qaRepairAlternative.observations.find((entry) => entry.id === 'N401'),
+    v4Contract.cases.find((entry) => entry.id === 'N401').accepted_alternatives[0],
+  );
+  const qaRepairRaw = Buffer.from(`${JSON.stringify(qaRepairAlternative.observations, null, 2)}\n`);
+  await writeFile(v4RawPath, qaRepairRaw);
+  qaRepairAlternative.provenance.raw_output_sha256 = sha256(qaRepairRaw);
+  await writeFile(v4ResultPath, JSON.stringify(qaRepairAlternative));
+  const qaRepairResult = run(v4ResultPath, '--require-threshold');
+  const qaRepairSummary = JSON.parse(qaRepairResult.stdout);
+  if (qaRepairResult.status !== 0 || qaRepairSummary.passed !== 29 || qaRepairSummary.canonical_passed !== 28) {
+    throw new Error('preregistered QA release-block repair tuple was not accepted whole');
+  }
+
   const artifactOverride = structuredClone(v4Result);
   artifactOverride.provenance.contract_file = 'evals/autonomy/cases-v3.json';
   await writeFile(v4ResultPath, JSON.stringify(artifactOverride));
@@ -306,6 +321,19 @@ try {
   const invalidExecutorResult = run(v4ResultPath);
   if (invalidExecutorResult.status === 0 || !invalidExecutorResult.stderr.includes('incompatible with execution owner')) {
     throw new Error('schema-v4 execution separation did not fail closed');
+  }
+
+  for (const [id, executionOwner] of [['N417', 'SECURITY_REVIEWER'], ['N423', 'QA']]) {
+    const collapsedReviewExecution = structuredClone(v4Result);
+    collapsedReviewExecution.observations.find((entry) => entry.id === id).execution_owner = executionOwner;
+    const collapsedRaw = Buffer.from(`${JSON.stringify(collapsedReviewExecution.observations, null, 2)}\n`);
+    await writeFile(v4RawPath, collapsedRaw);
+    collapsedReviewExecution.provenance.raw_output_sha256 = sha256(collapsedRaw);
+    await writeFile(v4ResultPath, JSON.stringify(collapsedReviewExecution));
+    const collapsedResult = run(v4ResultPath, '--require-threshold');
+    if (collapsedResult.status === 0 || !collapsedResult.stderr.includes('incompatible with execution owner')) {
+      throw new Error(`${id} allowed its independent reviewer to execute the recovery action`);
+    }
   }
 
   const bypassedPrivacyGate = structuredClone(v4Result);
