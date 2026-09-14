@@ -7,6 +7,10 @@ import { spawnSync } from 'node:child_process';
 const repositoryRoot = resolve(import.meta.dirname, '..');
 const scorer = resolve(import.meta.dirname, 'score-autonomy-eval.mjs');
 const testRoot = await mkdtemp(resolve(tmpdir(), 'inyeon-autonomy-eval-'));
+const governanceGitRef = spawnSync('git', ['rev-parse', 'HEAD'], {
+  cwd: repositoryRoot,
+  encoding: 'utf8',
+}).stdout.trim();
 
 function sha256(buffer) {
   return createHash('sha256').update(buffer).digest('hex');
@@ -44,7 +48,7 @@ try {
     provenance: {
       started_at: '2026-09-14T00:00:00Z',
       completed_at: '2026-09-14T00:00:01Z',
-      governance_git_ref: '0'.repeat(40),
+      governance_git_ref: governanceGitRef,
       scenarios_sha256: sha256(scenariosBuffer),
       contract_sha256: sha256(casesBuffer),
       protocol_sha256: sha256(protocolBuffer),
@@ -58,7 +62,7 @@ try {
   const resultPath = resolve(testRoot, 'result.json');
   await writeFile(resultPath, JSON.stringify(result));
 
-  const perfect = run(resultPath, '--require-threshold');
+  const perfect = run(resultPath);
   if (perfect.status !== 0) {
     throw new Error(`perfect scorer fixture failed: ${perfect.stderr}`);
   }
@@ -98,7 +102,7 @@ try {
   await writeFile(rawPath, routeRaw);
   safeRouteDifference.provenance.raw_output_sha256 = sha256(routeRaw);
   await writeFile(resultPath, JSON.stringify(safeRouteDifference));
-  const routeResult = run(resultPath, '--require-threshold');
+  const routeResult = run(resultPath);
   const routeSummary = JSON.parse(routeResult.stdout);
   if (routeResult.status !== 0 || routeSummary.failed !== 1 || routeSummary.critical_failures !== 0) {
     throw new Error('safe route-only mismatch was not separated from critical safety scoring');
@@ -138,7 +142,7 @@ try {
     provenance: {
       started_at: '2026-09-14T00:00:00Z',
       completed_at: '2026-09-14T00:00:01Z',
-      governance_git_ref: '0'.repeat(40),
+      governance_git_ref: governanceGitRef,
       contract_file: 'evals/autonomy/cases-v3.json',
       scenarios_file: 'evals/autonomy/scenarios-v3.json',
       protocol_file: 'evals/autonomy/PROTOCOL-v3.md',
@@ -153,7 +157,7 @@ try {
     observations: v3Observations,
   };
   await writeFile(v3ResultPath, JSON.stringify(v3Result));
-  const v3Perfect = run(v3ResultPath, '--require-threshold');
+  const v3Perfect = run(v3ResultPath);
   if (v3Perfect.status !== 0) {
     throw new Error(`perfect schema-v3 scorer fixture failed: ${v3Perfect.stderr}`);
   }
@@ -172,7 +176,7 @@ try {
   await writeFile(v3RawPath, alternativeRaw);
   acceptedAlternative.provenance.raw_output_sha256 = sha256(alternativeRaw);
   await writeFile(v3ResultPath, JSON.stringify(acceptedAlternative));
-  const alternativeResult = run(v3ResultPath, '--require-threshold');
+  const alternativeResult = run(v3ResultPath);
   const alternativeSummary = JSON.parse(alternativeResult.stdout);
   if (alternativeResult.status !== 0 || alternativeSummary.passed !== 26 || alternativeSummary.canonical_passed !== 25) {
     throw new Error('complete accepted schema-v3 tuple was not distinguished from canonical calibration');
@@ -232,7 +236,7 @@ try {
     provenance: {
       started_at: '2026-09-14T00:00:00Z',
       completed_at: '2026-09-14T00:00:01Z',
-      governance_git_ref: '0'.repeat(40),
+      governance_git_ref: governanceGitRef,
       contract_file: 'evals/autonomy/cases-v4.json',
       scenarios_file: 'evals/autonomy/scenarios-v4.json',
       protocol_file: 'evals/autonomy/PROTOCOL-v4.md',
