@@ -16,7 +16,12 @@ The goal is to preserve useful independence between product operation, evidence 
 | `qa` | design/run regression/E2E/release checks, reject a release candidate that fails acceptance/release criteria | redefine requirements merely to pass tests | worker/architect/product judge |
 | `reddit-operator` | subreddit research, transparent posting/replies, timing, monitoring, raw-evidence handoff when rules/tools permit | judge own campaign success; directly change product based on feedback; spam, astroturf, bypass controls | feedback analyst, Human Gate when required |
 | `feedback-analyst` | cluster raw evidence, preserve contradictions, assess source bias/root causes, recommend routing | implement product changes; convert user-requested solution into requirement without analysis; modify Saju methodology | product judge / methodology review |
-| `product-judge` | preregister experiments, issue `IGNORE/OBSERVE/EXPERIMENT/ACT`, create decision records/issues, choose smallest reversible test | implement its own high-impact decision when independent implementation/review is practical; bypass Human Gates; declare Reddit representative of the market | worker/architect/security/owner as appropriate |
+| `product-judge` | preregister experiments, issue `IGNORE/OBSERVE/EXPERIMENT/ACT`, veto an out-of-scope feedback-driven release with `BLOCK`, create decision records/issues, choose smallest reversible test | implement its own high-impact decision when independent implementation/review is practical; bypass Human Gates; declare Reddit representative of the market | worker/architect/security/owner as appropriate |
+
+Two functional authorities are intentionally not Codex specialist-agent profiles:
+
+- `operator` is the primary Codex run owner when it executes an already established release, immediate-containment, or rollback procedure. It does not independently verify its own action.
+- `methodology review` is the qualified review function for Saju calculation and traditional-signal interpretation. It may be performed only by the attributable authority established under the applicable Human Gate; the repository does not pretend an automated specialist profile supplies that qualification.
 
 ## Mandatory separation
 
@@ -25,6 +30,17 @@ For material feedback-driven changes, preserve this sequence whenever practical:
 `Operator → raw evidence → Analyst → Judge → Issue/Decision → Worker → QA/Security → Release`
 
 The same model family may serve multiple roles, but use separate subagent contexts and do not pass persuasive self-evaluation from one role into the next.
+
+## Evidence analysis and decision authority
+
+Intake analysis and decision authority are separate fields because a single `route` cannot prove that the Analyst → Judge boundary was preserved.
+
+- `analysis_owner` gathers, sanitizes, verifies, or clusters the evidence. Raw external product feedback uses `feedback-analyst` before any product decision. Source-backed factual claims may use `explorer`; release failures use `qa`; observed privacy/security failures use `security-reviewer`; and Saju calculation disputes use methodology review.
+- `decision_authority` owns the immediate disposition after analysis. Product changes and experiments use `product-judge`; routine permitted Reddit actions use `reddit-operator`; release containment uses `qa`; security containment uses `security-reviewer`; unambiguous policy repair uses `architect`; and only a current condition in `docs/HUMAN_GATES.md` uses `HUMAN_GATE`.
+- A request, suggestion, or implementation opportunity is evidence, not authorization. Do not create a Human Gate merely because satisfying the request later could cross one. First reject, observe, investigate, or judge it within current policy. Use a Human Gate when the current next action actually requires human authority or an owner-only step.
+- `action_authorization` records the maximum action currently allowed. It distinguishes no action, investigation, experiment, bounded implementation, routine operation, recovery, containment, policy repair, and pause-for-human states.
+
+For external feedback, an observation is nonconforming if it omits either `feedback-analyst` as analysis owner or `product-judge` as decision authority when a product decision is required. This remains true even when the final product decision itself is safe.
 
 ## Release vetoes
 

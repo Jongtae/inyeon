@@ -1,5 +1,5 @@
 schema_version = 1
-updated_at = "2026-09-14T09:00:56+09:00"
+updated_at = "2026-09-14T11:43:27+09:00"
 maturity = "l4-candidate"
 operating_mode = "independent-release"
 current_phase = "build"
@@ -7,14 +7,15 @@ active_release = "v0.1.0"
 current_goal = "Ship INYEON as a production-grade zero-backend Korean Compatibility Lab, then prove five autonomous closed loops and recovery/eval criteria required for verified L4."
 production_url = ""
 last_known_good_sha = ""
-next_action = "Complete independent QA/security review, CI, and merge for #47's fail-closed release-engineering candidate. Actual public Pages deployment must remain disabled until #14's exact-property correctness review truthfully promotes the production capability artifacts; then resolve any private-Pages plan/visibility gate, enable INYEON_PRODUCTION_ENABLED, deploy the exact main SHA, pass remote smoke, rehearse rollback, and record only real release evidence. Continue another unblocked issue if the public-launch Human Gate remains."
+next_action = "Do not repeat #54 fixture calibration after the valid v5 blind run scored 22/33 with zero critical failures. The smallest release-changing action is the #14 Human Gate: obtain qualified Korean Saju methodology review and approved exact-property anchors for the 240-context corpus. After #14 truthfully promotes production capability, resolve any private-Pages plan/visibility gate, enable INYEON_PRODUCTION_ENABLED, deploy the exact main SHA, pass remote smoke, rehearse rollback, and begin real #51 observation plus #54 closed-loop/recovery evidence."
 
 active_critical_path = [14, 33, 47, 51]
 active_issues = [14, 33, 47, 51, 54]
 active_experiments = []
 human_gates = [
-  "Issue #14 production validation and public Pages launch are blocked: generated candidateObserved snapshots cannot independently establish full-chart correctness or resolve midnight-versus-late-Jasi, true-solar-time, or 61–72-second solar-term disagreements. Completed: 240 synthetic positive contexts, 12 separate negative cases, provenance/evidence grades, dispute isolation, candidate drift CI, a separate empty non-generated approvals artifact, and #47's fail-closed release-engineering candidate. Smallest human action: approve qualified Korean Saju methodology authority/advisor scope and any paid terms, then review exact-property anchors; no approval is needed for candidate release-engineering merge or unrelated work. Unblocked: #33, #47 review/CI/docs, #54, and other non-public-launch work. Continuation: add attributable approvedExpected anchors, adjudicate disputed properties, rerun independent QA/CI, truthfully promote capability artifacts, then resolve Pages plan/visibility if needed and run the exact-SHA deploy/smoke/rollback path.",
-  "Production approval of any traditional signal-to-modern-relationship-dimension mapping is blocked pending exact versioned #33 rules and qualified cultural/Saju methodology review. Completed: #6 candidate inclusive semantic contract, #33's closed candidate DSL/evaluator with an intentionally empty product catalog, #34's categorical evidence-availability model, #35's default-deny deterministic narrative boundary, #49's default-off fictional reference substrate, #53's claim-free static candidate UI, #43's claim-free sharing boundary, and #52's local zero-retention release matrix; approved production rules, mappings, relationship copy entries, and expert fixtures are each 0. Smallest human action: when attributable candidate mappings are ready, approve qualified expert review scope and any paid terms; no approval is needed for the remaining static-product path. Unblocked: #47 release engineering and the remaining static-product path. Continuation: review exact mapping evidence property by property, add only approved derived primitives and copy, and keep productionEligible false until all gates pass."
+  "Issue #14 production validation and public Pages launch are blocked: generated candidateObserved snapshots cannot independently establish full-chart correctness or resolve midnight-versus-late-Jasi, true-solar-time, or 61–72-second solar-term disagreements. Completed: 240 synthetic positive contexts, 12 separate negative cases, provenance/evidence grades, dispute isolation, candidate drift CI, a separate empty non-generated approvals artifact, and #47's merged fail-closed release pipeline with an exact-SHA candidate CI rehearsal. Smallest human action: approve qualified Korean Saju methodology authority/advisor scope and any paid terms, then review exact-property anchors. Continuation after the gate: add attributable approvedExpected anchors, adjudicate disputed properties, rerun independent QA/CI, truthfully promote capability artifacts, then resolve Pages plan/visibility if needed and run the exact-SHA deploy/smoke/rollback path.",
+  "Production approval of any traditional signal-to-modern-relationship-dimension mapping is blocked pending exact versioned #33 rules and qualified cultural/Saju methodology review. Completed: #6 candidate inclusive semantic contract, #33's closed candidate DSL/evaluator with an intentionally empty product catalog, #34's categorical evidence-availability model, #35's default-deny deterministic narrative boundary, #49's default-off fictional reference substrate, #53's claim-free static candidate UI, #43's claim-free sharing boundary, #52's local zero-retention release matrix, and #47's merged fail-closed release engineering. Approved production rules, mappings, relationship copy entries, and expert fixtures are each 0. Smallest human action: approve qualified cultural/Saju expert review scope and any paid terms when attributable candidate mappings are ready. Continuation after the gate: review exact mapping evidence property by property, add only approved derived primitives and US-English copy, and keep productionEligible false until all gates pass.",
+  "Issue #51 prelaunch Reddit posting is blocked by materially ambiguous community-rule compliance. On 2026-09-14 the Reddit Operator checked current public rules for r/Bazi_Astrology, r/ChineseZodiac, r/AskAstrologers, and r/astrology and found 0 communities that clearly permit an affiliated, URL-free Korean Compatibility Lab concept/comprehension question: two were ambiguous and two were unsuitable or prohibitive. Raw links and the no-post result are recorded in GitHub issue #51 comment 5658252579. No login, account creation, post, comment, DM, or experiment occurred. Smallest human action: supply explicit moderator/community permission or a clearly permitted community path; alternatively resume research after a production release enables a community-specific value-bearing post."
 ]
 current_risks = [
   "The #8 Manseryeok adapter through #13 Hangul-primary derived-feature layer and #14's 240-context regression corpus remain non-production candidates. The corpus has 0 approved expectations: midnight-versus-late-Jasi, true-solar-time, and three measured 61–72-second solar-term disagreements remain explicit methodology/reference uncertainty pending independent/expert exact-property review.",
@@ -27,9 +28,9 @@ current_risks = [
   "The #53 candidate web UI, #43 claim-free sharing boundary, #52 zero-retention boundary, and #47 error recovery pass 264 unit/integration tests, 11 normal production-preview Chromium tests, 1 actual sharing-disabled production-build test, and 2 local deployed-origin smoke rehearsals. Coverage includes four calculation flows, strict reference/invitation links, local PNG/Web Share/download/copy paths, categorical time states, responsive/a11y, mutation-level persistence/egress interception, two-person full-chart canaries, actual chart/derived/evidence/narrative share rejection, offline public/fictional comparison, Clear, live refresh, live tab replacement, exact release provenance, enforced CSP egress blocking, and raw/encoded Hangul/Hanja production canaries. Independent QA and security approved #43, #52, and #47's fail-closed candidate. The main bundle is 423.12 kB minified/131.20 kB gzip; the lazy public catalog is 766.21 kB minified/96.28 kB gzip and triggers Vite's 500 kB minified warning while passing explicit release budgets. Tests prove the bounded local implementation, not US-user value, deployed privacy, production release readiness, or methodology validity.",
   "The #43 sharing layer exposes only fixed claim-free Lab/compare invitations and validated public/fictional reference identity. It rejects arbitrary fields and keeps Someone I Know results private, but user comprehension and usefulness remain unmeasured, and production-origin/crawler-visible public assets remain deferred to #47.",
   "The #52 `inyeon-zero-retention-v1` contract and CI matrix prove the current candidate's local application boundary across forbidden storage, cache, cookie, service-worker, egress, history, log/error, clipboard, share, Canvas, and PNG surfaces. This is not deployed evidence: the repository is private, Pages is disabled, no production origin exists, and #47 must still prove real-host behavior and rollback.",
-  "The #47 release-engineering candidate adds an exact-main-SHA workflow with commit-pinned official Actions, least-privilege build/deploy separation, full gates, immutable release manifest, rebuild-based rollback, production-only exact CSP/no-referrer, privacy-silent React error handling, parsed-origin/high-signal secret checks, 2 MiB/320 KiB gzip artifact budgets, eight fault-injection cases, and a two-case local rehearsal of the deployed-origin smoke. Public deploy/upload is fail-closed behind INYEON_PRODUCTION_ENABLED plus code-owned #14 readiness. Independent QA and security approved the candidate after concrete permission, CSP-enforcement, encoded-canary, and origin-parser fixes. This is candidate engineering evidence only: it has not yet passed remote CI or deployed to Pages.",
+  "The #47 release-engineering candidate is merged on main at 6e4d51f6d7e95ec4fab9a44b5fdd2c67e3afa37a. Its exact-main-SHA workflow uses commit-pinned official Actions, least-privilege build/deploy separation, full gates, an immutable release manifest, rebuild-based rollback, production-only exact CSP/no-referrer, privacy-silent React error handling, parsed-origin/high-signal secret checks, 2 MiB/320 KiB gzip artifact budgets, eight fault-injection cases, and a two-case local deployed-origin smoke rehearsal. Independent QA/security, PR/main CI, and the manual exact-SHA candidate rehearsal run 34792365843 passed. Upload/deploy/remote smoke correctly skipped because public deployment is fail-closed behind INYEON_PRODUCTION_ENABLED plus code-owned #14 readiness; no Pages production evidence exists.",
   "The GitHub repository is private, GitHub Pages is disabled, the account plan is not observable with the current token, and no production release exists. After #14 clears, private Pages may require a qualifying paid plan; making the repository public instead is a material owner visibility decision and must not be assumed.",
-  "L4 structural governance exists, but behavioral eval execution, five closed loops, fresh-session continuity, and recovery proof are still unverified.",
+  "L4 structural governance exists. BEHAVIORAL-20260914-06 is the latest valid preregistered blind run: 22/33 exact (66.7%), all 24 critical cases assessable, zero critical failures, and zero critical-unassessable cases. Independent Product Judge review found one genuine behavioral miss (P518) and predominantly overconstrained secondary classifications in the other ten misses, but the historical score remains unchanged and does not meet the 95% threshold. Decision D-0010 stops fixture-calibration retries until a concrete capability change. Five closed loops, fresh-session continuity, production continuity, and recovery proof are still unverified.",
   "Framework creep could turn INYEON into an APH showcase instead of a focused product; optional frameworks require observed pain before adoption."
 ]
 
@@ -38,7 +39,7 @@ completed_closed_loops = 0
 required_closed_loops = 5
 successful_recovery_drills = 0
 required_recovery_drills = 1
-eval_pass_rate = 0.0
+eval_pass_rate = 0.6666666666666666
 required_eval_pass_rate = 0.95
 critical_eval_failures = 0
 max_critical_eval_failures = 0
@@ -55,7 +56,7 @@ rework_rate = 0.0
 rollback_rate = 0.0
 escaped_defect_rate = 0.0
 decision_reversal_rate = 0.0
-agent_retry_count = 0
+agent_retry_count = 5
 model_cost_per_shipped_issue_usd = 0.0
 
 [release_state]
@@ -64,10 +65,10 @@ release_sha = ""
 rollback_sha = ""
 last_smoke_status = "not-run"
 last_privacy_status = "local-candidate-passed"
-last_eval_status = "not-run"
+last_eval_status = "BEHAVIORAL-20260914-06-valid-22-of-33-zero-critical-threshold-not-met-retries-stopped"
 
 [feedback_state]
 reddit_account_status = "not-configured"
 reddit_integration_status = "not-configured"
 last_experiment_id = ""
-last_decision_id = "D-0009"
+last_decision_id = "D-0010"

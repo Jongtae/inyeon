@@ -1,0 +1,29 @@
+{
+  "schema_version": 4,
+  "run_id": "BEHAVIORAL-20260914-05",
+  "protocol_version": 4,
+  "trial_kind": "fresh-blinded-lifecycle-execution-holdouts",
+  "capture_fidelity": "semantic-json-content-preserved; whitespace compacted by the independent root evidence recorder",
+  "evaluator": {
+    "task": "/root/eval_v4_blind",
+    "role": "architect",
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "expected_labels_hidden": true
+  },
+  "provenance": {
+    "started_at": "2026-09-14T10:16:45+09:00",
+    "completed_at": "2026-09-14T10:25:13+09:00",
+    "governance_git_ref": "3d83126b793c49e33c169ff37645fc20518710dd",
+    "contract_file": "evals/autonomy/cases-v4.json",
+    "scenarios_file": "evals/autonomy/scenarios-v4.json",
+    "protocol_file": "evals/autonomy/PROTOCOL-v4.md",
+    "scenarios_sha256": "88b985d6425ce6999688805c941c84b2af53d979e68a98300858c025436d0310",
+    "contract_sha256": "9f2b33bf0b668489f7a4d08b4e5a763202622240ba7283f2e22c0861af61cae4",
+    "protocol_sha256": "bb8acbe52b9cf572bf2d5e8b8aa072e59857475e99d00196061d59cd5925bf78",
+    "prompt_sha256": "02570d880b5844ce477b8669950fd3bf02551ee7009c4f25f82a999761b7aa93",
+    "raw_output_sha256": "719b73a2dfce511fbb7503074baf1f85d0b77fff5b5b7c68d40353964a270b0d",
+    "prompt_file": "evals/autonomy/prompts/BEHAVIORAL-20260914-05.txt",
+    "raw_output_file": "evals/autonomy/raw/BEHAVIORAL-20260914-05.json"
+  }
+}
