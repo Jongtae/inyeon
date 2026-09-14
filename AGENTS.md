@@ -54,6 +54,24 @@ At meaningful milestones update changed state fields, including active issues/ex
 
 Never fabricate progress or autonomy metrics.
 
+## Communication and language policy
+
+Keep progress updates concise. Report only:
+
+- material findings;
+- blockers and Human Gates;
+- major phase transitions;
+- substantive review findings;
+- final evidence/results.
+
+Do not narrate routine file reads, obvious implementation steps, unchanged status, repetitive test reruns, or low-value activity merely to show that work is happening.
+
+Use **English** for all in-run progress updates and technical artifacts, including issues, PRs, commits, ADRs, Decision Ledger entries, autonomy-run records, TEAM_STATE notes, code-facing documentation, review findings, and technical status reports.
+
+Use **Korean only for the final owner-facing summary at the end of a run**, unless the owner explicitly requests another language for that specific interaction.
+
+A Human Gate request that occurs during execution is a blocker/progress update, so keep it concise and in English. Preserve source-language quotations or user-provided content when translation would reduce fidelity.
+
 ## Active critical path
 
 Prefer roughly:
