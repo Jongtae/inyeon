@@ -26,6 +26,17 @@ For material feedback-driven changes, preserve this sequence whenever practical:
 
 The same model family may serve multiple roles, but use separate subagent contexts and do not pass persuasive self-evaluation from one role into the next.
 
+## Evidence analysis and decision authority
+
+Intake analysis and decision authority are separate fields because a single `route` cannot prove that the Analyst → Judge boundary was preserved.
+
+- `analysis_owner` gathers, sanitizes, verifies, or clusters the evidence. Raw external product feedback uses `feedback-analyst` before any product decision. Source-backed factual claims may use `explorer`; release failures use `qa`; observed privacy/security failures use `security-reviewer`; and Saju calculation disputes use methodology review.
+- `decision_authority` owns the immediate disposition after analysis. Product changes and experiments use `product-judge`; routine permitted Reddit actions use `reddit-operator`; release containment uses `qa`; security containment uses `security-reviewer`; unambiguous policy repair uses `architect`; and only a current condition in `docs/HUMAN_GATES.md` uses `HUMAN_GATE`.
+- A request, suggestion, or implementation opportunity is evidence, not authorization. Do not create a Human Gate merely because satisfying the request later could cross one. First reject, observe, investigate, or judge it within current policy. Use a Human Gate when the current next action actually requires human authority or an owner-only step.
+- `action_authorization` records the maximum action currently allowed. It distinguishes no action, investigation, experiment, bounded implementation, routine operation, recovery, containment, policy repair, and pause-for-human states.
+
+For external feedback, an observation is nonconforming if it omits either `feedback-analyst` as analysis owner or `product-judge` as decision authority when a product decision is required. This remains true even when the final product decision itself is safe.
+
 ## Release vetoes
 
 The following roles may block release until their defined failure is resolved:

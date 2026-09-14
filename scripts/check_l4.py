@@ -17,6 +17,10 @@ REQUIRED_FILES = [
     "docs/autonomy_runs/README.md",
     "docs/decisions/README.md",
     "evals/autonomy/cases.json",
+    "evals/autonomy/scenarios.json",
+    "evals/autonomy/PROTOCOL.md",
+    "scripts/score-autonomy-eval.mjs",
+    "scripts/test-autonomy-eval-scorer.mjs",
     ".codex/config.toml",
 ]
 
@@ -179,23 +183,35 @@ case_count = 0
 if cases_path.exists():
     try:
         payload = json.loads(cases_path.read_text(encoding="utf-8"))
+        if payload.get("schema_version") != 2:
+            errors.append("autonomy eval contract must use schema_version 2")
         cases = payload.get("cases", [])
         case_count = len(cases)
-        if case_count < 20:
-            errors.append(f"autonomy eval suite must contain at least 20 cases, found {case_count}")
+        if case_count < 30:
+            errors.append(f"autonomy eval suite must contain at least 30 cases including holdouts, found {case_count}")
 
         ids: set[str] = set()
         required_case_fields = {
             "id",
             "scenario",
-            "expected_route",
-            "expected_decision",
-            "human_gate",
-            "auto_implement",
-            "risk",
-            "reason",
+            "expected",
+            "critical_category",
+            "critical_expectations",
         }
-        routes: set[str] = set()
+        expected_fields = {
+            "analysis_owner",
+            "decision_authority",
+            "decision",
+            "human_gate",
+            "action_authorization",
+        }
+        vocabularies = payload.get("allowed_vocabularies", {})
+        required_vocabularies = expected_fields - {"human_gate"}
+        if set(vocabularies) != required_vocabularies:
+            errors.append("autonomy eval vocabularies do not match the schema-v2 contract")
+        analysis_owners: set[str] = set()
+        decision_authorities: set[str] = set()
+        critical_categories: set[str] = set()
         for idx, case in enumerate(cases):
             missing = required_case_fields - set(case)
             if missing:
@@ -205,31 +221,74 @@ if cases_path.exists():
             if case_id in ids:
                 errors.append(f"duplicate eval id: {case_id}")
             ids.add(case_id)
-            routes.add(case["expected_route"])
+            expected = case["expected"]
+            if set(expected) != expected_fields:
+                errors.append(f"{case_id}: expected contract fields are invalid")
+                continue
+            analysis_owners.add(expected["analysis_owner"])
+            decision_authorities.add(expected["decision_authority"])
+            for field in required_vocabularies:
+                if expected[field] not in vocabularies.get(field, []):
+                    errors.append(f"{case_id}: unknown {field} value {expected[field]!r}")
+            if not isinstance(expected["human_gate"], bool):
+                errors.append(f"{case_id}: human_gate must be boolean")
+            if expected["human_gate"] != (expected["action_authorization"] == "PAUSE_FOR_HUMAN"):
+                errors.append(f"{case_id}: human_gate and action_authorization contradict each other")
 
-            if case["human_gate"] and case["auto_implement"]:
-                errors.append(f"{case_id}: Human Gate case cannot auto-implement")
-            if case["risk"] in {"high", "critical"} and case["auto_implement"]:
-                allowed = {
-                    "ROLLBACK_OR_FIX_BEFORE_CONTINUE",
-                    "BLOCK_RELEASE_AND_REMEDIATE",
-                }
-                if case["expected_decision"] not in allowed:
-                    errors.append(f"{case_id}: high-risk case auto-implements without recovery/security exception")
+            critical_category = case["critical_category"]
+            critical_expectations = case["critical_expectations"]
+            if critical_category is None:
+                if critical_expectations:
+                    errors.append(f"{case_id}: noncritical case has critical expectations")
+            else:
+                critical_categories.add(critical_category)
+                if not critical_expectations:
+                    errors.append(f"{case_id}: critical case has no semantic expectations")
+                for field, allowed_values in critical_expectations.items():
+                    if field not in expected_fields:
+                        errors.append(f"{case_id}: unknown critical field {field}")
+                    if not isinstance(allowed_values, list) or not allowed_values:
+                        errors.append(f"{case_id}: critical field {field} must have allowed values")
 
-        required_routes = {
+        required_analysis_owners = {
             "PRODUCT_JUDGE",
-            "METHODOLOGY_REVIEW",
-            "HUMAN_GATE",
-            "REDDIT_OPERATOR",
             "FEEDBACK_ANALYST",
+            "METHODOLOGY_REVIEW",
+            "REDDIT_OPERATOR",
             "QA",
             "SECURITY_REVIEWER",
             "ARCHITECT",
+            "EXPLORER",
         }
-        missing_routes = sorted(required_routes - routes)
-        if missing_routes:
-            errors.append(f"autonomy eval suite missing route coverage: {', '.join(missing_routes)}")
+        missing_analysis = sorted(required_analysis_owners - analysis_owners)
+        if missing_analysis:
+            errors.append(f"autonomy eval suite missing analysis-owner coverage: {', '.join(missing_analysis)}")
+        if "HUMAN_GATE" not in decision_authorities:
+            errors.append("autonomy eval suite is missing Human Gate decision-authority coverage")
+        required_critical_categories = {
+            "human_gate",
+            "methodology_firewall",
+            "privacy_boundary",
+            "privacy_security",
+            "production_recovery",
+            "prompt_injection",
+            "unauthorized_scope_expansion",
+        }
+        missing_critical = sorted(required_critical_categories - critical_categories)
+        if missing_critical:
+            errors.append(f"autonomy eval suite missing critical coverage: {', '.join(missing_critical)}")
+
+        scenarios_path = ROOT / "evals/autonomy/scenarios.json"
+        if scenarios_path.exists():
+            scenarios_payload = json.loads(scenarios_path.read_text(encoding="utf-8"))
+            if scenarios_payload.get("schema_version") != 2:
+                errors.append("evaluator-visible scenarios must use schema_version 2")
+            evaluator_cases = scenarios_payload.get("cases", [])
+            expected_scenarios = [{"id": case["id"], "scenario": case["scenario"]} for case in cases]
+            if evaluator_cases != expected_scenarios:
+                errors.append("evaluator-visible scenarios drift from the scorer-only contract")
+            if any(set(case) != {"id", "scenario"} for case in evaluator_cases):
+                errors.append("evaluator-visible scenarios contain scorer-only fields")
     except Exception as exc:  # noqa: BLE001
         errors.append(f"invalid autonomy eval JSON: {exc}")
 
