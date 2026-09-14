@@ -1,5 +1,5 @@
 schema_version = 1
-updated_at = "2026-09-15T00:32:00+09:00"
+updated_at = "2026-09-15T01:55:00+09:00"
 maturity = "l4-candidate"
 operating_mode = "independent-release"
 current_phase = "product-recovery"
@@ -7,10 +7,10 @@ active_release = "v0.1.0"
 current_goal = "Restore and prove INYEON's primary user value end to end in the deployed preview before methodology promotion, production release, external feedback, or L4 proof; then resume the production-grade v0.1 release path."
 production_url = ""
 last_known_good_sha = ""
-next_action = "Execute Issue #78 first. Read docs/USER_VALUE_GATE.md and prove the deployed-preview vertical slice birth input -> My Saju -> reference -> compatibility result -> explanation. Do not advance #14/#33 methodology promotion, #47 production promotion, #51 external feedback, or #54 L4 proof as substitutes for missing core product value. After three substantial cycles without changing black-box Product Acceptance or materially reducing its blocker, stop and re-evaluate instead of generating more artifacts."
+next_action = "Execute #78 through its user-value slices. #80 is the current vertical slice: make My Saju deliver a localized personal interpretation before comparison, then thread the same session locale into candidate compatibility output and complete deployed-preview black-box Product Acceptance. Do not advance #14/#33 methodology promotion, #47 production promotion, #51 external feedback, or #54 L4 proof as substitutes for missing core product value."
 
-active_critical_path = [78, 14, 33, 47, 51, 54]
-active_issues = [78, 14, 33, 47, 51, 54]
+active_critical_path = [78, 80, 14, 33, 47, 51, 54]
+active_issues = [78, 80, 14, 33, 47, 51, 54]
 active_experiments = []
 human_gates = [
   "Issue #14 production validation remains a real methodology Human Gate, but it is no longer the immediate next milestone while Issue #78 Product Recovery is unproven. Candidate/review preview work may proceed under docs/USER_VALUE_GATE.md without claiming expert approval. After the primary user-value vertical slice works, obtain qualified Korean Saju methodology review and approved exact-property anchors for the 240-context corpus before production promotion.",
@@ -19,6 +19,7 @@ human_gates = [
 ]
 current_risks = [
   "Product-value proxy failure is now a P0 risk: passing tests, CI, privacy, release engineering, or autonomy checks must not be treated as proof that the primary user journey delivers intended value. Issue #78 and docs/USER_VALUE_GATE.md require black-box deployed-preview acceptance before later maturity work advances.",
+  "Issue #80 separates deterministic birth calculation from interpretation locale. Birthplace/timezone/DST may affect chart calculation; locale may affect language, examples, and explanatory framing only. Initial deterministic locale packs are en-US and ko-KR, and unsupported locales must fall back rather than fabricate cultural adaptation. Full #80 completion still requires the selected session locale to flow into compatibility output and black-box E2E.",
   "The #8 Manseryeok adapter through #13 Hangul-primary derived-feature layer and #14's 240-context regression corpus remain non-production candidates. The corpus has 0 approved expectations: midnight-versus-late-Jasi, true-solar-time, and three measured 61–72-second solar-term disagreements remain explicit methodology/reference uncertainty pending independent/expert exact-property review.",
   "The #6 inclusive-compatibility-v1 contract is an internally reviewed candidate with cultural/Saju expert review pending and productionEligible false. It contains no approved traditional signal-to-dimension mappings; actual US-user comprehension and utility remain unmeasured.",
   "The #33 compatibility-rule infrastructure is candidate-only: the product catalog has 0 approved rules, 0 approved signal-to-dimension mappings, and 0 expert fixtures. Combinations, clashes, Five Element cycles, and other traditional relation primitives remain unavailable pending attributable evidence and qualified review.",
