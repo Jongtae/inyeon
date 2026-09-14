@@ -1,0 +1,42 @@
+.review-shell { min-height: 100vh; padding: 0 clamp(1.25rem, 5vw, 5rem); }
+.review-banner { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; margin: 0 calc(-1 * clamp(1.25rem, 5vw, 5rem)); padding: 1rem clamp(1.25rem, 5vw, 5rem); background: #5d2a22; color: #fff; }
+.review-banner > div { display: grid; gap: .2rem; }
+.review-banner span, .review-banner p { font-size: .72rem; letter-spacing: .08em; }
+.review-banner p { margin: 0; opacity: .86; }
+.review-banner strong { font-family: Georgia, 'Nanum Myeongjo', serif; font-size: 1.15rem; }
+.review-shell main { max-width: 78rem; margin: 0 auto; padding: clamp(2.5rem, 6vw, 5.5rem) 0; }
+.review-intro { max-width: 68rem; margin-bottom: 2rem; }
+.review-intro h1 { font-size: clamp(2.5rem, 5vw, 5rem); }
+.review-intro > p:last-child { max-width: 54rem; color: var(--muted); font-family: Georgia, 'Nanum Myeongjo', serif; font-size: 1.05rem; line-height: 1.8; }
+.review-checklist { margin-bottom: 2rem; padding: 1.5rem 1.75rem; border: 1px solid var(--line); background: rgba(255,255,255,.3); }
+.review-checklist h2, .review-evidence h2, .review-conventions h3 { margin: 0; font-family: Georgia, 'Nanum Myeongjo', serif; font-weight: 500; }
+.review-checklist ol { margin: 1rem 0 0; padding-left: 1.25rem; color: var(--muted); line-height: 1.8; }
+.review-evidence { margin-top: 2rem; padding: clamp(1.4rem, 4vw, 3rem); border: 1px solid var(--line); background: rgba(255,255,255,.3); }
+.review-heading-row { display: flex; justify-content: space-between; gap: 1.5rem; align-items: flex-start; }
+.review-heading-row h2 { font-size: clamp(1.8rem, 3vw, 2.8rem); }
+.review-status { border: 1px solid #8a5b16; padding: .55rem .7rem; color: #6b4510; font-size: .68rem; font-weight: 700; letter-spacing: .06em; }
+.review-summary, .review-conventions dl { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; margin: 1.5rem 0; background: var(--line); border: 1px solid var(--line); }
+.review-summary div, .review-conventions dl div { padding: 1rem; background: var(--paper); }
+.review-summary dt, .review-conventions dt { color: var(--muted); font-size: .68rem; letter-spacing: .06em; text-transform: uppercase; }
+.review-summary dd, .review-conventions dd { margin: .45rem 0 0; font-weight: 700; line-height: 1.5; }
+.review-pillars { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--line); }
+.review-pillars article { display: grid; place-items: center; min-height: 8.5rem; padding: 1rem; border-right: 1px solid var(--line); text-align: center; }
+.review-pillars article:last-child { border-right: 0; }
+.review-pillars span { color: var(--muted); font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; }
+.review-pillars strong { margin-top: .55rem; font-family: Georgia, 'Nanum Myeongjo', serif; font-size: 2rem; }
+.review-pillars small { margin-top: .2rem; color: var(--muted); }
+.review-conventions { margin-top: 2rem; }
+.review-conventions h3 { font-size: 1.35rem; }
+.review-raw { margin-top: 1.5rem; border-top: 1px solid var(--line); padding-top: 1rem; }
+.review-raw summary { cursor: pointer; font-weight: 700; }
+.review-raw pre { max-height: 32rem; overflow: auto; padding: 1rem; background: #211f1c; color: #f5efe6; font-size: .72rem; line-height: 1.55; }
+.review-request { margin-top: 1.5rem; padding: 1rem 1.1rem; border-left: 4px solid var(--red); background: #f2ded7; }
+.review-request p { margin-bottom: 0; line-height: 1.65; }
+.review-footer { display: flex; justify-content: space-between; gap: 1rem; border-top: 1px solid var(--line); padding: 1.5rem 0 2.5rem; color: var(--muted); font-size: .7rem; letter-spacing: .06em; text-transform: uppercase; }
+@media (max-width: 760px) {
+  .review-banner, .review-heading-row, .review-footer { align-items: flex-start; flex-direction: column; }
+  .review-summary, .review-conventions dl { grid-template-columns: 1fr; }
+  .review-pillars { grid-template-columns: repeat(2, 1fr); }
+  .review-pillars article:nth-child(2) { border-right: 0; }
+  .review-pillars article:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+}

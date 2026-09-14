@@ -1,0 +1,150 @@
+name: Methodology Review Preview
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_sha:
+        description: Full 40-character SHA from main to expose for qualified methodology review
+        required: true
+        type: string
+
+concurrency:
+  group: inyeon-pages-production
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: vars.INYEON_PRODUCTION_ENABLED != 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: read
+    outputs:
+      review_sha: ${{ steps.source.outputs.review_sha }}
+    steps:
+      - name: Check out canonical repository state
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          fetch-depth: 0
+
+      - name: Validate and select a main-branch commit
+        id: source
+        env:
+          REQUESTED_SHA: ${{ inputs.source_sha }}
+        run: |
+          if [[ ! "$REQUESTED_SHA" =~ ^[0-9a-f]{40}$ ]]; then
+            echo "source_sha must be a full lowercase 40-character commit SHA" >&2
+            exit 1
+          fi
+          git fetch --no-tags origin main
+          git cat-file -e "$REQUESTED_SHA^{commit}"
+          if ! git merge-base --is-ancestor "$REQUESTED_SHA" origin/main; then
+            echo "source_sha must belong to the canonical main branch" >&2
+            exit 1
+          fi
+          git checkout --detach "$REQUESTED_SHA"
+          echo "review_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
+        with:
+          python-version: '3.12'
+
+      - name: Validate governance structure
+        run: |
+          python scripts/check_harness.py
+          python scripts/check_l4.py
+
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Install pinned dependencies and Chromium
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+
+      - name: Run candidate quality gates
+        run: |
+          npm run lint
+          npm run typecheck
+          npm test
+          npm audit --audit-level=high
+
+      - name: Build methodology review artifact
+        env:
+          INYEON_RELEASE_SHA: ${{ steps.source.outputs.review_sha }}
+          VITE_METHODOLOGY_REVIEW_BUILD: 'true'
+        run: npm run build
+
+      - name: Verify review boundary
+        run: |
+          test -f apps/web/dist/review.html
+          grep -q 'noindex,nofollow,noarchive,nosnippet' apps/web/dist/review.html
+          grep -q 'INYEON Methodology Review' apps/web/dist/review.html
+
+      - name: Run browser regression tests
+        run: npm run test:e2e --workspace @inyeon/web
+
+      - name: Configure GitHub Pages for review
+        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6
+
+      - name: Upload review artifact
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5
+        with:
+          path: apps/web/dist
+
+      - name: Record review provenance
+        env:
+          REVIEW_SHA: ${{ steps.source.outputs.review_sha }}
+        run: |
+          echo "### INYEON methodology review candidate" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Purpose: qualified #14 methodology review only" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Source SHA: \`$REVIEW_SHA\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Production release: false" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Production readiness gate: intentionally not asserted" >> "$GITHUB_STEP_SUMMARY"
+
+  deploy:
+    needs: build
+    if: vars.INYEON_PRODUCTION_ENABLED != 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}review.html
+    outputs:
+      page_url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy methodology review artifact
+        id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5
+
+  smoke:
+    needs:
+      - build
+      - deploy
+    if: vars.INYEON_PRODUCTION_ENABLED != 'true'
+    runs-on: ubuntu-latest
+    permissions: {}
+    steps:
+      - name: Verify remote review page
+        env:
+          PAGE_URL: ${{ needs.deploy.outputs.page_url }}
+        run: |
+          curl --fail --silent --show-error --retry 5 --retry-delay 3 "${PAGE_URL}review.html" -o review.html
+          grep -q 'noindex,nofollow,noarchive,nosnippet' review.html
+          grep -q 'INYEON Methodology Review' review.html
+
+      - name: Record review URL
+        env:
+          PAGE_URL: ${{ needs.deploy.outputs.page_url }}
+          REVIEW_SHA: ${{ needs.build.outputs.review_sha }}
+        run: |
+          echo "### Verified methodology review preview" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Review URL: ${PAGE_URL}review.html" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Source SHA: \`$REVIEW_SHA\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- This is not production evidence and must not update release_state." >> "$GITHUB_STEP_SUMMARY"
