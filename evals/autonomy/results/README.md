@@ -10,8 +10,10 @@ These files preserve the first three schema-v1 observations for issue #54. The e
 
 All three runs are retained. They motivated schema v2, which separates `analysis_owner` from `decision_authority`, uses semantic critical-safety scoring, adds blinded holdouts, and requires auditable prompt/raw-output hashes. The old labels were not silently rewritten to improve a score; higher-precedence governance plus independent architecture review documented why the v1 contract was invalid.
 
-No schema-v1 score counts toward L4 proof. Qualifying schema-v2 results are listed below only after independent review.
+No schema-v1 score counts toward L4 proof. Schema-v2 results are listed below after scoring. A failed run remains immutable evidence; independent review may identify a preregistered contract defect for a future run, but does not rewrite the historical score.
 
 | Schema-v2 run | Exact pass | Semantic critical failures | Qualification |
 | --- | ---: | ---: | --- |
-| pending | — | — | no qualifying run recorded yet |
+| `BEHAVIORAL-20260914-04` | 24/32 (75%) | 4 | fail; first fully blinded v2 run, retained pending independent mismatch classification |
+
+No qualifying schema-v2 run has been recorded yet.

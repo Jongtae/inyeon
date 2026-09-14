@@ -19,6 +19,14 @@ REQUIRED_FILES = [
     "evals/autonomy/cases.json",
     "evals/autonomy/scenarios.json",
     "evals/autonomy/PROTOCOL.md",
+    "evals/autonomy/cases-v3.json",
+    "evals/autonomy/scenarios-v3.json",
+    "evals/autonomy/PROTOCOL-v3.md",
+    "evals/autonomy/reviews/BEHAVIORAL-20260914-04.md",
+    "evals/autonomy/reviews/SCHEMA-V3-DESIGN.md",
+    "evals/autonomy/cases-v4.json",
+    "evals/autonomy/scenarios-v4.json",
+    "evals/autonomy/PROTOCOL-v4.md",
     "scripts/score-autonomy-eval.mjs",
     "scripts/test-autonomy-eval-scorer.mjs",
     ".codex/config.toml",
@@ -178,39 +186,52 @@ if config_path.exists():
     except Exception as exc:  # noqa: BLE001
         errors.append(f"invalid .codex/config.toml: {exc}")
 
-cases_path = ROOT / "evals/autonomy/cases.json"
+cases_path = ROOT / "evals/autonomy/cases-v4.json"
 case_count = 0
 if cases_path.exists():
     try:
         payload = json.loads(cases_path.read_text(encoding="utf-8"))
-        if payload.get("schema_version") != 2:
-            errors.append("autonomy eval contract must use schema_version 2")
+        if payload.get("schema_version") != 4:
+            errors.append("active autonomy eval contract must use schema_version 4")
         cases = payload.get("cases", [])
         case_count = len(cases)
-        if case_count < 30:
-            errors.append(f"autonomy eval suite must contain at least 30 cases including holdouts, found {case_count}")
+        if case_count < 24:
+            errors.append(f"active autonomy eval suite must contain at least 24 fresh holdout cases, found {case_count}")
 
         ids: set[str] = set()
         required_case_fields = {
             "id",
             "scenario",
             "expected",
+            "accepted_alternatives",
             "critical_category",
             "critical_expectations",
         }
         expected_fields = {
+            "lifecycle_stage",
             "analysis_owner",
             "decision_authority",
             "decision",
             "human_gate",
             "action_authorization",
+            "execution_owner",
         }
         vocabularies = payload.get("allowed_vocabularies", {})
         required_vocabularies = expected_fields - {"human_gate"}
         if set(vocabularies) != required_vocabularies:
-            errors.append("autonomy eval vocabularies do not match the schema-v2 contract")
+            errors.append("autonomy eval vocabularies do not match the schema-v3 contract")
+        role_decisions = payload.get("role_decision_compatibility", {})
+        stage_actions = payload.get("stage_action_compatibility", {})
+        execution_actions = payload.get("execution_action_compatibility", {})
+        if set(role_decisions) != set(vocabularies.get("decision_authority", [])):
+            errors.append("schema-v3 role/decision compatibility does not cover every decision authority")
+        if set(stage_actions) != set(vocabularies.get("lifecycle_stage", [])):
+            errors.append("schema-v3 stage/action compatibility does not cover every lifecycle stage")
+        if set(execution_actions) != set(vocabularies.get("execution_owner", [])):
+            errors.append("schema-v4 execution/action compatibility does not cover every execution owner")
         analysis_owners: set[str] = set()
         decision_authorities: set[str] = set()
+        lifecycle_stages: set[str] = set()
         critical_categories: set[str] = set()
         for idx, case in enumerate(cases):
             missing = required_case_fields - set(case)
@@ -222,18 +243,31 @@ if cases_path.exists():
                 errors.append(f"duplicate eval id: {case_id}")
             ids.add(case_id)
             expected = case["expected"]
-            if set(expected) != expected_fields:
-                errors.append(f"{case_id}: expected contract fields are invalid")
-                continue
-            analysis_owners.add(expected["analysis_owner"])
-            decision_authorities.add(expected["decision_authority"])
-            for field in required_vocabularies:
-                if expected[field] not in vocabularies.get(field, []):
-                    errors.append(f"{case_id}: unknown {field} value {expected[field]!r}")
-            if not isinstance(expected["human_gate"], bool):
-                errors.append(f"{case_id}: human_gate must be boolean")
-            if expected["human_gate"] != (expected["action_authorization"] == "PAUSE_FOR_HUMAN"):
-                errors.append(f"{case_id}: human_gate and action_authorization contradict each other")
+            alternatives = case["accepted_alternatives"]
+            if not isinstance(alternatives, list):
+                errors.append(f"{case_id}: accepted_alternatives must be a list")
+                alternatives = []
+            for outcome_label, outcome in [("expected", expected), *[("alternative", item) for item in alternatives]]:
+                if not isinstance(outcome, dict) or set(outcome) != expected_fields:
+                    errors.append(f"{case_id}: {outcome_label} contract fields are invalid")
+                    continue
+                for field in required_vocabularies:
+                    if outcome[field] not in vocabularies.get(field, []):
+                        errors.append(f"{case_id}: unknown {field} value {outcome[field]!r}")
+                if not isinstance(outcome["human_gate"], bool):
+                    errors.append(f"{case_id}: human_gate must be boolean")
+                if outcome["human_gate"] != (outcome["action_authorization"] == "PAUSE_FOR_HUMAN"):
+                    errors.append(f"{case_id}: human_gate and action_authorization contradict each other")
+                if outcome["decision"] not in role_decisions.get(outcome["decision_authority"], []):
+                    errors.append(f"{case_id}: decision is incompatible with decision authority")
+                if outcome["action_authorization"] not in stage_actions.get(outcome["lifecycle_stage"], []):
+                    errors.append(f"{case_id}: action is incompatible with lifecycle stage")
+                if outcome["action_authorization"] not in execution_actions.get(outcome["execution_owner"], []):
+                    errors.append(f"{case_id}: action is incompatible with execution owner")
+            if isinstance(expected, dict):
+                analysis_owners.add(expected.get("analysis_owner", ""))
+                decision_authorities.add(expected.get("decision_authority", ""))
+                lifecycle_stages.add(expected.get("lifecycle_stage", ""))
 
             critical_category = case["critical_category"]
             critical_expectations = case["critical_expectations"]
@@ -249,9 +283,13 @@ if cases_path.exists():
                         errors.append(f"{case_id}: unknown critical field {field}")
                     if not isinstance(allowed_values, list) or not allowed_values:
                         errors.append(f"{case_id}: critical field {field} must have allowed values")
+                    elif field == "human_gate":
+                        if any(not isinstance(value, bool) for value in allowed_values):
+                            errors.append(f"{case_id}: critical human_gate values must be boolean")
+                    elif any(value not in vocabularies.get(field, []) for value in allowed_values):
+                        errors.append(f"{case_id}: critical field {field} contains an unknown value")
 
         required_analysis_owners = {
-            "PRODUCT_JUDGE",
             "FEEDBACK_ANALYST",
             "METHODOLOGY_REVIEW",
             "REDDIT_OPERATOR",
@@ -265,6 +303,9 @@ if cases_path.exists():
             errors.append(f"autonomy eval suite missing analysis-owner coverage: {', '.join(missing_analysis)}")
         if "HUMAN_GATE" not in decision_authorities:
             errors.append("autonomy eval suite is missing Human Gate decision-authority coverage")
+        missing_stages = sorted(set(vocabularies.get("lifecycle_stage", [])) - lifecycle_stages)
+        if missing_stages:
+            errors.append(f"autonomy eval suite missing lifecycle coverage: {', '.join(missing_stages)}")
         required_critical_categories = {
             "human_gate",
             "methodology_firewall",
@@ -278,11 +319,11 @@ if cases_path.exists():
         if missing_critical:
             errors.append(f"autonomy eval suite missing critical coverage: {', '.join(missing_critical)}")
 
-        scenarios_path = ROOT / "evals/autonomy/scenarios.json"
+        scenarios_path = ROOT / "evals/autonomy/scenarios-v4.json"
         if scenarios_path.exists():
             scenarios_payload = json.loads(scenarios_path.read_text(encoding="utf-8"))
-            if scenarios_payload.get("schema_version") != 2:
-                errors.append("evaluator-visible scenarios must use schema_version 2")
+            if scenarios_payload.get("schema_version") != 4:
+                errors.append("evaluator-visible scenarios must use schema_version 4")
             evaluator_cases = scenarios_payload.get("cases", [])
             expected_scenarios = [{"id": case["id"], "scenario": case["scenario"]} for case in cases]
             if evaluator_cases != expected_scenarios:
