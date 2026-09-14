@@ -49,6 +49,7 @@ Future real-user dating/matching remains an optional later mode.
 11. Korean Saju/Gung-hap is described as Korean practice within the broader East Asian Four Pillars tradition.
 12. Real production deployment, CI, accessibility, privacy testing, and rollback are required for release.
 13. The first-release audience is US-first. Public UI, results, and relationship copy are English-first while the Korean-rooted K-culture identity remains explicit; Korean terms use plain-English translation or progressive disclosure. Hangul is the primary Korean script for brand and visual identity, while Hanja is secondary explanatory/traditional detail.
+14. Passing implementation, CI, privacy, or governance checks is not proof that the product delivers user value. The primary journey must pass the black-box Product Acceptance contract in `docs/USER_VALUE_GATE.md`.
 
 ## 4. Core experience
 
@@ -82,15 +83,19 @@ Each record must preserve:
 - unknown/disputed time state;
 - licensed/non-infringing image metadata if an image is shown.
 
-After reviewed relationship mappings exist, comparison output may include:
+The **review/development preview must exercise the real compatibility product value**. It may render deterministic candidate relationship output before expert approval when the output is clearly labeled `CANDIDATE · NOT YET EXPERT REVIEWED` or equivalent and remains traceable to versioned rule/evidence artifacts.
 
-- relationship archetype/headline;
+Candidate preview output should include, when calculable:
+
+- relationship archetype/headline or equivalent candidate framing;
 - **What clicks**;
 - **Potential friction**;
 - **Why this?** traditional evidence;
 - categorical availability/limitations.
 
-While the approved product catalog is empty, these relationship sections are absent. The comparison output contains only the explicit no-approved-evidence state, applicable limitations, and entity disclosure.
+Production is stricter. Relationship claims may be promoted to production only after the applicable methodology/cultural review gates approve their deterministic mappings and copy. If no production-approved rule applies, production must remain fail-closed rather than inventing a claim.
+
+A no-approved-evidence/limitations-only state is a valid **production safety fallback**, but it does **not** satisfy Product Acceptance for a development/review candidate whose intended value is compatibility interpretation.
 
 No implication of endorsement, participation, romantic availability, or claims about the public figure's private relationships.
 
@@ -108,15 +113,19 @@ They must:
 
 Useful actions include:
 
-- `Why this?` only when reviewed relationship evidence is available;
-- `Potential friction` only when reviewed relationship evidence is available;
+- `Why this?` candidate explanation in review/development preview, with explicit candidate labeling until reviewed;
+- `Potential friction` candidate explanation in review/development preview, with explicit candidate labeling until reviewed;
 - `Compare`;
 - `Save archetype` only if implemented locally without personal persistence;
 - `Show another like this`.
 
+Production relationship interpretation remains subject to the same #14/#33 promotion gates as every other mode.
+
 ### 4.4 Me × Someone I Know
 
 Both subjects' personal data stays in browser memory only. The UI should remind users to enter another person's information only when they have an appropriate reason/permission to do so.
+
+The review/development preview should use the same deterministic candidate compatibility engine as the public-figure and synthetic modes so the complete product journey can be evaluated before production promotion.
 
 ## 5. Saju / Manseryeok strategy
 
@@ -131,6 +140,8 @@ Primary open-source candidate: `yhj1024/manseryeok`, pinned behind an INYEON-own
 Validation references may include `6tail/lunar-javascript`, Korean lunar/KASI-aligned references, and expert-reviewed fixtures.
 
 The product must maintain a versioned `korean-saju-v1` profile and a large golden corpus before public release.
+
+Methodology validation is a **production-promotion gate**. It must not be used to leave the development/review preview functionally empty when deterministic candidate behavior can be shown safely and honestly for expert/product review.
 
 ## 6. Compatibility contract
 
@@ -148,6 +159,8 @@ Rules should be versioned and produce machine-readable evidence for dimensions s
 Traditional relationships such as combinations/clashes may contribute evidence, but the UI should translate them into balanced, non-fatalistic relationship language.
 
 Never infer or claim violence, criminality, morality, fidelity, fertility, mental illness, sexual behavior, or inevitable marriage/divorce outcomes from Saju.
+
+Candidate rules used in review/development preview must be deterministic, versioned, reviewable, and visibly unapproved. Production rules require the applicable expert/evidence approval.
 
 ## 7. First-release information architecture
 
@@ -167,7 +180,13 @@ A user should reach a meaningful comparison quickly without creating an account.
 
 The integrated candidate UI implements these as fixed GitHub-Pages-safe hash routes. Public copy is natural US English, while Korean identity is explicit and Hangul-primary: for example, `Saju (사주; 四柱)`, `Gung-hap (궁합; 宮合)`, and `Inyeon (인연; 因緣)`. Hanja is optional secondary context, never the standalone product identity.
 
-Until approved relationship rules and reviewed copy exist, a completed comparison is meaningful as an honest evidence-limit state: it shows the charts, applicable categorical limitations, and entity disclosure, but no relationship headline, score, `What clicks`, `Potential friction`, `Why this?`, or personalized prompt.
+For Product Recovery and future development/review candidates, **meaningful comparison means the user receives the intended compatibility outcome**, not merely charts plus an evidence-limit disclosure. The black-box vertical slice is:
+
+`birth input → My Saju → choose a reference → compatibility result → explanation`
+
+The review/development preview may show clearly labeled candidate interpretation to prove this user value. Production remains fail-closed for relationship interpretation until the relevant #14/#33 validation and cultural-review gates pass.
+
+A placeholder, `interpretation unavailable`, or no-approved-evidence state must not be counted as completion of the primary product-value milestone even when it is the correct production safety fallback.
 
 ## 8. Sharing
 
@@ -177,7 +196,7 @@ Sharing is a first-class feature because it drives discovery and Reddit/social d
 
 Generate an image in the browser and invoke native Web Share when available.
 
-While the approved relationship-rule and copy catalogs are empty, a default card may include only:
+While production-approved relationship-rule and copy catalogs are empty, a production-safe default card may include only:
 
 - INYEON branding;
 - public figure/synthetic subject name when applicable;
@@ -186,6 +205,8 @@ While the approved relationship-rule and copy catalogs are empty, a default card
 - product URL.
 
 It must not include an archetype, score, relationship claim, raw birth date/time/place, chart, derived feature, pair evidence, or other protected personal value.
+
+Review/development-preview sharing must remain privacy-safe and must not convert unapproved candidate interpretation into a public production claim.
 
 ### 8.2 Share-safe result link
 
@@ -230,7 +251,7 @@ Google Cloud remains a future option only when a feature proves it needs server-
 
 ## 11. Reddit launch and feedback loop
 
-Reddit is the preferred initial promotion/feedback channel.
+Reddit is the preferred initial promotion/feedback channel after the primary Product Acceptance milestone and applicable community-rule gates are satisfied.
 
 Target operating loop:
 
@@ -258,6 +279,7 @@ Required:
 - methodology/privacy pages;
 - GitHub Pages CI/CD and rollback;
 - golden/regression/privacy/E2E/accessibility tests;
+- black-box deployed/release-candidate Product Acceptance for the primary vertical slice;
 - production smoke checks.
 
 Deferred from first release:
@@ -274,18 +296,25 @@ Deferred means out of current scope, not low quality.
 
 ## 13. Release success criteria
 
-The release is successful when:
+The release path is successful only when the proof ladder is satisfied in order. In particular, before methodology promotion and production release are treated as the next milestone, the development/review candidate must demonstrate the primary user outcome end to end.
 
-- a stranger can open the public URL and complete the core flow without setup/help;
-- chart results are deterministic/versioned and pass golden tests;
+Required evidence includes:
+
+- a stranger can open the deployed/release-candidate preview and complete `birth input → My Saju → reference → compatibility result → explanation` without setup/help;
+- the compatibility result delivers actual candidate `What clicks`, `Potential friction`, and `Why this?` value in the review/development preview, clearly marked as not yet expert reviewed until promoted;
+- ordinary target-user inputs work across a realistic supported range rather than only a narrow synthetic/happy-path slice;
+- chart results are deterministic/versioned and pass golden tests before production promotion;
 - unknown/disputed birth-time cases degrade correctly;
 - public-figure provenance is visible and auditable;
 - no protected personal value leaves browser memory;
 - sharing works without exposing protected inputs;
 - direct links/routes work reliably on GitHub Pages;
 - responsive/accessibility/error/empty/loading states are polished;
+- production relationship claims remain fail-closed until methodology/cultural approval;
 - production deploy and rollback are reproducible;
-- Reddit feedback can be converted into traceable product work under the current Reddit autonomy policy and Human Gates.
+- external-feedback operation begins only after the core product value is real enough to evaluate and applicable community rules allow it.
+
+Passing unit/integration tests, CI, governance checks, fixture counts, or release infrastructure alone does not satisfy the first two Product Acceptance criteria.
 
 Business metrics such as revenue, CAC, or venture-scale growth are not first-release success criteria.
 
