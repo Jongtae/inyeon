@@ -13,10 +13,10 @@ The autonomy goal is **verified L4** under `docs/AUTONOMY_L4.md`. The current st
 ## First action on every substantial run
 
 1. Read `TEAM_STATE.toml`.
-2. Read `AGENTS.md`, `docs/AUTONOMY_L4.md`, `docs/ROLE_AUTHORITY_MATRIX.md`, and `docs/HUMAN_GATES.md`.
-3. Reconcile machine-readable state with actual issues/code/releases.
+2. Read `AGENTS.md`, `docs/USER_VALUE_GATE.md`, `docs/AUTONOMY_L4.md`, `docs/ROLE_AUTHORITY_MATRIX.md`, and `docs/HUMAN_GATES.md`.
+3. Reconcile machine-readable state with actual issues/code/releases and deployed-preview behavior.
 4. Repair stale state or policy conflicts before selecting material work.
-5. Execute the highest-value unblocked action; do not merely restate a plan.
+5. Identify the earliest unproven rung in the product proof ladder and execute the highest-value unblocked action there; do not merely restate a plan.
 
 At meaningful milestones update `TEAM_STATE.toml` with real evidence only.
 
@@ -38,25 +38,62 @@ All public UI, result copy, and relationship language is English-first for the U
 
 Real-user discovery, likes, matches, chat, payments, city seeding, and marketplace operations are outside the first-release scope unless the owner explicitly activates Marketplace Mode.
 
+## Product proof ladder
+
+Product progress must respect:
+
+`functionality → user value → correctness/methodology → safety/privacy/reliability → release/recovery → autonomy proof`
+
+A later rung cannot substitute for an earlier unproven rung.
+
+Passing tests, CI, privacy/security checks, release engineering, or autonomy evals does not by itself prove that the product delivers its intended user value.
+
+For a new capability or Product Recovery, use **Vertical Slice First** and prove the primary real user path through the deployed/release-candidate preview.
+
+The current primary Product Acceptance path is:
+
+`birth input → My Saju → choose reference → compatibility result → explanation`
+
+The path must produce actual candidate compatibility value in review/development preview, including `What clicks`, `Potential friction`, and `Why this?`, clearly labeled `CANDIDATE · NOT YET EXPERT REVIEWED` or equivalent until methodology/cultural approval.
+
+Production remains fail-closed for unapproved relationship claims.
+
 ## Active execution path
 
-Prefer the highest-value unblocked work along:
+During Product Recovery, prefer the highest-value unblocked work along:
 
-`#1 → #8 → #9-14 → #6 → #33-34 → #50/#49 → #35 deterministic explanation + #53 static web UI → #43 → #52 → #47 → #51`
+`#78 Product Recovery / User Value Gate → #14 methodology validation → #33 reviewed compatibility mappings → #47 production release/recovery → #51 external evidence → #54 L4 proof`
 
-Historical marketplace P0 labels do not outrank this path.
+Do not advance #14/#33 production promotion, #47 production promotion, #51 external operation, or #54 autonomy proof as substitutes for missing #78 user value.
+
+Historical implementation paths remain context, not current priority.
 
 ## General work rules
 
-1. Prefer the highest-priority unblocked issue consistent with active release scope.
+1. Prefer the highest-priority unblocked issue consistent with active release scope and the earliest unproven proof-ladder rung.
 2. Refine stale marketplace-era issue assumptions before coding.
 3. If one stream hits a Human Gate, record the minimal blocker and continue unrelated work.
 4. Do not repeatedly re-plan the entire project.
 5. Prefer the simplest production-capable architecture over enterprise complexity.
 6. Do not mark a feature done because its happy path works locally.
-7. Continue through tests, independent review, CI, release hardening, production deploy, smoke checks, and state update unless a Human Gate applies.
+7. Continue through tests, black-box Product Acceptance when applicable, independent review, CI, release hardening, production deploy, smoke checks, and state update unless a Human Gate applies.
 8. Do not introduce GCP/backend persistence unless a concrete requirement proves static architecture insufficient and the architecture/privacy change passes current Human Gates.
-9. Do not weaken a test, invariant, privacy promise, or release gate merely to make progress appear green.
+9. Do not weaken a test, invariant, privacy promise, release gate, or Product Acceptance contract merely to make progress appear green.
+10. If three substantial implementation cycles do not change black-box Product Acceptance or materially reduce its concrete blocker, stop that stream and re-evaluate the goal, acceptance contract, or approach before doing more work.
+11. That re-evaluation is normally autonomous, not a Human Gate.
+12. Count progress by meaningful user-visible capability, Product Acceptance, release state, real evidence, or concrete blocker reduction—not commits, fixtures, ADRs, repeated review, or activity volume.
+
+## Issue-backed delivery contract
+
+GitHub Issues are the execution queue.
+
+Material repository changes should follow:
+
+`Issue → branch/change → inspect → implement → test → self-review → independent review when warranted → fix → PR → CI → merge when gates pass → close only when the issue Definition of Done is satisfied`
+
+A PR may deliver one coherent part of a larger issue without closing it when the issue Definition of Done remains unmet.
+
+Direct-to-main material changes are not the normal operating path.
 
 ## Issue quality contract
 
@@ -86,6 +123,8 @@ When uncertain:
 
 Ask for human input only when `docs/HUMAN_GATES.md` applies or a material change explicitly requires owner judgment.
 
+Do not add routine owner approval merely because Product Acceptance is weak; improve the automated black-box acceptance instead.
+
 ## Persistent team state
 
 `TEAM_STATE.toml` is operational memory, not marketing copy.
@@ -96,12 +135,13 @@ Update it after meaningful changes to:
 - active issues and experiments;
 - Human Gates;
 - known risks;
+- current Product Acceptance/proof-ladder reality when represented;
 - production URL/release SHA/rollback SHA;
 - smoke/privacy/eval status;
 - next action;
 - autonomy proof counters and team metrics when measured.
 
-Never claim `l4-verified` unless `docs/AUTONOMY_L4.md` graduation criteria are satisfied with durable evidence.
+Never claim `l4-verified` unless `docs/AUTONOMY_L4.md` graduation criteria are satisfied with durable evidence and the primary user-value path has already been demonstrated end to end.
 
 ## Engineering bar
 
@@ -120,7 +160,8 @@ Keep these strict:
 - no protected values in persistence, URLs, analytics, logs, console, or remote calls;
 - no browser-bundled secrets;
 - accessible/responsive UX;
-- reproducible GitHub Pages deploy and rollback.
+- reproducible GitHub Pages deploy and rollback;
+- deployed/release-candidate black-box Product Acceptance for the primary journey.
 
 ## Manseryeok dependency policy
 
@@ -131,6 +172,16 @@ Use:
 `adopt → wrap → pin → differential-test → golden-test → patch only proven gaps`
 
 The INYEON adapter owns the contract. Upstream changes require full golden/regression validation before production.
+
+## Candidate preview vs production
+
+The review/development preview may render deterministic candidate compatibility mappings and explanation copy before expert approval only when the output is clearly labeled `CANDIDATE · NOT YET EXPERT REVIEWED` or equivalent, remains traceable to versioned rule/evidence artifacts, and preserves all privacy/safety invariants.
+
+A no-approved-evidence or `interpretation unavailable` state may be a correct production safety fallback, but it does **not** satisfy Product Acceptance for the review/development candidate whose intended value is compatibility interpretation.
+
+Production remains fail-closed for relationship claims until the applicable #14/#33 methodology and cultural-review gates pass.
+
+Methodology review is a production-promotion gate, not a reason for the review preview to remain functionally empty.
 
 ## First-release privacy policy
 
@@ -151,11 +202,11 @@ After static assets load, core personal calculations should be able to run with 
 
 ## Sharing governance
 
-Default sharing may expose only allowlisted non-sensitive result data.
+Default production sharing may expose only allowlisted non-sensitive result data.
 
 Required release surfaces:
 
-- client-generated claim-free reference/invitation PNG while approved relationship rules are empty;
+- client-generated claim-free reference/invitation PNG while approved relationship rules are empty in production;
 - Web Share API when available with fallback;
 - share-safe reference/invitation link;
 - explicit personal-data-free `Compare with me` invitation;
@@ -167,7 +218,7 @@ Raw or derived personal birth/chart/evidence data is never included in a v0.1 sh
 
 ## Reddit operation and product-learning governance
 
-Reddit is the preferred initial promotion/feedback channel after a production candidate exists.
+Reddit is the preferred initial promotion/feedback channel only after the primary Product Acceptance milestone and applicable community-rule gates are satisfied.
 
 The owner has granted standing authorization for **maximum practical Reddit autonomy**. When an authorized account/integration exists and community rules clearly permit the action, Codex may research communities, publish, reply, monitor, and iterate without per-post approval.
 
@@ -207,6 +258,8 @@ For material changes preserve independent contexts when practical:
 
 A Worker cannot silently expand a Product Judge decision. Product Judge should not implement its own high-impact decision when independent implementation/review is practical. QA/security reviewers may block release only with concrete failing criteria/invariants.
 
+Black-box Product Acceptance for a material user-value milestone should be independent of implementation self-review when practical.
+
 ## Behavioral evals
 
 `evals/autonomy/cases.json` defines the initial governance behavior suite.
@@ -214,16 +267,18 @@ A Worker cannot silently expand a Product Judge decision. Product Judge should n
 - Run `python scripts/check_l4.py` for structural/policy checks.
 - When the Codex runtime supports role/model eval execution, run representative/full behavioral evals after material prompt/model/governance changes.
 - Record measured pass rate in `TEAM_STATE.toml` only from real eval results.
-- `l4-verified` requires >=95% overall pass and zero critical failures under the L4 contract.
+- Do not spend autonomy-eval cycles as a substitute for missing lower-rung Product Acceptance.
+- `l4-verified` requires >=95% overall pass and zero critical failures under the L4 contract, after the primary user-value prerequisite is demonstrated.
 
 ## Release governance
 
-Active path:
+Active release path after #78 Product Acceptance and #14/#33 production approvals:
 
 `local → CI/test → preview/staging-equivalent → GitHub Pages production`
 
 Production release gates include:
 
+- black-box primary Product Acceptance already demonstrated in review/development candidate;
 - CI green;
 - deterministic/golden Saju tests green;
 - critical E2E green;
@@ -235,6 +290,7 @@ Production release gates include:
 - accessibility/responsive quality acceptable;
 - share cards/links pass privacy tests;
 - no browser runtime secret;
+- applicable #14/#33 methodology/cultural approvals complete;
 - Pages deploy succeeds;
 - rollback/redeploy is credible and rehearsed;
 - production smoke passes;
@@ -249,15 +305,17 @@ On a production-affecting failure:
 
 `detect → classify → contain → rollback/recover → incident record → root cause → regression protection → redeploy → verify → state/metrics update`
 
+A product-value failure may also require recovery when tests/CI passed but the primary user journey never delivered the intended outcome.
+
 Prefer the last known good release when fast rollback reduces user impact. Never call a recovery drill complete unless the recovery path was actually exercised and verified.
 
 ## L4 graduation
 
 Codex must not self-award L4.
 
-Only set `TEAM_STATE.toml:maturity = "l4-verified"` when all graduation criteria in `docs/AUTONOMY_L4.md` are satisfied, including at least five consecutive closed autonomous loops, one real recovery drill/path, >=95% behavioral-eval pass rate, zero critical eval failures, zero active policy conflicts, zero routine interventions outside declared Human Gates, a real release/rollback path, and durable traceability.
+Only set `TEAM_STATE.toml:maturity = "l4-verified"` when the primary user-value prerequisite and all graduation criteria in `docs/AUTONOMY_L4.md` are satisfied, including at least five consecutive closed autonomous loops, one real recovery drill/path, >=95% behavioral-eval pass rate, zero critical eval failures, zero active policy conflicts, zero routine interventions outside declared Human Gates, a real release/rollback path, and durable traceability.
 
-If those conditions later regress materially, downgrade to `l4-candidate` until repaired.
+If those conditions later regress materially—including discovery that the claimed primary user-value path was absent or only a placeholder—downgrade to `l4-candidate` until repaired.
 
 ## Agent budget policy
 
@@ -265,7 +323,7 @@ Use strongest reasoning where failure is expensive, not everywhere.
 
 - Sol/high: architecture, Product Judge, difficult Saju methodology, security/privacy, hard bugs, release arbitration
 - Sol/medium: normal nontrivial implementation
-- Terra/high: QA, code review, broad regression analysis
+- Terra/high: QA, code review, black-box Product Acceptance, broad regression analysis
 - Terra/medium: exploration, feedback analysis, docs/API inspection, ordinary leaf work
 - Terra/low: mechanical docs/fixtures/data cleanup if reliable
 
