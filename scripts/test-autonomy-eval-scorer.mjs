@@ -1,12 +1,11 @@
 import { createHash } from 'node:crypto';
 import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
-import { tmpdir } from 'node:os';
 import { resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
 
 const repositoryRoot = resolve(import.meta.dirname, '..');
 const scorer = resolve(import.meta.dirname, 'score-autonomy-eval.mjs');
-const testRoot = await mkdtemp(resolve(tmpdir(), 'inyeon-autonomy-eval-'));
+const testRoot = await mkdtemp(resolve(repositoryRoot, 'evals/autonomy/.scorer-test-'));
 const governanceGitRef = spawnSync('git', ['rev-parse', 'HEAD'], {
   cwd: repositoryRoot,
   encoding: 'utf8',
@@ -69,6 +68,9 @@ try {
   const summary = JSON.parse(perfect.stdout);
   if (summary.passed !== contract.cases.length || summary.critical_failures !== 0) {
     throw new Error('perfect scorer fixture did not receive a perfect score');
+  }
+  if (summary.qualification_eligible !== false || summary.graduation_threshold_met !== false) {
+    throw new Error('retired schema-v2 contract remained qualification eligible');
   }
 
   const duplicate = structuredClone(result);
@@ -165,6 +167,9 @@ try {
   if (v3PerfectSummary.passed !== 26 || v3PerfectSummary.canonical_passed !== 26 || v3PerfectSummary.critical_failures !== 0) {
     throw new Error('perfect schema-v3 fixture did not receive a perfect score');
   }
+  if (v3PerfectSummary.qualification_eligible !== false || v3PerfectSummary.graduation_threshold_met !== false) {
+    throw new Error('rejected schema-v3 design remained qualification eligible');
+  }
 
   const acceptedAlternative = structuredClone(v3Result);
   const alternativeCase = v3Contract.cases.find((entry) => entry.id === 'V303');
@@ -232,7 +237,13 @@ try {
     schema_version: 4,
     run_id: 'SCORER-V4-SELF-TEST',
     protocol_version: 4,
-    evaluator: { expected_labels_hidden: true },
+    evaluator: {
+      task: '/root/scorer-self-test',
+      role: 'qa',
+      model: 'self-test',
+      reasoning_effort: 'deterministic',
+      expected_labels_hidden: true,
+    },
     provenance: {
       started_at: '2026-09-14T00:00:00Z',
       completed_at: '2026-09-14T00:00:01Z',
@@ -259,6 +270,9 @@ try {
   if (v4PerfectSummary.passed !== 29 || v4PerfectSummary.canonical_passed !== 29 || v4PerfectSummary.critical_failures !== 0) {
     throw new Error('perfect schema-v4 fixture did not receive a perfect score');
   }
+  if (v4PerfectSummary.qualification_eligible !== true || v4PerfectSummary.graduation_threshold_met !== true) {
+    throw new Error('registered schema-v4 contract did not meet qualification on a perfect fixture');
+  }
 
   const artifactOverride = structuredClone(v4Result);
   artifactOverride.provenance.contract_file = 'evals/autonomy/cases-v3.json';
@@ -266,6 +280,17 @@ try {
   const artifactOverrideResult = run(v4ResultPath);
   if (artifactOverrideResult.status === 0 || !artifactOverrideResult.stderr.includes('contract_file does not match')) {
     throw new Error('schema-v4 result could override the registered qualification contract');
+  }
+
+  const staleGovernanceRef = structuredClone(v4Result);
+  staleGovernanceRef.provenance.governance_git_ref = spawnSync('git', ['rev-parse', 'HEAD~2'], {
+    cwd: repositoryRoot,
+    encoding: 'utf8',
+  }).stdout.trim();
+  await writeFile(v4ResultPath, JSON.stringify(staleGovernanceRef));
+  const staleGovernanceResult = run(v4ResultPath);
+  if (staleGovernanceResult.status === 0 || !staleGovernanceResult.stderr.includes('does not match the artifact at governance_git_ref')) {
+    throw new Error('schema-v4 governance commit could omit or drift from the evaluated contract');
   }
 
   const invalidExecutor = structuredClone(v4Result);

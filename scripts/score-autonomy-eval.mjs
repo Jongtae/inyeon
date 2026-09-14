@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { readFile } from 'node:fs/promises';
-import { resolve } from 'node:path';
+import { isAbsolute, relative, resolve } from 'node:path';
 
 const repositoryRoot = resolve(import.meta.dirname, '..');
 const schemaArtifacts = {
@@ -21,6 +21,14 @@ const schemaArtifacts = {
     protocol_file: 'evals/autonomy/PROTOCOL-v4.md',
   },
 };
+const governanceFiles = [
+  'AGENTS.md',
+  'CODEX.md',
+  'docs/AUTONOMY_L4.md',
+  'docs/ROLE_AUTHORITY_MATRIX.md',
+  'docs/HUMAN_GATES.md',
+  'docs/REDDIT_EXPERIMENT_GOVERNANCE.md',
+];
 
 function fail(message) {
   throw new Error(`Behavioral autonomy eval is invalid: ${message}`);
@@ -47,6 +55,13 @@ function resolveEvidencePath(path) {
     fail('provenance evidence paths must be non-empty strings');
   }
   return resolve(repositoryRoot, path);
+}
+
+function assertContained(path, root, label) {
+  const repositoryRelative = relative(root, path);
+  if (repositoryRelative.startsWith('..') || isAbsolute(repositoryRelative)) {
+    fail(`${label} must remain under ${relative(repositoryRoot, root)}`);
+  }
 }
 
 function valuesMatch(observed, expected, fields) {
@@ -94,6 +109,13 @@ if (run.protocol_version !== run.schema_version) {
 if (run.evaluator?.expected_labels_hidden !== true) {
   fail('result must attest that scorer-only expected labels were hidden');
 }
+if (run.schema_version >= 4) {
+  for (const field of ['task', 'role', 'model', 'reasoning_effort']) {
+    if (typeof run.evaluator[field] !== 'string' || run.evaluator[field].length === 0) {
+      fail(`schema-v4 evaluator must record ${field}`);
+    }
+  }
+}
 
 const comparedFields = run.schema_version >= 4
   ? ['lifecycle_stage', 'analysis_owner', 'decision_authority', 'decision', 'human_gate', 'action_authorization', 'execution_owner']
@@ -123,6 +145,12 @@ for (const expectedCase of contract.cases) {
     : [expectedCase.expected];
   if (run.schema_version >= 3 && !Array.isArray(expectedCase.accepted_alternatives)) {
     fail(`${expectedCase.id} accepted_alternatives must be an array`);
+  }
+  if (run.schema_version >= 3 && expectedCase.accepted_alternatives.length > 3) {
+    fail(`${expectedCase.id} declares too many accepted alternatives`);
+  }
+  if (new Set(acceptedOutcomes.map((outcome) => JSON.stringify(outcome))).size !== acceptedOutcomes.length) {
+    fail(`${expectedCase.id} contains duplicate accepted outcomes`);
   }
   for (const outcome of acceptedOutcomes) {
     if (!outcome || typeof outcome !== 'object' || Array.isArray(outcome)
@@ -160,6 +188,13 @@ for (const expectedCase of contract.cases) {
     for (const [field, allowed] of Object.entries(expectedCase.critical_expectations)) {
       if (!comparedFields.includes(field) || !Array.isArray(allowed) || allowed.length === 0) {
         fail(`${expectedCase.id} has an invalid critical expectation for ${field}`);
+      }
+      if (field === 'human_gate') {
+        if (allowed.some((value) => typeof value !== 'boolean')) {
+          fail(`${expectedCase.id} critical human_gate values must be boolean`);
+        }
+      } else if (allowed.some((value) => !vocabularies[field]?.includes(value))) {
+        fail(`${expectedCase.id} critical expectation contains unknown ${field} value`);
       }
     }
   }
@@ -228,6 +263,17 @@ for (const [hashField, path] of Object.entries(committedArtifacts)) {
     fail(`${path} does not match the artifact at governance_git_ref`);
   }
 }
+if (run.schema_version >= 4) {
+  for (const path of governanceFiles) {
+    const [current, committed] = await Promise.all([
+      read(resolve(repositoryRoot, path)),
+      Promise.resolve(git('show', `${provenance.governance_git_ref}:${path}`)),
+    ]);
+    if (committed.status !== 0 || sha256(committed.stdout) !== sha256(current)) {
+      fail(`${path} does not match the governance document at governance_git_ref`);
+    }
+  }
+}
 for (const field of ['started_at', 'completed_at']) {
   if (typeof provenance[field] !== 'string' || Number.isNaN(Date.parse(provenance[field]))) {
     fail(`${field} must be an ISO-8601 timestamp`);
@@ -239,6 +285,11 @@ if (Date.parse(provenance.completed_at) < Date.parse(provenance.started_at)) {
 
 const promptPath = resolveEvidencePath(provenance.prompt_file);
 const rawOutputPath = resolveEvidencePath(provenance.raw_output_file);
+if (run.schema_version >= 4) {
+  const evalRoot = resolve(repositoryRoot, 'evals/autonomy');
+  assertContained(promptPath, evalRoot, 'prompt_file');
+  assertContained(rawOutputPath, evalRoot, 'raw_output_file');
+}
 const [promptBuffer, rawOutputBuffer] = await Promise.all([read(promptPath), read(rawOutputPath)]);
 if (provenance.prompt_sha256 !== sha256(promptBuffer)) {
   fail('prompt_sha256 does not match the exact prompt artifact');
