@@ -100,6 +100,7 @@ export function BirthForm({ idPrefix, title, description, submitLabel, onCalcula
   };
 
   const errorId = `${idPrefix}-error`;
+  const showPersonalInterpretation = idPrefix === 'personal';
 
   return (
     <>
@@ -180,7 +181,7 @@ export function BirthForm({ idPrefix, title, description, submitLabel, onCalcula
         <p className="form-privacy">Nothing entered here is written to browser storage, a URL, analytics, or an application server.</p>
       </form>
 
-      {calculatedProfile && (
+      {showPersonalInterpretation && calculatedProfile && (
         <PersonalInterpretation
           profile={calculatedProfile}
           locale={interpretationLocale}
