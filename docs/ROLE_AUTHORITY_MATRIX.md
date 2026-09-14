@@ -16,7 +16,12 @@ The goal is to preserve useful independence between product operation, evidence 
 | `qa` | design/run regression/E2E/release checks, reject a release candidate that fails acceptance/release criteria | redefine requirements merely to pass tests | worker/architect/product judge |
 | `reddit-operator` | subreddit research, transparent posting/replies, timing, monitoring, raw-evidence handoff when rules/tools permit | judge own campaign success; directly change product based on feedback; spam, astroturf, bypass controls | feedback analyst, Human Gate when required |
 | `feedback-analyst` | cluster raw evidence, preserve contradictions, assess source bias/root causes, recommend routing | implement product changes; convert user-requested solution into requirement without analysis; modify Saju methodology | product judge / methodology review |
-| `product-judge` | preregister experiments, issue `IGNORE/OBSERVE/EXPERIMENT/ACT`, create decision records/issues, choose smallest reversible test | implement its own high-impact decision when independent implementation/review is practical; bypass Human Gates; declare Reddit representative of the market | worker/architect/security/owner as appropriate |
+| `product-judge` | preregister experiments, issue `IGNORE/OBSERVE/EXPERIMENT/ACT`, veto an out-of-scope feedback-driven release with `BLOCK`, create decision records/issues, choose smallest reversible test | implement its own high-impact decision when independent implementation/review is practical; bypass Human Gates; declare Reddit representative of the market | worker/architect/security/owner as appropriate |
+
+Two functional authorities are intentionally not Codex specialist-agent profiles:
+
+- `operator` is the primary Codex run owner when it executes an already established release, immediate-containment, or rollback procedure. It does not independently verify its own action.
+- `methodology review` is the qualified review function for Saju calculation and traditional-signal interpretation. It may be performed only by the attributable authority established under the applicable Human Gate; the repository does not pretend an automated specialist profile supplies that qualification.
 
 ## Mandatory separation
 
