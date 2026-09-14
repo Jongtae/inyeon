@@ -5,7 +5,11 @@ import { spawnSync } from 'node:child_process';
 
 const repositoryRoot = resolve(import.meta.dirname, '..');
 const scorer = resolve(import.meta.dirname, 'score-autonomy-eval.mjs');
-const testRoot = await mkdtemp(resolve(repositoryRoot, 'evals/autonomy/.scorer-test-'));
+const [testRoot, testPromptRoot, testRawRoot] = await Promise.all([
+  mkdtemp(resolve(repositoryRoot, 'evals/autonomy/results/.scorer-test-')),
+  mkdtemp(resolve(repositoryRoot, 'evals/autonomy/prompts/.scorer-test-')),
+  mkdtemp(resolve(repositoryRoot, 'evals/autonomy/raw/.scorer-test-')),
+]);
 const governanceGitRef = spawnSync('git', ['rev-parse', 'HEAD'], {
   cwd: repositoryRoot,
   encoding: 'utf8',
@@ -36,8 +40,8 @@ try {
   }));
   const prompt = Buffer.from('Synthetic scorer test prompt.');
   const raw = Buffer.from(`${JSON.stringify(observations, null, 2)}\n`);
-  const promptPath = resolve(testRoot, 'prompt.txt');
-  const rawPath = resolve(testRoot, 'raw.json');
+  const promptPath = resolve(testPromptRoot, 'prompt.txt');
+  const rawPath = resolve(testRawRoot, 'raw.json');
   await Promise.all([writeFile(promptPath, prompt), writeFile(rawPath, raw)]);
   const result = {
     schema_version: 2,
@@ -132,8 +136,8 @@ try {
   }));
   const v3Prompt = Buffer.from('Synthetic schema-v3 scorer test prompt.');
   const v3Raw = Buffer.from(`${JSON.stringify(v3Observations, null, 2)}\n`);
-  const v3PromptPath = resolve(testRoot, 'prompt-v3.txt');
-  const v3RawPath = resolve(testRoot, 'raw-v3.json');
+  const v3PromptPath = resolve(testPromptRoot, 'prompt-v3.txt');
+  const v3RawPath = resolve(testRawRoot, 'raw-v3.json');
   const v3ResultPath = resolve(testRoot, 'result-v3.json');
   await Promise.all([writeFile(v3PromptPath, v3Prompt), writeFile(v3RawPath, v3Raw)]);
   const v3Result = {
@@ -229,8 +233,8 @@ try {
   }));
   const v4Prompt = Buffer.from('Synthetic schema-v4 scorer test prompt.');
   const v4Raw = Buffer.from(`${JSON.stringify(v4Observations, null, 2)}\n`);
-  const v4PromptPath = resolve(testRoot, 'prompt-v4.txt');
-  const v4RawPath = resolve(testRoot, 'raw-v4.json');
+  const v4PromptPath = resolve(testPromptRoot, 'prompt-v4.txt');
+  const v4RawPath = resolve(testRawRoot, 'raw-v4.json');
   const v4ResultPath = resolve(testRoot, 'result-v4.json');
   await Promise.all([writeFile(v4PromptPath, v4Prompt), writeFile(v4RawPath, v4Raw)]);
   const v4Result = {
@@ -325,5 +329,9 @@ try {
 
   console.log('Behavioral autonomy eval scorer tests PASSED: v2 compatibility plus v3/v4 tuple, lifecycle, role, execution, critical, artifact, duplicate, and provenance checks.');
 } finally {
-  await rm(testRoot, { recursive: true, force: true });
+  await Promise.all([
+    rm(testRoot, { recursive: true, force: true }),
+    rm(testPromptRoot, { recursive: true, force: true }),
+    rm(testRawRoot, { recursive: true, force: true }),
+  ]);
 }

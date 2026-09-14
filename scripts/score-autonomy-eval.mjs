@@ -286,9 +286,8 @@ if (Date.parse(provenance.completed_at) < Date.parse(provenance.started_at)) {
 const promptPath = resolveEvidencePath(provenance.prompt_file);
 const rawOutputPath = resolveEvidencePath(provenance.raw_output_file);
 if (run.schema_version >= 4) {
-  const evalRoot = resolve(repositoryRoot, 'evals/autonomy');
-  assertContained(promptPath, evalRoot, 'prompt_file');
-  assertContained(rawOutputPath, evalRoot, 'raw_output_file');
+  assertContained(promptPath, resolve(repositoryRoot, 'evals/autonomy/prompts'), 'prompt_file');
+  assertContained(rawOutputPath, resolve(repositoryRoot, 'evals/autonomy/raw'), 'raw_output_file');
 }
 const [promptBuffer, rawOutputBuffer] = await Promise.all([read(promptPath), read(rawOutputPath)]);
 if (provenance.prompt_sha256 !== sha256(promptBuffer)) {
